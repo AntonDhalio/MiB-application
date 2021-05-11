@@ -8,6 +8,7 @@ package mib.application;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import mib.application.ValjInloggning;
 /**
  *
  * @author mariaforsberg
@@ -109,19 +110,20 @@ public class InloggningsFonster extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         try {
-            
-        String hamtaLosenord = "SELECT Losenord FROM Agent where Agent_ID = 1";
-       
         String idNummer = txtIDNummer.getText();
-        String losenord = pswrdLosenord.getText();
-        String losenFraga = idb.fetchSingle(hamtaLosenord);
+        String hamtaLosenord = "SELECT Losenord FROM Agent where Agent_ID =" + idNummer;
+        String losenordFraga = idb.fetchSingle(hamtaLosenord);
+       
+        String losenord=String.valueOf(pswrdLosenord.getPassword());
         
-        if(losenord.equals(losenFraga)) {
-            System.out.println("Inloggningen lyckades!");
+        
+        if(losenord.equals(losenordFraga)) {
+            System.out.println("Internt meddelande: Inloggningen lyckades!");
             
       
         } else {
