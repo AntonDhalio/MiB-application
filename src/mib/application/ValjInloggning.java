@@ -14,6 +14,7 @@ import mib.application.InloggningsFonster;
 public class ValjInloggning extends javax.swing.JFrame {
     
     private InloggningsFonster loggaIn;
+    private InloggningAlien loggaInAlien;
 
     /**
      * Creates new form ValjInloggning
@@ -49,6 +50,11 @@ public class ValjInloggning extends javax.swing.JFrame {
         });
 
         btnLoggaInAlien.setText("Logga in som alien");
+        btnLoggaInAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoggaInAlienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,6 +93,12 @@ public class ValjInloggning extends javax.swing.JFrame {
         loggaIn.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInAgentActionPerformed
+
+    private void btnLoggaInAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInAlienActionPerformed
+        loggaInAlien = new InloggningAlien();
+        loggaInAlien.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnLoggaInAlienActionPerformed
 
     /**
      * @param args the command line arguments
