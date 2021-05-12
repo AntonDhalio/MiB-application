@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Inloggningsfönstret för agenter och administratörer
  */
 package mib.application;
 
@@ -158,6 +156,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         
         catch(Exception e) {
         
+            JOptionPane.showConfirmDialog(null, "Ett fel uppstod");
         }
         
        }
@@ -167,10 +166,8 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
-    /**
-     * En metod för att kunna gå tillbaka till föregående sida
-     * 
-     */
+ 
+     //En metod för att kunna gå tillbaka till föregående sida
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         valjInloggning = new ValjInloggning(idb);
         valjInloggning.setVisible(true);

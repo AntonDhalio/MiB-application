@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * En klass för att kunna välja vad man ska logga in som
  */
 package mib.application;
 
@@ -91,12 +89,14 @@ public class ValjInloggning extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Öppnar inloggningsfönstret för agenter och administratörer
     private void btnLoggaInAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInAgentActionPerformed
         loggaIn = new InloggningAgentAdmin(idb);
         loggaIn.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInAgentActionPerformed
 
+    //Öppnar inloggningsfönstret för aliens
     private void btnLoggaInAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInAlienActionPerformed
         loggaInAlien = new InloggningAlien(idb);
         loggaInAlien.setVisible(true);

@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Inloggningsfönster för aliens
  */
 package mib.application;
 
@@ -127,7 +125,7 @@ public class InloggningAlien extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    //En metod för att kunna gå tillbaka till föregående sida
     private void btbTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbTillbakaActionPerformed
         valjInloggning = new ValjInloggning(idb);
         valjInloggning.setVisible(true);
@@ -148,21 +146,17 @@ public class InloggningAlien extends javax.swing.JFrame {
         String idNummer = txtIDNummer.getText();
         String hamtaLosenord = "SELECT Losenord FROM Alien where Alien_ID =" + idNummer;
         String losenordFraga = idb.fetchSingle(hamtaLosenord);
-       
         String losenord=String.valueOf(pswrdLosenord.getPassword());
-        
         
         if(losenord.equals(losenordFraga)) {
             System.out.println("Internt meddelande: Inloggningen lyckades!");
-            
-      
         } else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             }
         } 
         
         catch(Exception e) {
-        
+            JOptionPane.showConfirmDialog(null, "Ett fel uppstod");
             }
       
        }
