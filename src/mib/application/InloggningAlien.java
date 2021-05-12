@@ -6,7 +6,6 @@
 package mib.application;
 
 import javax.swing.JOptionPane;
-import mib.application.ValjInloggning;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -134,6 +133,8 @@ public class InloggningAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_btbTillbakaActionPerformed
 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
+
+        if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
         try {
         String idNummer = txtIDNummer.getText();
         String hamtaLosenord = "SELECT Losenord FROM Alien where Alien_ID =" + idNummer;
@@ -153,7 +154,9 @@ public class InloggningAlien extends javax.swing.JFrame {
         
         catch(Exception e) {
         
-        }
+            }
+      
+       }
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
  

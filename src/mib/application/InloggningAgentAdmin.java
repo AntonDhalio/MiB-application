@@ -8,7 +8,7 @@ package mib.application;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-import mib.application.ValjInloggning;
+
 /**
  *
  * @author mariaforsberg
@@ -139,18 +139,17 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
      * lösenordet för angivet ID i databasen
      */
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
+        
+        if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
         try {
         String idNummer = txtIDNummer.getText();
         String hamtaLosenord = "SELECT Losenord FROM Agent where Agent_ID =" + idNummer;
         String losenordFraga = idb.fetchSingle(hamtaLosenord);
-       
         String losenord=String.valueOf(pswrdLosenord.getPassword());
         
         
         if(losenord.equals(losenordFraga)) {
             System.out.println("Internt meddelande: Inloggningen lyckades!");
-            
-      
         } else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             }
@@ -159,6 +158,10 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         catch(Exception e) {
         
         }
+        
+       }
+        
+            
         
        
     }//GEN-LAST:event_btnLoggaInActionPerformed
@@ -173,6 +176,10 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
+    public static void main(String[] args)
+    {
+        
+    }
 
 
 

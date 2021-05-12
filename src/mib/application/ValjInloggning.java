@@ -5,7 +5,7 @@
  */
 package mib.application;
 
-import mib.application.InloggningAgentAdmin;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
