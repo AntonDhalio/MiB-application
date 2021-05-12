@@ -23,8 +23,9 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
      * Databasen ska försöka anslutas, och om inte det går, kommer ett 
      * felmeddelande
      */
-    public InloggningAgentAdmin() {
+    public InloggningAgentAdmin(InfDB idb) {
         initComponents();
+        this.idb = idb;
         
     }
 

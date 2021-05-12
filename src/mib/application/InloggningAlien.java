@@ -22,8 +22,9 @@ public class InloggningAlien extends javax.swing.JFrame {
     /**
      * Creates new form InloggningAlien
      */
-    public InloggningAlien() {
+    public InloggningAlien(InfDB idb) {
         initComponents();
+        this.idb = idb;
         
  
     }

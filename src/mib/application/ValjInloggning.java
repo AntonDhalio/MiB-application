@@ -93,13 +93,13 @@ public class ValjInloggning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoggaInAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInAgentActionPerformed
-        loggaIn = new InloggningAgentAdmin();
+        loggaIn = new InloggningAgentAdmin(idb);
         loggaIn.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInAgentActionPerformed
 
     private void btnLoggaInAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInAlienActionPerformed
-        loggaInAlien = new InloggningAlien();
+        loggaInAlien = new InloggningAlien(idb);
         loggaInAlien.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoggaInAlienActionPerformed
