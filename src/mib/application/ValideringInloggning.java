@@ -14,6 +14,9 @@ import javax.swing.JTextField;
  */
 public class ValideringInloggning {
     
+ 
+     //En metod för att kolla om rutan för ID-nummer är tom eller inte
+    
     public static boolean txtFieldHarVarde(JTextField aktuellRuta)
     {
          boolean resultat = true;

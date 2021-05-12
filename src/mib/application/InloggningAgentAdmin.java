@@ -19,9 +19,8 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     private ValjInloggning valjInloggning;
 
     /**
-     * Skapar nytt formulär av InloggningsFonster
-     * Databasen ska försöka anslutas, och om inte det går, kommer ett 
-     * felmeddelande
+     * Skapar nytt formulär av InloggningsFonster med uppkoppling till
+     * databasen
      */
     public InloggningAgentAdmin(InfDB idb) {
         initComponents();
@@ -140,7 +139,9 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
      */
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         
+        //Externt metodanrop för att kolla om textfältet har ett värde
         if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
+            
         try {
         String idNummer = txtIDNummer.getText();
         String hamtaLosenord = "SELECT Losenord FROM Agent where Agent_ID =" + idNummer;
@@ -178,7 +179,11 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
 
     public static void main(String[] args)
     {
-        
+    /**
+     * Den här metoden ska egentligen inte vara här
+     * Låter den ligga kvar för att jag ska kunna köra denna klass direkt
+     * vid testning av klassens funktioner
+     */
     }
 
 

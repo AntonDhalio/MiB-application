@@ -25,6 +25,7 @@ public class MiBApplication {
             Logger.getLogger(MiBApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        //Denna kod ser till att inloggningsfönstret öppnas direkt vid körning
         new ValjInloggning(idb).setVisible(true);
     }
     

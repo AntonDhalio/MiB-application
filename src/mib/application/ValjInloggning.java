@@ -5,7 +5,6 @@
  */
 package mib.application;
 
-
 import oru.inf.InfDB;
 import oru.inf.InfException;
 

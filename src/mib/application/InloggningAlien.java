@@ -19,7 +19,8 @@ public class InloggningAlien extends javax.swing.JFrame {
     private InfDB idb;
 
     /**
-     * Creates new form InloggningAlien
+     * Skapar ett nytt inloggningsfönster för aliens, med uppkoppling till
+     * databasen
      */
     public InloggningAlien(InfDB idb) {
         initComponents();
@@ -126,15 +127,23 @@ public class InloggningAlien extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btbTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbTillbakaActionPerformed
         valjInloggning = new ValjInloggning(idb);
         valjInloggning.setVisible(true);
         dispose();
     }//GEN-LAST:event_btbTillbakaActionPerformed
 
+    /**
+     * Den här metoden anropas när knappen "Logga in" trycks på, i formuläret
+     * Metoden kontrollerar att det inmatade ID:t och lösenordet matchar med
+     * lösenordet för angivet ID i databasen
+     */
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
 
+        //Externt metodanrop för att kolla om textfältet har ett värde
         if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
+            
         try {
         String idNummer = txtIDNummer.getText();
         String hamtaLosenord = "SELECT Losenord FROM Alien where Alien_ID =" + idNummer;
