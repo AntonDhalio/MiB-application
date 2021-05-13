@@ -15,6 +15,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     
     private InfDB idb;
     private ValjInloggning valjInloggning;
+    private HuvudmenyAdmin huvudmenyAdmin;
 
     /**
      * Skapar nytt formulär av InloggningsFonster med uppkoppling till
@@ -142,22 +143,48 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
             
         try {
         String idNummer = txtIDNummer.getText();
-        String hamtaLosenord = "SELECT Losenord FROM Agent where Agent_ID =" + idNummer;
+        String hamtaLosenord = "SELECT Losenord FROM Agent WHERE Agent_ID =" + idNummer;
         String losenordFraga = idb.fetchSingle(hamtaLosenord);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
         
+        String hamtaAdminStatus = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
+        String adminStatusFraga = idb.fetchSingle(hamtaAdminStatus);
+        String adminStatus = String.valueOf(adminStatusFraga);
+   
         
-        if(losenord.equals(losenordFraga)) {
-            System.out.println("Internt meddelande: Inloggningen lyckades!");
-        } else {
+        /**
+         * Denna kod loggar in en agent, förutsatt att lösenordet stämmer OCH
+         * agenten har adminstatus
+         * Då kommer agenten till en admin-huvudmenyn
+         */
+        if(losenord.equals(losenordFraga) && adminStatus.equals("J")) {
+            
+            new HuvudmenyAdmin(idb).setVisible(true);
+            
+        /** 
+         * Denna kod körs om agenten inte har adminstatus
+         * Skrivs rätt lösenord in, loggas agenten in på vanliga agent-
+         * huvudmenyn
+         */
+        } else if (losenord.equals(losenordFraga)) {
+            
+         System.out.println("Internt meddelande: Inloggningen lyckades!");
+        }
+            
+         else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             }
-        } 
+         } 
+      
+        
+     
         
         catch(Exception e) {
         
             JOptionPane.showConfirmDialog(null, "Ett fel uppstod");
         }
+        
+        dispose();
         
        }
         
