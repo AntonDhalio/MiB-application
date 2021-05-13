@@ -16,12 +16,18 @@ public class MiBApplication {
     
     public static void main(String[] args) throws InfException {
         
+        
+        
         try{
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
         }
         catch(InfException ex){
             Logger.getLogger(MiBApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //Denna kod ser till att inloggningsfönstret öppnas direkt vid körning
+        new ValjInloggning(idb).setVisible(true);
     }
+    
     
 }
