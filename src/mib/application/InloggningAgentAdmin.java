@@ -15,6 +15,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     
     private InfDB idb;
     private ValjInloggning valjInloggning;
+    private AgentMeny agentMeny;
 
     /**
      * Skapar nytt formulär av InloggningsFonster med uppkoppling till
@@ -145,10 +146,24 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         String hamtaLosenord = "SELECT Losenord FROM Agent where Agent_ID =" + idNummer;
         String losenordFraga = idb.fetchSingle(hamtaLosenord);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
+        String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + idNummer;
+        String admin = idb.fetchSingle(hamtaAdmin);
         
         
         if(losenord.equals(losenordFraga)) {
             System.out.println("Internt meddelande: Inloggningen lyckades!");
+            
+            //if-else sats för att se om det är en vanlig agent eller en admin
+            //som loggar in
+            if(admin.equals("J")){
+            
+            }
+            
+            else{
+                agentMeny = new AgentMeny(idb, idNummer);
+                agentMeny.setVisible(true);
+                dispose();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             }

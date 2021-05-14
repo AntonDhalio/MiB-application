@@ -5,17 +5,25 @@
  */
 package mib.application;
 
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author anton
  */
 public class AgentMeny extends javax.swing.JFrame {
 
+    private static InfDB idb;
+    private static String id;
+    private AndraLosenord andraLosenord;
     /**
      * Creates new form AgentMeny
      */
-    public AgentMeny() {
+    public AgentMeny(InfDB idb, String idNummer) {
         initComponents();
+        this.idb = idb;
+        id = idNummer;
     }
 
     /**
@@ -27,21 +35,117 @@ public class AgentMeny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        valkomsText = new javax.swing.JLabel();
+        bytLosenord = new javax.swing.JButton();
+        hanteraUtomjording = new javax.swing.JButton();
+        hanteraUtrustning = new javax.swing.JButton();
+        informationsHanterare = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        valkomsText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        valkomsText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        valkomsText.setText("Välkommen till Men in Black Skandinavien!");
+
+        bytLosenord.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        bytLosenord.setText("Byt lösenord");
+        bytLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bytLosenordActionPerformed(evt);
+            }
+        });
+
+        hanteraUtomjording.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        hanteraUtomjording.setText("Hantera utomjording");
+        hanteraUtomjording.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hanteraUtomjordingActionPerformed(evt);
+            }
+        });
+
+        hanteraUtrustning.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        hanteraUtrustning.setText("Hantera utrustning");
+        hanteraUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hanteraUtrustningActionPerformed(evt);
+            }
+        });
+
+        informationsHanterare.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        informationsHanterare.setText("Informationsportalen");
+        informationsHanterare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                informationsHanterareActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Vad vill du göra?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(hanteraUtomjording, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(informationsHanterare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bytLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(hanteraUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(valkomsText))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(jLabel1)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(valkomsText, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hanteraUtomjording)
+                    .addComponent(hanteraUtrustning))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bytLosenord)
+                    .addComponent(informationsHanterare))
+                .addGap(97, 97, 97))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bytLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bytLosenordActionPerformed
+        andraLosenord = new AndraLosenord(idb, id);
+        andraLosenord.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bytLosenordActionPerformed
+
+    private void hanteraUtomjordingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraUtomjordingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hanteraUtomjordingActionPerformed
+
+    private void hanteraUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraUtrustningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hanteraUtrustningActionPerformed
+
+    private void informationsHanterareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationsHanterareActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_informationsHanterareActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +177,17 @@ public class AgentMeny extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgentMeny().setVisible(true);
+                new AgentMeny(idb, id).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bytLosenord;
+    private javax.swing.JButton hanteraUtomjording;
+    private javax.swing.JButton hanteraUtrustning;
+    private javax.swing.JButton informationsHanterare;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel valkomsText;
     // End of variables declaration//GEN-END:variables
 }
