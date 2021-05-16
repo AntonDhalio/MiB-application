@@ -17,6 +17,7 @@ public class AgentMeny extends javax.swing.JFrame {
     private static InfDB idb;
     private static String id;
     private AndraLosenord andraLosenord;
+    private RegistreraUtrustning regUtrustning;
     /**
      * Creates new form AgentMeny
      */
@@ -140,7 +141,9 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_hanteraUtomjordingActionPerformed
 
     private void hanteraUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraUtrustningActionPerformed
-        // TODO add your handling code here:
+        regUtrustning = new RegistreraUtrustning(idb, id);
+        regUtrustning.setVisible(true);
+        dispose();
     }//GEN-LAST:event_hanteraUtrustningActionPerformed
 
     private void informationsHanterareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationsHanterareActionPerformed
