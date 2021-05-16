@@ -16,6 +16,12 @@ import oru.inf.InfException;
 public class ValideringInloggning {
     
     private static InfDB idb;
+    
+    public ValideringInloggning()
+    {
+        this.idb = idb;
+    }
+    
  
      //En metod för att kolla om rutan för ID-nummer är tom eller inte
     
