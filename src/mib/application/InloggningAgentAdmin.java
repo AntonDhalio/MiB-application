@@ -173,6 +173,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
             
          else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
+            new InloggningAgentAdmin(idb).setVisible(true);
             }
          } 
       
