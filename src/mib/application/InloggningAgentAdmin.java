@@ -143,13 +143,12 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
             
         try {
         String idNummer = txtIDNummer.getText();
-        String hamtaLosenord = "SELECT Losenord FROM Agent WHERE Agent_ID =" + idNummer;
-        String losenordFraga = idb.fetchSingle(hamtaLosenord);
+        String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + idNummer;
+        String hamtaLosenord = idb.fetchSingle(losenordFraga);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
         
-        String hamtaAdminStatus = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
-        String adminStatusFraga = idb.fetchSingle(hamtaAdminStatus);
-        String adminStatus = String.valueOf(adminStatusFraga);
+        String adminStatusFraga = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
+        String hamtaAdminStatus = idb.fetchSingle(adminStatusFraga);
    
         
         /**
@@ -157,7 +156,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
          * agenten har adminstatus
          * Då kommer agenten till en admin-huvudmenyn
          */
-        if(losenord.equals(losenordFraga) && adminStatus.equals("J")) {
+        if(losenord.equals(hamtaLosenord) && hamtaAdminStatus.equals("J")) {
             
             new HuvudmenyAdmin(idb).setVisible(true);
             
@@ -166,7 +165,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
          * Skrivs rätt lösenord in, loggas agenten in på vanliga agent-
          * huvudmenyn
          */
-        } else if (losenord.equals(losenordFraga)) {
+        } else if (losenord.equals(hamtaLosenord)) {
             
          System.out.println("Internt meddelande: Inloggningen lyckades!");
         }
