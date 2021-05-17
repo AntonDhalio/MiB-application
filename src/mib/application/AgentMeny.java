@@ -18,6 +18,7 @@ public class AgentMeny extends javax.swing.JFrame {
     private static String id;
     private AndraLosenord andraLosenord;
     private RegistreraUtrustning regUtrustning;
+    private HanteraUtomjording hanteraUtomJ;
     /**
      * Creates new form AgentMeny
      */
@@ -137,7 +138,9 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_bytLosenordActionPerformed
 
     private void hanteraUtomjordingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraUtomjordingActionPerformed
-        // TODO add your handling code here:
+        hanteraUtomJ = new HanteraUtomjording(idb,id);
+        hanteraUtomJ.setVisible(true);
+        dispose();
     }//GEN-LAST:event_hanteraUtomjordingActionPerformed
 
     private void hanteraUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hanteraUtrustningActionPerformed
