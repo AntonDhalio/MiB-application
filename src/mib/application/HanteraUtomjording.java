@@ -17,6 +17,7 @@ public class HanteraUtomjording extends javax.swing.JFrame {
     private static String id;
     private AgentMeny agentMeny;
     private RegistreraUtomjording regUtomJ;
+    private AndraUtomjording andraUtomjording;
     /**
      * Creates new form HanteraUtomjording
      */
@@ -110,7 +111,9 @@ public class HanteraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_registreraUtomjordingActionPerformed
 
     private void justeraUtomjordingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_justeraUtomjordingActionPerformed
-        // TODO add your handling code here:
+        andraUtomjording = new AndraUtomjording(idb, id);
+        andraUtomjording.setVisible(true);
+        dispose();
     }//GEN-LAST:event_justeraUtomjordingActionPerformed
 
     private void tillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaActionPerformed
