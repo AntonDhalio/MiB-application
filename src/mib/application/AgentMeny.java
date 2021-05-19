@@ -129,6 +129,7 @@ public class AgentMeny extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bytLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bytLosenordActionPerformed

@@ -98,10 +98,11 @@ public class HanteraUtomjording extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(justeraUtomjording)
                     .addComponent(registreraUtomjording))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void registreraUtomjordingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraUtomjordingActionPerformed

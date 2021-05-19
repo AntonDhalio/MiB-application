@@ -126,6 +126,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void GodkannActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GodkannActionPerformed
