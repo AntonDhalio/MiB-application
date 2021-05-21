@@ -8,11 +8,7 @@ package mib.application;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Iterator;
-import java.util.Date;
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 
@@ -201,20 +197,28 @@ public class InfoPortal extends javax.swing.JFrame {
             }
         }
         //If-else för att se vilka utomjordingar som registrerats mellan olika datum
-        else if(info.equals("Se utomjordingar som registrerats under en period")){
+        else if(info.equals("Se utomjordingar som registrerats under en period")){          
             Date startDatum = datum1.getDate();           
             Date slutDatum = datum2.getDate();
-                       
+            HashMap<String,String> regDatum = new HashMap<String,String>();
+            
             try{
-                ArrayList<String> aid = idb.fetchColumn("SELECT Alien_ID FROM alien");
-                HashMap<String, String> regDatum = idb.fetchRow("SELECT Alien_ID, Registreringsdatum FROM alien where id=" + aid);
-                for(String dettaDatum: regDatum.values()){                   
-                    Date datumet = new SimpleDateFormat("yyyy-MM-dd").parse(dettaDatum);
-                    if(datumet.before(slutDatum) && datumet.after(startDatum)){
-                                                
-                    }
-                
+                ArrayList<String> aid = idb.fetchColumn("SELECT Alien_ID From alien");
+                for(int i=0; i<aid.size();i++){
+                    String datum = idb.fetchSingle("SELECT Registreringsdatum FROM alien where Alien_ID=" + aid.get(i));
+                    regDatum.put(aid.get(i), datum);
                 }
+                for(Map.Entry<String, String> mapEntry: regDatum.entrySet()){
+                    String key = mapEntry.getKey();
+                    String value = mapEntry.getValue();
+                    Date regDate = new SimpleDateFormat("yyyy-MM-dd").parse(value);
+                    if(regDate.after(startDatum) && regDate.before(slutDatum)){
+                        String namn = idb.fetchSingle("SELECT Namn FROM alien where Alien_ID=" + key);
+                        infoFalt.insert(namn + ": " + value + "\n", 0);
+                    }
+                }
+                infoFalt.insert("Dessa utomjordingar registrerades mellan de angivna datumen:" + "\n", 0);
+                
             }
             
             catch(Exception e){
