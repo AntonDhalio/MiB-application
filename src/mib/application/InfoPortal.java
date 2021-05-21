@@ -5,17 +5,54 @@
  */
 package mib.application;
 
+import oru.inf.InfDB;
+import oru.inf.InfException;
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
 /**
  *
  * @author anton
  */
 public class InfoPortal extends javax.swing.JFrame {
 
+    private static InfDB idb;
+    private static String id;
+    private AgentMeny agentMeny;
+    private ArrayList<String> valjInfo;
+    private String info;
+    
     /**
      * Creates new form InfoPortal
      */
-    public InfoPortal() {
+    public InfoPortal(InfDB idb, String id) {
         initComponents();
+        this.idb = idb;
+        this.id = id;
+        //NullPointerException när det fjärde item ska tas bort
+        valBox.removeItem("Item 1");
+        valBox.removeItem("Item 2");
+        valBox.removeItem("Item 3");
+        idRasBox.removeAllItems();
+        try{
+        ArrayList<String> valjInfo = new ArrayList<>();
+        valjInfo.add("Välj information du vill se");
+        valjInfo.add("Se utomjordingar i område");
+        valjInfo.add("Se utomjordingar per ras");
+        valjInfo.add("Se utomjordingar som registrerats under en period");
+        valjInfo.add("Se all information om en utomjording");
+        valjInfo.add("Se vem som är områdeschef för ett områdeskontor");
+        valjInfo.add("Se statistik för ansvarande agenter");
+        valjInfo.add("Se utkvitterad utrustning");
+        for(String dennaInfo: valjInfo){
+            valBox.addItem(dennaInfo);
+        }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
     }
 
     /**
@@ -27,22 +64,237 @@ public class InfoPortal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        infoFalt = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        idRasBox = new javax.swing.JComboBox<>();
+        tillbakaKnapp = new javax.swing.JButton();
+        sok = new javax.swing.JButton();
+        valBox = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        infoFalt.setColumns(20);
+        infoFalt.setRows(5);
+        jScrollPane1.setViewportView(infoFalt);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Välkommen till informationsportalen");
+
+        idRasBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tillbakaKnapp.setText("<tillbaka");
+        tillbakaKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tillbakaKnappActionPerformed(evt);
+            }
+        });
+
+        sok.setText("Sök");
+        sok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokActionPerformed(evt);
+            }
+        });
+
+        valBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(idRasBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(valBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(tillbakaKnapp))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(sok)))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(tillbakaKnapp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(valBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(idRasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addComponent(sok)
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaKnappActionPerformed
+        agentMeny = new AgentMeny(idb, id);
+        agentMeny.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_tillbakaKnappActionPerformed
+
+    private void sokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokActionPerformed
+        infoFalt.selectAll();
+        infoFalt.replaceSelection("");
+        
+        //If sats för att se vilka aliens som finns i ett specifikt område
+        if(info.equals("Se utomjordingar i område")){
+            String omrade = (String)idRasBox.getSelectedItem();
+            try{
+                ArrayList<String> omradeAlien = idb.fetchColumn("SELECT Alien_ID FROM alien WHERE Plats=" + omrade);
+                
+                for(String dennaAlien: omradeAlien){
+                    infoFalt.insert(dennaAlien + "\n", 0);                                       
+                }
+            }            
+            catch(InfException e){
+                    JOptionPane.showMessageDialog(null, "Något gick fel");
+                    }
+        }
+        //if-else för att se vilka aliens som tillhör en viss ras
+        else if(info.equals("Se utomjordingar per ras")){
+            String ras = (String)idRasBox.getSelectedItem();
+            try{
+                ArrayList<String> rasAlien = idb.fetchColumn("SELECT Alien_ID FROM " + ras);
+                for(String dennaAlien: rasAlien){
+                    infoFalt.insert(dennaAlien + "\n", 0);
+                }
+            }            
+            catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+            }
+        }
+        //If-else för att se vilka utomjordingar som registrerats mellan olika datum
+        else if(info.equals("Se utomjordingar som registrerats under en period")){
+            
+        }
+        //If-else för att se all information om en specifik alien
+        else if(info.equals("Se all information om en utomjording")){
+            String aid = (String)idRasBox.getSelectedItem();
+            try{
+                HashMap<String, String> alienInfo = idb.fetchRow("SELECT * FROM alien WHERE Alien_ID=" + aid);
+                Iterator<String> itr = alienInfo.values().iterator();
+                while(itr.hasNext()){
+                    infoFalt.insert(itr.next() + "\n", 0);
+                }
+                }
+            catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+                }    
+        }
+        //If else för att se vem som är områdeschef
+        else if(info.equals("Se vem som är områdeschef för ett områdeskontor")){
+            String omrade = (String)idRasBox.getSelectedItem();
+            try{
+                String chefOmrade = idb.fetchSingle("SELECT Agent_ID FROM omradeschef where Omrade=" + omrade);
+                String chefNamn = idb.fetchSingle("SELECT Namn FROM agent where Agent_ID=" + chefOmrade);
+                infoFalt.insert("Namn: " + chefNamn + "\n", 0);
+                infoFalt.insert("Agent ID: " + chefOmrade +  "\n", 0);
+                infoFalt.insert("Områdeschefen är:" + "\n", 0);
+            }
+                catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+            }
+        }
+       
+    }//GEN-LAST:event_sokActionPerformed
+
+    private void valBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valBoxActionPerformed
+        this.info = (String)valBox.getSelectedItem();
+        try{
+            if(info.equals(null)){
+            }
+            else if(info.equals("Se utomjordingar i område")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                alienPlats();
+            }
+            else if(info.equals("Se utomjordingar per ras")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                alienRas();                
+            }
+            else if(info.equals("Se utomjordingar som registrerats under en period")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(false);
+            }
+            else if(info.equals("Se all information om en utomjording")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                alienId();
+            }
+            else if(info.equals("Se vem som är områdeschef för ett områdeskontor")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                alienPlats();
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_valBoxActionPerformed
+
+    public void alienPlats(){
+        ArrayList<String> omraden = new ArrayList<>();
+        try{
+            omraden = idb.fetchColumn("SELECT Omrades_ID FROM omrade");
+            for(String dettaOmrade: omraden){
+                idRasBox.addItem(dettaOmrade);
+            }
+        }       
+        catch(InfException e){
+        JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }
+    
+    public void alienRas(){
+        ArrayList<String> raser = new ArrayList<>();
+        raser.add("boglodite");
+        raser.add("squid");
+        raser.add("worm");
+        for(String dennaRas: raser){
+            idRasBox.addItem(dennaRas);
+        }
+    }
+    
+    public void alienId(){
+        ArrayList<String> idAlien = new ArrayList<>();
+        try{
+            idAlien = idb.fetchColumn("SELECT Alien_ID FROM alien");
+            for(String dettaId: idAlien){
+                idRasBox.addItem(dettaId);
+            }
+        }
+        
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -73,11 +325,18 @@ public class InfoPortal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InfoPortal().setVisible(true);
+                new InfoPortal(idb, id).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> idRasBox;
+    private javax.swing.JTextArea infoFalt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton sok;
+    private javax.swing.JButton tillbakaKnapp;
+    private javax.swing.JComboBox<String> valBox;
     // End of variables declaration//GEN-END:variables
 }

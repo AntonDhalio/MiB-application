@@ -19,6 +19,7 @@ public class AgentMeny extends javax.swing.JFrame {
     private AndraLosenord andraLosenord;
     private RegistreraUtrustning regUtrustning;
     private HanteraUtomjording hanteraUtomJ;
+    private InfoPortal infoPortal;
     /**
      * Creates new form AgentMeny
      */
@@ -151,7 +152,9 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_hanteraUtrustningActionPerformed
 
     private void informationsHanterareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationsHanterareActionPerformed
-        // TODO add your handling code here:
+        infoPortal = new InfoPortal(idb, id);
+        infoPortal.setVisible(true);
+        dispose();
     }//GEN-LAST:event_informationsHanterareActionPerformed
 
     /**
