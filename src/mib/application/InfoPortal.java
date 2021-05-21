@@ -10,7 +10,11 @@ import oru.inf.InfException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Iterator;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 /**
  *
@@ -31,10 +35,7 @@ public class InfoPortal extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-        //NullPointerException när det fjärde item ska tas bort
-        valBox.removeItem("Item 1");
-        valBox.removeItem("Item 2");
-        valBox.removeItem("Item 3");
+       
         idRasBox.removeAllItems();
         try{
         ArrayList<String> valjInfo = new ArrayList<>();
@@ -71,6 +72,8 @@ public class InfoPortal extends javax.swing.JFrame {
         tillbakaKnapp = new javax.swing.JButton();
         sok = new javax.swing.JButton();
         valBox = new javax.swing.JComboBox<>();
+        datum1 = new com.toedter.calendar.JDateChooser();
+        datum2 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +84,11 @@ public class InfoPortal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Välkommen till informationsportalen");
 
-        idRasBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        idRasBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idRasBoxActionPerformed(evt);
+            }
+        });
 
         tillbakaKnapp.setText("<tillbaka");
         tillbakaKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +118,9 @@ public class InfoPortal extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idRasBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(valBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(valBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(datum1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                    .addComponent(datum2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(44, 44, 44)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -126,7 +135,7 @@ public class InfoPortal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(sok)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,14 +144,18 @@ public class InfoPortal extends javax.swing.JFrame {
                 .addComponent(tillbakaKnapp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(valBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addComponent(idRasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                        .addComponent(idRasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(datum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(datum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
                 .addComponent(sok)
                 .addGap(29, 29, 29))
         );
@@ -189,7 +202,24 @@ public class InfoPortal extends javax.swing.JFrame {
         }
         //If-else för att se vilka utomjordingar som registrerats mellan olika datum
         else if(info.equals("Se utomjordingar som registrerats under en period")){
+            Date startDatum = datum1.getDate();           
+            Date slutDatum = datum2.getDate();
+                       
+            try{
+                ArrayList<String> aid = idb.fetchColumn("SELECT Alien_ID FROM alien");
+                HashMap<String, String> regDatum = idb.fetchRow("SELECT Alien_ID, Registreringsdatum FROM alien where id=" + aid);
+                for(String dettaDatum: regDatum.values()){                   
+                    Date datumet = new SimpleDateFormat("yyyy-MM-dd").parse(dettaDatum);
+                    if(datumet.before(slutDatum) && datumet.after(startDatum)){
+                                                
+                    }
+                
+                }
+            }
             
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+            }
         }
         //If-else för att se all information om en specifik alien
         else if(info.equals("Se all information om en utomjording")){
@@ -227,28 +257,44 @@ public class InfoPortal extends javax.swing.JFrame {
         try{
             if(info.equals(null)){
             }
+            else if(info.equals("Välj information du vill se")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(false);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+            }
             else if(info.equals("Se utomjordingar i område")){
                 idRasBox.removeAllItems();
                 idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
                 alienPlats();
             }
             else if(info.equals("Se utomjordingar per ras")){
                 idRasBox.removeAllItems();
                 idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
                 alienRas();                
             }
             else if(info.equals("Se utomjordingar som registrerats under en period")){
                 idRasBox.removeAllItems();
                 idRasBox.setEnabled(false);
+                datum1.setEnabled(true);
+                datum2.setEnabled(true);
             }
             else if(info.equals("Se all information om en utomjording")){
                 idRasBox.removeAllItems();
                 idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
                 alienId();
             }
             else if(info.equals("Se vem som är områdeschef för ett områdeskontor")){
                 idRasBox.removeAllItems();
                 idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
                 alienPlats();
             }
         }
@@ -256,6 +302,10 @@ public class InfoPortal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
     }//GEN-LAST:event_valBoxActionPerformed
+
+    private void idRasBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idRasBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idRasBoxActionPerformed
 
     public void alienPlats(){
         ArrayList<String> omraden = new ArrayList<>();
@@ -331,6 +381,8 @@ public class InfoPortal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser datum1;
+    private com.toedter.calendar.JDateChooser datum2;
     private javax.swing.JComboBox<String> idRasBox;
     private javax.swing.JTextArea infoFalt;
     private javax.swing.JLabel jLabel1;
