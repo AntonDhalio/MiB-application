@@ -12,8 +12,9 @@ import oru.inf.InfException;
  */
 public class ValjInloggning extends javax.swing.JFrame {
     
- 
-    private static InfDB idb;
+    private InloggningAgentAdmin loggaIn;
+    private InloggningAlien loggaInAlien;
+    private InfDB idb;
 
     /**
      * Creates new form ValjInloggning
@@ -90,12 +91,16 @@ public class ValjInloggning extends javax.swing.JFrame {
 
     //Öppnar inloggningsfönstret för agenter och administratörer
     private void btnLoggaInAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInAgentActionPerformed
-        
+        loggaIn = new InloggningAgentAdmin(idb);
+        loggaIn.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnLoggaInAgentActionPerformed
 
     //Öppnar inloggningsfönstret för aliens
     private void btnLoggaInAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInAlienActionPerformed
-        
+        loggaInAlien = new InloggningAlien(idb);
+        loggaInAlien.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnLoggaInAlienActionPerformed
 
 
