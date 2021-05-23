@@ -219,8 +219,7 @@ public class InfoPortal extends javax.swing.JFrame {
                 }
                 infoFalt.insert("Dessa utomjordingar registrerades mellan de angivna datumen:" + "\n", 0);
                 
-            }
-            
+            }            
             catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Något gick fel");
             }
@@ -253,6 +252,56 @@ public class InfoPortal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel");
             }
         }
+        //if else för att se de agenter som ansvarar över flest aliens
+        else if(info.equals("Se statistik för ansvarande agenter")){
+            String omrade = (String)idRasBox.getSelectedItem();
+            try{                
+                ArrayList<HashMap<String,String>> topAgenter = idb.fetchRows("SELECT Ansvarig_Agent, COUNT(*) AS Antal FROM alien WHERE Plats=" + omrade + " GROUP BY Ansvarig_Agent ORDER BY Antal ASC LIMIT 3");
+                for(HashMap<String,String> map: topAgenter){
+                    for(Map.Entry<String,String> lista: map.entrySet()){
+                        String key = lista.getKey();
+                        String value = lista.getValue();                        
+                        if(key.equals("Ansvarig_Agent")){
+                            String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID=" + value);
+                            infoFalt.insert(agentNamn + ": ", 0);
+                        }
+                        else if(key.equals("Antal")){
+                            if(value.equals("1")){
+                                infoFalt.insert("Ansvarar över " + value + " utomjording \n", 0);
+                            }
+                            else{
+                                infoFalt.insert("Ansvarar över " + value + " utomjordingar \n", 0);
+                            }
+                        }                      
+                    }
+                }
+            }
+                        
+            catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+            }
+        }
+        //else if för att se vilken utrustning agenten har kvitterat ut just nu
+        else if(info.equals("Se utkvitterad utrustning")){
+            try{
+                ArrayList<String> lanadUtrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM innehar_utrustning WHERE Agent_ID=" + id);
+                if(lanadUtrustning.isEmpty()){
+                    infoFalt.insert("Du har ingen utkvitterad utrustning\n", 0);
+                }
+                else{
+                    for(String utrustning: lanadUtrustning){
+                        String utrustNamn = idb.fetchSingle("SELECT Benamning FROM utrustning WHERE Utrustnings_ID=" + utrustning);
+                        infoFalt.insert(utrustNamn + "\n", 0);
+                }
+                    infoFalt.insert("Din nuvarande list av utkvitterad utrustning består av:\n", 0);
+                }
+            }
+            
+            catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+            }
+        }
+        
        
     }//GEN-LAST:event_sokActionPerformed
 
@@ -301,6 +350,19 @@ public class InfoPortal extends javax.swing.JFrame {
                 datum2.setEnabled(false);
                 alienPlats();
             }
+            else if(info.equals("Se statistik för ansvarande agenter")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+                alienPlats();
+            }
+            else if(info.equals("Se utkvitterad utrustning")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(false);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+            }
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
@@ -341,8 +403,7 @@ public class InfoPortal extends javax.swing.JFrame {
             for(String dettaId: idAlien){
                 idRasBox.addItem(dettaId);
             }
-        }
-        
+        }        
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
