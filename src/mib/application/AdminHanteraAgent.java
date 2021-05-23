@@ -103,7 +103,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
 
     private void choiceHanteraAgentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceHanteraAgentItemStateChanged
          if(choiceHanteraAgent.getSelectedIndex() == 1){
-        new RegistreraNyAgent(idb).setVisible(true);
+        new RegistreraNyAgent().setVisible(true);
         dispose();
         }
     }//GEN-LAST:event_choiceHanteraAgentItemStateChanged
