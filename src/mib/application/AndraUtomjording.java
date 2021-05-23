@@ -33,10 +33,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         initComponents();
         this.idb=idb;
         this.id=id;
-        agentBox.removeAllItems();
-        omradeBox.removeAllItems();
-        rasBox.removeAllItems();
-        utomjordingBox.removeAllItems();
+        
         
         try{
             ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM alien");
@@ -86,7 +83,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
         jLabel2.setText("Vilken utomjording vill du hantera?");
 
-        utomjordingBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         utomjordingBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 utomjordingBoxActionPerformed(evt);
@@ -104,12 +100,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
         jLabel7.setText("Ansvarig Agent");
 
         jLabel8.setText("Ras");
-
-        omradeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        agentBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        rasBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         godkannKnapp.setText("Godkänn");
         godkannKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +132,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(godkannKnapp)
                         .addGap(30, 30, 30)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(avbrytKnapp)
                     .addComponent(namnFalt)
@@ -152,7 +141,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
                     .addComponent(omradeBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(agentBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rasBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -258,9 +247,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
                 rasBox.setSelectedItem(ras.get(3));
             }
             }
-            String gamalRas = (String)rasBox.getSelectedItem();
-            
-            
+            this.gamalRas = (String)rasBox.getSelectedItem();
             
         }
         catch(InfException e){
@@ -299,6 +286,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
                 else if(regRas.equals("worm")){
                     idb.insert("INSERT INTO worm VALUES(" + valdUtomjording + ")");
                 }
+                gamalRas = regRas;
                 JOptionPane.showMessageDialog(null, "Ändringar genomförda");
             }
         }
