@@ -36,7 +36,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         
         
         try{
-            ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM alien");
+            ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM alien ORDER BY Alien_ID ASC");
             for(String nuvarandeUtomjording: utomjording){
                 utomjordingBox.addItem(nuvarandeUtomjording);
             }
@@ -206,11 +206,11 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String valtOmrade = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID=" + valdUtomjording);
             String valdAgent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID=" + valdUtomjording);
             
-            ArrayList<String> omrade = idb.fetchColumn("SELECT Omrades_ID FROM omrade");
+            ArrayList<String> omrade = idb.fetchColumn("SELECT Omrades_ID FROM omrade ORDER BY Omrades_ID ASC");
             for(String nuvarandeOmrade: omrade){
                 omradeBox.addItem(nuvarandeOmrade);
             }
-            ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent");
+            ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent ORDER BY Alien_ID ASC");
             for(String nuvarandeAgent: agent){
                 agentBox.addItem(nuvarandeAgent);
             }

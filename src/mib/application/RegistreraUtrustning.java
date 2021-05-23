@@ -24,6 +24,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
+        utrustningDetalj.setVisible(false);
     }
 
     /**
@@ -40,6 +41,11 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         godkann = new javax.swing.JButton();
         avbryt = new javax.swing.JButton();
+        arVapen = new javax.swing.JCheckBox();
+        arKomm = new javax.swing.JCheckBox();
+        arTeknik = new javax.swing.JCheckBox();
+        labelFranBox = new javax.swing.JLabel();
+        utrustningDetalj = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +69,29 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
             }
         });
 
+        arVapen.setText("Vapen");
+        arVapen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arVapenActionPerformed(evt);
+            }
+        });
+
+        arKomm.setText("Kommunikation");
+        arKomm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arKommActionPerformed(evt);
+            }
+        });
+
+        arTeknik.setText("Teknik");
+        arTeknik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arTeknikActionPerformed(evt);
+            }
+        });
+
+        labelFranBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,15 +105,21 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(111, 111, 111))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(arVapen)
+                        .addGap(46, 46, 46)
+                        .addComponent(arKomm))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(labelFranBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(utrustningNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                     .addComponent(avbryt)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(150, 150, 150)
-                            .addComponent(jLabel2))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(181, 181, 181)
-                            .addComponent(utrustningNamn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(arTeknik)
+                    .addComponent(utrustningDetalj))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,11 +127,20 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel2)
-                .addGap(42, 42, 42)
-                .addComponent(utrustningNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(arVapen)
+                    .addComponent(arKomm)
+                    .addComponent(arTeknik))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(utrustningNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(utrustningDetalj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFranBox, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(godkann)
                     .addComponent(avbryt))
@@ -108,25 +152,37 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void godkannActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godkannActionPerformed
-        try{
-        String nextUID = idb.getAutoIncrement("utrustning", "Utrustnings_ID");
-        String namn = utrustningNamn.getText();
+        if(Validering.txtFieldHarVarde(utrustningNamn) && Validering.txtFieldHarVarde(utrustningDetalj)){
+            try{
+                String nextUID = idb.getAutoIncrement("utrustning", "Utrustnings_ID");
+                String namn = utrustningNamn.getText();
+                String detaljer = utrustningDetalj.getText();
         
-        if(namn.equals("")){
-            JOptionPane.showMessageDialog(null, "Utrustningen måste ha ett namn");
-        }
-        else{
-            int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);
+                int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);
             
-            if(reply == JOptionPane.YES_OPTION){
+                if(reply == JOptionPane.YES_OPTION){
+                    
+                if(arVapen.isSelected()){
+                    Validering.txtFieldBegransad10(utrustningDetalj);
+                    idb.insert("INSERT INTO vapen VALUES(" + nextUID + ",'" + detaljer + "')");
+                }
+                else if(arKomm.isSelected()){
+                    Validering.txtFieldBegransad20(utrustningDetalj);
+                    idb.insert("INSERT INTO kommunikation VALUES(" + nextUID + ",'" + detaljer + "')");
+                }
+                else if(arTeknik.isSelected()){
+                    Validering.txtFieldBegransad20(utrustningDetalj);
+                    idb.insert("INSERT INTO teknik VALUES(" + nextUID + ",'" + detaljer + "')");
+                }
                 idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
                 JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
             }
-        }
+        
         }
         
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
         }
     }//GEN-LAST:event_godkannActionPerformed
 
@@ -135,6 +191,51 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         agentMeny.setVisible(true);
         dispose();
     }//GEN-LAST:event_avbrytActionPerformed
+
+    private void arVapenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arVapenActionPerformed
+        if(arVapen.isSelected()){
+            arTeknik.setEnabled(false);
+            arKomm.setEnabled(false);
+            utrustningDetalj.setVisible(true);
+            labelFranBox.setText("Ange vapnets kaliber");
+        }
+        else{
+            arTeknik.setEnabled(true);
+            arKomm.setEnabled(true);
+            utrustningDetalj.setVisible(false);
+            labelFranBox.setText("");
+        }
+    }//GEN-LAST:event_arVapenActionPerformed
+
+    private void arKommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arKommActionPerformed
+        if(arKomm.isSelected()){
+            arTeknik.setEnabled(false);
+            arVapen.setEnabled(false);
+            utrustningDetalj.setVisible(true);
+            labelFranBox.setText("Ange överföringsteknik");
+        }
+        else{
+            arTeknik.setEnabled(true);
+            arVapen.setEnabled(true);
+            utrustningDetalj.setVisible(false);
+            labelFranBox.setText("");
+        }
+    }//GEN-LAST:event_arKommActionPerformed
+
+    private void arTeknikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arTeknikActionPerformed
+        if(arTeknik.isSelected()){
+            arVapen.setEnabled(false);
+            arKomm.setEnabled(false);
+            utrustningDetalj.setVisible(true);
+            labelFranBox.setText("Ange teknikens kraftkälla");
+        }
+        else{
+            arVapen.setEnabled(true);
+            arKomm.setEnabled(true);
+            utrustningDetalj.setVisible(false);
+            labelFranBox.setText("");
+        }
+    }//GEN-LAST:event_arTeknikActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,10 +273,15 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox arKomm;
+    private javax.swing.JCheckBox arTeknik;
+    private javax.swing.JCheckBox arVapen;
     private javax.swing.JButton avbryt;
     private javax.swing.JButton godkann;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel labelFranBox;
+    private javax.swing.JTextField utrustningDetalj;
     private javax.swing.JTextField utrustningNamn;
     // End of variables declaration//GEN-END:variables
 }

@@ -171,12 +171,14 @@ public class InfoPortal extends javax.swing.JFrame {
         
         //If sats för att se vilka aliens som finns i ett specifikt område
         if(info.equals("Se utomjordingar i område")){
-            String omrade = (String)idRasBox.getSelectedItem();
+            String omrade = (String)idRasBox.getSelectedItem(); 
             try{
-                ArrayList<String> omradeAlien = idb.fetchColumn("SELECT Alien_ID FROM alien WHERE Plats=" + omrade);
+                String oid = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning='" + omrade + "'");
+                ArrayList<String> omradeAlien = idb.fetchColumn("SELECT Alien_ID FROM alien WHERE Plats=" + oid);
                 
                 for(String dennaAlien: omradeAlien){
-                    infoFalt.insert(dennaAlien + "\n", 0);                                       
+                    String alienNamn = idb.fetchSingle("SELECT Namn FROM alien Where Alien_ID=" + dennaAlien);
+                    infoFalt.insert(alienNamn + "\n", 0);                                       
                 }
             }            
             catch(InfException e){
@@ -189,7 +191,8 @@ public class InfoPortal extends javax.swing.JFrame {
             try{
                 ArrayList<String> rasAlien = idb.fetchColumn("SELECT Alien_ID FROM " + ras);
                 for(String dennaAlien: rasAlien){
-                    infoFalt.insert(dennaAlien + "\n", 0);
+                    String alienNamn = idb.fetchSingle("SELECT Namn FROM alien Where Alien_ID=" + dennaAlien);
+                    infoFalt.insert(alienNamn + "\n", 0);
                 }
             }            
             catch(InfException e){
@@ -226,14 +229,16 @@ public class InfoPortal extends javax.swing.JFrame {
         }
         //If-else för att se all information om en specifik alien
         else if(info.equals("Se all information om en utomjording")){
-            String aid = (String)idRasBox.getSelectedItem();
+            String alien = (String)idRasBox.getSelectedItem();
             try{
-                HashMap<String, String> alienInfo = idb.fetchRow("SELECT * FROM alien WHERE Alien_ID=" + aid);
-                Iterator<String> itr = alienInfo.values().iterator();
-                while(itr.hasNext()){
-                    infoFalt.insert(itr.next() + "\n", 0);
+                String aid = idb.fetchSingle("SELECT Alien_ID FROM alien WHERE Namn='" + alien + "'");
+                HashMap<String, String> alienInfo = idb.fetchRow("SELECT * FROM alien WHERE Alien_ID=" + aid); 
+                for(Map.Entry<String,String> map: alienInfo.entrySet()){
+                    String key = map.getKey();
+                    String value = map.getValue();
+                    infoFalt.insert(key + ": " + value + "\n", 0);
                 }
-                }
+            }
             catch(InfException e){
                 JOptionPane.showMessageDialog(null, "Något gick fel");
                 }    
@@ -242,7 +247,8 @@ public class InfoPortal extends javax.swing.JFrame {
         else if(info.equals("Se vem som är områdeschef för ett områdeskontor")){
             String omrade = (String)idRasBox.getSelectedItem();
             try{
-                String chefOmrade = idb.fetchSingle("SELECT Agent_ID FROM omradeschef where Omrade=" + omrade);
+                String oid = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning='" + omrade + "'");
+                String chefOmrade = idb.fetchSingle("SELECT Agent_ID FROM omradeschef where Omrade=" + oid);
                 String chefNamn = idb.fetchSingle("SELECT Namn FROM agent where Agent_ID=" + chefOmrade);
                 infoFalt.insert("Namn: " + chefNamn + "\n", 0);
                 infoFalt.insert("Agent ID: " + chefOmrade +  "\n", 0);
@@ -255,8 +261,9 @@ public class InfoPortal extends javax.swing.JFrame {
         //if else för att se de agenter som ansvarar över flest aliens
         else if(info.equals("Se statistik för ansvarande agenter")){
             String omrade = (String)idRasBox.getSelectedItem();
-            try{                
-                ArrayList<HashMap<String,String>> topAgenter = idb.fetchRows("SELECT Ansvarig_Agent, COUNT(*) AS Antal FROM alien WHERE Plats=" + omrade + " GROUP BY Ansvarig_Agent ORDER BY Antal ASC LIMIT 3");
+            try{        
+                String oid = idb.fetchSingle("SELECT Omrades_ID FROM omrade WHERE Benamning='" + omrade + "'");
+                ArrayList<HashMap<String,String>> topAgenter = idb.fetchRows("SELECT Ansvarig_Agent, COUNT(*) AS Antal FROM alien WHERE Plats=" + oid + " GROUP BY Ansvarig_Agent ORDER BY Antal ASC LIMIT 3");
                 for(HashMap<String,String> map: topAgenter){
                     for(Map.Entry<String,String> lista: map.entrySet()){
                         String key = lista.getKey();
@@ -293,7 +300,7 @@ public class InfoPortal extends javax.swing.JFrame {
                         String utrustNamn = idb.fetchSingle("SELECT Benamning FROM utrustning WHERE Utrustnings_ID=" + utrustning);
                         infoFalt.insert(utrustNamn + "\n", 0);
                 }
-                    infoFalt.insert("Din nuvarande list av utkvitterad utrustning består av:\n", 0);
+                    infoFalt.insert("Din utkvitterad utrustning består av:\n", 0);
                 }
             }
             
@@ -376,9 +383,10 @@ public class InfoPortal extends javax.swing.JFrame {
     public void alienPlats(){
         ArrayList<String> omraden = new ArrayList<>();
         try{
-            omraden = idb.fetchColumn("SELECT Omrades_ID FROM omrade");
+            omraden = idb.fetchColumn("SELECT Omrades_ID FROM omrade ORDER BY Omrades_ID ASC");
             for(String dettaOmrade: omraden){
-                idRasBox.addItem(dettaOmrade);
+                String omradeNamn = idb.fetchSingle("SELECT Benamning FROM omrade WHERE Omrades_ID=" + dettaOmrade);
+                idRasBox.addItem(omradeNamn);
             }
         }       
         catch(InfException e){
@@ -399,9 +407,10 @@ public class InfoPortal extends javax.swing.JFrame {
     public void alienId(){
         ArrayList<String> idAlien = new ArrayList<>();
         try{
-            idAlien = idb.fetchColumn("SELECT Alien_ID FROM alien");
+            idAlien = idb.fetchColumn("SELECT Alien_ID FROM alien ORDER BY Alien_ID ASC");
             for(String dettaId: idAlien){
-                idRasBox.addItem(dettaId);
+                String AlienNamn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID=" + dettaId);
+                idRasBox.addItem(AlienNamn);
             }
         }        
         catch(InfException e){
