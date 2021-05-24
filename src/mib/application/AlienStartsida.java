@@ -122,9 +122,9 @@ public class AlienStartsida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMailaChefActionPerformed
 
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-        this.dispose();
-        InloggningAlien ia = new InloggningAlien(idb, id);
-        ia.setVisible(true);
+        //this.dispose();
+        //InloggningAlien ia = new InloggningAlien(idb, id);
+        //ia.setVisible(true);
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     /**
