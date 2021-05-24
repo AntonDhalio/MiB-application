@@ -17,13 +17,15 @@ import oru.inf.InfException;
  */
 public class AlienBytLosen extends javax.swing.JFrame {
     private InfDB idb;
+    private String id;
 
     /**
      * Creates new form AlienBytLosen
      */
-    public AlienBytLosen(InfDB idb) {
+    public AlienBytLosen(InfDB idb, String id) {
         initComponents();
         this.idb = idb;
+        this.id = id;
     }
 
     /**
@@ -41,6 +43,7 @@ public class AlienBytLosen extends javax.swing.JFrame {
         txtNuvarandeLosen = new javax.swing.JTextField();
         txtNyttLosen = new javax.swing.JTextField();
         btnAndra = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,20 +61,32 @@ public class AlienBytLosen extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Avbryt");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addComponent(btnAndra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAndra)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNyttLosen, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtNuvarandeLosen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +102,9 @@ public class AlienBytLosen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAndra)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAndra)
+                    .addComponent(jButton1))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -97,20 +114,31 @@ public class AlienBytLosen extends javax.swing.JFrame {
     private void btnAndraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraActionPerformed
         try {
             String nyttLosen = txtNyttLosen.getText();
-            String nuvarandeLosen = txtNuvarandeLosen.getText();
-            if (nuvarandeLosen.equals(idb.fetchSingle("SELECT Losenord FROM Alien WHERE Alien_ID=1"))) {
-               idb.update("UPDATE Alien SET Losenord ='" + nyttLosen + "' WHERE Alien_ID=1");
+            String nuvarandeLosen = idb.fetchSingle("SELECT Losenord FROM Alien WHERE Alien_ID=" + id);
+            String nuvarandeInmatning = txtNuvarandeLosen.getText();
+            if (nuvarandeInmatning.equals(nuvarandeLosen) && !nyttLosen.equals("")) {
+               idb.update("UPDATE Alien SET Losenord ='" + nyttLosen + "' WHERE Alien_ID=" + id);
                JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
                this.dispose();
             }
-               else {
-                       JOptionPane.showMessageDialog(null, "Fel lösenord!");
+               else if (!nuvarandeInmatning.equals(nuvarandeLosen)) {
+                       JOptionPane.showMessageDialog(null, "Fel lösenord! Försök igen!");
                        }
+            
+               else if (nyttLosen.equals("")) {
+                   JOptionPane.showMessageDialog(null, "Lösenordet får inte vara tomt!");
+               }
             
         } catch (Exception e) {
           JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnAndraActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        AlienStartsida as = new AlienStartsida(idb, id);
+        as.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +172,7 @@ public class AlienBytLosen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAndra;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
