@@ -5,8 +5,7 @@
  */
 package mib.application;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -22,7 +21,7 @@ public class MiBApplication {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
         }
         catch(InfException ex){
-            Logger.getLogger(MiBApplication.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
         }
         
         //Denna kod ser till att inloggningsfönstret öppnas direkt vid körning

@@ -12,9 +12,10 @@ import oru.inf.InfException;
  * @author mariaforsberg
  */
 public class InloggningAgentAdmin extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private ValjInloggning valjInloggning;
+    private AgentMeny agentMeny;
     private HuvudmenyAdmin huvudmenyAdmin;
 
     /**
@@ -24,7 +25,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     public InloggningAgentAdmin(InfDB idb) {
         initComponents();
         this.idb = idb;
-        
+
     }
 
     /**
@@ -137,63 +138,103 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
      * lösenordet för angivet ID i databasen
      */
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
-        
+
         //Externt metodanrop för att kolla om textfältet har ett värde
         if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
-            
+
         try {
         String idNummer = txtIDNummer.getText();
         String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + idNummer;
         String hamtaLosenord = idb.fetchSingle(losenordFraga);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
-        
+String adminStatusFraga = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
+String hamtaAdminStatus = idb.fetchSingle(adminStatusFraga);
+
+
+/**
+ * Denna kod loggar in en agent, förutsatt att lösenordet stämmer OCH
+ * agenten har adminstatus
+ * Då kommer agenten till en admin-huvudmenyn
+ */
+if(losenord.equals(hamtaLosenord) && hamtaAdminStatus.equals("J")) {
+
+    new HuvudmenyAdmin(idb).setVisible(true);
+
+/**
+ * Denna kod körs om agenten inte har adminstatus
+ * Skrivs rätt lösenord in, loggas agenten in på vanliga agent-
+ * huvudmenyn
+ */
+} else if (losenord.equals(hamtaLosenord)) {
+
+ System.out.println("Internt meddelande: Inloggningen lyckades!");
+}
+
+ else {
+    JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
+    new InloggningAgentAdmin(idb).setVisible(true);
+    }
+ }
+
+
+
+
+catch(Exception e) {
+
+    JOptionPane.showConfirmDialog(null, "Ett fel uppstod");
+}
+
+dispose();
+
+}
+
+
+
+        String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + idNummer;
+        String admin = idb.fetchSingle(hamtaAdmin);
+
         String adminStatusFraga = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
         String hamtaAdminStatus = idb.fetchSingle(adminStatusFraga);
-   
-        
-        /**
-         * Denna kod loggar in en agent, förutsatt att lösenordet stämmer OCH
-         * agenten har adminstatus
-         * Då kommer agenten till en admin-huvudmenyn
-         */
-        if(losenord.equals(hamtaLosenord) && hamtaAdminStatus.equals("J")) {
-            
-            new HuvudmenyAdmin(idb).setVisible(true);
-            
-        /** 
-         * Denna kod körs om agenten inte har adminstatus
-         * Skrivs rätt lösenord in, loggas agenten in på vanliga agent-
-         * huvudmenyn
-         */
-        } else if (losenord.equals(hamtaLosenord)) {
-            
-         System.out.println("Internt meddelande: Inloggningen lyckades!");
-        }
-            
-         else {
+
+
+        if(losenord.equals(losenordFraga)) {
+            System.out.println("Internt meddelande: Inloggningen lyckades!");
+
+            //if-else sats för att se om det är en vanlig agent eller en admin
+            //som loggar in
+            if(admin.equals("J")){
+
+            }
+
+            else{
+                agentMeny = new AgentMeny(idb, idNummer);
+                agentMeny.setVisible(true);
+                dispose();
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             new InloggningAgentAdmin(idb).setVisible(true);
             }
-         } 
-      
-        
-     
-        
+         }
+
+
+
+
         catch(Exception e) {
-        
+
             JOptionPane.showConfirmDialog(null, "Ett fel uppstod");
         }
-        
+
         dispose();
-        
+
        }
-        
-            
-        
-       
+
+
+
+
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
- 
+
      //En metod för att kunna gå tillbaka till föregående sida
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         valjInloggning = new ValjInloggning(idb);
