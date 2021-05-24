@@ -17,20 +17,23 @@ import oru.inf.InfException;
  */
 public class MailOmradeschef extends javax.swing.JFrame {
     private InfDB idb;
+    private String id;
 
     /**
      * Creates new form MailOmradeschef
      */
-    public MailOmradeschef(InfDB idb) {
-        initComponents();
+    public MailOmradeschef(InfDB idb, String id) {
         this.idb = idb;
+        this.id = id;
+        initComponents();
         mailaChef();
     }
     
     private void mailaChef() {
         try {
             String omradesChef = idb.fetchSingle("SELECT Agent.Namn FROM Agent JOIN Omradeschef ON Omradeschef.Agent_ID = Agent.Agent_ID JOIN Alien ON Plats = Omradeschef.Omrade WHERE Alien_ID = 1");
-            txtChefMail.setText(omradesChef + "@MIBScandi.se");
+            String chefEmail = omradesChef.replaceAll("\\s+", "") + "@MIBScandi.se";
+            txtChefMail.setText(chefEmail);
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -53,6 +56,7 @@ public class MailOmradeschef extends javax.swing.JFrame {
         btnSkicka = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btnAvbryt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,10 +68,22 @@ public class MailOmradeschef extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         btnSkicka.setText("Skicka");
+        btnSkicka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkickaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Mottagare:");
 
         jLabel3.setText("Ämne:");
+
+        btnAvbryt.setText("Avbryt");
+        btnAvbryt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvbrytActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,7 +99,10 @@ public class MailOmradeschef extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
-                            .addComponent(btnSkicka)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSkicka)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnAvbryt))
                             .addComponent(txtChefMail)
                             .addComponent(txtAmne)))
                     .addComponent(jLabel1))
@@ -105,12 +124,25 @@ public class MailOmradeschef extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSkicka)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSkicka)
+                    .addComponent(btnAvbryt))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAvbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvbrytActionPerformed
+        AlienStartsida as = new AlienStartsida(idb, id);
+        as.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAvbrytActionPerformed
+
+    private void btnSkickaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkickaActionPerformed
+        this.dispose();
+        JOptionPane.showMessageDialog(null, "Meddelandet har skickats!");
+    }//GEN-LAST:event_btnSkickaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,6 +175,7 @@ public class MailOmradeschef extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvbryt;
     private javax.swing.JButton btnSkicka;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
