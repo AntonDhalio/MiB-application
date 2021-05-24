@@ -193,10 +193,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
     private void utomjordingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utomjordingBoxActionPerformed
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
-        try{
-            omradeBox.removeAllItems();
-            rasBox.removeAllItems();
-            agentBox.removeAllItems();
+        try{            
             String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID=" + valdUtomjording);
             namnFalt.setText(namn);
             String losenord = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID=" + valdUtomjording);
@@ -210,7 +207,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
             for(String nuvarandeOmrade: omrade){
                 omradeBox.addItem(nuvarandeOmrade);
             }
-            ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent ORDER BY Alien_ID ASC");
+            ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent ORDER BY Agent_ID ASC");
             for(String nuvarandeAgent: agent){
                 agentBox.addItem(nuvarandeAgent);
             }
@@ -257,6 +254,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
     private void godkannKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godkannKnappActionPerformed
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
+        if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
         try{
             String namn = namnFalt.getText();
             String losenord = losenordFalt.getText();
@@ -293,6 +291,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         
         catch(InfException e){
         JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
         }
     }//GEN-LAST:event_godkannKnappActionPerformed
 

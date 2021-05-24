@@ -152,26 +152,23 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void godkannActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godkannActionPerformed
-        if(Validering.txtFieldHarVarde(utrustningNamn) && Validering.txtFieldHarVarde(utrustningDetalj)){
-            try{
+        if(Validering.txtFieldBegransad20(utrustningNamn) && Validering.txtFieldHarVarde(utrustningDetalj)){
+            try{                
                 String nextUID = idb.getAutoIncrement("utrustning", "Utrustnings_ID");
                 String namn = utrustningNamn.getText();
-                String detaljer = utrustningDetalj.getText();
+                String detaljer = utrustningDetalj.getText();                
         
                 int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);
             
                 if(reply == JOptionPane.YES_OPTION){
                     
-                if(arVapen.isSelected()){
-                    Validering.txtFieldBegransad10(utrustningDetalj);
+                if(arVapen.isSelected() && Validering.txtFieldBegransad10(utrustningDetalj)){
                     idb.insert("INSERT INTO vapen VALUES(" + nextUID + ",'" + detaljer + "')");
                 }
-                else if(arKomm.isSelected()){
-                    Validering.txtFieldBegransad20(utrustningDetalj);
+                else if(arKomm.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj)){
                     idb.insert("INSERT INTO kommunikation VALUES(" + nextUID + ",'" + detaljer + "')");
                 }
-                else if(arTeknik.isSelected()){
-                    Validering.txtFieldBegransad20(utrustningDetalj);
+                else if(arTeknik.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj)){
                     idb.insert("INSERT INTO teknik VALUES(" + nextUID + ",'" + detaljer + "')");
                 }
                 idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");

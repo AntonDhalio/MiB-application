@@ -204,7 +204,7 @@ public class InfoPortal extends javax.swing.JFrame {
             Date startDatum = datum1.getDate();           
             Date slutDatum = datum2.getDate();
             HashMap<String,String> regDatum = new HashMap<String,String>();
-            
+            if(Validering.datumHarVarde(slutDatum) && Validering.datumHarVarde(startDatum)){
             try{
                 ArrayList<String> aid = idb.fetchColumn("SELECT Alien_ID From alien");
                 for(int i=0; i<aid.size();i++){
@@ -225,6 +225,7 @@ public class InfoPortal extends javax.swing.JFrame {
             }            
             catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Något gick fel");
+            }
             }
         }
         //If-else för att se all information om en specifik alien

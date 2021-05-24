@@ -195,6 +195,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void godkannKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godkannKnappActionPerformed
+        if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
         try{
             String namn = namnFalt.getText();
             String losenord = losenordFalt.getText();
@@ -229,6 +230,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         
         catch(InfException ex){
             JOptionPane.showMessageDialog(null, "Ett fel uppstod");
+        }
         }
     }//GEN-LAST:event_godkannKnappActionPerformed
 

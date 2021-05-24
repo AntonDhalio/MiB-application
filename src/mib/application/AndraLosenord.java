@@ -130,7 +130,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GodkannActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GodkannActionPerformed
-        if(ValideringLosenord.losenordFaltHarVarde(nuvarandeLosen)){
+        if(Validering.losenordFaltHarVarde(nuvarandeLosen) && Validering.losenordFaltHarVarde(nyttLosen) && Validering.losenordFaltHarVarde(bekraftaLosen)){
         try{
         
         String gamalLosen = "SELECT Losenord FROM Agent WHERE Agent_ID=" + id;
