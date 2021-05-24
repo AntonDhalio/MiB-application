@@ -34,7 +34,11 @@
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnSkicka" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnSkicka" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="btnAvbryt" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="txtChefMail" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtAmne" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -63,7 +67,10 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnSkicka" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSkicka" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAvbryt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -101,6 +108,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Skicka"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSkickaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -111,6 +121,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;mne:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAvbryt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Avbryt"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvbrytActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
