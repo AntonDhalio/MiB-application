@@ -19,23 +19,27 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private static InfDB idb;
     private String adminStatus;
     private ArrayList<String> omrade;
+    private String valtOmrade;
 
     /**
      * Creates new form RegistreraNyAgent
+     * @param idb
      */
-    public RegistreraNyAgent() {
+    public RegistreraNyAgent(InfDB idb) {
         initComponents();
+        
         paneIDNummer.setEditable(false);
         choiceAdminStatus.insert("Ej administratör", 0);
         choiceAdminStatus.insert("Administratör", 1);
         
             try{
+                idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
                 omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
-                for(String ansvararForOmrade : omrade){
+                omrade.forEach(ansvararForOmrade -> {
                     boxAnsvarigForOmrade.addItem(ansvararForOmrade);
-                }
+            });
             }
-            catch(Exception e){}
+            catch(InfException e){}
 
     }
 
@@ -124,6 +128,12 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        boxAnsvarigForOmrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxAnsvarigForOmradeActionPerformed(evt);
             }
         });
 
@@ -261,10 +271,11 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         String telefon = txtTelefon.getText();
         String losenord = txtLosenord.getText();
         String anstallning = txtAnstallning.getText();
+        boxAnsvarigForOmrade.insertItemAt("Inget område valt", 0);
 
         try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-            String sqlFraga = "INSERT INTO agent VALUES(" + agentID + ", " + namn + ", " + telefon + ", " + anstallning + ", " + adminStatus + ", " + losenord + ", ";
+            String sqlFraga = "INSERT INTO agent VALUES(" + agentID + ", " + namn + ", " + telefon + ", " + anstallning + ", " + adminStatus + ", " + losenord + ", " + valtOmrade;
 
             idb.insert(sqlFraga);
             
@@ -275,6 +286,10 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void boxAnsvarigForOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAnsvarigForOmradeActionPerformed
+        valtOmrade = boxAnsvarigForOmrade.getSelectedItem().toString();
+    }//GEN-LAST:event_boxAnsvarigForOmradeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,7 +321,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistreraNyAgent().setVisible(true);
+                new RegistreraNyAgent(idb).setVisible(true);
             }
         });
     }
