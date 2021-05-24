@@ -28,10 +28,11 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         paneIDNummer.setEditable(false);
         choiceAdminStatus.insert("Ej administratör", 0);
         choiceAdminStatus.insert("Administratör", 1);
+        
             try{
-                ArrayList<String> omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
+                omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
                 for(String ansvararForOmrade : omrade){
-                    choiceAnsvarigForOmrade.addItem(ansvararForOmrade);
+                    boxAnsvarigForOmrade.addItem(ansvararForOmrade);
                 }
             }
             catch(Exception e){}
@@ -66,8 +67,8 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        choiceAnsvarigForOmrade = new java.awt.Choice();
         jButton2 = new javax.swing.JButton();
+        boxAnsvarigForOmrade = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,12 +119,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
         jLabel8.setText("Ansvarig för område...");
 
-        choiceAnsvarigForOmrade.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                choiceAnsvarigForOmradeItemStateChanged(evt);
-            }
-        });
-
         jButton2.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         jButton2.setText("Registrera");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -173,12 +168,11 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                             .addComponent(txtLosenord)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(215, 215, 215)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel8)
                             .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(choiceAdminStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(choiceAnsvarigForOmrade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(choiceAdminStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                            .addComponent(boxAnsvarigForOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(240, 240, 240)
                         .addComponent(jButton2)))
@@ -220,8 +214,8 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(choiceAnsvarigForOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(boxAnsvarigForOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addComponent(jButton2)
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -282,10 +276,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void choiceAnsvarigForOmradeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceAnsvarigForOmradeItemStateChanged
-     
-    }//GEN-LAST:event_choiceAnsvarigForOmradeItemStateChanged
-
     /**
      * @param args the command line arguments
      */
@@ -322,9 +312,9 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxAnsvarigForOmrade;
     private javax.swing.JButton btnTillbaka;
     private java.awt.Choice choiceAdminStatus;
-    private java.awt.Choice choiceAnsvarigForOmrade;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
