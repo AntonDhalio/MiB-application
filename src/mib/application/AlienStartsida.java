@@ -12,14 +12,16 @@ import oru.inf.InfDB;
  * @author mathildabernebyhaeffner
  */
 public class AlienStartsida extends javax.swing.JFrame {
-    private static InfDB idb;
+    private InfDB idb;
+    private String id;
 
     /**
      * Creates new form AlienStartsida
      */
-    public AlienStartsida(InfDB idb) {
+    public AlienStartsida(InfDB idb, String id) {
         initComponents();
         this.idb = idb;
+        this.id = id;
     }
 
     /**
@@ -32,27 +34,26 @@ public class AlienStartsida extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnBytLosen = new javax.swing.JButton();
-        btnInfoChef = new javax.swing.JButton();
+        btnAndraLosen = new javax.swing.JButton();
+        btnInfoRuta = new javax.swing.JButton();
         btnMailaChef = new javax.swing.JButton();
-        btnAliensNara = new javax.swing.JButton();
+        btnLoggaUt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel1.setText("ALIEN STARTSIDA!");
+        jLabel1.setText("Alien Startsida!");
 
-        btnBytLosen.setText("Byt Lösenord");
-        btnBytLosen.addActionListener(new java.awt.event.ActionListener() {
+        btnAndraLosen.setText("Ändra Lösenord");
+        btnAndraLosen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBytLosenActionPerformed(evt);
+                btnAndraLosenActionPerformed(evt);
             }
         });
 
-        btnInfoChef.setText("Info Områdeschef");
-        btnInfoChef.addActionListener(new java.awt.event.ActionListener() {
+        btnInfoRuta.setText("Informationsruta");
+        btnInfoRuta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoChefActionPerformed(evt);
+                btnInfoRutaActionPerformed(evt);
             }
         });
 
@@ -63,10 +64,10 @@ public class AlienStartsida extends javax.swing.JFrame {
             }
         });
 
-        btnAliensNara.setText("Aliens Nära Mig");
-        btnAliensNara.addActionListener(new java.awt.event.ActionListener() {
+        btnLoggaUt.setText("Logga Ut");
+        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAliensNaraActionPerformed(evt);
+                btnLoggaUtActionPerformed(evt);
             }
         });
 
@@ -75,54 +76,56 @@ public class AlienStartsida extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnBytLosen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnMailaChef, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnInfoChef)
-                        .addComponent(btnAliensNara, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btnAndraLosen)
+                    .addComponent(btnInfoRuta)
+                    .addComponent(btnMailaChef)
+                    .addComponent(btnLoggaUt))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(btnBytLosen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnInfoChef)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAndraLosen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInfoRuta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMailaChef)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAliensNara)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLoggaUt)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBytLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBytLosenActionPerformed
-    AlienBytLosen abl = new AlienBytLosen(idb);
-    abl.setVisible(true);
-    }//GEN-LAST:event_btnBytLosenActionPerformed
+    private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
+        AlienBytLosen abl = new AlienBytLosen(idb, id);
+        abl.setVisible(true);
+    }//GEN-LAST:event_btnAndraLosenActionPerformed
 
-    private void btnInfoChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoChefActionPerformed
-    InfoOmradeschef ioc = new InfoOmradeschef(idb);
-    ioc.setVisible(true);
-    }//GEN-LAST:event_btnInfoChefActionPerformed
+    private void btnInfoRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoRutaActionPerformed
+        InfoRuta ir = new InfoRuta(idb, id);
+        ir.setVisible(true);
+    }//GEN-LAST:event_btnInfoRutaActionPerformed
 
     private void btnMailaChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMailaChefActionPerformed
-    MailOmradeschef moc = new MailOmradeschef(idb);
-    moc.setVisible(true);
+        MailOmradeschef mo = new MailOmradeschef(idb, id);
+        mo.setVisible(true);
     }//GEN-LAST:event_btnMailaChefActionPerformed
 
-    private void btnAliensNaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAliensNaraActionPerformed
-    AliensNara an = new AliensNara(idb);
-    an.setVisible(true);
-    }//GEN-LAST:event_btnAliensNaraActionPerformed
+    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
+        this.dispose();
+        InloggningAlien ia = new InloggningAlien(idb, id);
+        ia.setVisible(true);
+    }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,15 +155,12 @@ public class AlienStartsida extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-                java.awt.EventQueue.invokeLater(() -> {
-                    new AlienStartsida(idb).setVisible(true);
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAliensNara;
-    private javax.swing.JButton btnBytLosen;
-    private javax.swing.JButton btnInfoChef;
+    private javax.swing.JButton btnAndraLosen;
+    private javax.swing.JButton btnInfoRuta;
+    private javax.swing.JButton btnLoggaUt;
     private javax.swing.JButton btnMailaChef;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
