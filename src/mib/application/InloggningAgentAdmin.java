@@ -153,7 +153,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         String hamtaAdminStatus = idb.fetchSingle(adminStatusFraga);
 
 
-        if(losenord.equals(losenordFraga)) {
+        if(losenord.equals(hamtaLosenord)) {
             System.out.println("Internt meddelande: Inloggningen lyckades!");
 
             //if-else sats för att se om det är en vanlig agent eller en admin
