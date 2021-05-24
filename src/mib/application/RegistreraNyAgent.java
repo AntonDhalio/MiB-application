@@ -14,9 +14,10 @@ import oru.inf.InfException;
  * @author mariaforsberg
  */
 public class RegistreraNyAgent extends javax.swing.JFrame {
-    
+
     private static InfDB idb;
     private String adminStatus;
+    private String ansvararForOmrade;
 
     /**
      * Creates new form RegistreraNyAgent
@@ -30,9 +31,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         choiceAnsvarigForOmrade.insert("Götaland", 1);
         choiceAnsvarigForOmrade.insert("Norrland", 2);
         choiceAnsvarigForOmrade.insert("Svealand", 3);
-        
-        
-  
+
     }
 
     /**
@@ -52,18 +51,19 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         paneIDNummer = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNamn = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTelefon = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtAnstallning = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         choiceAdminStatus = new java.awt.Choice();
-        jTextField4 = new javax.swing.JTextField();
+        txtLosenord = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         choiceAnsvarigForOmrade = new java.awt.Choice();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,9 +101,9 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
             }
         });
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtLosenord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtLosenordActionPerformed(evt);
             }
         });
 
@@ -113,6 +113,20 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         jLabel7.setText("Lösenordet får inte innehålla mer än 6 tecken");
 
         jLabel8.setText("Ansvarig för område...");
+
+        choiceAnsvarigForOmrade.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                choiceAnsvarigForOmradeItemStateChanged(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        jButton2.setText("Registrera");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,10 +163,10 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(jLabel2))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField4)))
+                            .addComponent(txtNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(txtTelefon)
+                            .addComponent(txtAnstallning)
+                            .addComponent(txtLosenord)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(215, 215, 215)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +174,10 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(choiceAdminStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(choiceAnsvarigForOmrade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(choiceAnsvarigForOmrade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addComponent(jButton2)))
                 .addContainerGap(231, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -177,19 +194,19 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAnstallning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
@@ -200,7 +217,9 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(choiceAnsvarigForOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jButton2)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,29 +232,68 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-        String idNummer = idb.getAutoIncrement("Agent", "Agent_ID");
-        paneIDNummer.setText(idNummer);
+        try {
+            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+            String idNummer = idb.getAutoIncrement("Agent", "Agent_ID");
+            paneIDNummer.setText(idNummer);
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Hoppsan! ID-numret kunde tyvärr inte hämtas. Vänligen försök igen");
         }
-        catch(InfException e){
-        JOptionPane.showMessageDialog(null, "Hoppsan! ID-numret kunde tyvärr inte hämtas. Vänligen försök igen");
-        }
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void choiceAdminStatusItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceAdminStatusItemStateChanged
-        if(choiceAdminStatus.getSelectedIndex() == 0){
-        adminStatus = "N";
-        }
-        else if(choiceAdminStatus.getSelectedIndex() == 1){
-        adminStatus = "J";
+        switch (choiceAdminStatus.getSelectedIndex()) {
+            case 0:
+                adminStatus = "N";
+                break;
+            case 1:
+                adminStatus = "J";
+                break;
         }
     }//GEN-LAST:event_choiceAdminStatusItemStateChanged
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLosenordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_txtLosenordActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String agentID = paneIDNummer.getText();
+        String namn = txtNamn.getText();
+        String telefon = txtTelefon.getText();
+        String losenord = txtLosenord.getText();
+        String anstallning = txtAnstallning.getText();
+
+        try {
+            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+            String sqlFraga = "INSERT INTO agent VALUES(" + agentID + ", " + namn + ", " + telefon + ", " + anstallning + ", " + adminStatus + ", " + losenord + ", " + ansvararForOmrade;
+
+            idb.insert(sqlFraga);
+            
+            JOptionPane.showMessageDialog(null, "Registrerigen lyckades!");
+            new AdminHanteraAgent().setVisible(true);
+        } catch (InfException e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void choiceAnsvarigForOmradeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceAnsvarigForOmradeItemStateChanged
+        switch (choiceAnsvarigForOmrade.getSelectedIndex()) {
+            case 0:
+                ansvararForOmrade = null;
+                break;
+            case 1:
+                ansvararForOmrade = "Götaland";
+                break;
+            case 2:
+                ansvararForOmrade = "Norrland";
+                break;
+            case 3:
+                ansvararForOmrade = "Svealand";
+                break;
+        }
+    }//GEN-LAST:event_choiceAnsvarigForOmradeItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -277,6 +335,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private java.awt.Choice choiceAdminStatus;
     private java.awt.Choice choiceAnsvarigForOmrade;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -288,10 +347,10 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextPane paneIDNummer;
+    private javax.swing.JTextField txtAnstallning;
+    private javax.swing.JTextField txtLosenord;
+    private javax.swing.JTextField txtNamn;
+    private javax.swing.JTextField txtTelefon;
     // End of variables declaration//GEN-END:variables
 }
