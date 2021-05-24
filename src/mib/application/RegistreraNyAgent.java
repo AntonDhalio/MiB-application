@@ -8,6 +8,7 @@ package mib.application;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,7 +18,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
     private static InfDB idb;
     private String adminStatus;
-    private String ansvararForOmrade;
+    private ArrayList<String> omrade;
 
     /**
      * Creates new form RegistreraNyAgent
@@ -27,10 +28,13 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         paneIDNummer.setEditable(false);
         choiceAdminStatus.insert("Ej administratör", 0);
         choiceAdminStatus.insert("Administratör", 1);
-        choiceAnsvarigForOmrade.insert("Inget område valt", 0);
-        choiceAnsvarigForOmrade.insert("Götaland", 1);
-        choiceAnsvarigForOmrade.insert("Norrland", 2);
-        choiceAnsvarigForOmrade.insert("Svealand", 3);
+            try{
+                ArrayList<String> omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
+                for(String ansvararForOmrade : omrade){
+                    choiceAnsvarigForOmrade.addItem(ansvararForOmrade);
+                }
+            }
+            catch(Exception e){}
 
     }
 
@@ -266,7 +270,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
         try {
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-            String sqlFraga = "INSERT INTO agent VALUES(" + agentID + ", " + namn + ", " + telefon + ", " + anstallning + ", " + adminStatus + ", " + losenord + ", " + ansvararForOmrade;
+            String sqlFraga = "INSERT INTO agent VALUES(" + agentID + ", " + namn + ", " + telefon + ", " + anstallning + ", " + adminStatus + ", " + losenord + ", ";
 
             idb.insert(sqlFraga);
             
@@ -279,20 +283,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void choiceAnsvarigForOmradeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceAnsvarigForOmradeItemStateChanged
-        switch (choiceAnsvarigForOmrade.getSelectedIndex()) {
-            case 0:
-                ansvararForOmrade = null;
-                break;
-            case 1:
-                ansvararForOmrade = "Götaland";
-                break;
-            case 2:
-                ansvararForOmrade = "Norrland";
-                break;
-            case 3:
-                ansvararForOmrade = "Svealand";
-                break;
-        }
+     
     }//GEN-LAST:event_choiceAnsvarigForOmradeItemStateChanged
 
     /**
