@@ -17,6 +17,7 @@ public class AndraAgent extends javax.swing.JFrame {
     private static InfDB idb;
     private static String idNummer;
     private ArrayList<String> omrade;
+    
 
     /**
      * Creates new form AndraAgent

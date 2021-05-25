@@ -10,11 +10,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.util.*;
 
+
 /**
  *
  * @author anton
  */
 public class Validering {
+   
     
     public static boolean txtFieldHarVarde(JTextField aktuellRuta)
     {
@@ -103,4 +105,5 @@ public class Validering {
         return resultat;
     }
    
+    
 }
