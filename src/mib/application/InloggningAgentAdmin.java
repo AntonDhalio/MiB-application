@@ -139,22 +139,22 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
      */
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
 
+        //Externt metodanrop för att kolla om textfältet har ett värde
+        if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
 
-
-
+        try {
         String idNummer = txtIDNummer.getText();
-
-        try{
         String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + idNummer;
         String hamtaLosenord = idb.fetchSingle(losenordFraga);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
-        String adminStatusFraga = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
-        String hamtaAdminStatus = idb.fetchSingle(adminStatusFraga);
-
         String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + idNummer;
         String admin = idb.fetchSingle(hamtaAdmin);
 
-        if(losenord.equals(losenordFraga)) {
+        String adminStatusFraga = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
+        String hamtaAdminStatus = idb.fetchSingle(adminStatusFraga);
+
+
+        if(losenord.equals(hamtaLosenord)) {
             System.out.println("Internt meddelande: Inloggningen lyckades!");
 
             //if-else sats för att se om det är en vanlig agent eller en admin
@@ -172,11 +172,19 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             new InloggningAgentAdmin(idb).setVisible(true);
             }
+         }
 
 
-        } catch(Exception e){}
+
+
+        catch(Exception e) {
+
+            JOptionPane.showConfirmDialog(null, "Ett fel uppstod");
+        }
 
         dispose();
+
+       }
 
 
 
@@ -212,4 +220,4 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     private javax.swing.JPasswordField pswrdLosenord;
     private javax.swing.JTextField txtIDNummer;
     // End of variables declaration//GEN-END:variables
-        }
+}
