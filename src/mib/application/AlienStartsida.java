@@ -14,6 +14,7 @@ import oru.inf.InfDB;
 public class AlienStartsida extends javax.swing.JFrame {
     private InfDB idb;
     private String id;
+    private InloggningAlien inloggningAlien;
 
     /**
      * Creates new form AlienStartsida
@@ -41,6 +42,7 @@ public class AlienStartsida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Alien Startsida!");
 
         btnAndraLosen.setText("Ändra Lösenord");
@@ -76,55 +78,63 @@ public class AlienStartsida extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAndraLosen)
-                    .addComponent(btnInfoRuta)
-                    .addComponent(btnMailaChef)
-                    .addComponent(btnLoggaUt))
-                .addGap(0, 13, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(btnLoggaUt))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInfoRuta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMailaChef, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel1)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(btnAndraLosen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(btnInfoRuta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnMailaChef)
                 .addGap(18, 18, 18)
                 .addComponent(btnLoggaUt)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
         AlienBytLosen abl = new AlienBytLosen(idb, id);
         abl.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 
     private void btnInfoRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoRutaActionPerformed
         InfoRuta ir = new InfoRuta(idb, id);
         ir.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnInfoRutaActionPerformed
 
     private void btnMailaChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMailaChefActionPerformed
         MailOmradeschef mo = new MailOmradeschef(idb, id);
         mo.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnMailaChefActionPerformed
 
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-        //this.dispose();
-        //InloggningAlien ia = new InloggningAlien(idb, id);
-        //ia.setVisible(true);
+        inloggningAlien = new InloggningAlien(idb);
+        inloggningAlien.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnLoggaUtActionPerformed
 
     /**

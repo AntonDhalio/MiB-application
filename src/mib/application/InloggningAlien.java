@@ -26,6 +26,7 @@ public class InloggningAlien extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         
+        
  
     }
 
