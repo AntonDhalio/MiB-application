@@ -130,7 +130,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
                         break;
              case 5: // bla bla bla
                         break;
-             case 6: new AndraKontorsChef(idb, idNummer).setVisible(true);
+             case 6: new AndraOmradesChef(idb, idNummer).setVisible(true);
                         break;
         }
         
