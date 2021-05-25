@@ -106,12 +106,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
         jLabel5.setText("Administratörsstatus");
 
-        txtLosenord.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLosenordActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Lösenord");
 
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
@@ -127,11 +121,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
             }
         });
 
-        boxAnsvarigForOmrade.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                boxAnsvarigForOmradeItemStateChanged(evt);
-            }
-        });
         boxAnsvarigForOmrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxAnsvarigForOmradeActionPerformed(evt);
@@ -257,10 +246,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLosenordActionPerformed
-     
-    }//GEN-LAST:event_txtLosenordActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         int agentID = Integer.parseInt(paneIDNummer.getText());
@@ -291,10 +276,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private void boxAnsvarigForOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAnsvarigForOmradeActionPerformed
         valtOmrade = (String)boxAnsvarigForOmrade.getSelectedItem();  
     }//GEN-LAST:event_boxAnsvarigForOmradeActionPerformed
-
-    private void boxAnsvarigForOmradeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxAnsvarigForOmradeItemStateChanged
-    
-    }//GEN-LAST:event_boxAnsvarigForOmradeItemStateChanged
 
     private void boxAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAdminStatusActionPerformed
         switch (boxAdminStatus.getSelectedIndex()) {
