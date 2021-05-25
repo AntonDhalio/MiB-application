@@ -20,7 +20,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     private static String id;
     private HanteraUtomjording hanteraUtomjording;
     private ArrayList<String> agenter;
-    private ArrayList<String> omrade;
+    private ArrayList<String> plats;
     private ArrayList<String> ras;
     
     
@@ -40,9 +40,9 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
                 agentBox.addItem(nuvarandeAgent);
             }
         
-            ArrayList<String> omrade = idb.fetchColumn("SELECT Omrades_ID FROM omrade");
-            for(String nuvarandeOmrade: omrade){
-                omradeBox.addItem(nuvarandeOmrade);
+            ArrayList<String> plats = idb.fetchColumn("SELECT Plats_ID FROM plats");
+            for(String nuvarandePlats: plats){
+                omradeBox.addItem(nuvarandePlats);
             }
             
             ArrayList<String> ras = new ArrayList<String>();
