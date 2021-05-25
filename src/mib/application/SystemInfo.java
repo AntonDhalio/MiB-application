@@ -25,8 +25,10 @@ public class SystemInfo extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-        laggTillInfoIBoxAgent();
+        laggTillInfoIBoxOmrade();
+        laggTillInfoIBoxUtrustning();
         laggTillInfoIBoxAlien();
+        laggTillInfoIBoxAgent();
     }
 
     /**
@@ -109,10 +111,12 @@ public class SystemInfo extends javax.swing.JFrame {
         try{
             String antalAgenter = idb.fetchSingle("SELECT COUNT(*) FROM agent");
             String antalAdmins = idb.fetchSingle("SELECT COUNT(*) FROM agent Where Administrator='J'");
+            String antalFaltAgent = idb.fetchSingle("SELECT COUNT(*) FROM faltagent");
             
             statArea.insert("\n", 0);
+            statArea.insert("   Antal fältagenter: " + antalFaltAgent + "\n", 0);
             statArea.insert("   Antal administratörer: " + antalAdmins + "\n", 0);
-            statArea.insert("   Antal agenter: " + antalAgenter + "\n", 0);
+            statArea.insert("   Totalt antal registrerade agenter: " + antalAgenter + "\n", 0);
             statArea.insert("AGENTER:\n", 0);           
         }
         catch(InfException e){
@@ -131,8 +135,49 @@ public class SystemInfo extends javax.swing.JFrame {
             statArea.insert("   Antal Worms: " + antalWorms + "\n", 0);
             statArea.insert("   Antal Squids: " + antalSquids + "\n", 0);
             statArea.insert("   Antal Boglodites: " + antalBogs + "\n", 0);
-            statArea.insert("   Antal utomjordingar: " + antalAliens + "\n", 0);
+            statArea.insert("   Totalt antal registrerade utomjordingar: " + antalAliens + "\n", 0);
             statArea.insert("UTOMJORDINGAR:\n", 0);
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }
+    
+    private void laggTillInfoIBoxUtrustning(){
+        try{
+            String mangdUtrustning = idb.fetchSingle("SELECT COUNT(*) FROM utrustning");
+            String antalFordon = idb.fetchSingle("SELECT COUNT(*) FROM fordon");
+            String mangdTeknik = idb.fetchSingle("SELECT COUNT(*) FROM teknik");
+            String mangdVapen = idb.fetchSingle("SELECT COUNT(*) FROM vapen");
+            String mangdKomm = idb.fetchSingle("SELECT COUNT(*) FROM kommunikation");
+            String utkvittUtr = idb.fetchSingle("SELECT COUNT(*) FROM innehar_utrustning");
+            String utkvittFordon = idb.fetchSingle("SELECT COUNT(*) FROM innehar_fordon");
+            
+            statArea.insert("\n", 0);
+            statArea.insert("   Utkvitterade fordon: " + utkvittFordon + "\n", 0);
+            statArea.insert("   Utkvitterad utrustning: " + utkvittUtr + "\n", 0);
+            statArea.insert("   Antal kommuikationsutrustning: " + mangdKomm + "\n", 0);
+            statArea.insert("   Antal teknik: " + mangdTeknik + "\n", 0);
+            statArea.insert("   Antal vapen " + mangdVapen + "\n", 0);
+            statArea.insert("   Totalt antal registrerade fordon: " + antalFordon + "\n", 0);
+            statArea.insert("   Total mängd registrerad utrustning: " + mangdUtrustning + "\n", 0);
+            statArea.insert("UTRUSTNING OCH FORDON:\n", 0);
+        }
+        
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }
+    
+    private void laggTillInfoIBoxOmrade(){
+        try{
+            String antalOmraden = idb.fetchSingle("SELECT COUNT(*) FROM omrade");
+            String antalPlatser = idb.fetchSingle("SELECT COUNT(*) FROM plats");
+            
+            statArea.insert("\n", 0);
+            statArea.insert("   Totalt antal platser inom alla områden: " + antalPlatser + "\n", 0);
+            statArea.insert("   Totalt antal registrerade områden: " + antalOmraden + "\n", 0);
+            statArea.insert("OMRÅDEN OCH PLATSER:\n", 0); 
         }
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
