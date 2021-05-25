@@ -5,11 +5,17 @@
  */
 package mib.application;
 
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author mariaforsberg
  */
 public class AdminHantera extends javax.swing.JFrame {
+    
+    private static InfDB idb;
+    private static String idNummer;
 
     /**
      * Creates new form AdminHantera
@@ -80,7 +86,7 @@ public class AdminHantera extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnHanteraAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraAgenterActionPerformed
-        new AdminHanteraAgent().setVisible(true);
+        new AdminHanteraAgent(idb, idNummer).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHanteraAgenterActionPerformed
 

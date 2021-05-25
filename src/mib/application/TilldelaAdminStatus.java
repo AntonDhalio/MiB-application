@@ -5,13 +5,7 @@
  */
 package mib.application;
 
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -29,7 +23,7 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
     /**
      * Creates new form TilldelaAdminStatus
      */
-    public TilldelaAdminStatus(InfDB idb) {
+    public TilldelaAdminStatus(InfDB idb, String idNummer) {
         initComponents();
         this.idb = idb;
         this.idNummer = idNummer;
@@ -156,6 +150,7 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         new AdminHanteraAgent(idb, idNummer).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnGodkännActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGodkännActionPerformed
@@ -202,7 +197,7 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TilldelaAdminStatus(idb).setVisible(true);
+                new TilldelaAdminStatus(idb, idNummer).setVisible(true);
             }
         });
     }

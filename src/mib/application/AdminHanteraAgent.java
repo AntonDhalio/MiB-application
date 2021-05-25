@@ -105,10 +105,26 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void choiceHanteraAgentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceHanteraAgentItemStateChanged
-         if(choiceHanteraAgent.getSelectedIndex() == 1){
-        new RegistreraNyAgent(idb, idNummer).setVisible(true);
-        dispose();
+         switch(choiceHanteraAgent.getSelectedIndex()){
+             case 0: //Ingenting ska hända i det här fallet
+                        break;
+             case 1: new RegistreraNyAgent(idb, idNummer).setVisible(true);
+                        dispose();
+                        break;
+             case 2: new TilldelaAdminStatus(idb, idNummer).setVisible(true);
+                        dispose();
+                        break;
+             case 3: new AndraAgent(idb, idNummer).setVisible(true);
+                        dispose();
+                        break;
+             case 4: //bla bla
+                        break;
+             case 5: // bla bla bla
+                        break;
+             case 6: // bla bla bla bla
+                        break;
         }
+        
     }//GEN-LAST:event_choiceHanteraAgentItemStateChanged
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
