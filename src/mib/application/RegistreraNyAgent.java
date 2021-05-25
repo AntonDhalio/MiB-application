@@ -24,15 +24,15 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     /**
      * Creates new form RegistreraNyAgent
      */
-    public RegistreraNyAgent() {
+    public RegistreraNyAgent(InfDB idb) {
         initComponents();
+        this.idb = idb;
         paneIDNummer.setEditable(false);
         boxAdminStatus.insertItemAt("Ej administratör", 0);
         boxAdminStatus.insertItemAt("Administratör", 1);
         boxAdminStatus.setSelectedIndex(0);
         
             try{
-                idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
                 omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
                 omrade.forEach(ansvararForOmrade -> {
                     boxAnsvarigForOmrade.addItem(ansvararForOmrade);
@@ -237,7 +237,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             String idNummer = idb.getAutoIncrement("Agent", "Agent_ID");
             paneIDNummer.setText(idNummer);
         } catch (InfException e) {
@@ -257,14 +256,13 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
  
 
         try {
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
             String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
             int intOmradesID = Integer.parseInt(hamtaOmradesID);
             idb.insert("INSERT INTO Agent VALUES(" + agentID + ",'" + namn + "','" + telefon + "','" + anstallning + "','" + adminStatus + "','" + losenord + "'," + intOmradesID + ")");
             
             JOptionPane.showMessageDialog(null, "Registrerigen lyckades! " + namn + " med ID-nummer " + agentID + " är nu tillagd i systemet");
-            new RegistreraNyAgent().setVisible(true);
+            new RegistreraNyAgent(idb).setVisible(true);
         
      
         } catch (InfException e) {
@@ -318,7 +316,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistreraNyAgent().setVisible(true);
+                new RegistreraNyAgent(idb).setVisible(true);
             }
         });
     }
