@@ -72,7 +72,7 @@ public class UtskriftFile {
         writer.write("Totalt antal registrerade områden: " + antalOmraden  + "\n");
         writer.write("Totalt antal platser inom registrerade områden: " + antalPlatser + "\n");
         writer.close();
-        JOptionPane.showMessageDialog(null, "Du har skapat en rapport!");
+        JOptionPane.showMessageDialog(null, "Du har skapat Rapport.txt! Den sparas i projektmappen.");
         
         
         

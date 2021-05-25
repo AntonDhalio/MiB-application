@@ -187,7 +187,7 @@ public class SystemInfo extends javax.swing.JFrame {
     
     private void skrivUtKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrivUtKnappActionPerformed
         utskrift = new UtskriftFile(idb);
-        UtskriftFile.skapaRapport();       
+        UtskriftFile.skapaRapport();
     }//GEN-LAST:event_skrivUtKnappActionPerformed
 
     private void tillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaKnappActionPerformed
