@@ -187,7 +187,7 @@ public class AndraAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_boxIDNummerActionPerformed
 
     private void btnGodkännActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGodkännActionPerformed
-        String valdAgent = (String)boxIDNummer.getSelectedItem();
+        int valdAgent = Integer.parseInt((String)boxIDNummer.getSelectedItem());
         
         
         if(Validering.txtFieldBegransad6(txtNyttLosenord) && Validering.txtFieldBegransad30(txtNyttTelenr) && Validering.txtFieldBegransad20(txtNyttNamn)){
@@ -205,11 +205,11 @@ public class AndraAgent extends javax.swing.JFrame {
             int svara = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra dessa ändringar?", "Obs!", JOptionPane.YES_NO_OPTION);
             
             if(svara == JOptionPane.YES_OPTION){
-            idb.update("UPDATE Agent SET Namn='" + namn + "'WHERE Agent_ID=" + valdAgent);
-            idb.update("UPDATE Agent SET Telefon='" + telefon + "'WHERE Agent_ID=" + valdAgent);
-            idb.update("UPDATE Agent SET losenord='" + losenord + "'WHERE Agent_ID=" + valdAgent);
-            idb.update("UPDATE Agent SET Omrade='" + telefon +  "'WHERE Agent_ID=" + valdAgent);
-            idb.update("UPDATE Agent SET Omrade='" + intOmradesID + "'WHERE Agent_ID=" + valdAgent);
+                System.out.println(intOmradesID);
+            idb.update("UPDATE Agent SET Namn='" + namn + "'WHERE Agent_ID=" + valdAgent + "");
+            idb.update("UPDATE Agent SET Telefon='" + telefon + "'WHERE Agent_ID=" + valdAgent + "");
+            idb.update("UPDATE Agent SET Losenord='" + losenord + "'WHERE Agent_ID=" + valdAgent + "");
+            idb.update("UPDATE Agent SET Omrade='" + intOmradesID + "'WHERE Agent_ID=" + valdAgent + "");
             
             JOptionPane.showMessageDialog(null, "Ändringarna har nu genomförts");
             }
