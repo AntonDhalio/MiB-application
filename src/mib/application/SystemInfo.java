@@ -25,15 +25,8 @@ public class SystemInfo extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-        
-        try{
-            String antalAgenter = idb.fetchSingle("SELECT COUNT(*) FROM agent");
-            String antalAdmins = idb.fetchSingle("SELECT COUNT(*) FROM agent Where Administrator='J'");
-            
-        }
-        catch(InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-        }
+        laggTillInfoIBoxAgent();
+        laggTillInfoIBoxAlien();
     }
 
     /**
@@ -47,7 +40,7 @@ public class SystemInfo extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        statArea = new javax.swing.JTextArea();
         tillbakaKnapp = new javax.swing.JButton();
         skrivUtKnapp = new javax.swing.JButton();
 
@@ -56,9 +49,9 @@ public class SystemInfo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Övergripande statistik om systemet");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        statArea.setColumns(20);
+        statArea.setRows(5);
+        jScrollPane1.setViewportView(statArea);
 
         tillbakaKnapp.setText("<Tillbaka");
         tillbakaKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -112,12 +105,46 @@ public class SystemInfo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void laggTillInfoIBoxAgent(){
+        try{
+            String antalAgenter = idb.fetchSingle("SELECT COUNT(*) FROM agent");
+            String antalAdmins = idb.fetchSingle("SELECT COUNT(*) FROM agent Where Administrator='J'");
+            
+            statArea.insert("\n", 0);
+            statArea.insert("   Antal administratörer: " + antalAdmins + "\n", 0);
+            statArea.insert("   Antal agenter: " + antalAgenter + "\n", 0);
+            statArea.insert("AGENTER:\n", 0);           
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }
+    
+    private void laggTillInfoIBoxAlien(){
+        try{    
+            String antalAliens = idb.fetchSingle("SELECT COUNT(*) FROM alien");
+            String antalBogs = idb.fetchSingle("SELECT COUNT(*) FROM boglodite");
+            String antalSquids = idb.fetchSingle("SELECT COUNT(*) FROM squid");
+            String antalWorms = idb.fetchSingle("SELECT COUNT(*) FROM worm");
+            
+            statArea.insert("\n", 0);
+            statArea.insert("   Antal Worms: " + antalWorms + "\n", 0);
+            statArea.insert("   Antal Squids: " + antalSquids + "\n", 0);
+            statArea.insert("   Antal Boglodites: " + antalBogs + "\n", 0);
+            statArea.insert("   Antal utomjordingar: " + antalAliens + "\n", 0);
+            statArea.insert("UTOMJORDINGAR:\n", 0);
+        }
+        catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }
+    
     private void skrivUtKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrivUtKnappActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_skrivUtKnappActionPerformed
 
     private void tillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaKnappActionPerformed
-        menyAdmin = new HuvudmenyAdmin(idb);
+        menyAdmin = new HuvudmenyAdmin(idb,id);
         menyAdmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_tillbakaKnappActionPerformed
@@ -160,8 +187,8 @@ public class SystemInfo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton skrivUtKnapp;
+    private javax.swing.JTextArea statArea;
     private javax.swing.JButton tillbakaKnapp;
     // End of variables declaration//GEN-END:variables
 }
