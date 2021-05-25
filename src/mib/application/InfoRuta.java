@@ -107,6 +107,7 @@ public class InfoRuta extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAliensNaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAliensNaraActionPerformed
