@@ -197,18 +197,19 @@ public class AndraAgent extends javax.swing.JFrame {
             String namn = txtNyttNamn.getText();
             String telefon = txtNyttTelenr.getText();
             String losenord = txtNyttLosenord.getText();
-            String valtOmrade = (String)boxNyttOmrade.getSelectedItem();
-            String omradeFraga = idb.fetchSingle("SELECT Omrades_ID FROM Omrade WHERE Benamning=" + valtOmrade);
-            int nyttOmrade = Integer.parseInt(omradeFraga);
+            String valtOmrade = (String)boxNyttOmrade.getSelectedItem();  
+            String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
+            String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
+            int intOmradesID = Integer.parseInt(hamtaOmradesID);
             
             int svara = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra dessa ändringar?", "Obs!", JOptionPane.YES_NO_OPTION);
             
             if(svara == JOptionPane.YES_OPTION){
-            idb.update("UPDATE Agent SET Namn=" + namn);
-            idb.update("UPDATE Agent SET Telefon=" + telefon);
-            idb.update("UPDATE Agent SET losenord=" + losenord);
-            idb.update("UPDATE Agent SET Omrade=" + telefon);
-            idb.update("UPDATE Agent SET Omrade=" + nyttOmrade);
+            idb.update("UPDATE Agent SET Namn='" + namn + "'WHERE Agent_ID=" + valdAgent);
+            idb.update("UPDATE Agent SET Telefon='" + telefon + "'WHERE Agent_ID=" + valdAgent);
+            idb.update("UPDATE Agent SET losenord='" + losenord + "'WHERE Agent_ID=" + valdAgent);
+            idb.update("UPDATE Agent SET Omrade='" + telefon +  "'WHERE Agent_ID=" + valdAgent);
+            idb.update("UPDATE Agent SET Omrade='" + intOmradesID + "'WHERE Agent_ID=" + valdAgent);
             
             JOptionPane.showMessageDialog(null, "Ändringarna har nu genomförts");
             }
@@ -216,6 +217,7 @@ public class AndraAgent extends javax.swing.JFrame {
             }
             catch(InfException e){
             JOptionPane.showMessageDialog(null, "Oj! Något gick fel");
+            System.out.println(e);
             }
         
         
