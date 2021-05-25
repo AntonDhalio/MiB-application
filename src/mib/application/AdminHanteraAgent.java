@@ -16,11 +16,14 @@ import oru.inf.InfException;
 public class AdminHanteraAgent extends javax.swing.JFrame {
     
     private static InfDB idb;
+    private static String idNummer;
 
     /*
      * Creates new form AdminHanteraAgent
      */
-    public AdminHanteraAgent() {
+    public AdminHanteraAgent(InfDB idb, String idNummer) {
+        this.idb = idb;
+        this.idNummer = idNummer;
         initComponents();
         choiceHanteraAgent.insert("Gör ett val...", 0);
         choiceHanteraAgent.insert("Registrera ny agent", 1);
@@ -103,7 +106,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
 
     private void choiceHanteraAgentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceHanteraAgentItemStateChanged
          if(choiceHanteraAgent.getSelectedIndex() == 1){
-        new RegistreraNyAgent(idb).setVisible(true);
+        new RegistreraNyAgent(idb, idNummer).setVisible(true);
         dispose();
         }
     }//GEN-LAST:event_choiceHanteraAgentItemStateChanged
@@ -144,7 +147,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminHanteraAgent().setVisible(true);
+                new AdminHanteraAgent(idb, idNummer).setVisible(true);
             }
         });
     }
