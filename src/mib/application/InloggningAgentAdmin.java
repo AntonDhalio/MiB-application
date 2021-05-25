@@ -16,6 +16,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     private InfDB idb;
     private ValjInloggning valjInloggning;
     private AgentMeny agentMeny;
+    private HuvudmenyAdmin huvudmenyAdmin;
 
     /**
      * Skapar nytt formulär av InloggningsFonster med uppkoppling till
