@@ -14,7 +14,9 @@ import oru.inf.InfException;
 public class InloggningAlien extends javax.swing.JFrame {
     
     private ValjInloggning valjInloggning;
+    private AlienStartsida alienStartsida;
     private InfDB idb;
+    private static String id;
 
     /**
      * Skapar ett nytt inloggningsfönster för aliens, med uppkoppling till
@@ -23,6 +25,7 @@ public class InloggningAlien extends javax.swing.JFrame {
     public InloggningAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
+        
         
  
     }
@@ -144,19 +147,23 @@ public class InloggningAlien extends javax.swing.JFrame {
             
         try {
         String idNummer = txtIDNummer.getText();
+        this.id = idNummer;
         String hamtaLosenord = "SELECT Losenord FROM Alien where Alien_ID =" + idNummer;
         String losenordFraga = idb.fetchSingle(hamtaLosenord);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
         
         if(losenord.equals(losenordFraga)) {
-            System.out.println("Internt meddelande: Inloggningen lyckades!");
+            alienStartsida = new AlienStartsida(idb, id);
+            alienStartsida.setVisible(true);
+            dispose();
+            JOptionPane.showMessageDialog(null, "Inloggningen lyckades!");
         } else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             }
         } 
         
         catch(Exception e) {
-            JOptionPane.showConfirmDialog(null, "Ett fel uppstod");
+            JOptionPane.showMessageDialog(null, "Ett fel uppstod");
             }
       
        }

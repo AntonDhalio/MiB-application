@@ -154,7 +154,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + idNummer;
         String admin = idb.fetchSingle(hamtaAdmin);
 
-        if(losenord.equals(losenordFraga)) {
+        if(losenord.equals(hamtaLosenord)) {
             System.out.println("Internt meddelande: Inloggningen lyckades!");
 
             //if-else sats för att se om det är en vanlig agent eller en admin
