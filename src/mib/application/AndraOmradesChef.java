@@ -35,12 +35,12 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         
         agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
         agentID.forEach(idNr -> {
-            boxKontorsChef.addItem(idNr);
+            boxChef.addItem(idNr);
         });
 
         kontorNamn = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef ORDER BY Kontorsbeteckning ASC");
         kontorNamn.forEach(kontor -> {
-            boxValjKontor.addItem(kontor);
+            txtValjOmrade.addItem(kontor);
             });
         
         
@@ -68,10 +68,10 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        boxValjKontor = new javax.swing.JComboBox<>();
+        txtValjOmrade = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        boxKontorsChef = new javax.swing.JComboBox<>();
+        boxChef = new javax.swing.JComboBox<>();
         txtChefNamn = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -79,13 +79,19 @@ public class AndraOmradesChef extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Välj ett kontor:");
-
-        jLabel2.setText("Välj kontorschef:");
-
-        boxKontorsChef.addActionListener(new java.awt.event.ActionListener() {
+        txtValjOmrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxKontorsChefActionPerformed(evt);
+                txtValjOmradeActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Välj ett område:");
+
+        jLabel2.setText("Välj chef:");
+
+        boxChef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxChefActionPerformed(evt);
             }
         });
 
@@ -104,7 +110,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel3.setText("Här kan du ändra kontorschefen för ett kontor");
+        jLabel3.setText("Här kan du ändra chefen för ett område");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,12 +133,12 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtChefNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(boxValjKontor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(boxKontorsChef, 0, 190, Short.MAX_VALUE)))
+                                    .addComponent(txtValjOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(boxChef, 0, 190, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(jLabel3)))))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,12 +147,12 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxValjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValjOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(boxKontorsChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtChefNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -160,21 +166,21 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxKontorsChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxKontorsChefActionPerformed
+    private void boxChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChefActionPerformed
         try{
         idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-        String id = (String)boxKontorsChef.getSelectedItem();
+        String id = (String)boxChef.getSelectedItem();
         String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
         String namnFraga = idb.fetchSingle(hamtaNamn);
         txtChefNamn.setText(namnFraga);}
         catch(InfException e){
         System.out.println(e);
         }
-    }//GEN-LAST:event_boxKontorsChefActionPerformed
+    }//GEN-LAST:event_boxChefActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String id = (String)boxKontorsChef.getSelectedItem();
-        String kontor = (String)boxValjKontor.getSelectedItem();
+        String id = (String)boxChef.getSelectedItem();
+        String kontor = (String)txtValjOmrade.getSelectedItem();
         try{
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             
@@ -195,6 +201,10 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         new AdminHanteraAgent(idb, idNummer).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtValjOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjOmradeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtValjOmradeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,13 +243,13 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxKontorsChef;
-    private javax.swing.JComboBox<String> boxValjKontor;
+    private javax.swing.JComboBox<String> boxChef;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtChefNamn;
+    private javax.swing.JComboBox<String> txtValjOmrade;
     // End of variables declaration//GEN-END:variables
 }
