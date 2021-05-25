@@ -156,7 +156,7 @@ public class InloggningAlien extends javax.swing.JFrame {
             alienStartsida = new AlienStartsida(idb, id);
             alienStartsida.setVisible(true);
             dispose();
-            JOptionPane.showMessageDialog(null, "Inloggningen lyckades!");
+            System.out.println("Internt meddelande: Inloggningen lyckades!");
         } else {
             JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
             }
