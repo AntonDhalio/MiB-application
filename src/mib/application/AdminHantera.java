@@ -75,7 +75,7 @@ public class AdminHantera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        new HuvudmenyAdmin().setVisible(true);
+        //new HuvudmenyAdmin().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
