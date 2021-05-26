@@ -15,11 +15,12 @@ import oru.inf.InfException;
 public class HuvudmenyAdmin extends javax.swing.JFrame {
 
     private static InfDB idb;
+    private static String id;
 
     /**
      * Creates new form HuvudmenyAdmin
      */
-    public HuvudmenyAdmin(InfDB idb) {
+    public HuvudmenyAdmin(InfDB idb, String id) {
         initComponents();
     }
 
@@ -80,7 +81,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HuvudmenyAdmin(idb).setVisible(true);
+                new HuvudmenyAdmin(idb, id).setVisible(true);
             }
         });
     }

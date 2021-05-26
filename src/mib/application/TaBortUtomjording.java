@@ -18,6 +18,7 @@ public class TaBortUtomjording extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String id;
+    private HuvudmenyAdmin menyAdmin;
 
     /**
      * Creates new form TaBortUtomjording
@@ -70,6 +71,11 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         });
 
         jButton1.setText("< Tillbaka");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,6 +125,12 @@ public class TaBortUtomjording extends javax.swing.JFrame {
             ArrayList<String> squid = idb.fetchColumn("SELECT Alien_ID FROM Squid");
             ArrayList<String> worm = idb.fetchColumn("SELECT Alien_ID FROM Worm");
 
+            String namn = idb.fetchSingle("SELECT Namn FROM Alien WHERE Alien_ID=" + valdUtomjording);
+
+            int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Alien '" + namn, "Varning!", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                idb.delete("DELETE FROM Alien WHERE Alien_ID =" + valdUtomjording);
+           
             for (String i : boglodite) {
                 if (i.equals(valdUtomjording)) {
                     idb.delete("DELETE FROM Boglodite WHERE Alien_ID=" + valdUtomjording);
@@ -134,17 +146,18 @@ public class TaBortUtomjording extends javax.swing.JFrame {
                     idb.delete("DELETE FROM Worm WHERE Alien_ID=" + valdUtomjording);
                 }
             }
-            String namn = idb.fetchSingle("SELECT Namn FROM Alien WHERE Alien_ID=" + valdUtomjording);
-
-            int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Alien '" + namn, "Varning!", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) {
-                idb.delete("DELETE FROM Alien WHERE Alien_ID =" + valdUtomjording);
                 JOptionPane.showMessageDialog(null, "Alien '" + namn + "' borttagen!");
             }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_btnTaBortActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        menyAdmin = new HuvudmenyAdmin(idb,id);
+        menyAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

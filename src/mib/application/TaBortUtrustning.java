@@ -18,7 +18,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String id;
-
+    private HuvudmenyAdmin menyAdmin;
     /**
      * Creates new form TaBortUtrustning
      */
@@ -67,6 +67,11 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         });
 
         jButton2.setText("< Tillbaka");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,6 +122,14 @@ public class TaBortUtrustning extends javax.swing.JFrame {
             ArrayList<String> teknik = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik");
             ArrayList<String> vapen = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen");
 
+            
+
+            String utrNamn = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID=" + valdUtrustning);
+
+            int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Utrustning vid namn '" + utrNamn + "'", "Varning!", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + valdUtrustning);
+                
             for (String i : innehar_utrustning) {
                 if (i.equals(valdUtrustning)) {
                     idb.delete("DELETE FROM Innehar_Utrustning WHERE Utrustnings_ID=" + valdUtrustning);
@@ -137,18 +150,18 @@ public class TaBortUtrustning extends javax.swing.JFrame {
                     idb.delete("DELETE FROM Vapen WHERE Utrustnings_ID=" + valdUtrustning);
                 }
             }
-
-            String utrNamn = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID=" + valdUtrustning);
-
-            int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Utrustning vid namn '" + utrNamn + "'", "Varning!", JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) {
-                idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + valdUtrustning);
                 JOptionPane.showMessageDialog(null, "Utrustning '" + utrNamn + "' borttagen!");
             }
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        menyAdmin = new HuvudmenyAdmin(idb,id);
+        menyAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
