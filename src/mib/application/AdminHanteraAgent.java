@@ -16,19 +16,22 @@ import oru.inf.InfException;
 public class AdminHanteraAgent extends javax.swing.JFrame {
     
     private static InfDB idb;
+    private static String idNummer;
 
     /*
      * Creates new form AdminHanteraAgent
      */
-    public AdminHanteraAgent() {
+    public AdminHanteraAgent(InfDB idb, String idNummer) {
+        this.idb = idb;
+        this.idNummer = idNummer;
         initComponents();
-        choiceHanteraAgent.insert("Gör ett val...", 0);
-        choiceHanteraAgent.insert("Registrera ny agent", 1);
-        choiceHanteraAgent.insert("Tilldela administratörsstatus", 2);
-        choiceHanteraAgent.insert("Ändra information om agent", 3);
-        choiceHanteraAgent.insert("Ta bort agent ur systemet", 4);
-        choiceHanteraAgent.insert("Ändra information om områdeschefer", 5);
-        choiceHanteraAgent.insert("Ändra information om kontorschef", 6);
+        boxHanteraAgenter.addItem("Gör ett val...");
+        boxHanteraAgenter.addItem("Registrera ny agent");
+        boxHanteraAgenter.addItem("Tilldela administratörsstatus");
+        boxHanteraAgenter.addItem("Ändra information om agent");
+        boxHanteraAgenter.addItem("Ta bort agent ur systemet");
+        boxHanteraAgenter.addItem("Ändra information om områdeschefer");
+        boxHanteraAgenter.addItem("Ändra information om kontorschef");
         
     }
 
@@ -43,21 +46,16 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
-        choiceHanteraAgent = new java.awt.Choice();
         jLabel1 = new javax.swing.JLabel();
         btnTillbaka = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        boxHanteraAgenter = new javax.swing.JComboBox<>();
 
         jButton1.setText("jButton1");
 
         jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        choiceHanteraAgent.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                choiceHanteraAgentItemStateChanged(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 24)); // NOI18N
         jLabel1.setText("HANTERA AGENTER");
@@ -69,49 +67,85 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Välj nedan vad du vill göra:");
+
+        boxHanteraAgenter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxHanteraAgenterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(choiceHanteraAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(178, 178, 178)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(btnTillbaka))))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(btnTillbaka))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(boxHanteraAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(btnTillbaka)
-                .addGap(38, 38, 38)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(choiceHanteraAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boxHanteraAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void choiceHanteraAgentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_choiceHanteraAgentItemStateChanged
-         if(choiceHanteraAgent.getSelectedIndex() == 1){
-        new RegistreraNyAgent(idb).setVisible(true);
-        dispose();
-        }
-    }//GEN-LAST:event_choiceHanteraAgentItemStateChanged
-
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
         new AdminHantera().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
+
+    private void boxHanteraAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxHanteraAgenterActionPerformed
+        switch(boxHanteraAgenter.getSelectedIndex()) {
+            case 0:
+                break;
+            case 1: 
+                new RegistreraNyAgent(idb, idNummer).setVisible(true);
+                dispose();
+                break;
+            case 2: 
+                new TilldelaAdminStatus(idb, idNummer).setVisible(true);
+                dispose();
+                break;
+            case 3:
+                new AndraAgent(idb, idNummer).setVisible(true);
+                dispose();
+                break;
+            case 4: new TaBortAgent(idb, idNummer).setVisible(true);
+                    dispose();
+                    break;
+            case 5: new AndraOmradesChef(idb, idNummer).setVisible(true);
+                    dispose();
+                    break;
+            case 6: new AndraKontorsChef(idb, idNummer).setVisible(true);
+                    dispose();
+                    break;   
+        }
+            
+    }//GEN-LAST:event_boxHanteraAgenterActionPerformed
 
     public void addItemListener(ItemListener a){}
     /**
@@ -144,16 +178,17 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminHanteraAgent().setVisible(true);
+                new AdminHanteraAgent(idb, idNummer).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxHanteraAgenter;
     private javax.swing.JButton btnTillbaka;
-    private java.awt.Choice choiceHanteraAgent;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -150,8 +150,6 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + idNummer;
         String hamtaLosenord = idb.fetchSingle(losenordFraga);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
-        String adminStatusFraga = "SELECT Administrator FROM Agent WHERE Agent_ID =" + idNummer;
-        String hamtaAdminStatus = idb.fetchSingle(adminStatusFraga);
 
         String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + idNummer;
         String admin = idb.fetchSingle(hamtaAdmin);
@@ -165,6 +163,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
                 huvudmenyAdmin = new HuvudmenyAdmin(idb, id);
                 huvudmenyAdmin.setVisible(true);
                 dispose();
+
             }
 
             else{

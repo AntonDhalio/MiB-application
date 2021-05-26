@@ -18,10 +18,13 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     private static String id;
     private SystemInfo sysInfo;
 
+
     /**
      * Creates new form HuvudmenyAdmin
      */
+
     public HuvudmenyAdmin(InfDB idb, String id) {
+
         initComponents();
         this.idb = idb;
         this.id = id;
@@ -51,6 +54,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(286, Short.MAX_VALUE)
                 .addComponent(stat)
@@ -62,6 +66,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
                 .addContainerGap(202, Short.MAX_VALUE)
                 .addComponent(stat)
                 .addGap(75, 75, 75))
+
         );
 
         pack();
@@ -106,6 +111,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new HuvudmenyAdmin(idb,id).setVisible(true);
+
             }
         });
     }
