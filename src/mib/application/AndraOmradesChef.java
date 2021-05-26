@@ -38,7 +38,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
             boxChef.addItem(idNr);
         });
 
-        kontorNamn = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef ORDER BY Kontorsbeteckning ASC");
+        kontorNamn = idb.fetchColumn("SELECT Benamning FROM Omrade ORDER BY Benamning ASC");
         kontorNamn.forEach(kontor -> {
             txtValjOmrade.addItem(kontor);
             });
@@ -73,8 +73,8 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         boxChef = new javax.swing.JComboBox<>();
         txtChefNamn = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtGodkänn = new javax.swing.JButton();
+        txtTillbaka = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,17 +95,17 @@ public class AndraOmradesChef extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Godkänn");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtGodkänn.setText("Godkänn");
+        txtGodkänn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtGodkännActionPerformed(evt);
             }
         });
 
-        jButton2.setText("< Tillbaka");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        txtTillbaka.setText("< Tillbaka");
+        txtTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                txtTillbakaActionPerformed(evt);
             }
         });
 
@@ -121,8 +121,8 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(263, 263, 263)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtTillbaka, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtGodkänn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,9 +156,9 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtChefNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(txtGodkänn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(txtTillbaka)
                 .addContainerGap(114, Short.MAX_VALUE))
         );
 
@@ -178,29 +178,33 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boxChefActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void txtGodkännActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGodkännActionPerformed
         String id = (String)boxChef.getSelectedItem();
-        String kontor = (String)txtValjOmrade.getSelectedItem();
+        String valtOmrade = (String)txtValjOmrade.getSelectedItem();
         try{
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+            
+            String omradesID = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
+            String hamtaOmradesID = idb.fetchSingle(omradesID);
+            
             
             int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra ändringarna?", "Obs!", JOptionPane.YES_NO_OPTION);
             
             if(svar == JOptionPane.YES_OPTION){
-            idb.update("UPDATE Kontorschef SET Agent_ID='" + id + "'WHERE Kontorsbeteckning='" + kontor + "'");
-            JOptionPane.showMessageDialog(null, "Kontorschefen för " + kontor + " har nu ändrats");
+            idb.update("UPDATE Omradeschef SET Agent_ID='" + id + "'WHERE Omrade=" + hamtaOmradesID + "");
+            JOptionPane.showMessageDialog(null, "Områdeschefen för " + valtOmrade + " har nu ändrats");
             }
             
         }
         catch(InfException e){
             System.out.println(e);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtGodkännActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void txtTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTillbakaActionPerformed
         new AdminHanteraAgent(idb, idNummer).setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_txtTillbakaActionPerformed
 
     private void txtValjOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjOmradeActionPerformed
         // TODO add your handling code here:
@@ -244,12 +248,12 @@ public class AndraOmradesChef extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxChef;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtChefNamn;
+    private javax.swing.JButton txtGodkänn;
+    private javax.swing.JButton txtTillbaka;
     private javax.swing.JComboBox<String> txtValjOmrade;
     // End of variables declaration//GEN-END:variables
 }
