@@ -17,9 +17,11 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     private static InfDB idb;
     private static String idNummer;
 
+
     /**
      * Creates new form HuvudmenyAdmin
      */
+
     public HuvudmenyAdmin(InfDB idb, String idNummer) {
         this.idb = idb;
         this.idNummer = idNummer;
@@ -84,6 +86,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new HuvudmenyAdmin(idb, idNummer).setVisible(true);
+
             }
         });
     }
