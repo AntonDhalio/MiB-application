@@ -15,17 +15,19 @@ import oru.inf.InfException;
 public class HuvudmenyAdmin extends javax.swing.JFrame {
 
     private static InfDB idb;
-    private static String idNummer;
+    private static String id;
+    private SystemInfo sysInfo;
 
 
     /**
      * Creates new form HuvudmenyAdmin
      */
 
-    public HuvudmenyAdmin(InfDB idb, String idNummer) {
-        this.idb = idb;
-        this.idNummer = idNummer;
+    public HuvudmenyAdmin(InfDB idb, String id) {
+
         initComponents();
+        this.idb = idb;
+        this.id = id;
     }
 
     /**
@@ -37,22 +39,45 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        stat = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        stat.setText("stat");
+        stat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(286, Short.MAX_VALUE)
+                .addComponent(stat)
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(202, Short.MAX_VALUE)
+                .addComponent(stat)
+                .addGap(75, 75, 75))
+
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void statActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statActionPerformed
+        sysInfo = new SystemInfo(idb, id);
+        sysInfo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_statActionPerformed
 
     /**
      * @param args the command line arguments
@@ -85,12 +110,13 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HuvudmenyAdmin(idb, idNummer).setVisible(true);
+                new HuvudmenyAdmin(idb,id).setVisible(true);
 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton stat;
     // End of variables declaration//GEN-END:variables
 }

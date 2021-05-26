@@ -5,6 +5,7 @@
  */
 package mib.application;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 
 /**
@@ -43,7 +44,7 @@ public class AlienStartsida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Alien Startsida!");
+        jLabel1.setText("Välkommen till menyn");
 
         btnAndraLosen.setText("Ändra Lösenord");
         btnAndraLosen.addActionListener(new java.awt.event.ActionListener() {
@@ -80,33 +81,31 @@ public class AlienStartsida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(btnLoggaUt))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnLoggaUt)
+                            .addComponent(btnMailaChef, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(btnInfoRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnInfoRuta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMailaChef, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
+                        .addGap(63, 63, 63)
                         .addComponent(jLabel1)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(btnAndraLosen)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(btnInfoRuta)
                 .addGap(18, 18, 18)
                 .addComponent(btnMailaChef)
                 .addGap(18, 18, 18)
                 .addComponent(btnLoggaUt)
-                .addGap(19, 19, 19))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,9 +125,10 @@ public class AlienStartsida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInfoRutaActionPerformed
 
     private void btnMailaChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMailaChefActionPerformed
-        MailOmradeschef mo = new MailOmradeschef(idb, id);
-        mo.setVisible(true);
-        dispose();
+        int bekrafta = JOptionPane.showConfirmDialog(null, "Detta kommer öppna ett annat program på din dator\när du säker på att du vill fortsätta?", "Varning", JOptionPane.YES_NO_OPTION);
+        if(bekrafta == JOptionPane.YES_OPTION){
+            MailaOC.mailProgram(idb, id);
+        }
     }//GEN-LAST:event_btnMailaChefActionPerformed
 
     private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed

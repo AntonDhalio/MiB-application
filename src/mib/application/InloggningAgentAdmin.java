@@ -13,10 +13,12 @@ import oru.inf.InfException;
  */
 public class InloggningAgentAdmin extends javax.swing.JFrame {
 
-    private InfDB idb;
+    private static InfDB idb;
+    private static String id;
     private ValjInloggning valjInloggning;
     private AgentMeny agentMeny;
     private HuvudmenyAdmin huvudmenyAdmin;
+    
 
     /**
      * Skapar nytt formulär av InloggningsFonster med uppkoppling till
@@ -158,7 +160,10 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
             //if-else sats för att se om det är en vanlig agent eller en admin
             //som loggar in
             if(admin.equals("J")){
-           
+                huvudmenyAdmin = new HuvudmenyAdmin(idb, id);
+                huvudmenyAdmin.setVisible(true);
+                dispose();
+
             }
 
             else{

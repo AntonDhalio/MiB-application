@@ -233,7 +233,7 @@ public class InfoPortal extends javax.swing.JFrame {
             String alien = (String)idRasBox.getSelectedItem();
             try{
                 String aid = idb.fetchSingle("SELECT Alien_ID FROM alien WHERE Namn='" + alien + "'");
-                HashMap<String, String> alienInfo = idb.fetchRow("SELECT * FROM alien WHERE Alien_ID=" + aid); 
+                HashMap<String, String> alienInfo = idb.fetchRow("SELECT Alien_ID AS 'Alien ID', Registreringsdatum, Losenord AS 'Lösenord', Namn, Telefon, Plats, Ansvarig_Agent AS 'Kontaktagent' FROM alien WHERE Alien_ID=" + aid); 
                 for(Map.Entry<String,String> map: alienInfo.entrySet()){
                     String key = map.getKey();
                     String value = map.getValue();
