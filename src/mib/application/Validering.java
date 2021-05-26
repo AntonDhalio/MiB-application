@@ -9,12 +9,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.util.*;
+import javax.swing.JComboBox;
+
 
 /**
  *
  * @author anton
  */
 public class Validering {
+   
     
     public static boolean txtFieldHarVarde(JTextField aktuellRuta)
     {
@@ -102,4 +105,32 @@ public class Validering {
         }       
         return resultat;
     }
+    
+    public static boolean ValtEttAlternativ(JComboBox aktuellBox){
+        boolean resultat = true;
+        
+        if(aktuellBox.getSelectedIndex() <= 0){
+            JOptionPane.showMessageDialog(null, "Vänligen välj typ av agent för att slutföra registreringen");
+            resultat = false;
+        }
+        
+        return resultat;
+    }
+    
+    public static boolean txtFieldBegransad25(JTextField aktuellRuta){
+        boolean resultat = true;
+    
+        if(aktuellRuta.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Obs! Fältet får ej lämnas tomt.");
+            resultat = false;
+        }
+        else if(aktuellRuta.getText().length() > 20){
+            JOptionPane.showMessageDialog(null, "Obs! Fältet får endast ha 25 tecken.");
+            resultat = false;
+        }
+        
+        return resultat;
+    }
+   
+    
 }
