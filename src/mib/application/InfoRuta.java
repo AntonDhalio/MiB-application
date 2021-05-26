@@ -127,7 +127,7 @@ public class InfoRuta extends javax.swing.JFrame {
                     String key = lista.getKey();
                     String value = lista.getValue();
                     if(key.equals("Telefon")){
-                        txtInfo.insert("Telefon: " + value + "\n ", 0);
+                        txtInfo.insert("Telefon: " + value + "\n", 0);
                     }
                     else{
                         txtInfo.insert("Namn: " + value + "\n\n", 0);

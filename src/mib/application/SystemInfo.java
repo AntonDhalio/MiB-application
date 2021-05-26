@@ -5,6 +5,7 @@
  */
 package mib.application;
 
+import java.awt.print.PrinterAbortException;
 import java.awt.print.PrinterException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -192,8 +193,8 @@ public class SystemInfo extends javax.swing.JFrame {
         try {
             statArea.print();
         } catch (PrinterException ex) {
-            Logger.getLogger(SystemInfo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println("Utskriften avbröts");
+        }        
     }//GEN-LAST:event_skrivUtKnappActionPerformed
 
     private void tillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaKnappActionPerformed
