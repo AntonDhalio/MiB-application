@@ -25,7 +25,7 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     /**
      * Creates new form AndraKontorsChef
      */
-    public AndraKontorsChef(InfDB idb, String idNummer) {
+    public AndraKontorsChef (InfDB idb, String idNummer) {
         initComponents();
         this.idb = idb;
         this.idNummer = idNummer;
@@ -221,6 +221,7 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AndraKontorsChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

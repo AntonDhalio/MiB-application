@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import java.util.*;
+import javax.swing.JComboBox;
 
 
 /**
@@ -102,6 +103,17 @@ public class Validering {
             JOptionPane.showMessageDialog(null, "Obs! Datum måste väljas.");
             resultat = false;
         }       
+        return resultat;
+    }
+    
+    public static boolean ValtEttAlternativ(JComboBox aktuellBox){
+        boolean resultat = true;
+        
+        if(aktuellBox.getSelectedIndex() <= 0){
+            JOptionPane.showMessageDialog(null, "Vänligen välj typ av agent för att slutföra registreringen");
+            resultat = false;
+        }
+        
         return resultat;
     }
    
