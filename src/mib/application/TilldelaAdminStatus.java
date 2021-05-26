@@ -17,16 +17,16 @@ import oru.inf.InfException;
 public class TilldelaAdminStatus extends javax.swing.JFrame {
     private ArrayList<String> agentID;
     private static InfDB idb;
-    private static String idNummer;
+    private static String id;
     
 
     /**
      * Creates new form TilldelaAdminStatus
      */
-    public TilldelaAdminStatus(InfDB idb, String idNummer) {
+    public TilldelaAdminStatus(InfDB idb, String id) {
         initComponents();
         this.idb = idb;
-        this.idNummer = idNummer;
+        this.id = id;
         txtNamn.setEditable(false);
         try{
             agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent WHERE Administrator='N'");
@@ -144,7 +144,7 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
     }//GEN-LAST:event_boxAgenterActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        new AdminHanteraAgent(idb, idNummer).setVisible(true);
+        new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
@@ -192,7 +192,7 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TilldelaAdminStatus(idb, idNummer).setVisible(true);
+                new TilldelaAdminStatus(idb, id).setVisible(true);
             }
         });
     }

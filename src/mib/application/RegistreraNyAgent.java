@@ -21,15 +21,15 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private char adminStatus;
     private ArrayList<String> omrade;
     private String valtOmrade;
-    private static String idNummer;
+    private static String id;
     private ArrayList<String> kontor;
 
     /**
      * Creates new form RegistreraNyAgent
      */
-    public RegistreraNyAgent(InfDB idb, String idNUmmer) {
+    public RegistreraNyAgent(InfDB idb, String id) {
         this.idb = idb;
-        this.idNummer = idNummer;
+        this.id = id;
         initComponents();
         boxAdminStatus.insertItemAt("Ej administratör", 0);
         boxAdminStatus.insertItemAt("Administratör", 1);
@@ -245,7 +245,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAvbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvbrytActionPerformed
-        new AdminHanteraAgent(idb, idNummer).setVisible(true);
+        new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAvbrytActionPerformed
 
@@ -358,7 +358,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistreraNyAgent(idb, idNummer).setVisible(true);
+                new RegistreraNyAgent(idb, id).setVisible(true);
             }
         });
     }
