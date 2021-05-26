@@ -143,7 +143,7 @@ public class InloggningAlien extends javax.swing.JFrame {
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
 
         //Externt metodanrop för att kolla om textfältet har ett värde
-        if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
+        if(Validering.txtFieldHarVarde(txtIDNummer)){
             
         try {
         String idNummer = txtIDNummer.getText();
