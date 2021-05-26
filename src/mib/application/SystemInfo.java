@@ -5,6 +5,9 @@
  */
 package mib.application;
 
+import java.awt.print.PrinterException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -18,7 +21,6 @@ public class SystemInfo extends javax.swing.JFrame {
     private static InfDB idb;
     private static String id;
     private HuvudmenyAdmin menyAdmin;
-    private UtskriftFile utskrift;
     /**
      * Creates new form SystemInfo
      */
@@ -186,8 +188,11 @@ public class SystemInfo extends javax.swing.JFrame {
     }
     
     private void skrivUtKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skrivUtKnappActionPerformed
-        utskrift = new UtskriftFile(idb);
-        UtskriftFile.skapaRapport();
+        try {
+            statArea.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(SystemInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_skrivUtKnappActionPerformed
 
     private void tillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaKnappActionPerformed

@@ -7,6 +7,7 @@ package mib.application;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -67,7 +68,7 @@ public class InfoRuta extends javax.swing.JFrame {
             }
         });
 
-        btnTillbaka.setText("Tillbaka");
+        btnTillbaka.setText("<Tillbaka");
         btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTillbakaActionPerformed(evt);
@@ -79,31 +80,36 @@ public class InfoRuta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTillbaka))
-                    .addComponent(btnAliensNara)
-                    .addComponent(btnOmradesChef)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(btnAliensNara)
+                                .addGap(44, 44, 44)
+                                .addComponent(btnOmradesChef))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnTillbaka)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(btnTillbaka))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAliensNara)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOmradesChef)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOmradesChef)
+                    .addComponent(btnAliensNara))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -111,29 +117,39 @@ public class InfoRuta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAliensNaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAliensNaraActionPerformed
+        txtInfo.selectAll();
+        txtInfo.replaceSelection("");
         try {
             String omrade = idb.fetchSingle("SELECT Plats FROM Alien WHERE Alien_ID =" + id);
-            ArrayList<HashMap<String,String>> allaAliens = idb.fetchRows("SELECT Namn, Telefon FROM Alien JOIN Plats ON Plats_ID = Plats JOIN Omrade ON Omrades_ID = Finns_I WHERE Plats_ID ='" + omrade + "'");
-            for (HashMap<String, String> list : allaAliens) {
-                for (String alien : list.values()) {
-                    txtInfo.insert(alien + "\n", 0);
-                    System.out.println(alien);
+            ArrayList<HashMap<String,String>> allaAliens = idb.fetchRows("SELECT Telefon, Namn FROM Alien JOIN Plats ON Plats_ID = Plats JOIN Omrade ON Omrades_ID = Finns_I WHERE Plats_ID ='" + omrade + "'");
+            for (HashMap<String, String> list : allaAliens) {                
+                for(Map.Entry<String,String> lista : list.entrySet()){
+                    String key = lista.getKey();
+                    String value = lista.getValue();
+                    if(key.equals("Telefon")){
+                        txtInfo.insert("Telefon: " + value + "\n ", 0);
+                    }
+                    else{
+                        txtInfo.insert("Namn: " + value + "\n\n", 0);
+                    }
                 }
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Något gick fel");
         }
     }//GEN-LAST:event_btnAliensNaraActionPerformed
 
     private void btnOmradesChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOmradesChefActionPerformed
+        txtInfo.selectAll();
+        txtInfo.replaceSelection("");
         try {
             HashMap<String,String> agent = idb.fetchRow("SELECT Agent.Namn, Agent.Telefon FROM Agent JOIN Omradeschef ON Omradeschef.Agent_ID = Agent.Agent_ID JOIN Alien ON Plats = Omradeschef.Omrade WHERE Alien_ID =" + id);
             for (String agentInfo  : agent.values()) {
                 txtInfo.insert(agentInfo + "\n", 0);
-                System.out.println(agentInfo);
+                
             }
         } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Något gick fel");
         }
     }//GEN-LAST:event_btnOmradesChefActionPerformed
 
