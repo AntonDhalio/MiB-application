@@ -63,6 +63,8 @@ public class ValjInloggning extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        jPanel2.setMinimumSize(new java.awt.Dimension(222, 80));
+        jPanel2.setPreferredSize(new java.awt.Dimension(222, 80));
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);

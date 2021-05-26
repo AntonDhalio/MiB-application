@@ -114,7 +114,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        new AdminHantera().setVisible(true);
+        new AdminHantera(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
