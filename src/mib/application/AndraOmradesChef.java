@@ -40,7 +40,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
 
         kontorNamn = idb.fetchColumn("SELECT Benamning FROM Omrade ORDER BY Benamning ASC");
         kontorNamn.forEach(kontor -> {
-            txtValjOmrade.addItem(kontor);
+            boxValjOmrade.addItem(kontor);
             });
         
         
@@ -68,7 +68,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtValjOmrade = new javax.swing.JComboBox<>();
+        boxValjOmrade = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         boxChef = new javax.swing.JComboBox<>();
@@ -78,12 +78,6 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        txtValjOmrade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtValjOmradeActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Välj ett område:");
 
@@ -133,7 +127,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtChefNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(txtValjOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(boxValjOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(boxChef, 0, 190, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
@@ -147,7 +141,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValjOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxValjOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -180,7 +174,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
 
     private void txtGodkännActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGodkännActionPerformed
         String id = (String)boxChef.getSelectedItem();
-        String valtOmrade = (String)txtValjOmrade.getSelectedItem();
+        String valtOmrade = (String)boxValjOmrade.getSelectedItem();
         try{
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             
@@ -205,10 +199,6 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         new AdminHanteraAgent(idb, idNummer).setVisible(true);
         dispose();
     }//GEN-LAST:event_txtTillbakaActionPerformed
-
-    private void txtValjOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValjOmradeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtValjOmradeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,12 +238,12 @@ public class AndraOmradesChef extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxChef;
+    private javax.swing.JComboBox<String> boxValjOmrade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField txtChefNamn;
     private javax.swing.JButton txtGodkänn;
     private javax.swing.JButton txtTillbaka;
-    private javax.swing.JComboBox<String> txtValjOmrade;
     // End of variables declaration//GEN-END:variables
 }
