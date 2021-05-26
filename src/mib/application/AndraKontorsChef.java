@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 public class AndraKontorsChef extends javax.swing.JFrame {
     
     private static InfDB idb;
-    private HashMap<String, String> nuvarandeChef;
     private ArrayList<String> kontorNamn;
     private ArrayList<String> agentID;
     private static String idNummer;
@@ -30,33 +29,25 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         this.idb = idb;
         this.idNummer = idNummer;
         txtChefNamn.setEditable(false);
-        try{
-        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        txtNyttKontor.setVisible(false);
+        lblKontorsnamn.setVisible(false);
         
-        agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
-        agentID.forEach(idNr -> {
-            boxKontorsChef.addItem(idNr);
-        });
+            try{
+                agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+                agentID.forEach(idNr -> {
+                boxKontorsChef.addItem(idNr);
+                                         });
 
-        kontorNamn = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef ORDER BY Kontorsbeteckning ASC");
-        kontorNamn.forEach(kontor -> {
-            boxValjKontor.addItem(kontor);
-            });
+                kontorNamn = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef ORDER BY Kontorsbeteckning ASC");
+                kontorNamn.forEach(kontor -> {
+                boxValjKontor.addItem(kontor);
+                                         }); 
         
-        
-        
-        //nuvarandeChef = idb.fetchRow("select Agent.Agent_ID, Namn, Kontorsbeteckning from Agent\n" +
-        //"join Kontorschef on Agent.Agent_ID=Kontorschef.Agent_ID");
-        
-        
-        
-        
-        }
-        catch(InfException e){
-        JOptionPane.showMessageDialog(null, "Något gick fel");
-        System.out.println(e);
-        }
-        
+                }
+                catch(InfException e){
+                        JOptionPane.showMessageDialog(null, "Något gick fel");
+                        System.out.println(e);
+                                        }
     }
 
     /**
@@ -76,6 +67,9 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btnLaggTillKontor = new javax.swing.JRadioButton();
+        txtNyttKontor = new javax.swing.JTextField();
+        lblKontorsnamn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,32 +100,49 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel3.setText("Här kan du ändra kontorschefen för ett kontor");
 
+        btnLaggTillKontor.setText("Jag vill lägga till ett nytt kontor");
+        btnLaggTillKontor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillKontorActionPerformed(evt);
+            }
+        });
+
+        lblKontorsnamn.setText("Nanmn på kontoret:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel3)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnLaggTillKontor)
+                                .addComponent(boxValjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(157, 157, 157)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtChefNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(boxValjKontor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(boxKontorsChef, 0, 190, Short.MAX_VALUE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtChefNamn)
+                                        .addComponent(boxKontorsChef, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jLabel3)))))
+                                .addComponent(lblKontorsnamn)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNyttKontor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(105, 105, 105)))
                 .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,6 +154,12 @@ public class AndraKontorsChef extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxValjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLaggTillKontor)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNyttKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblKontorsnamn))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -153,7 +170,7 @@ public class AndraKontorsChef extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,39 +179,53 @@ public class AndraKontorsChef extends javax.swing.JFrame {
 
     private void boxKontorsChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxKontorsChefActionPerformed
         try{
-        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-        String id = (String)boxKontorsChef.getSelectedItem();
-        String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
-        String namnFraga = idb.fetchSingle(hamtaNamn);
-        txtChefNamn.setText(namnFraga);}
-        catch(InfException e){
-        System.out.println(e);
-        }
+            String id = (String)boxKontorsChef.getSelectedItem();
+            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
+            String namnFraga = idb.fetchSingle(hamtaNamn);
+            txtChefNamn.setText(namnFraga);}
+        
+            catch(InfException e){
+            System.out.println(e);
+                                 }
     }//GEN-LAST:event_boxKontorsChefActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String id = (String)boxKontorsChef.getSelectedItem();
         String kontor = (String)boxValjKontor.getSelectedItem();
-        try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        
+            try{
+                int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra ändringarna?", "Obs!", JOptionPane.YES_NO_OPTION);
             
-            int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra ändringarna?", "Obs!", JOptionPane.YES_NO_OPTION);
-            
-            if(svar == JOptionPane.YES_OPTION){
-            idb.update("UPDATE Kontorschef SET Agent_ID='" + id + "'WHERE Kontorsbeteckning='" + kontor + "'");
-            JOptionPane.showMessageDialog(null, "Kontorschefen för " + kontor + " har nu ändrats");
-            }
-            
-        }
+                if(svar == JOptionPane.YES_OPTION && btnLaggTillKontor.isSelected() && Validering.txtFieldBegransad25(txtNyttKontor)){
+                    kontor = txtNyttKontor.getText();
+                    idb.insert("INSERT INTO Kontorschef VALUES(" + id + ", '" + kontor + "')");
+                    JOptionPane.showMessageDialog(null, "Kontorschefen för " + kontor + " har nu lagts till");
+                                                   }
+                    else if(svar == JOptionPane.YES_OPTION){
+                    idb.update("UPDATE Kontorschef SET Agent_ID='" + id + "'WHERE Kontorsbeteckning='" + kontor + "'");
+                    JOptionPane.showMessageDialog(null, "Kontorschefen för " + kontor + " har nu ändrats");
+                    }                              
+                }
         catch(InfException e){
             System.out.println(e);
-        }
+                             }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new AdminHanteraAgent(idb, idNummer).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnLaggTillKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillKontorActionPerformed
+        if(btnLaggTillKontor.isSelected()){
+            txtNyttKontor.setVisible(true);
+            lblKontorsnamn.setVisible(true);
+        }
+            else{
+            txtNyttKontor.setVisible(false);
+            lblKontorsnamn.setVisible(false);
+        }
+    }//GEN-LAST:event_btnLaggTillKontorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,11 +266,14 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxKontorsChef;
     private javax.swing.JComboBox<String> boxValjKontor;
+    private javax.swing.JRadioButton btnLaggTillKontor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblKontorsnamn;
     private javax.swing.JTextField txtChefNamn;
+    private javax.swing.JTextField txtNyttKontor;
     // End of variables declaration//GEN-END:variables
 }

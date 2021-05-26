@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 public class AndraOmradesChef extends javax.swing.JFrame {
     
     private static InfDB idb;
-    private HashMap<String, String> nuvarandeChef;
     private ArrayList<String> kontorNamn;
     private ArrayList<String> agentID;
     private static String idNummer;
@@ -30,33 +29,22 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         this.idb = idb;
         this.idNummer = idNummer;
         txtChefNamn.setEditable(false);
-        try{
-        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
         
-        agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
-        agentID.forEach(idNr -> {
-            boxChef.addItem(idNr);
-        });
+            try{
+                agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+                agentID.forEach(idNr -> {
+                boxChef.addItem(idNr);
+                                        });
 
-        kontorNamn = idb.fetchColumn("SELECT Benamning FROM Omrade ORDER BY Benamning ASC");
-        kontorNamn.forEach(kontor -> {
-            boxValjOmrade.addItem(kontor);
-            });
-        
-        
-        
-        //nuvarandeChef = idb.fetchRow("select Agent.Agent_ID, Namn, Kontorsbeteckning from Agent\n" +
-        //"join Kontorschef on Agent.Agent_ID=Kontorschef.Agent_ID");
-        
-        
-        
-        
-        }
-        catch(InfException e){
-        JOptionPane.showMessageDialog(null, "Något gick fel");
-        System.out.println(e);
-        }
-        
+                kontorNamn = idb.fetchColumn("SELECT Benamning FROM Omrade ORDER BY Benamning ASC");
+                kontorNamn.forEach(kontor -> {
+                boxValjOmrade.addItem(kontor);
+                                        }); 
+               }
+                catch(InfException e){
+                        JOptionPane.showMessageDialog(null, "Något gick fel");
+                        System.out.println(e);
+                                     }
     }
 
     /**
@@ -162,36 +150,35 @@ public class AndraOmradesChef extends javax.swing.JFrame {
 
     private void boxChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChefActionPerformed
         try{
-        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-        String id = (String)boxChef.getSelectedItem();
-        String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
-        String namnFraga = idb.fetchSingle(hamtaNamn);
-        txtChefNamn.setText(namnFraga);}
-        catch(InfException e){
-        System.out.println(e);
+            String id = (String)boxChef.getSelectedItem();
+            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
+            String namnFraga = idb.fetchSingle(hamtaNamn);
+            txtChefNamn.setText(namnFraga);}
+        
+            catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+                System.out.println(e);
         }
     }//GEN-LAST:event_boxChefActionPerformed
 
     private void txtGodkännActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGodkännActionPerformed
         String id = (String)boxChef.getSelectedItem();
         String valtOmrade = (String)boxValjOmrade.getSelectedItem();
+        
         try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-            
             String omradesID = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
             String hamtaOmradesID = idb.fetchSingle(omradesID);
-            
-            
+  
             int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra ändringarna?", "Obs!", JOptionPane.YES_NO_OPTION);
             
-            if(svar == JOptionPane.YES_OPTION){
-            idb.update("UPDATE Omradeschef SET Agent_ID='" + id + "'WHERE Omrade=" + hamtaOmradesID + "");
-            JOptionPane.showMessageDialog(null, "Områdeschefen för " + valtOmrade + " har nu ändrats");
-            }
-            
+                if(svar == JOptionPane.YES_OPTION){
+                    idb.update("UPDATE Omradeschef SET Agent_ID='" + id + "'WHERE Omrade=" + hamtaOmradesID + "");
+                    JOptionPane.showMessageDialog(null, "Områdeschefen för " + valtOmrade + " har nu ändrats");
+            }  
         }
-        catch(InfException e){
-            System.out.println(e);
+            catch(InfException e){
+                    JOptionPane.showMessageDialog(null, "Något gick fel");
+                    System.out.println(e);
         }
     }//GEN-LAST:event_txtGodkännActionPerformed
 

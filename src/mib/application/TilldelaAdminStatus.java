@@ -29,17 +29,13 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         this.idNummer = idNummer;
         txtNamn.setEditable(false);
         try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-        
             agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent WHERE Administrator='N'");
             
             agentID.forEach(idNr -> {
                 boxAgenter.addItem(idNr);
-            });
-                       
+                                    });       
             }
-        
-        catch(InfException e){}
+            catch(InfException e){}
         
    } 
         
@@ -140,12 +136,11 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
 
     private void boxAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAgenterActionPerformed
         try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             String id = (String)boxAgenter.getSelectedItem();
             String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + id);
             txtNamn.setText(namn);
         }
-            catch(InfException e){}
+                catch(InfException e){}
     }//GEN-LAST:event_boxAgenterActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed

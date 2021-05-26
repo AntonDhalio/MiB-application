@@ -155,19 +155,24 @@ public class TaBortAgent extends javax.swing.JFrame {
         try{
         idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
         
+        
+        
+        
+ 
+        
        int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill radera denna agent från systemet? \n"
                 + "Åtgärden går inte att ångra.", "Obs!", JOptionPane.YES_NO_OPTION);
         
         if(svar == JOptionPane.YES_OPTION){
-        
-        idb.update("UPDATE Kontorschef SET Agent_ID=NULL WHERE Agent_ID=" + valdAgent + "");
-        idb.update("UPDATE Alien SET Ansvarig_Agent=NULL WHERE Ansvarig_Agent=" + valdAgent + "");
-        idb.delete("UPDATE Omradeschef SET Agent_ID=NULL WHERE Agent_ID=" + valdAgent + "");
-        idb.delete("DELETE FROM Innehar_Utrustning WHERE Agent_ID=" + valdAgent + "");
-        idb.delete("DELETE FROM Faltagent WHERE Agent_ID=" + valdAgent + "");
-        idb.delete("DELETE FROM Innehar_Fordon WHERE Agent_ID=" + valdAgent + "");
-        idb.delete("DELETE FROM Agent WHERE Agent_ID=" + valdAgent + "");
-        JOptionPane.showMessageDialog(null, "Agenten är nu borttagen ur systemet");
+            idb.delete("DELETE FROM Innehar_Fordon WHERE Agent_ID=" + valdAgent);
+            idb.delete("DELETE FROM Innehar_Utrustning WHERE Agent_ID=" + valdAgent);
+            idb.delete("DELETE FROM Kontorschef WHERE Agent_ID =" + valdAgent);
+            idb.delete("DELETE FROM Omradeschef WHERE Agent_ID =" + valdAgent);
+            idb.delete("DELETE FROM Faltagent WHERE Agent_ID =" + valdAgent);
+            idb.delete("DELETE FROM Alien WHERE Ansvarig_Agent =" + valdAgent);
+            idb.delete("DELETE FROM Agent WHERE Agent_ID=" + valdAgent);
+            JOptionPane.showMessageDialog(null, "Agenten är nu borttagen ur systemet");
+            
         }
         
         }

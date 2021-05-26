@@ -116,6 +116,21 @@ public class Validering {
         
         return resultat;
     }
+    
+    public static boolean txtFieldBegransad25(JTextField aktuellRuta){
+        boolean resultat = true;
+    
+        if(aktuellRuta.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Obs! Fältet får ej lämnas tomt.");
+            resultat = false;
+        }
+        else if(aktuellRuta.getText().length() > 20){
+            JOptionPane.showMessageDialog(null, "Obs! Fältet får endast ha 25 tecken.");
+            resultat = false;
+        }
+        
+        return resultat;
+    }
    
     
 }

@@ -41,24 +41,19 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         
         
             try{
-                idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
                 omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
                 omrade.forEach(benamning -> {
-                    boxAnsvarigForOmrade.addItem(benamning);
-                    
-                    
-            });
+                    boxAnsvarigForOmrade.addItem(benamning);                    
+                                            });
                 
                 kontor = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef");
                 kontor.forEach(kontorsNamn -> {
                     boxValjKontor.addItem(kontorsNamn);
-                });
-            }
-            catch(InfException e){
-            JOptionPane.showMessageDialog(null, "Något gick fel. Vänligen försök igen");
-            }
-            
-            
+                                              });
+              }
+                    catch(InfException e){
+                        JOptionPane.showMessageDialog(null, "Något gick fel. Vänligen försök igen");
+                                         }
 
     }
 
@@ -264,32 +259,29 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         String valtKontor = (String)boxValjKontor.getSelectedItem();
         
         
-        if(Validering.txtFieldBegransad6(txtLosenord) && Validering.txtFieldBegransad20(txtNamn) && Validering.txtFieldBegransad30(txtTelefon) && Validering.ValtEttAlternativ(boxTypAvAgent)){
+            if(Validering.txtFieldBegransad6(txtLosenord) && Validering.txtFieldBegransad20(txtNamn) && Validering.txtFieldBegransad30(txtTelefon) && Validering.ValtEttAlternativ(boxTypAvAgent)){
 
         
-        try {
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-            String nextID = idb.getAutoIncrement("Agent", "Agent_ID");
-            String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
-            String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
-            int intOmradesID = Integer.parseInt(hamtaOmradesID);
-            idb.insert("INSERT INTO Agent VALUES(" + nextID + ",'" + namn + "','" + telefon + "','" + datum + "','" + adminStatus + "','" + losenord + "'," + intOmradesID + ")");
+                try {
+                    String nextID = idb.getAutoIncrement("Agent", "Agent_ID");
+                    String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
+                    String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
+                    int intOmradesID = Integer.parseInt(hamtaOmradesID);
+                    idb.insert("INSERT INTO Agent VALUES(" + nextID + ",'" + namn + "','" + telefon + "','" + datum + "','" + adminStatus + "','" + losenord + "'," + intOmradesID + ")");
             
-            if(boxTypAvAgent.getSelectedIndex() == 1){
-                idb.insert("INSERT INTO Faltagent VALUES(" + nextID + ")");    
-            }
-            else if(boxTypAvAgent.getSelectedIndex() == 2){
-                    idb.update("UPDATE Kontorschef SET Agent_ID='" + nextID + "'WHERE Kontorsbeteckning='" + valtKontor + "'");
-                        }
-            
-           
-            
-            JOptionPane.showMessageDialog(null, "Registrerigen lyckades! " + namn + " med ID-nummer " + nextID + " är nu tillagd i systemet");
-        
-     
-        } catch (InfException e) {
-            System.out.println(e);
-        }
+                        if(boxTypAvAgent.getSelectedIndex() == 1){
+                            idb.insert("INSERT INTO Faltagent VALUES(" + nextID + ")");    
+                                                                 }
+                            else if(boxTypAvAgent.getSelectedIndex() == 2){
+                                    idb.update("UPDATE Kontorschef SET Agent_ID='" + nextID + "'WHERE Kontorsbeteckning='" + valtKontor + "'");
+                                                                           }
+
+        JOptionPane.showMessageDialog(null, "Registrerigen lyckades! " + namn + " med ID-nummer " + nextID + " är nu tillagd i systemet");
+                    } 
+                    catch (InfException e) {
+                            JOptionPane.showMessageDialog(null, "Något gick fel");
+                            System.out.println(e);
+                                       }
         
        
       }

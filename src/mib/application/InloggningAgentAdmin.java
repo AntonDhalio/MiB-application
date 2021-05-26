@@ -158,7 +158,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
             //if-else sats för att se om det är en vanlig agent eller en admin
             //som loggar in
             if(admin.equals("J")){
-                new AdminHantera().setVisible(true);
+           
             }
 
             else{

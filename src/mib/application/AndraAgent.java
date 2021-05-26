@@ -28,24 +28,20 @@ public class AndraAgent extends javax.swing.JFrame {
         this.idNummer = idNummer;
         
         try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-            
             omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
             omrade.forEach(ansvararForOmrade -> {
                     boxNyttOmrade.addItem(ansvararForOmrade);
-            });
-        
+                                                });
+    
             agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
-            
             agentID.forEach(idNr -> {
                 boxIDNummer.addItem(idNr);
-            });
-                       
+                                    });          
             }
         
-        catch(InfException e){
-        JOptionPane.showMessageDialog(null, "Något gick fel. Vänligen försök igen");
-        }
+            catch(InfException e){
+                    JOptionPane.showMessageDialog(null, "Något gick fel. Vänligen försök igen");
+                                 }
     }
 
     /**
@@ -205,24 +201,20 @@ public class AndraAgent extends javax.swing.JFrame {
             
             int svara = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra dessa ändringar?", "Obs!", JOptionPane.YES_NO_OPTION);
             
-            if(svara == JOptionPane.YES_OPTION){
-                System.out.println(intOmradesID);
-            idb.update("UPDATE Agent SET Namn='" + namn + "'WHERE Agent_ID=" + valdAgent + "");
-            idb.update("UPDATE Agent SET Telefon='" + telefon + "'WHERE Agent_ID=" + valdAgent + "");
-            idb.update("UPDATE Agent SET Losenord='" + losenord + "'WHERE Agent_ID=" + valdAgent + "");
-            idb.update("UPDATE Agent SET Omrade='" + intOmradesID + "'WHERE Agent_ID=" + valdAgent + "");
+                if(svara == JOptionPane.YES_OPTION){            
+                    idb.update("UPDATE Agent SET Namn='" + namn + "'WHERE Agent_ID=" + valdAgent + "");
+                    idb.update("UPDATE Agent SET Telefon='" + telefon + "'WHERE Agent_ID=" + valdAgent + "");
+                    idb.update("UPDATE Agent SET Losenord='" + losenord + "'WHERE Agent_ID=" + valdAgent + "");
+                    idb.update("UPDATE Agent SET Omrade='" + intOmradesID + "'WHERE Agent_ID=" + valdAgent + "");
             
-            JOptionPane.showMessageDialog(null, "Ändringarna har nu genomförts");
-            }
+                    JOptionPane.showMessageDialog(null, "Ändringarna har nu genomförts");
+                                                    }
             
             }
-            catch(InfException e){
-            JOptionPane.showMessageDialog(null, "Oj! Något gick fel");
-            System.out.println(e);
-            }
-        
-        
-        
+                catch(InfException e){
+                        JOptionPane.showMessageDialog(null, "Oj! Något gick fel");
+                        System.out.println(e);
+                                     }
         }
     }//GEN-LAST:event_btnGodkännActionPerformed
 
