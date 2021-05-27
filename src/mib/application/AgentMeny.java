@@ -38,18 +38,15 @@ public class AgentMeny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        valkomsText = new javax.swing.JLabel();
         bytLosenord = new javax.swing.JButton();
         hanteraUtomjording = new javax.swing.JButton();
         hanteraUtrustning = new javax.swing.JButton();
         informationsHanterare = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        bakgrund = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        valkomsText.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        valkomsText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        valkomsText.setText("Välkommen till Men in Black Skandinavien!");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bytLosenord.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bytLosenord.setText("Byt lösenord");
@@ -58,6 +55,7 @@ public class AgentMeny extends javax.swing.JFrame {
                 bytLosenordActionPerformed(evt);
             }
         });
+        getContentPane().add(bytLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 195, -1));
 
         hanteraUtomjording.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         hanteraUtomjording.setText("Hantera utomjording");
@@ -66,6 +64,7 @@ public class AgentMeny extends javax.swing.JFrame {
                 hanteraUtomjordingActionPerformed(evt);
             }
         });
+        getContentPane().add(hanteraUtomjording, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 197, -1));
 
         hanteraUtrustning.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         hanteraUtrustning.setText("Hantera utrustning");
@@ -74,6 +73,7 @@ public class AgentMeny extends javax.swing.JFrame {
                 hanteraUtrustningActionPerformed(evt);
             }
         });
+        getContentPane().add(hanteraUtrustning, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 195, -1));
 
         informationsHanterare.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         informationsHanterare.setText("Informationsportalen");
@@ -82,52 +82,17 @@ public class AgentMeny extends javax.swing.JFrame {
                 informationsHanterareActionPerformed(evt);
             }
         });
+        getContentPane().add(informationsHanterare, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Vad vill du göra?");
+        lblMIB.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Välkommen Agent");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 30, 750, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(hanteraUtomjording, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(informationsHanterare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bytLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(hanteraUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(valkomsText))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(jLabel1)))
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(valkomsText, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hanteraUtomjording)
-                    .addComponent(hanteraUtrustning))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bytLosenord)
-                    .addComponent(informationsHanterare))
-                .addGap(97, 97, 97))
-        );
+        bakgrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/iLoveSpace.jpg"))); // NOI18N
+        getContentPane().add(bakgrund, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -193,11 +158,11 @@ public class AgentMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bakgrund;
     private javax.swing.JButton bytLosenord;
     private javax.swing.JButton hanteraUtomjording;
     private javax.swing.JButton hanteraUtrustning;
     private javax.swing.JButton informationsHanterare;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel valkomsText;
+    private javax.swing.JLabel lblMIB;
     // End of variables declaration//GEN-END:variables
 }
