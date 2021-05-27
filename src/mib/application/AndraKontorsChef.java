@@ -19,15 +19,15 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     private static InfDB idb;
     private ArrayList<String> kontorNamn;
     private ArrayList<String> agentID;
-    private static String idNummer;
+    private static String id;
 
     /**
      * Creates new form AndraKontorsChef
      */
-    public AndraKontorsChef (InfDB idb, String idNummer) {
+    public AndraKontorsChef (InfDB idb, String id) {
         initComponents();
         this.idb = idb;
-        this.idNummer = idNummer;
+        this.id = id;
         txtChefNamn.setEditable(false);
         txtNyttKontor.setVisible(false);
         lblKontorsnamn.setVisible(false);
@@ -212,7 +212,7 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new AdminHanteraAgent(idb, idNummer).setVisible(true);
+        new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -258,7 +258,7 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AndraKontorsChef(idb, idNummer).setVisible(true);
+                new AndraKontorsChef(idb,id).setVisible(true);
             }
         });
     }

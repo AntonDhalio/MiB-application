@@ -24,31 +24,107 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="286" max="32767" attributes="0"/>
-              <Component id="stat" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="alienKnapp" max="32767" attributes="0"/>
+                  <Component id="portalKnapp" max="32767" attributes="0"/>
+                  <Component id="agentKnapp" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="utrKnapp" pref="128" max="32767" attributes="0"/>
+                  <Component id="stat" max="32767" attributes="0"/>
+                  <Component id="losenKnapp" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
           </Group>
-
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="202" max="32767" attributes="0"/>
-              <Component id="stat" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="utrKnapp" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="agentKnapp" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="alienKnapp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="losenKnapp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="stat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="portalKnapp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
           </Group>
-
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JButton" name="stat">
       <Properties>
-        <Property name="text" type="java.lang.String" value="stat"/>
+        <Property name="text" type="java.lang.String" value="System statistik"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Meny agent(admin)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="agentKnapp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hantera agenter"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agentKnappActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="alienKnapp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hantera utomjordingar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="alienKnappActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="utrKnapp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hantera utrustning"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="utrKnappActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="portalKnapp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Informationsportalen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="portalKnappActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="losenKnapp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xc4;ndra l&#xf6;senord"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="losenKnappActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -16,14 +16,14 @@ import oru.inf.InfException;
 public class AdminHanteraAgent extends javax.swing.JFrame {
     
     private static InfDB idb;
-    private static String idNummer;
+    private static String id;
 
     /*
      * Creates new form AdminHanteraAgent
      */
-    public AdminHanteraAgent(InfDB idb, String idNummer) {
+    public AdminHanteraAgent(InfDB idb, String id) {
         this.idb = idb;
-        this.idNummer = idNummer;
+        this.id = id;
         initComponents();
         boxHanteraAgenter.addItem("Gör ett val...");
         boxHanteraAgenter.addItem("Registrera ny agent");
@@ -114,7 +114,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        new AdminHantera().setVisible(true);
+        new HuvudmenyAdmin(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
@@ -123,24 +123,24 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
             case 0:
                 break;
             case 1: 
-                new RegistreraNyAgent(idb, idNummer).setVisible(true);
+                new RegistreraNyAgent(idb, id).setVisible(true);
                 dispose();
                 break;
             case 2: 
-                new TilldelaAdminStatus(idb, idNummer).setVisible(true);
+                new TilldelaAdminStatus(idb, id).setVisible(true);
                 dispose();
                 break;
             case 3:
-                new AndraAgent(idb, idNummer).setVisible(true);
+                new AndraAgent(idb, id).setVisible(true);
                 dispose();
                 break;
-            case 4: new TaBortAgent(idb, idNummer).setVisible(true);
+            case 4: new TaBortAgent(idb, id).setVisible(true);
                     dispose();
                     break;
-            case 5: new AndraOmradesChef(idb, idNummer).setVisible(true);
+            case 5: new AndraOmradesChef(idb, id).setVisible(true);
                     dispose();
                     break;
-            case 6: new AndraKontorsChef(idb, idNummer).setVisible(true);
+            case 6: new AndraKontorsChef(idb, id).setVisible(true);
                     dispose();
                     break;   
         }
@@ -178,7 +178,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminHanteraAgent(idb, idNummer).setVisible(true);
+                new AdminHanteraAgent(idb, id).setVisible(true);
             }
         });
     }

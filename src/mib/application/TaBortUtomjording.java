@@ -18,7 +18,7 @@ public class TaBortUtomjording extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String id;
-    private HuvudmenyAdmin menyAdmin;
+    private HanteraUtomjordingAdmin hanteraUtAdmin;
 
     /**
      * Creates new form TaBortUtomjording
@@ -115,6 +115,7 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
@@ -154,8 +155,8 @@ public class TaBortUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTaBortActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        menyAdmin = new HuvudmenyAdmin(idb,id);
-        menyAdmin.setVisible(true);
+        hanteraUtAdmin = new HanteraUtomjordingAdmin(idb,id);
+        hanteraUtAdmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

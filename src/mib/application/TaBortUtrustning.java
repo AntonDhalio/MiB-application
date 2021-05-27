@@ -18,7 +18,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
 
     private static InfDB idb;
     private static String id;
-    private HuvudmenyAdmin menyAdmin;
+    private AdminUtrustningHantera hanteraUtrustning;
     /**
      * Creates new form TaBortUtrustning
      */
@@ -111,6 +111,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -158,8 +159,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        menyAdmin = new HuvudmenyAdmin(idb,id);
-        menyAdmin.setVisible(true);
+        hanteraUtrustning = new AdminUtrustningHantera(idb,id);
+        hanteraUtrustning.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

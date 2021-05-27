@@ -40,28 +40,37 @@ public class InloggningAlien extends javax.swing.JFrame {
     private void initComponents() {
 
         jProgressBar1 = new javax.swing.JProgressBar();
-        lblLoggaInAlien = new javax.swing.JLabel();
         pswrdLosenord = new javax.swing.JPasswordField();
         lblLosenord = new javax.swing.JLabel();
         lblIDNummer = new javax.swing.JLabel();
         txtIDNummer = new javax.swing.JTextField();
         btnLoggaIn = new javax.swing.JButton();
         btbTillbaka = new javax.swing.JButton();
+        lblMIB = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblLoggaInAlien.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 24)); // NOI18N
-        lblLoggaInAlien.setText("LOGGA IN SOM ALIEN");
+        setMaximumSize(new java.awt.Dimension(748, 421));
+        setMinimumSize(new java.awt.Dimension(748, 421));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pswrdLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        getContentPane().add(pswrdLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 202, 30));
 
         lblLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblLosenord.setForeground(new java.awt.Color(255, 255, 255));
         lblLosenord.setText("Lösenord");
+        getContentPane().add(lblLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
         lblIDNummer.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblIDNummer.setForeground(new java.awt.Color(255, 255, 255));
         lblIDNummer.setText("ID-nummer");
+        getContentPane().add(lblIDNummer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
 
         txtIDNummer.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        getContentPane().add(txtIDNummer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 202, 30));
 
         btnLoggaIn.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         btnLoggaIn.setText("Logga in");
@@ -70,6 +79,7 @@ public class InloggningAlien extends javax.swing.JFrame {
                 btnLoggaInActionPerformed(evt);
             }
         });
+        getContentPane().add(btnLoggaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 200, 30));
 
         btbTillbaka.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         btbTillbaka.setText("< Tillbaka");
@@ -78,51 +88,23 @@ public class InloggningAlien extends javax.swing.JFrame {
                 btbTillbakaActionPerformed(evt);
             }
         });
+        getContentPane().add(btbTillbaka, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLoggaIn)
-                            .addComponent(lblLoggaInAlien)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(pswrdLosenord, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                                .addComponent(txtIDNummer, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(lblIDNummer))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(lblLosenord))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(btbTillbaka)))
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btbTillbaka)
-                .addGap(27, 27, 27)
-                .addComponent(lblLoggaInAlien)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(lblIDNummer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtIDNummer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblLosenord)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pswrdLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLoggaIn)
-                .addGap(18, 18, 18))
-        );
+        lblMIB.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("MEN IN BLACK");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 30, 750, -1));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("SKANDINAVIEN");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 740, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Background.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -143,7 +125,7 @@ public class InloggningAlien extends javax.swing.JFrame {
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
 
         //Externt metodanrop för att kolla om textfältet har ett värde
-        if(ValideringInloggning.txtFieldHarVarde(txtIDNummer)){
+        if(Validering.txtFieldHarVarde(txtIDNummer)){
             
         try {
         String idNummer = txtIDNummer.getText();
@@ -174,10 +156,12 @@ public class InloggningAlien extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btbTillbaka;
     private javax.swing.JButton btnLoggaIn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel lblIDNummer;
-    private javax.swing.JLabel lblLoggaInAlien;
     private javax.swing.JLabel lblLosenord;
+    private javax.swing.JLabel lblMIB;
     private javax.swing.JPasswordField pswrdLosenord;
     private javax.swing.JTextField txtIDNummer;
     // End of variables declaration//GEN-END:variables

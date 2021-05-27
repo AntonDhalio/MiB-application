@@ -15,17 +15,17 @@ public class AndraAgent extends javax.swing.JFrame {
     
     private ArrayList<String> agentID;
     private static InfDB idb;
-    private static String idNummer;
+    private static String id;
     private ArrayList<String> omrade;
     
 
     /**
      * Creates new form AndraAgent
      */
-    public AndraAgent(InfDB idb, String idNummer) {
+    public AndraAgent(InfDB idb, String id) {
         initComponents();
         this.idb = idb;
-        this.idNummer = idNummer;
+        this.id = id;
         
         try{
             omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
@@ -219,7 +219,7 @@ public class AndraAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGodkännActionPerformed
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        new AdminHanteraAgent(idb, idNummer).setVisible(true);
+        new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
@@ -253,7 +253,7 @@ public class AndraAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AndraAgent(idb, idNummer).setVisible(true);
+                new AndraAgent(idb, id).setVisible(true);
             }
         });
     }

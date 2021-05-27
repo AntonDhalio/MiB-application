@@ -5,6 +5,8 @@
  */
 package mib.application;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
@@ -17,6 +19,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private static InfDB idb;
     private static String id;
     private AgentMeny agentMeny;
+    private AdminUtrustningHantera hanteraUtrustning;
     /**
      * Creates new form RegistreraUtrustning
      */
@@ -184,9 +187,23 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_godkannActionPerformed
 
     private void avbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avbrytActionPerformed
-        agentMeny = new AgentMeny(idb, id);
-        agentMeny.setVisible(true);
-        dispose();
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+        
+            if(arAdmin.equals("N")){
+                agentMeny = new AgentMeny(idb, id);
+                agentMeny.setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                hanteraUtrustning = new AdminUtrustningHantera(idb,id);
+                hanteraUtrustning.setVisible(true);
+                dispose();
+            }
+        } 
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }
     }//GEN-LAST:event_avbrytActionPerformed
 
     private void arVapenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arVapenActionPerformed

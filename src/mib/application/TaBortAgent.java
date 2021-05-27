@@ -17,23 +17,23 @@ import javax.swing.JOptionPane;
 public class TaBortAgent extends javax.swing.JFrame {
     
     private static InfDB idb;
-    private static String idNummer;
+    private static String id;
     private ArrayList<String> agentID;
 
     /**
      * Creates new form AndraKontorsChef
      */
-    public TaBortAgent(InfDB idb, String idNummer) {
+    public TaBortAgent(InfDB idb, String id) {
         initComponents();
         this.idb = idb;
-        this.idNummer = idNummer;
+        this.id = id;
         txtAgentNamn.setEditable(false);
         try{
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             
             agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
-            agentID.forEach(id ->  {
-                boxValjAgent.addItem(id);
+            agentID.forEach(aid ->  {
+                boxValjAgent.addItem(aid);
             });
             
         
@@ -139,7 +139,6 @@ public class TaBortAgent extends javax.swing.JFrame {
 
     private void boxValjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxValjAgentActionPerformed
         try{
-        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
         String id = (String)boxValjAgent.getSelectedItem();
         String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
         String namnFraga = idb.fetchSingle(hamtaNamn);
@@ -152,15 +151,9 @@ public class TaBortAgent extends javax.swing.JFrame {
     private void txtRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRaderaActionPerformed
         int valdAgent = Integer.parseInt((String)boxValjAgent.getSelectedItem());
         
-        try{
-        idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+        try{       
         
-        
-        
-        
- 
-        
-       int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill radera denna agent från systemet? \n"
+        int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill radera denna agent från systemet? \n"
                 + "Åtgärden går inte att ångra.", "Obs!", JOptionPane.YES_NO_OPTION);
         
         if(svar == JOptionPane.YES_OPTION){
@@ -184,7 +177,7 @@ public class TaBortAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRaderaActionPerformed
 
     private void txtTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTillbakaActionPerformed
-        new AdminHanteraAgent(idb, idNummer).setVisible(true);
+        new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_txtTillbakaActionPerformed
 
@@ -221,7 +214,7 @@ public class TaBortAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaBortAgent(idb, idNummer).setVisible(true);
+                new TaBortAgent(idb, id).setVisible(true);
             }
         });
     }
