@@ -38,85 +38,96 @@ public class InfoRuta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        omradeschefKnapp = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        aliensOmradeKnapp = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtInfo = new javax.swing.JTextArea();
-        btnAliensNara = new javax.swing.JButton();
-        btnOmradesChef = new javax.swing.JButton();
-        btnTillbaka = new javax.swing.JButton();
+        goBack = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel1.setText("Informationsruta");
+        omradeschefKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        omradeschefKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        omradeschefKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        omradeschefKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        omradeschefKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                omradeschefKnappMouseClicked(evt);
+            }
+        });
+        omradeschefKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/MiB Man.png"))); // NOI18N
+        omradeschefKnapp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setText("Se områdeschef");
+        omradeschefKnapp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
+
+        getContentPane().add(omradeschefKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 260, 80));
+
+        aliensOmradeKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        aliensOmradeKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        aliensOmradeKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        aliensOmradeKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        aliensOmradeKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aliensOmradeKnappMouseClicked(evt);
+            }
+        });
+        aliensOmradeKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/omrade.png"))); // NOI18N
+        aliensOmradeKnapp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel1.setText("Aliens i närheten");
+        aliensOmradeKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
+
+        getContentPane().add(aliensOmradeKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 260, 80));
+
+        txtInfo.setBackground(new java.awt.Color(0, 0, 0));
         txtInfo.setColumns(20);
+        txtInfo.setForeground(new java.awt.Color(255, 255, 255));
         txtInfo.setRows(5);
         jScrollPane1.setViewportView(txtInfo);
 
-        btnAliensNara.setText("Aliens i Närheten");
-        btnAliensNara.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAliensNaraActionPerformed(evt);
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 290, 200));
+
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
             }
         });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        btnOmradesChef.setText("Områdeschef");
-        btnOmradesChef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOmradesChefActionPerformed(evt);
-            }
-        });
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Områdesinformation");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
-        btnTillbaka.setText("<Tillbaka");
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(btnAliensNara)
-                                .addGap(44, 44, 44)
-                                .addComponent(btnOmradesChef))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnTillbaka)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1)))
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnTillbaka))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOmradesChef)
-                    .addComponent(btnAliensNara))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAliensNaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAliensNaraActionPerformed
+    private void aliensOmradeKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aliensOmradeKnappMouseClicked
         txtInfo.selectAll();
         txtInfo.replaceSelection("");
         try {
@@ -137,9 +148,9 @@ public class InfoRuta extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-    }//GEN-LAST:event_btnAliensNaraActionPerformed
+    }//GEN-LAST:event_aliensOmradeKnappMouseClicked
 
-    private void btnOmradesChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOmradesChefActionPerformed
+    private void omradeschefKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_omradeschefKnappMouseClicked
         txtInfo.selectAll();
         txtInfo.replaceSelection("");
         try {
@@ -151,13 +162,13 @@ public class InfoRuta extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-    }//GEN-LAST:event_btnOmradesChefActionPerformed
+    }//GEN-LAST:event_omradeschefKnappMouseClicked
 
-    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-    AlienStartsida as = new AlienStartsida(idb, id);
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        AlienStartsida as = new AlienStartsida(idb, id);
         as.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnTillbakaActionPerformed
+    }//GEN-LAST:event_goBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -190,11 +201,16 @@ public class InfoRuta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAliensNara;
-    private javax.swing.JButton btnOmradesChef;
-    private javax.swing.JButton btnTillbaka;
+    private javax.swing.JPanel aliensOmradeKnapp;
+    private javax.swing.JLabel goBack;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel omradeschefKnapp;
     private javax.swing.JTextArea txtInfo;
     // End of variables declaration//GEN-END:variables
 }

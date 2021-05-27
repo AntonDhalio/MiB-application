@@ -46,9 +46,10 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         pswrdLosenord = new javax.swing.JPasswordField();
         btnLoggaIn = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnTillbaka = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,7 +58,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIDNummer.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblIDNummer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIDNummer.setForeground(new java.awt.Color(255, 255, 255));
         lblIDNummer.setText("ID-nummer");
         getContentPane().add(lblIDNummer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
@@ -65,7 +66,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         txtIDNummer.setPreferredSize(new java.awt.Dimension(7, 21));
         getContentPane().add(txtIDNummer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 202, 30));
 
-        lblLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblLosenord.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblLosenord.setForeground(new java.awt.Color(255, 255, 255));
         lblLosenord.setText("Lösenord");
         getContentPane().add(lblLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
@@ -83,6 +84,16 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         getContentPane().add(btnLoggaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 200, 30));
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 168, -1, -1));
 
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
+            }
+        });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         lblMIB.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -96,14 +107,10 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         jLabel2.setText("SKANDINAVIEN");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 740, -1));
 
-        btnTillbaka.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
-        btnTillbaka.setText("< Tillbaka");
-        btnTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTillbakaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnTillbaka, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("Agent");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 40, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Background.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -166,12 +173,11 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
 
-     //En metod för att kunna gå tillbaka till föregående sida
-    private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
         valjInloggning = new ValjInloggning(idb);
         valjInloggning.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnTillbakaActionPerformed
+    }//GEN-LAST:event_goBackMouseClicked
 
     public static void main(String[] args)
     {
@@ -186,9 +192,10 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoggaIn;
-    private javax.swing.JButton btnTillbaka;
+    private javax.swing.JLabel goBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblIDNummer;
     private javax.swing.JLabel lblLosenord;

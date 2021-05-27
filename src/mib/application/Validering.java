@@ -34,7 +34,7 @@ public class Validering {
       
        boolean resultat = true;
               
-       if(String.valueOf(aktuelltFalt.getPassword()) != null){
+       if(String.valueOf(aktuelltFalt.getPassword()) == null){
             JOptionPane.showMessageDialog(null, "Fältet får ej lämnas tomt. Vänligen skriv in lösenord.");
             resultat = false;
        }

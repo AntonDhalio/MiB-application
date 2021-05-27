@@ -35,107 +35,141 @@ public class AlienStartsida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        goBack = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        infoRutaKnapp = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnAndraLosen = new javax.swing.JButton();
-        btnInfoRuta = new javax.swing.JButton();
-        btnMailaChef = new javax.swing.JButton();
-        btnLoggaUt = new javax.swing.JButton();
+        mailaOC1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        andraLosen1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Välkommen till menyn");
-
-        btnAndraLosen.setText("Ändra Lösenord");
-        btnAndraLosen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAndraLosenActionPerformed(evt);
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/exit.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
             }
         });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        btnInfoRuta.setText("Informationsruta");
-        btnInfoRuta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoRutaActionPerformed(evt);
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Välkommen Alien");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, -1));
+
+        infoRutaKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        infoRutaKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        infoRutaKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        infoRutaKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        infoRutaKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                infoRutaKnappMouseClicked(evt);
             }
         });
+        infoRutaKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnMailaChef.setText("Maila Områdeschef");
-        btnMailaChef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMailaChefActionPerformed(evt);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/info.png"))); // NOI18N
+        infoRutaKnapp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Områdesinfo");
+        infoRutaKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
+
+        getContentPane().add(infoRutaKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 200, 140));
+
+        mailaOC1.setBackground(new java.awt.Color(0, 0, 0));
+        mailaOC1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        mailaOC1.setForeground(new java.awt.Color(102, 153, 255));
+        mailaOC1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mailaOC1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mailaOC1MouseClicked(evt);
             }
         });
+        mailaOC1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLoggaUt.setText("Logga Ut");
-        btnLoggaUt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaUtActionPerformed(evt);
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/mail.png"))); // NOI18N
+        mailaOC1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Maila Områdeschef");
+        mailaOC1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
+
+        getContentPane().add(mailaOC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 160, 200, 140));
+
+        andraLosen1.setBackground(new java.awt.Color(0, 0, 0));
+        andraLosen1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        andraLosen1.setForeground(new java.awt.Color(102, 153, 255));
+        andraLosen1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        andraLosen1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                andraLosen1MouseClicked(evt);
             }
         });
+        andraLosen1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnLoggaUt)
-                            .addComponent(btnMailaChef, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                            .addComponent(btnInfoRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAndraLosen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel1)))
-                .addContainerGap(63, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(btnAndraLosen)
-                .addGap(18, 18, 18)
-                .addComponent(btnInfoRuta)
-                .addGap(18, 18, 18)
-                .addComponent(btnMailaChef)
-                .addGap(18, 18, 18)
-                .addComponent(btnLoggaUt)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/lock.png"))); // NOI18N
+        andraLosen1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Ändra Lösenord");
+        andraLosen1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
+
+        getContentPane().add(andraLosen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 160, 200, 140));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAndraLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraLosenActionPerformed
-        AlienBytLosen abl = new AlienBytLosen(idb, id);
-        abl.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAndraLosenActionPerformed
-
-    private void btnInfoRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoRutaActionPerformed
+    private void infoRutaKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoRutaKnappMouseClicked
         InfoRuta ir = new InfoRuta(idb, id);
         ir.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnInfoRutaActionPerformed
+        dispose();       
+    }//GEN-LAST:event_infoRutaKnappMouseClicked
 
-    private void btnMailaChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMailaChefActionPerformed
+    private void mailaOC1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mailaOC1MouseClicked
         int bekrafta = JOptionPane.showConfirmDialog(null, "Detta kommer öppna ett annat program på din dator\när du säker på att du vill fortsätta?", "Varning", JOptionPane.YES_NO_OPTION);
         if(bekrafta == JOptionPane.YES_OPTION){
             MailaOC.mailProgram(idb, id);
         }
-    }//GEN-LAST:event_btnMailaChefActionPerformed
+    }//GEN-LAST:event_mailaOC1MouseClicked
 
-    private void btnLoggaUtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaUtActionPerformed
-        inloggningAlien = new InloggningAlien(idb);
-        inloggningAlien.setVisible(true);
+    private void andraLosen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_andraLosen1MouseClicked
+        AlienBytLosen abl = new AlienBytLosen(idb, id);
+        abl.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnLoggaUtActionPerformed
+    }//GEN-LAST:event_andraLosen1MouseClicked
+
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        int reply = JOptionPane.showConfirmDialog(null, "Du håller på att logga ut.\nÄr du säker på att du vill fortsätta?", "Logga ut?", JOptionPane.YES_NO_OPTION);
+        if(reply == JOptionPane.YES_OPTION){
+            new ValjInloggning(idb).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_goBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -168,10 +202,17 @@ public class AlienStartsida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAndraLosen;
-    private javax.swing.JButton btnInfoRuta;
-    private javax.swing.JButton btnLoggaUt;
-    private javax.swing.JButton btnMailaChef;
+    private javax.swing.JPanel andraLosen1;
+    private javax.swing.JLabel goBack;
+    private javax.swing.JPanel infoRutaKnapp;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel mailaOC1;
     // End of variables declaration//GEN-END:variables
 }

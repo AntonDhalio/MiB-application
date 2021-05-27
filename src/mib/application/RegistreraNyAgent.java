@@ -68,8 +68,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
         jSpinner1 = new javax.swing.JSpinner();
         jSpinner2 = new javax.swing.JSpinner();
-        btnAvbryt = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNamn = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -79,53 +77,55 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblValjOmrade = new javax.swing.JLabel();
-        btnRegistrera = new javax.swing.JButton();
         boxAnsvarigForOmrade = new javax.swing.JComboBox<>();
         boxAdminStatus = new javax.swing.JComboBox<>();
         boxTypAvAgent = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         boxValjKontor = new javax.swing.JComboBox<>();
         lblValjKontor = new javax.swing.JLabel();
+        goBack = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        regKnapp = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAvbryt.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
-        btnAvbryt.setText("Avbryt");
-        btnAvbryt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAvbrytActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 24)); // NOI18N
-        jLabel1.setText("REGISTRERA NY AGENT");
-
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Namn");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 120, 20));
+        getContentPane().add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 171, -1));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Telefonnummer");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 120, 20));
+        getContentPane().add(txtTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 171, -1));
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Administratörsstatus");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 120, 20));
+        getContentPane().add(txtLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 172, -1));
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Lösenord");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 120, 20));
 
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("Lösenordet får inte innehålla fler än 6 tecken");
+        jLabel7.setText("Lösenordet får max innehålla  6 tecken");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
-        lblValjOmrade.setText("Ansvarig för område...");
-
-        btnRegistrera.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
-        btnRegistrera.setText("Registrera");
-        btnRegistrera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistreraActionPerformed(evt);
-            }
-        });
+        lblValjOmrade.setForeground(new java.awt.Color(255, 255, 255));
+        lblValjOmrade.setText("Ansvarig för område");
+        getContentPane().add(lblValjOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 120, 20));
 
         boxAnsvarigForOmrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxAnsvarigForOmradeActionPerformed(evt);
             }
         });
+        getContentPane().add(boxAnsvarigForOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 170, -1));
 
         boxAdminStatus.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         boxAdminStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +133,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 boxAdminStatusActionPerformed(evt);
             }
         });
+        getContentPane().add(boxAdminStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 170, -1));
 
         boxTypAvAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gör ett val...", "Fältagent", "Kontorschef" }));
         boxTypAvAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -140,153 +141,67 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 boxTypAvAgentActionPerformed(evt);
             }
         });
+        getContentPane().add(boxTypAvAgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 170, -1));
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Välj typ av agent:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 120, 20));
 
-        lblValjKontor.setText("Välj kontor:");
+        boxValjKontor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxValjKontorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boxValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 170, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAvbryt, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                                .addComponent(btnRegistrera))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addComponent(jLabel3))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGap(45, 45, 45)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(12, 12, 12)
-                                                    .addComponent(jLabel2))
-                                                .addComponent(txtNamn)
-                                                .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addComponent(jLabel6))
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5)
-                                            .addComponent(boxAdminStatus, 0, 161, Short.MAX_VALUE)
-                                            .addComponent(boxTypAvAgent, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblValjKontor)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(lblValjOmrade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(boxAnsvarigForOmrade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(boxValjKontor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(255, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel1)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addGap(7, 7, 7)
-                .addComponent(boxAdminStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxTypAvAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblValjOmrade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxAnsvarigForOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblValjKontor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxValjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrera)
-                    .addComponent(btnAvbryt))
-                .addGap(29, 29, 29))
-        );
+        lblValjKontor.setForeground(new java.awt.Color(255, 255, 255));
+        lblValjKontor.setText("Välj kontor");
+        getContentPane().add(lblValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 120, 20));
+
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
+            }
+        });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Registrera ny agent");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 740, -1));
+
+        regKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        regKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        regKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        regKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        regKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                regKnappMouseClicked(evt);
+            }
+        });
+        regKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/accept.png"))); // NOI18N
+        regKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel11.setText("Registrera");
+        regKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
+
+        getContentPane().add(regKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 110, 30));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAvbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvbrytActionPerformed
-        new AdminHanteraAgent(idb, id).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAvbrytActionPerformed
-
-    private void btnRegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistreraActionPerformed
-        
-        LocalDate dagensDatum = LocalDate.now();
-        String namn = txtNamn.getText();
-        String telefon = txtTelefon.getText();
-        String losenord = txtLosenord.getText();
-        String datum = dagensDatum.toString();
-        String valtKontor = (String)boxValjKontor.getSelectedItem();
-        
-        
-            if(Validering.txtFieldBegransad6(txtLosenord) && Validering.txtFieldBegransad20(txtNamn) && Validering.txtFieldBegransad30(txtTelefon) && Validering.ValtEttAlternativ(boxTypAvAgent)){
-
-        
-                try {
-                    String nextID = idb.getAutoIncrement("Agent", "Agent_ID");
-                    String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
-                    String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
-                    int intOmradesID = Integer.parseInt(hamtaOmradesID);
-                    idb.insert("INSERT INTO Agent VALUES(" + nextID + ",'" + namn + "','" + telefon + "','" + datum + "','" + adminStatus + "','" + losenord + "'," + intOmradesID + ")");
-            
-                        if(boxTypAvAgent.getSelectedIndex() == 1){
-                            idb.insert("INSERT INTO Faltagent VALUES(" + nextID + ")");    
-                                                                 }
-                            else if(boxTypAvAgent.getSelectedIndex() == 2){
-                                    idb.update("UPDATE Kontorschef SET Agent_ID='" + nextID + "'WHERE Kontorsbeteckning='" + valtKontor + "'");
-                                                                           }
-
-        JOptionPane.showMessageDialog(null, "Registrerigen lyckades! " + namn + " med ID-nummer " + nextID + " är nu tillagd i systemet");
-                    } 
-                    catch (InfException e) {
-                            JOptionPane.showMessageDialog(null, "Något gick fel");
-                            System.out.println(e);
-                                       }
-        
-       
-      }
-
-    }//GEN-LAST:event_btnRegistreraActionPerformed
 
     private void boxAnsvarigForOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAnsvarigForOmradeActionPerformed
         valtOmrade = (String)boxAnsvarigForOmrade.getSelectedItem();  
@@ -328,6 +243,52 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boxTypAvAgentActionPerformed
 
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        new AdminHanteraAgent(idb, id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseClicked
+
+    private void boxValjKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxValjKontorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxValjKontorActionPerformed
+
+    private void regKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regKnappMouseClicked
+        LocalDate dagensDatum = LocalDate.now();
+        String namn = txtNamn.getText();
+        String telefon = txtTelefon.getText();
+        String losenord = txtLosenord.getText();
+        String datum = dagensDatum.toString();
+        String valtKontor = (String)boxValjKontor.getSelectedItem();
+        
+        
+            if(Validering.txtFieldBegransad6(txtLosenord) && Validering.txtFieldBegransad20(txtNamn) && Validering.txtFieldBegransad30(txtTelefon) && Validering.ValtEttAlternativ(boxTypAvAgent)){
+
+        
+                try {
+                    String nextID = idb.getAutoIncrement("Agent", "Agent_ID");
+                    String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
+                    String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
+                    int intOmradesID = Integer.parseInt(hamtaOmradesID);
+                    idb.insert("INSERT INTO Agent VALUES(" + nextID + ",'" + namn + "','" + telefon + "','" + datum + "','" + adminStatus + "','" + losenord + "'," + intOmradesID + ")");
+            
+                        if(boxTypAvAgent.getSelectedIndex() == 1){
+                            idb.insert("INSERT INTO Faltagent VALUES(" + nextID + ")");    
+                                                                 }
+                            else if(boxTypAvAgent.getSelectedIndex() == 2){
+                                    idb.update("UPDATE Kontorschef SET Agent_ID='" + nextID + "'WHERE Kontorsbeteckning='" + valtKontor + "'");
+                                                                           }
+
+        JOptionPane.showMessageDialog(null, "Registrerigen lyckades! " + namn + " med ID-nummer " + nextID + " är nu tillagd i systemet");
+                    } 
+                    catch (InfException e) {
+                            JOptionPane.showMessageDialog(null, "Något gick fel");
+                            System.out.println(e);
+                                       }
+        
+       
+      }
+    }//GEN-LAST:event_regKnappMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -368,19 +329,22 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxAnsvarigForOmrade;
     private javax.swing.JComboBox<String> boxTypAvAgent;
     private javax.swing.JComboBox<String> boxValjKontor;
-    private javax.swing.JButton btnAvbryt;
-    private javax.swing.JButton btnRegistrera;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel goBack;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JLabel lblMIB;
     private javax.swing.JLabel lblValjKontor;
     private javax.swing.JLabel lblValjOmrade;
+    private javax.swing.JPanel regKnapp;
     private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtNamn;
     private javax.swing.JTextField txtTelefon;

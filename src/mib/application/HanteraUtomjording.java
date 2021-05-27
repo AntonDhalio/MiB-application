@@ -36,92 +36,118 @@ public class HanteraUtomjording extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        goBack = new javax.swing.JLabel();
+        justeraAlienKnapp1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        registreraAlienKnapp = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        registreraUtomjording = new javax.swing.JButton();
-        justeraUtomjording = new javax.swing.JButton();
-        tillbaka = new javax.swing.JButton();
+        lblMIB = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Vad vill du göra?");
-
-        registreraUtomjording.setText("Registrera Utomjording");
-        registreraUtomjording.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registreraUtomjordingActionPerformed(evt);
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
             }
         });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        justeraUtomjording.setText("Justera information");
-        justeraUtomjording.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                justeraUtomjordingActionPerformed(evt);
+        justeraAlienKnapp1.setBackground(new java.awt.Color(0, 0, 0));
+        justeraAlienKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        justeraAlienKnapp1.setForeground(new java.awt.Color(102, 153, 255));
+        justeraAlienKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        justeraAlienKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                justeraAlienKnapp1MouseClicked(evt);
             }
         });
+        justeraAlienKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tillbaka.setText("< Tillbaka");
-        tillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tillbakaActionPerformed(evt);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/checklist.png"))); // NOI18N
+        justeraAlienKnapp1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Justera information");
+        justeraAlienKnapp1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 200, 80));
+
+        getContentPane().add(justeraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 260, 80));
+
+        registreraAlienKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        registreraAlienKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        registreraAlienKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        registreraAlienKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registreraAlienKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registreraAlienKnappMouseClicked(evt);
             }
         });
+        registreraAlienKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 49, Short.MAX_VALUE)
-                .addComponent(registreraUtomjording)
-                .addGap(28, 28, 28)
-                .addComponent(justeraUtomjording, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(tillbaka)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(tillbaka)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(75, 75, 75)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(justeraUtomjording)
-                    .addComponent(registreraUtomjording))
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/alien-logo2.png"))); // NOI18N
+        registreraAlienKnapp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Registrera utomjordingar");
+        registreraAlienKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 200, 80));
+
+        getContentPane().add(registreraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 260, 80));
+
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Hantera utomjordingar");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registreraUtomjordingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraUtomjordingActionPerformed
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+
+            if(arAdmin.equals("N")){
+                agentMeny = new AgentMeny(idb, id);
+                agentMeny.setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                new HuvudmenyAdmin(idb, id).setVisible(true);
+                dispose();
+            }
+        }
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }
+    }//GEN-LAST:event_goBackMouseClicked
+
+    private void registreraAlienKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registreraAlienKnappMouseClicked
         regUtomJ = new RegistreraUtomjording(idb, id);
         regUtomJ.setVisible(true);
         dispose();
-    }//GEN-LAST:event_registreraUtomjordingActionPerformed
+    }//GEN-LAST:event_registreraAlienKnappMouseClicked
 
-    private void justeraUtomjordingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_justeraUtomjordingActionPerformed
+    private void justeraAlienKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_justeraAlienKnapp1MouseClicked
         andraUtomjording = new AndraUtomjording(idb, id);
         andraUtomjording.setVisible(true);
         dispose();
-    }//GEN-LAST:event_justeraUtomjordingActionPerformed
-
-    private void tillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaActionPerformed
-        agentMeny = new AgentMeny(idb, id);
-        agentMeny.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_tillbakaActionPerformed
+    }//GEN-LAST:event_justeraAlienKnapp1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -159,9 +185,14 @@ public class HanteraUtomjording extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel goBack;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton justeraUtomjording;
-    private javax.swing.JButton registreraUtomjording;
-    private javax.swing.JButton tillbaka;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel justeraAlienKnapp1;
+    private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel registreraAlienKnapp;
     // End of variables declaration//GEN-END:variables
 }
