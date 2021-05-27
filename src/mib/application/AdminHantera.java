@@ -15,13 +15,15 @@ import oru.inf.InfException;
 public class AdminHantera extends javax.swing.JFrame {
     
     private static InfDB idb;
-    private static String idNummer;
+    private static String id;
 
     /**
      * Creates new form AdminHantera
      */
-    public AdminHantera() {
+    public AdminHantera(InfDB idb, String id) {
         initComponents();
+        this.idb = idb;
+        this.id = id;
     }
 
     /**
@@ -81,12 +83,12 @@ public class AdminHantera extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTillbakaActionPerformed
-        //new HuvudmenyAdmin().setVisible(true);
+        new HuvudmenyAdmin(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnTillbakaActionPerformed
 
     private void btnHanteraAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHanteraAgenterActionPerformed
-        new AdminHanteraAgent(idb, idNummer).setVisible(true);
+        new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHanteraAgenterActionPerformed
 
@@ -120,7 +122,7 @@ public class AdminHantera extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminHantera().setVisible(true);
+                new AdminHantera(idb, id).setVisible(true);
             }
         });
     }
