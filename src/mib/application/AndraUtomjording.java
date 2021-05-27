@@ -18,6 +18,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
     private static InfDB idb;
     private static String id;
     private HanteraUtomjording hanteraUtomjording;
+    private HanteraUtomjordingAdmin hanteraUtAdmin;
     private ArrayList<String> utomjording;
     private ArrayList<String> agenter;
     private ArrayList<String> omrade;
@@ -296,9 +297,23 @@ public class AndraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_godkannKnappActionPerformed
 
     private void avbrytKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avbrytKnappActionPerformed
-        hanteraUtomjording = new HanteraUtomjording(idb,id);
-        hanteraUtomjording.setVisible(true);
-        dispose();
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+        
+            if(arAdmin.equals("N")){
+                hanteraUtomjording = new HanteraUtomjording(idb,id);
+                hanteraUtomjording.setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                hanteraUtAdmin = new HanteraUtomjordingAdmin(idb,id);
+                hanteraUtAdmin.setVisible(true);
+                dispose();
+            }
+        } 
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }
     }//GEN-LAST:event_avbrytKnappActionPerformed
 
     /**

@@ -19,7 +19,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     private SystemInfo sysInfo;
     private AndraLosenord andraLosenord;
     private AdminUtrustningHantera hanteraUtrustning;
-    private HanteraUtomjording hanteraUtomJ;
+    private HanteraUtomjordingAdmin hanteraAlienAdmin;
     private InfoPortal infoPortal;
     private AdminHanteraAgent hanteraAgent;
 
@@ -163,8 +163,8 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_utrKnappActionPerformed
 
     private void alienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alienKnappActionPerformed
-        hanteraUtomJ = new HanteraUtomjording(idb,id);
-        hanteraUtomJ.setVisible(true);
+        hanteraAlienAdmin = new HanteraUtomjordingAdmin(idb,id);
+        hanteraAlienAdmin.setVisible(true);
         dispose();
     }//GEN-LAST:event_alienKnappActionPerformed
 

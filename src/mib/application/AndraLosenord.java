@@ -160,10 +160,22 @@ public class AndraLosenord extends javax.swing.JFrame {
     }//GEN-LAST:event_GodkannActionPerformed
 
     private void avbrytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avbrytActionPerformed
-        agentMeny = new AgentMeny(idb, id);
-        agentMeny.setVisible(true);
-        dispose();
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
         
+            if(arAdmin.equals("N")){
+                agentMeny = new AgentMeny(idb, id);
+                agentMeny.setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                new HuvudmenyAdmin(idb, id).setVisible(true);
+                dispose();
+            }
+        } 
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }  
     }//GEN-LAST:event_avbrytActionPerformed
 
     
