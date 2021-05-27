@@ -35,10 +35,8 @@ public class AlienStartsida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
-        loggaUtKnapp = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         infoRutaKnapp = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -53,33 +51,22 @@ public class AlienStartsida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
+            }
+        });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMIB.setText("Välkommen");
         lblMIB.setToolTipText("");
         getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, -1));
-
-        loggaUtKnapp.setBackground(new java.awt.Color(0, 0, 0));
-        loggaUtKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        loggaUtKnapp.setForeground(new java.awt.Color(102, 153, 255));
-        loggaUtKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loggaUtKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loggaUtKnappMouseClicked(evt);
-            }
-        });
-        loggaUtKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/logOut - kopia.png"))); // NOI18N
-        loggaUtKnapp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel10.setText("Logga ut");
-        loggaUtKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
-
-        getContentPane().add(loggaUtKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 260, 80));
 
         infoRutaKnapp.setBackground(new java.awt.Color(0, 0, 0));
         infoRutaKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -151,12 +138,6 @@ public class AlienStartsida extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loggaUtKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggaUtKnappMouseClicked
-        inloggningAlien = new InloggningAlien(idb);
-        inloggningAlien.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_loggaUtKnappMouseClicked
-
     private void infoRutaKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoRutaKnappMouseClicked
         InfoRuta ir = new InfoRuta(idb, id);
         ir.setVisible(true);
@@ -175,6 +156,14 @@ public class AlienStartsida extends javax.swing.JFrame {
         abl.setVisible(true);
         dispose();
     }//GEN-LAST:event_andraLosen1MouseClicked
+
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        int reply = JOptionPane.showConfirmDialog(null, "Du håller på att logga ut.\nÄr du säker på att du vill fortsätta?", "Logga ut?", JOptionPane.YES_NO_OPTION);
+        if(reply == JOptionPane.YES_OPTION){
+            new ValjInloggning(idb).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_goBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -208,18 +197,16 @@ public class AlienStartsida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel andraLosen1;
+    private javax.swing.JLabel goBack;
     private javax.swing.JPanel infoRutaKnapp;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblMIB;
-    private javax.swing.JPanel loggaUtKnapp;
     private javax.swing.JPanel mailaOC1;
     // End of variables declaration//GEN-END:variables
 }

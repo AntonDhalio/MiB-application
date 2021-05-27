@@ -63,104 +63,159 @@ public class InfoPortal extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         infoFalt = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         idRasBox = new javax.swing.JComboBox<>();
-        tillbakaKnapp = new javax.swing.JButton();
-        sok = new javax.swing.JButton();
         valBox = new javax.swing.JComboBox<>();
         datum1 = new com.toedter.calendar.JDateChooser();
         datum2 = new com.toedter.calendar.JDateChooser();
+        godkännKnapp = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        goBack = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        infoFalt.setBackground(new java.awt.Color(0, 0, 0));
         infoFalt.setColumns(20);
+        infoFalt.setForeground(new java.awt.Color(255, 255, 255));
         infoFalt.setRows(5);
         jScrollPane1.setViewportView(infoFalt);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Välkommen till informationsportalen");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 290, 200));
 
         idRasBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idRasBoxActionPerformed(evt);
             }
         });
-
-        tillbakaKnapp.setText("<tillbaka");
-        tillbakaKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tillbakaKnappActionPerformed(evt);
-            }
-        });
-
-        sok.setText("Sök");
-        sok.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sokActionPerformed(evt);
-            }
-        });
+        getContentPane().add(idRasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 260, -1));
 
         valBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valBoxActionPerformed(evt);
             }
         });
+        getContentPane().add(valBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 260, -1));
+        getContentPane().add(datum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 260, -1));
+        getContentPane().add(datum2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 260, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idRasBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(valBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(datum1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                    .addComponent(datum2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(tillbakaKnapp))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(sok)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(tillbakaKnapp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(valBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(idRasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(datum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(datum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22)
-                .addComponent(sok)
-                .addGap(29, 29, 29))
-        );
+        godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseClicked(evt);
+            }
+        });
+        godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/accept.png"))); // NOI18N
+        godkännKnapp.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel1.setText("Godkänn");
+        godkännKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
+
+        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 110, 30));
+
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
+            }
+        });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Informationsportal");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tillbakaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tillbakaKnappActionPerformed
+    private void valBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valBoxActionPerformed
+        this.info = (String)valBox.getSelectedItem();
+        try{
+            if(info.equals(null)){
+            }
+            else if(info.equals("Välj information du vill se")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(false);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+            }
+            else if(info.equals("Se utomjordingar i område")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+                alienPlats();
+            }
+            else if(info.equals("Se utomjordingar per ras")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+                alienRas();                
+            }
+            else if(info.equals("Se utomjordingar som registrerats under en period")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(false);
+                datum1.setEnabled(true);
+                datum2.setEnabled(true);
+            }
+            else if(info.equals("Se all information om en utomjording")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+                alienId();
+            }
+            else if(info.equals("Se vem som är områdeschef för ett områdeskontor")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+                alienPlats();
+            }
+            else if(info.equals("Se statistik för ansvarande agenter")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(true);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+                alienPlats();
+            }
+            else if(info.equals("Se utkvitterad utrustning")){
+                idRasBox.removeAllItems();
+                idRasBox.setEnabled(false);
+                datum1.setEnabled(false);
+                datum2.setEnabled(false);
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_valBoxActionPerformed
+
+    private void idRasBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idRasBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idRasBoxActionPerformed
+
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
         
@@ -176,10 +231,10 @@ public class InfoPortal extends javax.swing.JFrame {
         } 
         catch (InfException ex) {
             System.out.println("Något gick fel");
-        }    
-    }//GEN-LAST:event_tillbakaKnappActionPerformed
+        } 
+    }//GEN-LAST:event_goBackMouseClicked
 
-    private void sokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokActionPerformed
+    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
         infoFalt.selectAll();
         infoFalt.replaceSelection("");
         
@@ -323,77 +378,7 @@ public class InfoPortal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel");
             }
         }
-        
-       
-    }//GEN-LAST:event_sokActionPerformed
-
-    private void valBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valBoxActionPerformed
-        this.info = (String)valBox.getSelectedItem();
-        try{
-            if(info.equals(null)){
-            }
-            else if(info.equals("Välj information du vill se")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(false);
-                datum1.setEnabled(false);
-                datum2.setEnabled(false);
-            }
-            else if(info.equals("Se utomjordingar i område")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(true);
-                datum1.setEnabled(false);
-                datum2.setEnabled(false);
-                alienPlats();
-            }
-            else if(info.equals("Se utomjordingar per ras")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(true);
-                datum1.setEnabled(false);
-                datum2.setEnabled(false);
-                alienRas();                
-            }
-            else if(info.equals("Se utomjordingar som registrerats under en period")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(false);
-                datum1.setEnabled(true);
-                datum2.setEnabled(true);
-            }
-            else if(info.equals("Se all information om en utomjording")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(true);
-                datum1.setEnabled(false);
-                datum2.setEnabled(false);
-                alienId();
-            }
-            else if(info.equals("Se vem som är områdeschef för ett områdeskontor")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(true);
-                datum1.setEnabled(false);
-                datum2.setEnabled(false);
-                alienPlats();
-            }
-            else if(info.equals("Se statistik för ansvarande agenter")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(true);
-                datum1.setEnabled(false);
-                datum2.setEnabled(false);
-                alienPlats();
-            }
-            else if(info.equals("Se utkvitterad utrustning")){
-                idRasBox.removeAllItems();
-                idRasBox.setEnabled(false);
-                datum1.setEnabled(false);
-                datum2.setEnabled(false);
-            }
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-        }
-    }//GEN-LAST:event_valBoxActionPerformed
-
-    private void idRasBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idRasBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idRasBoxActionPerformed
+    }//GEN-LAST:event_godkännKnappMouseClicked
 
     public void alienPlats(){
         ArrayList<String> omraden = new ArrayList<>();
@@ -472,12 +457,15 @@ public class InfoPortal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser datum1;
     private com.toedter.calendar.JDateChooser datum2;
+    private javax.swing.JLabel goBack;
+    private javax.swing.JPanel godkännKnapp;
     private javax.swing.JComboBox<String> idRasBox;
     private javax.swing.JTextArea infoFalt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton sok;
-    private javax.swing.JButton tillbakaKnapp;
+    private javax.swing.JLabel lblMIB;
     private javax.swing.JComboBox<String> valBox;
     // End of variables declaration//GEN-END:variables
 }

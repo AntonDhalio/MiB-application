@@ -32,9 +32,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-        agentBox.removeAllItems();
-        omradeBox.removeAllItems();
-        rasBox.removeAllItems();
+        
         try{
             ArrayList<String> agenter = idb.fetchColumn("SELECT Agent_ID FROM agent");
             for(String nuvarandeAgent: agenter){
@@ -70,132 +68,163 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        goBack = new javax.swing.JLabel();
         namnFalt = new javax.swing.JTextField();
         losenordFalt = new javax.swing.JTextField();
         telnrFalt = new javax.swing.JTextField();
         rasBox = new javax.swing.JComboBox<>();
         agentBox = new javax.swing.JComboBox<>();
         omradeBox = new javax.swing.JComboBox<>();
-        godkannKnapp = new javax.swing.JButton();
-        avbrytKnapp = new javax.swing.JButton();
+        godkännKnapp = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        avbrytKnapp1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Fyll i nedanstående information för att registrera en ny utomjording");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setText("Namn:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 120, -1));
 
-        jLabel2.setText("Namn");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel3.setText("Lösenord:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 120, -1));
 
-        jLabel3.setText("Lösenord");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel4.setText("Ras:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 120, -1));
 
-        jLabel4.setText("Ras");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel5.setText("Telefonnummer:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 120, -1));
 
-        jLabel5.setText("Telefonnummer");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel6.setText("Ansvarig agent:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 120, -1));
 
-        jLabel6.setText("Ansvarig agent");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel7.setText("Boendeplats:");
+        jLabel7.setToolTipText("");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 120, -1));
 
-        jLabel7.setText("Boendeplats");
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Fyll i nedanstående information ");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
-        rasBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        agentBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        omradeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        godkannKnapp.setText("Godkänn");
-        godkannKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                godkannKnappActionPerformed(evt);
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
             }
         });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        getContentPane().add(namnFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 127, -1));
+        getContentPane().add(losenordFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 127, -1));
+        getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 127, -1));
 
-        avbrytKnapp.setText("Avbryt");
-        avbrytKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                avbrytKnappActionPerformed(evt);
+        getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 127, -1));
+
+        getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 127, -1));
+
+        getContentPane().add(omradeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 127, -1));
+
+        godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseClicked(evt);
             }
         });
+        godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(omradeBox, 0, 127, Short.MAX_VALUE)
-                            .addComponent(agentBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rasBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(telnrFalt)
-                            .addComponent(losenordFalt)
-                            .addComponent(namnFalt)))
-                    .addComponent(jLabel1))
-                .addGap(20, 20, 20))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(godkannKnapp)
-                .addGap(68, 68, 68)
-                .addComponent(avbrytKnapp)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(namnFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(losenordFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(telnrFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(rasBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(agentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(omradeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(godkannKnapp)
-                    .addComponent(avbrytKnapp))
-                .addGap(39, 39, 39))
-        );
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/accept.png"))); // NOI18N
+        godkännKnapp.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel10.setText("Godkänn");
+        godkännKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
+
+        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 110, 30));
+
+        avbrytKnapp1.setBackground(new java.awt.Color(0, 0, 0));
+        avbrytKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        avbrytKnapp1.setForeground(new java.awt.Color(102, 153, 255));
+        avbrytKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        avbrytKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                avbrytKnapp1MouseClicked(evt);
+            }
+        });
+        avbrytKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/cancel.png"))); // NOI18N
+        avbrytKnapp1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Avbryt");
+        avbrytKnapp1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
+
+        getContentPane().add(avbrytKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 110, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void godkannKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godkannKnappActionPerformed
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+
+            if(arAdmin.equals("N")){
+                new HanteraUtomjording(idb, id).setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                new HanteraUtomjordingAdmin(idb, id).setVisible(true);
+                dispose();
+            }
+        }
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }
+    }//GEN-LAST:event_goBackMouseClicked
+
+    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
         if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
         try{
             String namn = namnFalt.getText();
@@ -214,7 +243,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             }
             //OBS! lägg till så att man själv får välja values på boglodite och squid!!
             else{
-                idb.insert("INSERT INTO alien VALUES(" + nextId + ",'" + datum + "','" + namn + "','" + losenord + "','" + telNr + "'," + regOmrade + "," + regAgent + ")");
+                idb.insert("INSERT INTO alien VALUES(" + nextId + ",'" + datum + "','" + losenord + "','" + namn + "','" + telNr + "'," + regOmrade + "," + regAgent + ")");
                 
                 if(regRas.equals("worm")){
                     idb.insert("INSERT INTO " + regRas + " VALUES(" + nextId + ")");
@@ -233,27 +262,13 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ett fel uppstod");
         }
         }
-    }//GEN-LAST:event_godkannKnappActionPerformed
+    }//GEN-LAST:event_godkännKnappMouseClicked
 
-    private void avbrytKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avbrytKnappActionPerformed
-        try {
-            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
-        
-            if(arAdmin.equals("N")){
-                hanteraUtomjording = new HanteraUtomjording(idb,id);
-                hanteraUtomjording.setVisible(true);
-                dispose();
-            }
-            else if(arAdmin.equals("J")){
-                hanteraUtAdmin = new HanteraUtomjordingAdmin(idb,id);
-                hanteraUtAdmin.setVisible(true);
-                dispose();
-            }
-        } 
-        catch (InfException ex) {
-            System.out.println("Något gick fel");
-        }
-    }//GEN-LAST:event_avbrytKnappActionPerformed
+    private void avbrytKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnapp1MouseClicked
+        namnFalt.setText("");
+        losenordFalt.setText("");
+        telnrFalt.setText("");
+    }//GEN-LAST:event_avbrytKnapp1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -292,15 +307,21 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agentBox;
-    private javax.swing.JButton avbrytKnapp;
-    private javax.swing.JButton godkannKnapp;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel avbrytKnapp1;
+    private javax.swing.JLabel goBack;
+    private javax.swing.JPanel godkännKnapp;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblMIB;
     private javax.swing.JTextField losenordFalt;
     private javax.swing.JTextField namnFalt;
     private javax.swing.JComboBox<String> omradeBox;
