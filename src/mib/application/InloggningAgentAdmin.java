@@ -44,12 +44,13 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         txtIDNummer = new javax.swing.JTextField();
         lblLosenord = new javax.swing.JLabel();
         pswrdLosenord = new javax.swing.JPasswordField();
-        btnLoggaIn = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        loggain = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,15 +74,6 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
 
         pswrdLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         getContentPane().add(pswrdLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 202, 30));
-
-        btnLoggaIn.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
-        btnLoggaIn.setText("Logga in");
-        btnLoggaIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoggaInActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnLoggaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 200, 30));
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 168, -1, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
@@ -112,6 +104,25 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         jLabel3.setText("Agent");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 40, -1));
 
+        loggain.setBackground(new java.awt.Color(0, 0, 0));
+        loggain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        loggain.setForeground(new java.awt.Color(102, 153, 255));
+        loggain.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loggain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loggainMouseClicked(evt);
+            }
+        });
+        loggain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Logga in");
+        loggain.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 40));
+
+        getContentPane().add(loggain, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 200, 40));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Background.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -119,16 +130,16 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Den här metoden anropas när knappen "Logga in" trycks på, i formuläret
-     * Metoden kontrollerar att det inmatade ID:t och lösenordet matchar med
-     * lösenordet för angivet ID i databasen
-     */
-    private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
 
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        valjInloggning = new ValjInloggning(idb);
+        valjInloggning.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseClicked
+
+    private void loggainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseClicked
         
-
-
+        
         this.id = txtIDNummer.getText();
         
         
@@ -166,18 +177,8 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         } catch(Exception e){}
        
         dispose();
-
-    
-
-
-    }//GEN-LAST:event_btnLoggaInActionPerformed
-
-
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        valjInloggning = new ValjInloggning(idb);
-        valjInloggning.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
+        
+    }//GEN-LAST:event_loggainMouseClicked
 
     public static void main(String[] args)
     {
@@ -191,15 +192,16 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLoggaIn;
     private javax.swing.JLabel goBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblIDNummer;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel loggain;
     private javax.swing.JPasswordField pswrdLosenord;
     private javax.swing.JTextField txtIDNummer;
     // End of variables declaration//GEN-END:variables

@@ -188,6 +188,9 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
     private void utomjordingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utomjordingBoxActionPerformed
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
+        agentBox.removeAllItems();
+        rasBox.removeAllItems();
+        omradeBox.removeAllItems();
         try{            
             String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID=" + valdUtomjording);
             namnFalt.setText(namn);
