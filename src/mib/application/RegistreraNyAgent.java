@@ -38,14 +38,14 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         boxAnsvarigForOmrade.setVisible(false);
         lblValjKontor.setVisible(false);
         lblValjOmrade.setVisible(false);
-        
-        
+
+
             try{
                 omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
                 omrade.forEach(benamning -> {
-                    boxAnsvarigForOmrade.addItem(benamning);                    
+                    boxAnsvarigForOmrade.addItem(benamning);
                                             });
-                
+
                 kontor = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef");
                 kontor.forEach(kontorsNamn -> {
                     boxValjKontor.addItem(kontorsNamn);
@@ -85,47 +85,59 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         lblValjKontor = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
-        regKnapp = new javax.swing.JPanel();
+        godkännKnapp = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(740, 416));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Namn");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 120, 20));
-        getContentPane().add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 171, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 130, -1));
+        getContentPane().add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 160, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Telefonnummer");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 120, 20));
-        getContentPane().add(txtTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 171, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 130, -1));
+        getContentPane().add(txtTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 160, -1));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Administratörsstatus");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 120, 20));
-        getContentPane().add(txtLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 172, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 130, -1));
+        getContentPane().add(txtLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 160, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Lösenord");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 120, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 130, -1));
 
-        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel7.setText("Lösenordet får max innehålla  6 tecken");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel7.setText("Lösenordet får inte innehålla fler än 6 tecken");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
 
+        lblValjOmrade.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblValjOmrade.setForeground(new java.awt.Color(255, 255, 255));
+        lblValjOmrade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblValjOmrade.setText("Ansvarig för område");
-        getContentPane().add(lblValjOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 120, 20));
+        getContentPane().add(lblValjOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 130, -1));
 
         boxAnsvarigForOmrade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxAnsvarigForOmradeActionPerformed(evt);
             }
         });
-        getContentPane().add(boxAnsvarigForOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, 170, -1));
+        getContentPane().add(boxAnsvarigForOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 160, -1));
 
         boxAdminStatus.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         boxAdminStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +145,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 boxAdminStatusActionPerformed(evt);
             }
         });
-        getContentPane().add(boxAdminStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 170, -1));
+        getContentPane().add(boxAdminStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 160, -1));
 
         boxTypAvAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gör ett val...", "Fältagent", "Kontorschef" }));
         boxTypAvAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -141,24 +153,24 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 boxTypAvAgentActionPerformed(evt);
             }
         });
-        getContentPane().add(boxTypAvAgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, 170, -1));
+        getContentPane().add(boxTypAvAgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 160, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Välj typ av agent:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 120, 20));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Välj typ av agent");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 130, -1));
 
-        boxValjKontor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxValjKontorActionPerformed(evt);
-            }
-        });
-        getContentPane().add(boxValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 170, -1));
+        getContentPane().add(boxValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 160, -1));
 
+        lblValjKontor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblValjKontor.setForeground(new java.awt.Color(255, 255, 255));
+        lblValjKontor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblValjKontor.setText("Välj kontor");
-        getContentPane().add(lblValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 120, 20));
+        getContentPane().add(lblValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 130, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,39 +184,36 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMIB.setText("Registrera ny agent");
         lblMIB.setToolTipText("");
-        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 740, -1));
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
-        regKnapp.setBackground(new java.awt.Color(0, 0, 0));
-        regKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        regKnapp.setForeground(new java.awt.Color(102, 153, 255));
-        regKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        regKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+        godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                regKnappMouseClicked(evt);
+                godkännKnappMouseClicked(evt);
             }
         });
-        regKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/accept.png"))); // NOI18N
-        regKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Registrera");
+        godkännKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 100, 30));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel11.setText("Registrera");
-        regKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
+        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 110, 30));
 
-        getContentPane().add(regKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 110, 30));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        pack();
-        setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+        lblValjKontor.setForeground(new java.awt.Color(255, 255, 255));
+        lblValjKontor.setText("Välj kontor");
+        getContentPane().add(lblValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 120, 20));
 
     private void boxAnsvarigForOmradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAnsvarigForOmradeActionPerformed
-        valtOmrade = (String)boxAnsvarigForOmrade.getSelectedItem();  
+        valtOmrade = (String)boxAnsvarigForOmrade.getSelectedItem();
     }//GEN-LAST:event_boxAnsvarigForOmradeActionPerformed
 
     private void boxAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAdminStatusActionPerformed
@@ -238,56 +247,55 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
                 lblValjKontor.setVisible(true);
                 boxValjKontor.setVisible(true);
                 break;
-                
-        
+
+
         }
     }//GEN-LAST:event_boxTypAvAgentActionPerformed
 
     private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+
         new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseClicked
 
-    private void boxValjKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxValjKontorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boxValjKontorActionPerformed
+    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
 
-    private void regKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regKnappMouseClicked
-        LocalDate dagensDatum = LocalDate.now();
+         LocalDate dagensDatum = LocalDate.now();
         String namn = txtNamn.getText();
         String telefon = txtTelefon.getText();
         String losenord = txtLosenord.getText();
         String datum = dagensDatum.toString();
         String valtKontor = (String)boxValjKontor.getSelectedItem();
-        
-        
+
+
             if(Validering.txtFieldBegransad6(txtLosenord) && Validering.txtFieldBegransad20(txtNamn) && Validering.txtFieldBegransad30(txtTelefon) && Validering.ValtEttAlternativ(boxTypAvAgent)){
 
-        
+
                 try {
                     String nextID = idb.getAutoIncrement("Agent", "Agent_ID");
                     String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
                     String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
                     int intOmradesID = Integer.parseInt(hamtaOmradesID);
                     idb.insert("INSERT INTO Agent VALUES(" + nextID + ",'" + namn + "','" + telefon + "','" + datum + "','" + adminStatus + "','" + losenord + "'," + intOmradesID + ")");
-            
+
                         if(boxTypAvAgent.getSelectedIndex() == 1){
-                            idb.insert("INSERT INTO Faltagent VALUES(" + nextID + ")");    
+                            idb.insert("INSERT INTO Faltagent VALUES(" + nextID + ")");
                                                                  }
                             else if(boxTypAvAgent.getSelectedIndex() == 2){
                                     idb.update("UPDATE Kontorschef SET Agent_ID='" + nextID + "'WHERE Kontorsbeteckning='" + valtKontor + "'");
                                                                            }
 
         JOptionPane.showMessageDialog(null, "Registrerigen lyckades! " + namn + " med ID-nummer " + nextID + " är nu tillagd i systemet");
-                    } 
+                    }
                     catch (InfException e) {
                             JOptionPane.showMessageDialog(null, "Något gick fel");
                             System.out.println(e);
                                        }
-        
-       
+
+
       }
-    }//GEN-LAST:event_regKnappMouseClicked
+
+    }//GEN-LAST:event_godkännKnappMouseClicked
 
     /**
      * @param args the command line arguments
@@ -296,7 +304,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -330,15 +338,15 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxTypAvAgent;
     private javax.swing.JComboBox<String> boxValjKontor;
     private javax.swing.JLabel goBack;
+    private javax.swing.JPanel godkännKnapp;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel lblMIB;
