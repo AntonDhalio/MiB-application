@@ -27,6 +27,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     public InloggningAgentAdmin(InfDB idb) {
         initComponents();
         this.idb = idb;
+        
 
     }
 
@@ -121,14 +122,15 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         
 
 
-        String idNummer = txtIDNummer.getText();
+        this.id = txtIDNummer.getText();
+        
         
         try{
-        String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + idNummer;
+        String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + id;
         String hamtaLosenord = idb.fetchSingle(losenordFraga);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
 
-        String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + idNummer;
+        String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + id;
         String admin = idb.fetchSingle(hamtaAdmin);
 
         if(losenord.equals(hamtaLosenord)) {
@@ -144,7 +146,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
             }
 
             else{
-                agentMeny = new AgentMeny(idb, idNummer);
+                agentMeny = new AgentMeny(idb, id);
                 agentMeny.setVisible(true);
                 dispose();
             }

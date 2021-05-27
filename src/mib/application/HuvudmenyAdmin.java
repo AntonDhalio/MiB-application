@@ -18,7 +18,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     private static String id;
     private SystemInfo sysInfo;
     private AndraLosenord andraLosenord;
-    private RegistreraUtrustning regUtrustning;
+    private AdminUtrustningHantera hanteraUtrustning;
     private HanteraUtomjording hanteraUtomJ;
     private InfoPortal infoPortal;
     private AdminHanteraAgent hanteraAgent;
@@ -157,8 +157,8 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_agentKnappActionPerformed
 
     private void utrKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utrKnappActionPerformed
-        regUtrustning = new RegistreraUtrustning(idb, id);
-        regUtrustning.setVisible(true);
+        hanteraUtrustning = new AdminUtrustningHantera(idb, id);
+        hanteraUtrustning.setVisible(true);
         dispose();
     }//GEN-LAST:event_utrKnappActionPerformed
 
