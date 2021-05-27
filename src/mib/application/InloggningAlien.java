@@ -48,6 +48,7 @@ public class InloggningAlien extends javax.swing.JFrame {
         goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,6 +105,11 @@ public class InloggningAlien extends javax.swing.JFrame {
         jLabel2.setText("SKANDINAVIEN");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 740, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("Alien");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 30, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Background.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -158,6 +164,7 @@ public class InloggningAlien extends javax.swing.JFrame {
     private javax.swing.JLabel goBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel lblIDNummer;
     private javax.swing.JLabel lblLosenord;

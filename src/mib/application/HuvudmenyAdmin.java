@@ -5,6 +5,7 @@
  */
 package mib.application;
 
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -44,141 +45,231 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        stat = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        agentKnapp = new javax.swing.JButton();
-        alienKnapp = new javax.swing.JButton();
-        utrKnapp = new javax.swing.JButton();
-        portalKnapp = new javax.swing.JButton();
-        losenKnapp = new javax.swing.JButton();
+        hanteraAlienKnapp = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        hanteraAlienKnapp1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        infoPortalKnapp = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        hanteraUtrustningKnapp = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        statistikKnapp = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        bytLosenKnapp = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        goBack = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        stat.setText("System statistik");
-        stat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statActionPerformed(evt);
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setText("Admin");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
+
+        hanteraAlienKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        hanteraAlienKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        hanteraAlienKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        hanteraAlienKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hanteraAlienKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hanteraAlienKnappMouseClicked(evt);
             }
         });
+        hanteraAlienKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Meny agent(admin)");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/MiB Man.png"))); // NOI18N
+        hanteraAlienKnapp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
 
-        agentKnapp.setText("Hantera agenter");
-        agentKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agentKnappActionPerformed(evt);
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel2.setText("Hantera agenter");
+        hanteraAlienKnapp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
+
+        getContentPane().add(hanteraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 260, 80));
+
+        hanteraAlienKnapp1.setBackground(new java.awt.Color(0, 0, 0));
+        hanteraAlienKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        hanteraAlienKnapp1.setForeground(new java.awt.Color(102, 153, 255));
+        hanteraAlienKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hanteraAlienKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hanteraAlienKnapp1MouseClicked(evt);
             }
         });
+        hanteraAlienKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        alienKnapp.setText("Hantera utomjordingar");
-        alienKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                alienKnappActionPerformed(evt);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/alien-logo2.png"))); // NOI18N
+        hanteraAlienKnapp1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setText("Hantera utomjordingar");
+        hanteraAlienKnapp1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
+
+        getContentPane().add(hanteraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 260, 80));
+
+        infoPortalKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        infoPortalKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        infoPortalKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        infoPortalKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        infoPortalKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                infoPortalKnappMouseClicked(evt);
             }
         });
+        infoPortalKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        utrKnapp.setText("Hantera utrustning");
-        utrKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                utrKnappActionPerformed(evt);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/info.png"))); // NOI18N
+        infoPortalKnapp.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel7.setText("Informationsportalen");
+        infoPortalKnapp.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
+
+        getContentPane().add(infoPortalKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 260, 80));
+
+        hanteraUtrustningKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        hanteraUtrustningKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        hanteraUtrustningKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        hanteraUtrustningKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hanteraUtrustningKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hanteraUtrustningKnappMouseClicked(evt);
             }
         });
+        hanteraUtrustningKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        portalKnapp.setText("Informationsportalen");
-        portalKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                portalKnappActionPerformed(evt);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Backpack.png"))); // NOI18N
+        hanteraUtrustningKnapp.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel10.setText("Hantera utrustning");
+        hanteraUtrustningKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
+
+        getContentPane().add(hanteraUtrustningKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 260, 80));
+
+        statistikKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        statistikKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        statistikKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        statistikKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        statistikKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                statistikKnappMouseClicked(evt);
             }
         });
+        statistikKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        losenKnapp.setText("Ändra lösenord");
-        losenKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                losenKnappActionPerformed(evt);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Print.png"))); // NOI18N
+        statistikKnapp.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel14.setText("Statistik");
+        statistikKnapp.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
+
+        getContentPane().add(statistikKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 260, 80));
+
+        bytLosenKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        bytLosenKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        bytLosenKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        bytLosenKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bytLosenKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bytLosenKnappMouseClicked(evt);
             }
         });
+        bytLosenKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(alienKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(portalKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(agentKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(utrKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                    .addComponent(stat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(losenKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(48, 48, 48))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(123, 123, 123))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(utrKnapp, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(agentKnapp, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alienKnapp)
-                    .addComponent(losenKnapp))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stat)
-                    .addComponent(portalKnapp))
-                .addGap(75, 75, 75))
-        );
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/lock.png"))); // NOI18N
+        bytLosenKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel12.setText("Byt lösenord");
+        bytLosenKnapp.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
+
+        getContentPane().add(bytLosenKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 260, 80));
+
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/exit.png"))); // NOI18N
+        goBack.setToolTipText("");
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
+            }
+        });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Välkommen Agent");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void statActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statActionPerformed
-        sysInfo = new SystemInfo(idb, id);
-        sysInfo.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_statActionPerformed
-
-    private void agentKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentKnappActionPerformed
+    private void hanteraAlienKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraAlienKnappMouseClicked
         hanteraAgent = new AdminHanteraAgent(idb,id);
         hanteraAgent.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_agentKnappActionPerformed
+        dispose();                
+    }//GEN-LAST:event_hanteraAlienKnappMouseClicked
 
-    private void utrKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utrKnappActionPerformed
-        hanteraUtrustning = new AdminUtrustningHantera(idb, id);
-        hanteraUtrustning.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_utrKnappActionPerformed
-
-    private void alienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alienKnappActionPerformed
+    private void hanteraAlienKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraAlienKnapp1MouseClicked
         hanteraAlienAdmin = new HanteraUtomjordingAdmin(idb,id);
         hanteraAlienAdmin.setVisible(true);
         dispose();
-    }//GEN-LAST:event_alienKnappActionPerformed
+    }//GEN-LAST:event_hanteraAlienKnapp1MouseClicked
 
-    private void losenKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_losenKnappActionPerformed
-        andraLosenord = new AndraLosenord(idb, id);
-        andraLosenord.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_losenKnappActionPerformed
-
-    private void portalKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_portalKnappActionPerformed
+    private void infoPortalKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoPortalKnappMouseClicked
         infoPortal = new InfoPortal(idb, id);
         infoPortal.setVisible(true);
         dispose();
-    }//GEN-LAST:event_portalKnappActionPerformed
+    }//GEN-LAST:event_infoPortalKnappMouseClicked
+
+    private void hanteraUtrustningKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnappMouseClicked
+        hanteraUtrustning = new AdminUtrustningHantera(idb, id);
+        hanteraUtrustning.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_hanteraUtrustningKnappMouseClicked
+
+    private void bytLosenKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bytLosenKnappMouseClicked
+        andraLosenord = new AndraLosenord(idb, id);
+        andraLosenord.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bytLosenKnappMouseClicked
+
+    private void statistikKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statistikKnappMouseClicked
+        sysInfo = new SystemInfo(idb, id);
+        sysInfo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_statistikKnappMouseClicked
+
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        int reply = JOptionPane.showConfirmDialog(null, "Du håller på att logga ut.\nÄr du säker på att du vill fortsätta?", "Logga ut?", JOptionPane.YES_NO_OPTION);
+        if(reply == JOptionPane.YES_OPTION){
+            new ValjInloggning(idb).setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_goBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -218,12 +309,27 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agentKnapp;
-    private javax.swing.JButton alienKnapp;
+    private javax.swing.JPanel bytLosenKnapp;
+    private javax.swing.JLabel goBack;
+    private javax.swing.JPanel hanteraAlienKnapp;
+    private javax.swing.JPanel hanteraAlienKnapp1;
+    private javax.swing.JPanel hanteraUtrustningKnapp;
+    private javax.swing.JPanel infoPortalKnapp;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton losenKnapp;
-    private javax.swing.JButton portalKnapp;
-    private javax.swing.JButton stat;
-    private javax.swing.JButton utrKnapp;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel statistikKnapp;
     // End of variables declaration//GEN-END:variables
 }
