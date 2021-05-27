@@ -150,8 +150,8 @@ public class AndraOmradesChef extends javax.swing.JFrame {
 
     private void boxChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChefActionPerformed
         try{
-            String id = (String)boxChef.getSelectedItem();
-            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
+            String idNr = (String)boxChef.getSelectedItem();
+            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
             String namnFraga = idb.fetchSingle(hamtaNamn);
             txtChefNamn.setText(namnFraga);}
         
