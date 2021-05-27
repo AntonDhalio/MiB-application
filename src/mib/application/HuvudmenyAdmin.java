@@ -51,8 +51,11 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         utrKnapp = new javax.swing.JButton();
         portalKnapp = new javax.swing.JButton();
         losenKnapp = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(748, 421));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         stat.setText("System statistik");
         stat.addActionListener(new java.awt.event.ActionListener() {
@@ -60,9 +63,11 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
                 statActionPerformed(evt);
             }
         });
+        getContentPane().add(stat, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 202, 128, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Meny agent(admin)");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 21, -1, -1));
 
         agentKnapp.setText("Hantera agenter");
         agentKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +75,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
                 agentKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(agentKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 120, 141, -1));
 
         alienKnapp.setText("Hantera utomjordingar");
         alienKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +83,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
                 alienKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(alienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 161, -1, -1));
 
         utrKnapp.setText("Hantera utrustning");
         utrKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +91,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
                 utrKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(utrKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 120, 128, -1));
 
         portalKnapp.setText("Informationsportalen");
         portalKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +99,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
                 portalKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(portalKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 202, 141, -1));
 
         losenKnapp.setText("Ändra lösenord");
         losenKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -98,47 +107,10 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
                 losenKnappActionPerformed(evt);
             }
         });
+        getContentPane().add(losenKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 161, 128, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(alienKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(portalKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(agentKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(utrKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                    .addComponent(stat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(losenKnapp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(48, 48, 48))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(123, 123, 123))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(utrKnapp, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(agentKnapp, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alienKnapp)
-                    .addComponent(losenKnapp))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stat)
-                    .addComponent(portalKnapp))
-                .addGap(75, 75, 75))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -221,6 +193,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     private javax.swing.JButton agentKnapp;
     private javax.swing.JButton alienKnapp;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton losenKnapp;
     private javax.swing.JButton portalKnapp;
     private javax.swing.JButton stat;
