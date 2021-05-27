@@ -14,7 +14,7 @@ import oru.inf.InfException;
  * @author mariaforsberg
  */
 public class AdminHanteraAgent extends javax.swing.JFrame {
-
+    
     private static InfDB idb;
     private static String id;
 
@@ -32,7 +32,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         boxHanteraAgenter.addItem("Ta bort agent ur systemet");
         boxHanteraAgenter.addItem("Ändra information om områdeschefer");
         boxHanteraAgenter.addItem("Ändra information om kontorschef");
-
+        
     }
 
     /**
@@ -44,30 +44,38 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         boxHanteraAgenter = new javax.swing.JComboBox<>();
-        goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
-        bakgrund = new javax.swing.JLabel();
+        goBack = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
+
+        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(748, 421));
-        setMinimumSize(new java.awt.Dimension(748, 421));
-        setPreferredSize(new java.awt.Dimension(748, 421));
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Välj nedan vad du vill göra:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
 
         boxHanteraAgenter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxHanteraAgenterActionPerformed(evt);
             }
         });
-        getContentPane().add(boxHanteraAgenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 293, -1));
+        getContentPane().add(boxHanteraAgenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 293, -1));
+
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Hantera agenter");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setToolTipText("");
@@ -79,15 +87,8 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
-        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMIB.setText("Hantera agenter");
-        lblMIB.setToolTipText("");
-        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
-
-        bakgrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
-        getContentPane().add(bakgrund, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -97,11 +98,11 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         switch(boxHanteraAgenter.getSelectedIndex()) {
             case 0:
                 break;
-            case 1:
+            case 1: 
                 new RegistreraNyAgent(idb, id).setVisible(true);
                 dispose();
                 break;
-            case 2:
+            case 2: 
                 new TilldelaAdminStatus(idb, id).setVisible(true);
                 dispose();
                 break;
@@ -117,13 +118,12 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
                     break;
             case 6: new AndraKontorsChef(idb, id).setVisible(true);
                     dispose();
-                    break;
+                    break;   
         }
-
+            
     }//GEN-LAST:event_boxHanteraAgenterActionPerformed
 
     private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-
         new HuvudmenyAdmin(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseClicked
@@ -136,7 +136,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -165,10 +165,12 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bakgrund;
     private javax.swing.JComboBox<String> boxHanteraAgenter;
     private javax.swing.JLabel goBack;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblMIB;
     // End of variables declaration//GEN-END:variables
 }
