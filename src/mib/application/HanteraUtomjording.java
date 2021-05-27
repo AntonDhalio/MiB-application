@@ -47,6 +47,7 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
@@ -79,7 +80,7 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         jLabel2.setText("Justera information");
         justeraAlienKnapp1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 200, 80));
 
-        getContentPane().add(justeraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 260, 80));
+        getContentPane().add(justeraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 260, 80));
 
         registreraAlienKnapp.setBackground(new java.awt.Color(0, 0, 0));
         registreraAlienKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -101,12 +102,12 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         jLabel1.setText("Registrera utomjordingar");
         registreraAlienKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 200, 80));
 
-        getContentPane().add(registreraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 260, 80));
+        getContentPane().add(registreraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 260, 80));
 
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMIB.setText("Hantera Utomjordingar");
+        lblMIB.setText("Hantera utomjordingar");
         lblMIB.setToolTipText("");
         getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 

@@ -67,7 +67,7 @@ public class InfoPortal extends javax.swing.JFrame {
         valBox = new javax.swing.JComboBox<>();
         datum1 = new com.toedter.calendar.JDateChooser();
         datum2 = new com.toedter.calendar.JDateChooser();
-        godkännKnapp = new javax.swing.JPanel();
+        sokKnapp = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
@@ -102,26 +102,26 @@ public class InfoPortal extends javax.swing.JFrame {
         getContentPane().add(datum1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 260, -1));
         getContentPane().add(datum2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 260, 20));
 
-        godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
-        godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
-        godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+        sokKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        sokKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        sokKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        sokKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sokKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+                sokKnappMouseClicked(evt);
             }
         });
-        godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        sokKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/accept.png"))); // NOI18N
-        godkännKnapp.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+        sokKnapp.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel1.setText("Godkänn");
-        godkännKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
+        jLabel1.setText("Sök");
+        sokKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 60, 30));
 
-        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 110, 30));
+        getContentPane().add(sokKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 110, 30));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setToolTipText("");
@@ -234,7 +234,7 @@ public class InfoPortal extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_goBackMouseClicked
 
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void sokKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sokKnappMouseClicked
         infoFalt.selectAll();
         infoFalt.replaceSelection("");
         
@@ -378,7 +378,7 @@ public class InfoPortal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel");
             }
         }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+    }//GEN-LAST:event_sokKnappMouseClicked
 
     public void alienPlats(){
         ArrayList<String> omraden = new ArrayList<>();
@@ -458,7 +458,6 @@ public class InfoPortal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser datum1;
     private com.toedter.calendar.JDateChooser datum2;
     private javax.swing.JLabel goBack;
-    private javax.swing.JPanel godkännKnapp;
     private javax.swing.JComboBox<String> idRasBox;
     private javax.swing.JTextArea infoFalt;
     private javax.swing.JLabel jLabel1;
@@ -466,6 +465,7 @@ public class InfoPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel sokKnapp;
     private javax.swing.JComboBox<String> valBox;
     // End of variables declaration//GEN-END:variables
 }

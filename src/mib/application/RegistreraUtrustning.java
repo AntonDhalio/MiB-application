@@ -68,17 +68,19 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 34, -1, -1));
-        getContentPane().add(utrustningNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 160, -1));
+        getContentPane().add(utrustningNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 160, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Namnge den nya utrustningen");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 240, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 200, -1));
 
-        labelFranBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelFranBox.setForeground(new java.awt.Color(102, 153, 255));
-        getContentPane().add(labelFranBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 240, 20));
-        getContentPane().add(utrustningDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 160, -1));
+        labelFranBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelFranBox.setForeground(new java.awt.Color(255, 255, 255));
+        labelFranBox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        getContentPane().add(labelFranBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 170, 20));
+        getContentPane().add(utrustningDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 160, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -96,7 +98,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         });
         jPanel4.add(arKomm, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 170, 40));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 170, 40));
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -114,7 +116,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         });
         jPanel3.add(arTeknik, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 100, 40));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 100, 40));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -137,7 +139,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         });
         jPanel1.add(arVapen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 100, 40));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 100, 40));
 
         avbrytKnapp.setBackground(new java.awt.Color(0, 0, 0));
         avbrytKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -159,7 +161,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         jLabel8.setText("Avbryt");
         avbrytKnapp.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
-        getContentPane().add(avbrytKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 110, 30));
+        getContentPane().add(avbrytKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 110, 30));
 
         godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
         godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -180,7 +182,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         jLabel3.setText("Godkänn");
         godkännKnapp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
-        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 110, 30));
+        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 110, 30));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setToolTipText("");
@@ -195,7 +197,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMIB.setText("Vilken utrustning vill du registrera");
+        lblMIB.setText("Registrera ny utrustning");
         lblMIB.setToolTipText("");
         getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
@@ -261,7 +263,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
                 dispose();
             }
             else if(arAdmin.equals("J")){
-                new HuvudmenyAdmin(idb, id).setVisible(true);
+                new AdminUtrustningHantera(idb, id).setVisible(true);
                 dispose();
             }
         }

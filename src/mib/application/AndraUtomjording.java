@@ -92,7 +92,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMIB.setText("Justera information om:");
+        lblMIB.setText("Ändra information om:");
         lblMIB.setToolTipText("");
         getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 570, -1));
 
@@ -105,57 +105,57 @@ public class AndraUtomjording extends javax.swing.JFrame {
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        getContentPane().add(namnFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 160, -1));
-        getContentPane().add(losenordFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 160, -1));
+        getContentPane().add(namnFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 160, -1));
+        getContentPane().add(losenordFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 160, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Lösenord:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 120, -1));
+        jLabel4.setText("Lösenord");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Namn:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 120, 20));
+        jLabel3.setText("Namn");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 120, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Telefon:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 120, -1));
+        jLabel5.setText("Telefon");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
 
         telnrFalt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 telnrFaltActionPerformed(evt);
             }
         });
-        getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 160, -1));
+        getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Område:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 120, -1));
+        jLabel6.setText("Område");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 120, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel7.setText("Ansvarig Agent:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 120, -1));
+        jLabel7.setText("Ansvarig Agent");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 120, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel8.setText("Ras:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 120, -1));
+        jLabel8.setText("Ras");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 120, -1));
 
-        getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 160, -1));
+        getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 160, -1));
 
-        getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, 160, -1));
+        getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 160, -1));
 
-        getContentPane().add(omradeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 160, -1));
+        getContentPane().add(omradeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 160, -1));
 
         godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
         godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -176,7 +176,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         jLabel11.setText("Godkänn");
         godkännKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
-        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 110, 30));
+        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 110, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N

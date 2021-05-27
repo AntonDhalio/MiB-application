@@ -96,44 +96,44 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Namn:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 120, -1));
+        jLabel2.setText("Namn");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Lösenord:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 120, -1));
+        jLabel3.setText("Lösenord");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 120, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Ras:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 120, -1));
+        jLabel4.setText("Ras");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 120, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Telefonnummer:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 120, -1));
+        jLabel5.setText("Telefonnummer");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 120, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Ansvarig agent:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 120, -1));
+        jLabel6.setText("Ansvarig agent");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 120, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel7.setText("Boendeplats:");
+        jLabel7.setText("Boendeplats");
         jLabel7.setToolTipText("");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 120, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 120, -1));
 
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMIB.setText("Fyll i nedanstående information ");
+        lblMIB.setText("Registrera en ny alien");
         lblMIB.setToolTipText("");
         getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
@@ -146,15 +146,15 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        getContentPane().add(namnFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 127, -1));
-        getContentPane().add(losenordFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 127, -1));
-        getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 127, -1));
+        getContentPane().add(namnFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 127, -1));
+        getContentPane().add(losenordFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 127, -1));
+        getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 127, -1));
 
-        getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 127, -1));
+        getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 127, -1));
 
-        getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 127, -1));
+        getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 127, -1));
 
-        getContentPane().add(omradeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 127, -1));
+        getContentPane().add(omradeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 127, -1));
 
         godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
         godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -172,10 +172,11 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel10.setText("Godkänn");
-        godkännKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Registrera");
+        godkännKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
-        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 110, 30));
+        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(377, 350, 110, 30));
 
         avbrytKnapp1.setBackground(new java.awt.Color(0, 0, 0));
         avbrytKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -194,10 +195,10 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(102, 153, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Avbryt");
+        jLabel12.setText("Töm fält");
         avbrytKnapp1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
-        getContentPane().add(avbrytKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 110, 30));
+        getContentPane().add(avbrytKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 350, 110, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

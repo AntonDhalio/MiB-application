@@ -74,7 +74,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Admin");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
 
         hanteraAlienKnapp.setBackground(new java.awt.Color(0, 0, 0));
         hanteraAlienKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -95,7 +95,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel2.setText("Hantera agenter");
         hanteraAlienKnapp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
 
-        getContentPane().add(hanteraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 260, 80));
+        getContentPane().add(hanteraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 260, 80));
 
         hanteraAlienKnapp1.setBackground(new java.awt.Color(0, 0, 0));
         hanteraAlienKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -116,7 +116,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel3.setText("Hantera utomjordingar");
         hanteraAlienKnapp1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
 
-        getContentPane().add(hanteraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 260, 80));
+        getContentPane().add(hanteraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 260, 80));
 
         infoPortalKnapp.setBackground(new java.awt.Color(0, 0, 0));
         infoPortalKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -137,7 +137,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel7.setText("Informationsportalen");
         infoPortalKnapp.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
 
-        getContentPane().add(infoPortalKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 260, 80));
+        getContentPane().add(infoPortalKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 260, 80));
 
         hanteraUtrustningKnapp.setBackground(new java.awt.Color(0, 0, 0));
         hanteraUtrustningKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -158,7 +158,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel10.setText("Hantera utrustning");
         hanteraUtrustningKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
 
-        getContentPane().add(hanteraUtrustningKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 260, 80));
+        getContentPane().add(hanteraUtrustningKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 260, 80));
 
         statistikKnapp.setBackground(new java.awt.Color(0, 0, 0));
         statistikKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -179,7 +179,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel14.setText("Statistik");
         statistikKnapp.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
 
-        getContentPane().add(statistikKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 260, 80));
+        getContentPane().add(statistikKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 260, 80));
 
         bytLosenKnapp.setBackground(new java.awt.Color(0, 0, 0));
         bytLosenKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -200,7 +200,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel12.setText("Byt lösenord");
         bytLosenKnapp.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
 
-        getContentPane().add(bytLosenKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 260, 80));
+        getContentPane().add(bytLosenKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 260, 80));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/exit.png"))); // NOI18N
         goBack.setToolTipText("");

@@ -60,78 +60,68 @@ public class TaBortAgent extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         boxValjAgent = new javax.swing.JComboBox<>();
         txtAgentNamn = new javax.swing.JTextField();
-        txtRadera = new javax.swing.JButton();
-        txtTillbaka = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblMIB = new javax.swing.JLabel();
+        goBack = new javax.swing.JLabel();
+        taBortKnapp = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Välj den agent du vill ta bort:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
         boxValjAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxValjAgentActionPerformed(evt);
             }
         });
+        getContentPane().add(boxValjAgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 190, -1));
+        getContentPane().add(txtAgentNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 190, -1));
 
-        txtRadera.setText("Radera agent");
-        txtRadera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRaderaActionPerformed(evt);
+        lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        lblMIB.setForeground(new java.awt.Color(255, 255, 255));
+        lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMIB.setText("Ta bort agent från systemet");
+        lblMIB.setToolTipText("");
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 740, -1));
+
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        goBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                goBackMouseClicked(evt);
             }
         });
+        getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        txtTillbaka.setText("< Tillbaka");
-        txtTillbaka.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTillbakaActionPerformed(evt);
+        taBortKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        taBortKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        taBortKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        taBortKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        taBortKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                taBortKnappMouseClicked(evt);
             }
         });
+        taBortKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel3.setText("Ta bort en agent från systemet");
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/accept.png"))); // NOI18N
+        taBortKnapp.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(txtRadera, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtAgentNamn)
-                                .addComponent(boxValjAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(txtTillbaka))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jLabel3)))
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(txtTillbaka)
-                .addGap(19, 19, 19)
-                .addComponent(jLabel3)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(boxValjAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAgentNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtRadera)
-                .addContainerGap(142, Short.MAX_VALUE))
-        );
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel11.setText("Ta bort");
+        taBortKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
+
+        getContentPane().add(taBortKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 110, 30));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -148,7 +138,12 @@ public class TaBortAgent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boxValjAgentActionPerformed
 
-    private void txtRaderaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRaderaActionPerformed
+    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+        new AdminHanteraAgent(idb, id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseClicked
+
+    private void taBortKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortKnappMouseClicked
         int valdAgent = Integer.parseInt((String)boxValjAgent.getSelectedItem());
         
         try{       
@@ -173,13 +168,7 @@ public class TaBortAgent extends javax.swing.JFrame {
         catch(InfException e){
         System.out.println(e);
         }
-        
-    }//GEN-LAST:event_txtRaderaActionPerformed
-
-    private void txtTillbakaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTillbakaActionPerformed
-        new AdminHanteraAgent(idb, id).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_txtTillbakaActionPerformed
+    }//GEN-LAST:event_taBortKnappMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,10 +210,13 @@ public class TaBortAgent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxValjAgent;
+    private javax.swing.JLabel goBack;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel taBortKnapp;
     private javax.swing.JTextField txtAgentNamn;
-    private javax.swing.JButton txtRadera;
-    private javax.swing.JButton txtTillbaka;
     // End of variables declaration//GEN-END:variables
 }

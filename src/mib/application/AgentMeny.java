@@ -158,7 +158,7 @@ public class AgentMeny extends javax.swing.JFrame {
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMIB.setText("Välkommen Agent");
         lblMIB.setToolTipText("");
-        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, -1));
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
         bakgrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(bakgrund, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

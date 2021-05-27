@@ -60,12 +60,12 @@ public class InloggningAlien extends javax.swing.JFrame {
         pswrdLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         getContentPane().add(pswrdLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 202, 30));
 
-        lblLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblLosenord.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblLosenord.setForeground(new java.awt.Color(255, 255, 255));
         lblLosenord.setText("Lösenord");
         getContentPane().add(lblLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
-        lblIDNummer.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblIDNummer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIDNummer.setForeground(new java.awt.Color(255, 255, 255));
         lblIDNummer.setText("ID-nummer");
         getContentPane().add(lblIDNummer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
@@ -108,7 +108,7 @@ public class InloggningAlien extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Alien");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 10, 30, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, 30, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Background.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

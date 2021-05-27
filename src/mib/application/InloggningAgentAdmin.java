@@ -58,7 +58,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblIDNummer.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblIDNummer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblIDNummer.setForeground(new java.awt.Color(255, 255, 255));
         lblIDNummer.setText("ID-nummer");
         getContentPane().add(lblIDNummer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
@@ -66,7 +66,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         txtIDNummer.setPreferredSize(new java.awt.Dimension(7, 21));
         getContentPane().add(txtIDNummer, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 202, 30));
 
-        lblLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
+        lblLosenord.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblLosenord.setForeground(new java.awt.Color(255, 255, 255));
         lblLosenord.setText("Lösenord");
         getContentPane().add(lblLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
@@ -110,7 +110,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Agent");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 40, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 40, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Background.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

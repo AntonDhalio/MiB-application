@@ -51,7 +51,7 @@ public class AlienStartsida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/exit.png"))); // NOI18N
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,7 +64,7 @@ public class AlienStartsida extends javax.swing.JFrame {
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMIB.setText("Välkommen");
+        lblMIB.setText("Välkommen Alien");
         lblMIB.setToolTipText("");
         getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, -1));
 
@@ -79,15 +79,17 @@ public class AlienStartsida extends javax.swing.JFrame {
         });
         infoRutaKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/info.png"))); // NOI18N
-        infoRutaKnapp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+        infoRutaKnapp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Områdesinfo");
-        infoRutaKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 0, 140, 80));
+        infoRutaKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
 
-        getContentPane().add(infoRutaKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 260, 80));
+        getContentPane().add(infoRutaKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 200, 140));
 
         mailaOC1.setBackground(new java.awt.Color(0, 0, 0));
         mailaOC1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -100,15 +102,17 @@ public class AlienStartsida extends javax.swing.JFrame {
         });
         mailaOC1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/mail.png"))); // NOI18N
-        mailaOC1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+        mailaOC1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Maila Områdeschef");
-        mailaOC1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
+        mailaOC1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
 
-        getContentPane().add(mailaOC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 260, 80));
+        getContentPane().add(mailaOC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 160, 200, 140));
 
         andraLosen1.setBackground(new java.awt.Color(0, 0, 0));
         andraLosen1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -121,15 +125,17 @@ public class AlienStartsida extends javax.swing.JFrame {
         });
         andraLosen1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/lock.png"))); // NOI18N
-        andraLosen1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+        andraLosen1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ändra Lösenord");
-        andraLosen1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
+        andraLosen1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
 
-        getContentPane().add(andraLosen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 260, 80));
+        getContentPane().add(andraLosen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 160, 200, 140));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
