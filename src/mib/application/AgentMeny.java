@@ -143,7 +143,7 @@ public class AgentMeny extends javax.swing.JFrame {
 
         getContentPane().add(hanteraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 260, 80));
 
-        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
+        goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/exit.png"))); // NOI18N
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
