@@ -166,7 +166,7 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         
         } catch(Exception e){}
        
-        dispose();    
+            
     }//GEN-LAST:event_loggainMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
