@@ -29,7 +29,10 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         this.id = id;
 
         try {
+            //Hämtar alla alien-ID:n från databasen och sorterar i stigande ordning
             ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM alien ORDER BY Alien_ID ASC");
+            
+            //En for each loop för att lista alla id-nummer i en drop-down-meny
             for (String nuvarandeUtomjording : utomjording) {
                 cmbID.addItem(nuvarandeUtomjording);
             }
@@ -118,13 +121,20 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         String valdUtomjording = cmbID.getSelectedItem().toString();
 
         try {
+            //Hämtar ut kolumnen "utrustning-ID" från alla tabeller i databasen där utrustnings-ID:t förekommer
             ArrayList<String> boglodite = idb.fetchColumn("SELECT Alien_ID FROM Boglodite");
             ArrayList<String> squid = idb.fetchColumn("SELECT Alien_ID FROM Squid");
             ArrayList<String> worm = idb.fetchColumn("SELECT Alien_ID FROM Worm");
 
             String namn = idb.fetchSingle("SELECT Namn FROM Alien WHERE Alien_ID=" + valdUtomjording);
-
+            
+            //Kod som framkallar en varningsruta när användaren försöker ta bort en alien
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Alien '" + namn, "Varning!", JOptionPane.YES_NO_OPTION);
+            
+             /*Om användaren bekräftar borttagningen, ser nedanstående kod till att vald alien 
+            försvinner ur alien tabellen och att dens ras/raser även försvinner genom for each loopar, 
+            med if-satser vars syfte är att jämföra valt alien-ID med alien-ID:n i databastabellerna. Borttagning sker vid hittad matchning 
+            */
             if (reply == JOptionPane.YES_OPTION) {
                 idb.delete("DELETE FROM Alien WHERE Alien_ID =" + valdUtomjording);
            
@@ -151,6 +161,11 @@ public class TaBortUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_taBortKnappMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
+        
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -167,42 +182,7 @@ public class TaBortUtomjording extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TaBortUtomjording(idb, id).setVisible(true);
-            }
-         });
-    }
-        
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbID;
     private javax.swing.JLabel goBack;

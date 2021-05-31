@@ -130,14 +130,16 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
 
 
     private void loggainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseReleased
-                
+        // Hämtar id-nummret på den som loggar in och tilldelar värdet till id-variabeln      
         this.id = txtIDNummer.getText();
                
         try{
+            // Denna kod hämtar lösenordet för det agent-id som matats in
         String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + id;
         String hamtaLosenord = idb.fetchSingle(losenordFraga);
         String losenord=String.valueOf(pswrdLosenord.getPassword());
 
+        //Denna kod hämtar ut om agenten har adminstatus eller ej
         String hamtaAdmin = "SELECT Administrator FROM agent WHERE Agent_ID =" + id;
         String admin = idb.fetchSingle(hamtaAdmin);
 
@@ -174,17 +176,6 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         valjInloggning.setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
-
-    public static void main(String[] args)
-    {
-    /**
-     * Den här metoden ska egentligen inte vara här
-     * Låter den ligga kvar för att jag ska kunna köra denna klass direkt
-     * vid testning av klassens funktioner
-     */
-    }
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel goBack;

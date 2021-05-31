@@ -118,7 +118,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         String valdUtrustning = cmbUtrustning.getSelectedItem().toString();
 
         try {
-            //Hämtar ut kolumnen utrustning-ID från alla tabeller i databasen där utrustnings-ID förekommer
+            //Hämtar ut kolumnen "utrustning-ID" från alla tabeller i databasen där utrustnings-ID:t förekommer
             ArrayList<String> innehar_utrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM Innehar_Utrustning");
             ArrayList<String> kommunikation = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation");
             ArrayList<String> teknik = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik");

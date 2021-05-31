@@ -27,18 +27,18 @@ public class TaBortAgent extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
+        
+        //Denna kod gör att textrutan inte kan redigeras av användare i gränssnittet
         txtAgentNamn.setEditable(false);
+        
         try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-            
+            //Hämtar alla agent-ID:n från databasen och sorterar i stigande ordning
             agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+            
+            //En for each loop för att lista alla idNr-nummer i en drop-down-meny
             agentID.forEach(aid ->  {
                 boxValjAgent.addItem(aid);
             });
-            
-        
-        
-        
         
         }
         catch(InfException e){
@@ -128,17 +128,22 @@ public class TaBortAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxValjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxValjAgentActionPerformed
+        //Hämtar namn på agenten för det ID som valts i gränssnittet
+   
         try{
-        String id = (String)boxValjAgent.getSelectedItem();
-        String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
+        String idNr = (String)boxValjAgent.getSelectedItem();
+        String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
         String namnFraga = idb.fetchSingle(hamtaNamn);
         txtAgentNamn.setText(namnFraga);}
+        
         catch(InfException e){
         System.out.println(e);
         }
     }//GEN-LAST:event_boxValjAgentActionPerformed
 
     private void taBortKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortKnappMouseReleased
+        
+        
         int valdAgent = Integer.parseInt((String)boxValjAgent.getSelectedItem());
         
         try{       
@@ -146,6 +151,11 @@ public class TaBortAgent extends javax.swing.JFrame {
         int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill radera denna agent från systemet? \n"
                 + "Åtgärden går inte att ångra.", "Obs!", JOptionPane.YES_NO_OPTION);
         
+        /*
+        Om användaren trycker på "yes" kommer denna kod att ta bort den valda agent via agent-ID:t 
+        i samtliga databastabeller där ID:t kan förekomma, med agent-tabellen sist i ledet
+        för att kunna garantera att det går att ta bort agenten helt
+        */
         if(svar == JOptionPane.YES_OPTION){
             idb.delete("DELETE FROM Innehar_Fordon WHERE Agent_ID=" + valdAgent);
             idb.delete("DELETE FROM Innehar_Utrustning WHERE Agent_ID=" + valdAgent);
@@ -169,44 +179,6 @@ public class TaBortAgent extends javax.swing.JFrame {
         new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TaBortAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TaBortAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TaBortAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TaBortAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TaBortAgent(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxValjAgent;

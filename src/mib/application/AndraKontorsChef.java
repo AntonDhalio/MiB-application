@@ -167,8 +167,9 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxKontorsChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxKontorsChefActionPerformed
+        //Hämtar namn på agenten för det ID som valts i gränssnittet
+        
         try{
-            //Hämtar namn på agenten för det ID som valts i gränssnittet
             String idNr = (String)boxKontorsChef.getSelectedItem();
             String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
             String namnFraga = idb.fetchSingle(hamtaNamn);
