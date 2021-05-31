@@ -76,8 +76,8 @@ public class SystemInfo extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -87,8 +87,8 @@ public class SystemInfo extends javax.swing.JFrame {
         skrivUt.setForeground(new java.awt.Color(102, 153, 255));
         skrivUt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         skrivUt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                skrivUtMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                skrivUtMouseReleased(evt);
             }
         });
         skrivUt.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,7 +188,15 @@ public class SystemInfo extends javax.swing.JFrame {
         }
     }
     
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void skrivUtMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skrivUtMouseReleased
+        try {
+            statArea.print();
+        } catch (PrinterException ex) {
+            System.out.println("Utskriften avbröts");
+        }
+    }//GEN-LAST:event_skrivUtMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -204,15 +212,7 @@ public class SystemInfo extends javax.swing.JFrame {
         catch (InfException ex) {
             System.out.println("Något gick fel");
         }
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void skrivUtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skrivUtMouseClicked
-        try {
-            statArea.print();
-        } catch (PrinterException ex) {
-            System.out.println("Utskriften avbröts");
-        }
-    }//GEN-LAST:event_skrivUtMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments

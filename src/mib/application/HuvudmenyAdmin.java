@@ -46,7 +46,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        hanteraAlienKnapp = new javax.swing.JPanel();
+        hanteraAgentKnapp = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         hanteraAlienKnapp1 = new javax.swing.JPanel();
@@ -76,34 +76,34 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         jLabel1.setText("Admin");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
 
-        hanteraAlienKnapp.setBackground(new java.awt.Color(0, 0, 0));
-        hanteraAlienKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        hanteraAlienKnapp.setForeground(new java.awt.Color(102, 153, 255));
-        hanteraAlienKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hanteraAlienKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hanteraAlienKnappMouseClicked(evt);
+        hanteraAgentKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        hanteraAgentKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        hanteraAgentKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        hanteraAgentKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hanteraAgentKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hanteraAgentKnappMouseReleased(evt);
             }
         });
-        hanteraAlienKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        hanteraAgentKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/MiB Man.png"))); // NOI18N
-        hanteraAlienKnapp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
+        hanteraAgentKnapp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 70, 60));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
         jLabel2.setText("Hantera agenter");
-        hanteraAlienKnapp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
+        hanteraAgentKnapp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 150, 80));
 
-        getContentPane().add(hanteraAlienKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 260, 80));
+        getContentPane().add(hanteraAgentKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 260, 80));
 
         hanteraAlienKnapp1.setBackground(new java.awt.Color(0, 0, 0));
         hanteraAlienKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
         hanteraAlienKnapp1.setForeground(new java.awt.Color(102, 153, 255));
         hanteraAlienKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hanteraAlienKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hanteraAlienKnapp1MouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hanteraAlienKnapp1MouseReleased(evt);
             }
         });
         hanteraAlienKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -123,8 +123,8 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         infoPortalKnapp.setForeground(new java.awt.Color(102, 153, 255));
         infoPortalKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         infoPortalKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                infoPortalKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                infoPortalKnappMouseReleased(evt);
             }
         });
         infoPortalKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -144,8 +144,8 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         hanteraUtrustningKnapp.setForeground(new java.awt.Color(102, 153, 255));
         hanteraUtrustningKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hanteraUtrustningKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hanteraUtrustningKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hanteraUtrustningKnappMouseReleased(evt);
             }
         });
         hanteraUtrustningKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -165,8 +165,8 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         statistikKnapp.setForeground(new java.awt.Color(102, 153, 255));
         statistikKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         statistikKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                statistikKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                statistikKnappMouseReleased(evt);
             }
         });
         statistikKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -186,8 +186,8 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         bytLosenKnapp.setForeground(new java.awt.Color(102, 153, 255));
         bytLosenKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bytLosenKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bytLosenKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                bytLosenKnappMouseReleased(evt);
             }
         });
         bytLosenKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -206,8 +206,8 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -227,49 +227,49 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hanteraAlienKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraAlienKnappMouseClicked
+    private void hanteraAgentKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraAgentKnappMouseReleased
         hanteraAgent = new AdminHanteraAgent(idb,id);
         hanteraAgent.setVisible(true);
-        dispose();                
-    }//GEN-LAST:event_hanteraAlienKnappMouseClicked
+        dispose();
+    }//GEN-LAST:event_hanteraAgentKnappMouseReleased
 
-    private void hanteraAlienKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraAlienKnapp1MouseClicked
+    private void hanteraAlienKnapp1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraAlienKnapp1MouseReleased
         hanteraAlienAdmin = new HanteraUtomjordingAdmin(idb,id);
         hanteraAlienAdmin.setVisible(true);
         dispose();
-    }//GEN-LAST:event_hanteraAlienKnapp1MouseClicked
+    }//GEN-LAST:event_hanteraAlienKnapp1MouseReleased
 
-    private void infoPortalKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoPortalKnappMouseClicked
+    private void infoPortalKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoPortalKnappMouseReleased
         infoPortal = new InfoPortal(idb, id);
         infoPortal.setVisible(true);
         dispose();
-    }//GEN-LAST:event_infoPortalKnappMouseClicked
+    }//GEN-LAST:event_infoPortalKnappMouseReleased
 
-    private void hanteraUtrustningKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnappMouseClicked
+    private void hanteraUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnappMouseReleased
         hanteraUtrustning = new AdminUtrustningHantera(idb, id);
         hanteraUtrustning.setVisible(true);
         dispose();
-    }//GEN-LAST:event_hanteraUtrustningKnappMouseClicked
+    }//GEN-LAST:event_hanteraUtrustningKnappMouseReleased
 
-    private void bytLosenKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bytLosenKnappMouseClicked
-        andraLosenord = new AndraLosenord(idb, id);
-        andraLosenord.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_bytLosenKnappMouseClicked
-
-    private void statistikKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statistikKnappMouseClicked
+    private void statistikKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statistikKnappMouseReleased
         sysInfo = new SystemInfo(idb, id);
         sysInfo.setVisible(true);
         dispose();
-    }//GEN-LAST:event_statistikKnappMouseClicked
+    }//GEN-LAST:event_statistikKnappMouseReleased
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void bytLosenKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bytLosenKnappMouseReleased
+        andraLosenord = new AndraLosenord(idb, id);
+        andraLosenord.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bytLosenKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         int reply = JOptionPane.showConfirmDialog(null, "Du håller på att logga ut.\nÄr du säker på att du vill fortsätta?", "Logga ut?", JOptionPane.YES_NO_OPTION);
         if(reply == JOptionPane.YES_OPTION){
             new ValjInloggning(idb).setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_goBackMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments
@@ -311,7 +311,7 @@ public class HuvudmenyAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bytLosenKnapp;
     private javax.swing.JLabel goBack;
-    private javax.swing.JPanel hanteraAlienKnapp;
+    private javax.swing.JPanel hanteraAgentKnapp;
     private javax.swing.JPanel hanteraAlienKnapp1;
     private javax.swing.JPanel hanteraUtrustningKnapp;
     private javax.swing.JPanel infoPortalKnapp;

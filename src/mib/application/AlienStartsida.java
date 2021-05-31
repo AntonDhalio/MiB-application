@@ -55,8 +55,8 @@ public class AlienStartsida extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -73,8 +73,8 @@ public class AlienStartsida extends javax.swing.JFrame {
         infoRutaKnapp.setForeground(new java.awt.Color(102, 153, 255));
         infoRutaKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         infoRutaKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                infoRutaKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                infoRutaKnappMouseReleased(evt);
             }
         });
         infoRutaKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,8 +96,8 @@ public class AlienStartsida extends javax.swing.JFrame {
         mailaOC1.setForeground(new java.awt.Color(102, 153, 255));
         mailaOC1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mailaOC1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mailaOC1MouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                mailaOC1MouseReleased(evt);
             }
         });
         mailaOC1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -119,8 +119,8 @@ public class AlienStartsida extends javax.swing.JFrame {
         andraLosen1.setForeground(new java.awt.Color(102, 153, 255));
         andraLosen1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         andraLosen1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                andraLosen1MouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                andraLosen1MouseReleased(evt);
             }
         });
         andraLosen1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -144,32 +144,32 @@ public class AlienStartsida extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void infoRutaKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoRutaKnappMouseClicked
-        InfoRuta ir = new InfoRuta(idb, id);
-        ir.setVisible(true);
-        dispose();       
-    }//GEN-LAST:event_infoRutaKnappMouseClicked
-
-    private void mailaOC1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mailaOC1MouseClicked
-        int bekrafta = JOptionPane.showConfirmDialog(null, "Detta kommer öppna ett annat program på din dator\när du säker på att du vill fortsätta?", "Varning", JOptionPane.YES_NO_OPTION);
-        if(bekrafta == JOptionPane.YES_OPTION){
-            MailaOC.mailProgram(idb, id);
-        }
-    }//GEN-LAST:event_mailaOC1MouseClicked
-
-    private void andraLosen1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_andraLosen1MouseClicked
-        AlienBytLosen abl = new AlienBytLosen(idb, id);
-        abl.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_andraLosen1MouseClicked
-
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         int reply = JOptionPane.showConfirmDialog(null, "Du håller på att logga ut.\nÄr du säker på att du vill fortsätta?", "Logga ut?", JOptionPane.YES_NO_OPTION);
         if(reply == JOptionPane.YES_OPTION){
             new ValjInloggning(idb).setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_goBackMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
+
+    private void infoRutaKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoRutaKnappMouseReleased
+        InfoRuta ir = new InfoRuta(idb, id);
+        ir.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_infoRutaKnappMouseReleased
+
+    private void mailaOC1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mailaOC1MouseReleased
+        int bekrafta = JOptionPane.showConfirmDialog(null, "Detta kommer öppna ett annat program på din dator\när du säker på att du vill fortsätta?", "Varning", JOptionPane.YES_NO_OPTION);
+        if(bekrafta == JOptionPane.YES_OPTION){
+            MailaOC.mailProgram(idb, id);
+        }
+    }//GEN-LAST:event_mailaOC1MouseReleased
+
+    private void andraLosen1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_andraLosen1MouseReleased
+        AlienBytLosen abl = new AlienBytLosen(idb, id);
+        abl.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_andraLosen1MouseReleased
 
     /**
      * @param args the command line arguments

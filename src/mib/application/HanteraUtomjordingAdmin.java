@@ -42,7 +42,7 @@ public class HanteraUtomjordingAdmin extends javax.swing.JFrame {
         justeraAlienKnapp1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        registreraAlienKnapp1 = new javax.swing.JPanel();
+        taBortAlien = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
@@ -57,8 +57,8 @@ public class HanteraUtomjordingAdmin extends javax.swing.JFrame {
         registreraAlienKnapp.setForeground(new java.awt.Color(102, 153, 255));
         registreraAlienKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         registreraAlienKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                registreraAlienKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                registreraAlienKnappMouseReleased(evt);
             }
         });
         registreraAlienKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,8 +79,8 @@ public class HanteraUtomjordingAdmin extends javax.swing.JFrame {
         justeraAlienKnapp1.setForeground(new java.awt.Color(102, 153, 255));
         justeraAlienKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         justeraAlienKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                justeraAlienKnapp1MouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                justeraAlienKnapp1MouseReleased(evt);
             }
         });
         justeraAlienKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -96,34 +96,34 @@ public class HanteraUtomjordingAdmin extends javax.swing.JFrame {
 
         getContentPane().add(justeraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 260, 80));
 
-        registreraAlienKnapp1.setBackground(new java.awt.Color(0, 0, 0));
-        registreraAlienKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        registreraAlienKnapp1.setForeground(new java.awt.Color(102, 153, 255));
-        registreraAlienKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        registreraAlienKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                registreraAlienKnapp1MouseClicked(evt);
+        taBortAlien.setBackground(new java.awt.Color(0, 0, 0));
+        taBortAlien.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        taBortAlien.setForeground(new java.awt.Color(102, 153, 255));
+        taBortAlien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        taBortAlien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                taBortAlienMouseReleased(evt);
             }
         });
-        registreraAlienKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        taBortAlien.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/trash.png"))); // NOI18N
-        registreraAlienKnapp1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+        taBortAlien.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 153, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ta bort utomjording");
-        registreraAlienKnapp1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 200, 80));
+        taBortAlien.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 200, 80));
 
-        getContentPane().add(registreraAlienKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 260, 80));
+        getContentPane().add(taBortAlien, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 260, 80));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -142,27 +142,27 @@ public class HanteraUtomjordingAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        new HuvudmenyAdmin(idb, id).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void registreraAlienKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registreraAlienKnappMouseClicked
+    private void registreraAlienKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registreraAlienKnappMouseReleased
         regUtomJ = new RegistreraUtomjording(idb, id);
         regUtomJ.setVisible(true);
         dispose();
-    }//GEN-LAST:event_registreraAlienKnappMouseClicked
+    }//GEN-LAST:event_registreraAlienKnappMouseReleased
 
-    private void justeraAlienKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_justeraAlienKnapp1MouseClicked
+    private void justeraAlienKnapp1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_justeraAlienKnapp1MouseReleased
         andraUtomjording = new AndraUtomjording(idb, id);
         andraUtomjording.setVisible(true);
         dispose();
-    }//GEN-LAST:event_justeraAlienKnapp1MouseClicked
+    }//GEN-LAST:event_justeraAlienKnapp1MouseReleased
 
-    private void registreraAlienKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registreraAlienKnapp1MouseClicked
+    private void taBortAlienMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortAlienMouseReleased
         new TaBortUtomjording(idb, id).setVisible(true);
         dispose();
-    }//GEN-LAST:event_registreraAlienKnapp1MouseClicked
+    }//GEN-LAST:event_taBortAlienMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        new HuvudmenyAdmin(idb, id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments
@@ -211,6 +211,6 @@ public class HanteraUtomjordingAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel justeraAlienKnapp1;
     private javax.swing.JLabel lblMIB;
     private javax.swing.JPanel registreraAlienKnapp;
-    private javax.swing.JPanel registreraAlienKnapp1;
+    private javax.swing.JPanel taBortAlien;
     // End of variables declaration//GEN-END:variables
 }
