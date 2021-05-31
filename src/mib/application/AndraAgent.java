@@ -161,7 +161,7 @@ public class AndraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxIDNummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxIDNummerActionPerformed
-        // Denna kod hämtar data från databasen från det agrnt-ID man har valt
+        // Denna kod hämtar data från databasen från det agent-ID man har valt
         try{
             String idNr = (String)boxIDNummer.getSelectedItem();
             String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + idNr);

@@ -37,7 +37,10 @@ public class AndraUtomjording extends javax.swing.JFrame {
         
         
         try{
+            //Kod som hämtar ut hela ID-kolumnen för aliens i databasen
             ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM alien ORDER BY Alien_ID ASC");
+            
+            //For each loop som gör att alla områdesnamn listas i en drop-down-meny
             for(String nuvarandeUtomjording: utomjording){
                 utomjordingBox.addItem(nuvarandeUtomjording);
             }
@@ -182,10 +185,13 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
     private void utomjordingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utomjordingBoxActionPerformed
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
+        
         agentBox.removeAllItems();
         rasBox.removeAllItems();
         omradeBox.removeAllItems();
-        try{            
+        
+        try{
+            // Denna kod hämtar data från databasen från det agent-ID man har valt
             String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID=" + valdUtomjording);
             namnFalt.setText(namn);
             String losenord = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID=" + valdUtomjording);
@@ -195,14 +201,28 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String valtOmrade = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID=" + valdUtomjording);
             String valdAgent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID=" + valdUtomjording);
             
+            /* 
+            Denna kod hämtar kolumnen "områdes-ID" från områdestabellen i databasen och med en for each loop
+            läggs alla områdesID:n till i en drop-down-meny i stigande ordning
+            */
             ArrayList<String> omrade = idb.fetchColumn("SELECT Omrades_ID FROM omrade ORDER BY Omrades_ID ASC");
             for(String nuvarandeOmrade: omrade){
                 omradeBox.addItem(nuvarandeOmrade);
             }
+            
+            /* 
+            Denna kod hämtar kolumnen "agent-ID" från agent-tabellen i databasen och med en for each loop
+            läggs alla områdesID:n till i en drop-down-meny i stigande ordning
+            */
             ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent ORDER BY Agent_ID ASC");
             for(String nuvarandeAgent: agent){
                 agentBox.addItem(nuvarandeAgent);
             }
+            
+            /* 
+            Denna kod skapar en arraylist med olika raser som användaren sedan kan välja mellan.
+            Genom en for each loop listas sedan alla raser i en drop-down-meny
+            */
             ArrayList<String> ras = new ArrayList<String>();
             ras.add("Ras inte registrerad");
             ras.add("boglodite");
@@ -215,6 +235,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
             omradeBox.setSelectedItem(valtOmrade);
             agentBox.setSelectedItem(valdAgent);
             
+             
             ArrayList<String> boglodite = idb.fetchColumn("SELECT Alien_ID FROM boglodite");
             
             ArrayList<String> squid = idb.fetchColumn("SELECT Alien_ID FROM squid");
@@ -246,6 +267,8 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
+        
+        //Externt metodanrop till valideringsklassen för att se till att fälten med telefonnummer, lösenord och namn korrekt ifyllda
         if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
         try{
             String namn = namnFalt.getText();
@@ -255,18 +278,24 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String regAgent = (String)agentBox.getSelectedItem();
             String regOmrade = (String)omradeBox.getSelectedItem();
             
+            //Kod för att se till att användaren måste bekräfta eller avvisa ändringarna
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra dessa uppgifter?", "Varning!", JOptionPane.YES_NO_OPTION);
             
+            //Kod som uppdaterar alla fält som fått ny information, om användaren bekräftar att ändringarna ska genomföras
             if(reply == JOptionPane.YES_OPTION){
                 idb.update("UPDATE alien SET Namn='" + namn + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Losenord='" + losenord + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Telefon='" + telNr + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Ansvarig_Agent='" + regAgent + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Plats='" + regOmrade + "' where Alien_ID=" + valdUtomjording);
+               
+                // Tar bort vald aliens ID från sin gamla ras i databasen
                 if(gamalRas != null && regRas != gamalRas){
                 idb.delete("DELETE FROM " + gamalRas + " WHERE Alien_ID=" + valdUtomjording);
                 }
                 if(regRas.equals(gamalRas)){}
+                
+                //Lägger till vald aliens ID i sin nya ras i databasen
                 else if(regRas.equals("boglodite")){
                     idb.insert("INSERT INTO boglodite VALUES(" + valdUtomjording + ", 3)");
                 }
@@ -288,6 +317,11 @@ public class AndraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_godkännKnappMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
+        
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -304,41 +338,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AndraUtomjording(idb,id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agentBox;

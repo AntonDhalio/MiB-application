@@ -148,6 +148,10 @@ public class InfoPortal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valBoxActionPerformed
+        /*
+        Denna kod hanterar vad som ska ske beroende på valen som görs av användaren i första drop-down-menyn
+        */
+                
         this.info = (String)valBox.getSelectedItem();
         try{
             if(info.equals(null)){
@@ -362,6 +366,11 @@ public class InfoPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_sokKnappMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
+        
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
         
@@ -405,9 +414,13 @@ public class InfoPortal extends javax.swing.JFrame {
     }
     
     public void alienId(){
+        
+        //Hämtar kolumnen med alien-ID från alien-tabellen i databasen och lägger det i en arraylist
         ArrayList<String> idAlien = new ArrayList<>();
         try{
             idAlien = idb.fetchColumn("SELECT Alien_ID FROM alien ORDER BY Alien_ID ASC");
+            
+            // For each loop för att lista namn på aliens
             for(String dettaId: idAlien){
                 String AlienNamn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID=" + dettaId);
                 idRasBox.addItem(AlienNamn);
@@ -416,42 +429,6 @@ public class InfoPortal extends javax.swing.JFrame {
         catch(InfException e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-    }
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InfoPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InfoPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InfoPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InfoPortal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InfoPortal(idb, id).setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
