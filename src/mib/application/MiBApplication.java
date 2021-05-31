@@ -19,13 +19,16 @@ public class MiBApplication {
         
         try{
             idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
+            
+            //Denna kod ser till att inloggningsfönstret öppnas direkt vid körning
+            new ValjInloggning(idb).setVisible(true);
         }
         catch(InfException ex){
             ex.getMessage();
         }
         
-        //Denna kod ser till att inloggningsfönstret öppnas direkt vid körning
-        new ValjInloggning(idb).setVisible(true);
+        
+        
     }
     
     

@@ -28,7 +28,10 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         this.id = id;
 
         try {
+            //Hämtar alla utrustnings-ID:n från databasen och sorterar i stigande ordning
             ArrayList<String> utrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM Utrustning ORDER BY Utrustnings_ID ASC");
+            
+            //En for each loop för att lista alla id-nummer i en drop-down-meny
             for (String nuvarandeUtrustning : utrustning) {
                 cmbUtrustning.addItem(nuvarandeUtrustning);
             }
@@ -115,16 +118,23 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         String valdUtrustning = cmbUtrustning.getSelectedItem().toString();
 
         try {
+            //Hämtar ut kolumnen utrustning-ID från alla tabeller i databasen där utrustnings-ID förekommer
             ArrayList<String> innehar_utrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM Innehar_Utrustning");
             ArrayList<String> kommunikation = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation");
             ArrayList<String> teknik = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik");
             ArrayList<String> vapen = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen");
 
             
-
+            
             String utrNamn = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID=" + valdUtrustning);
 
+            //Kod som framkallar en varningsruta när användaren försöker ta bort utrustning
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Utrustning vid namn '" + utrNamn + "'", "Varning!", JOptionPane.YES_NO_OPTION);
+            
+            /*Om användaren bekräftar borttagningen, ser nedanstående kod till att den valda utrustningen 
+            försvinner i alla tabeller genom for each loopar, med if-satser vars syfte är att jämföra valt utrustnings-ID
+            med utrustnings-ID:n i databastabellerna. Borttagning sker vid hittad matchning 
+            */
             if (reply == JOptionPane.YES_OPTION) {
                 idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + valdUtrustning);
                 
@@ -160,41 +170,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         hanteraUtrustning.setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TaBortUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TaBortUtrustning(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TabortKnapp;
