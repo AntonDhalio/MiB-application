@@ -27,6 +27,8 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
+        
+        // Denna kod döljer ett textfält med detaljer kring utrustningen
         utrustningDetalj.setVisible(false);
     }
 
@@ -209,6 +211,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void arVapenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arVapenActionPerformed
+        // Denna kod hanterar vad som ska ske om användaren matar in att hen vill registrera ett vapen
         if(arVapen.isSelected()){
             arTeknik.setEnabled(false);
             arKomm.setEnabled(false);
@@ -216,6 +219,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
             labelFranBox.setText("Ange vapnets kaliber");
         }
         else{
+            // Denna kod hanterar vad som ska ske om teknik ska registreras
             arTeknik.setEnabled(true);
             arKomm.setEnabled(true);
             utrustningDetalj.setVisible(false);
@@ -224,6 +228,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_arVapenActionPerformed
 
     private void arKommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arKommActionPerformed
+        // Denna kod hanterar vad som ska ske om användaren matar in att hen vill registrera kommunikation
         if(arKomm.isSelected()){
             arTeknik.setEnabled(false);
             arVapen.setEnabled(false);
@@ -231,6 +236,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
             labelFranBox.setText("Ange överföringsteknik");
         }
         else{
+            // Denna kod hanterar vad som ska ske om teknik ska registreras
             arTeknik.setEnabled(true);
             arVapen.setEnabled(true);
             utrustningDetalj.setVisible(false);
@@ -239,6 +245,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_arKommActionPerformed
 
     private void arTeknikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arTeknikActionPerformed
+        // Denna kod hanterar vad som ska ske om användaren matar in att hen vill registrera kommunikation
         if(arTeknik.isSelected()){
             arVapen.setEnabled(false);
             arKomm.setEnabled(false);
@@ -246,6 +253,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
             labelFranBox.setText("Ange teknikens kraftkälla");
         }
         else{
+            // Denna kod hanterar vad som ska ske om teknik ska registreras
             arVapen.setEnabled(true);
             arKomm.setEnabled(true);
             utrustningDetalj.setVisible(false);
@@ -254,19 +262,26 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_arTeknikActionPerformed
 
     private void tomFaltKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tomFaltKnappMouseReleased
+        // Metod för att tömma fälten på tecken
         utrustningNamn.setText("");
         utrustningDetalj.setText("");       
     }//GEN-LAST:event_tomFaltKnappMouseReleased
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+        // Externt metodanrop för att kontrollera att utrustningsnamn och detaljer är ifyllda korrekt
         if(Validering.txtFieldBegransad20(utrustningNamn) && Validering.txtFieldHarVarde(utrustningDetalj)){
-            try{                
+            try{
+                // Denna kod ger utrustningen nästa lediga ID-nummer
                 String nextUID = idb.getAutoIncrement("utrustning", "Utrustnings_ID");
+                
+                
                 String namn = utrustningNamn.getText();
                 String detaljer = utrustningDetalj.getText();                
-        
+                
+                // Denna kod ser till att användaren måste bekräfta eller avvisa att utrustningen ska registreras
                 int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);
             
+                // Om registreringen bekräftas läggs utrustningen till. Vad som läggs till beror på typ av utrustning
                 if(reply == JOptionPane.YES_OPTION){
                     
                 if(arVapen.isSelected() && Validering.txtFieldBegransad10(utrustningDetalj)){
@@ -291,6 +306,10 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_godkännKnappMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -309,40 +328,6 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_goBackMouseReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtrustning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistreraUtrustning(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox arKomm;

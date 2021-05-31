@@ -34,20 +34,29 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         this.id = id;
         
         try{
+            //Hämtar kolumnen med agent-ID:n ur agent-tabellen i databasen
             ArrayList<String> agenter = idb.fetchColumn("SELECT Agent_ID FROM agent");
+            
+            //Genom en for each loop listas alla agent-ID:n i en drop-down-meny
             for(String nuvarandeAgent: agenter){
                 agentBox.addItem(nuvarandeAgent);
             }
-        
+            
+            //Hämtar kolumnen med plats-ID:n ur plats-tabellen i databasen
             ArrayList<String> plats = idb.fetchColumn("SELECT Plats_ID FROM plats");
+            
+            //Med en for each loop listas alla plats-ID:n i en drop-down-meny
             for(String nuvarandePlats: plats){
                 omradeBox.addItem(nuvarandePlats);
             }
             
+            //En arraylist som håller de olika raserna som finns
             ArrayList<String> ras = new ArrayList<String>();
             ras.add("boglodite");
             ras.add("squid");
             ras.add("worm");
+            
+            //För att lista raserna i en drop-down-meny, används en for each loop
             for(String nuvarandeRas: ras){
                rasBox.addItem(nuvarandeRas);
             }
@@ -208,6 +217,10 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+        /*
+        Externt metodanrop till valideringsklassen för att kontrollera att telefonnummer, lösenord och namn 
+        är korrekt ifyllda
+        */
         if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
         try{
             String namn = namnFalt.getText();
@@ -216,7 +229,11 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             String regRas = (String)rasBox.getSelectedItem();
             String regAgent = (String)agentBox.getSelectedItem();
             String regOmrade = (String)omradeBox.getSelectedItem();
+            
+            //Hämtar automatiskt nästa lediga ID-nummer till den nya utomjordingen
             String nextId = idb.getAutoIncrement("alien", "Alien_ID");
+            
+            //Kod för att hämta dagens datum och göra det till en String
             LocalDate date = LocalDate.now();
             String datum = date.toString();
             
@@ -224,7 +241,8 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             if(namn.equals("") || losenord.equals("")){
                 JOptionPane.showMessageDialog(null, "Fyll i de kravsatta fälten!");
             }
-            //OBS! lägg till så att man själv får välja values på boglodite och squid!!
+            
+            // Lägger till den nya utomjordngen i databasen. De värden som läggs in varierar beroende på vald ras
             else{
                 idb.insert("INSERT INTO alien VALUES(" + nextId + ",'" + datum + "','" + losenord + "','" + namn + "','" + telNr + "'," + regOmrade + "," + regAgent + ")");
                 
@@ -254,6 +272,10 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_avbrytKnapp1MouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -270,41 +292,6 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistreraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistreraUtomjording(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agentBox;
