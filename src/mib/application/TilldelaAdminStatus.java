@@ -27,15 +27,22 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
+        
+        //Gör så att textrutan inte går att redigera av användaren i gränssnittet
         txtNamn.setEditable(false);
-        try{
+       
+        try{ 
+            //Hämtar alla agent-ID:n för agenter som ännu inte har adminstatus
             agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent WHERE Administrator='N'");
             
+            //En for each loop för att lista alla agent-ID:n i en drop-down-meny
             agentID.forEach(idNr -> {
                 boxAgenter.addItem(idNr);
                                     });       
             }
-            catch(InfException e){}
+            catch(InfException e){
+            JOptionPane.showMessageDialog(null, "Hoppsan! Det gick inte att hämta ID:n. Vänligen försök igen");
+            }
         
    } 
         
@@ -123,21 +130,26 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAgenterActionPerformed
+        //Kod som ser till att textrutan i gränssnittet fylls med den valda agentens namn, baserat på agent-ID
         try{
-            String id = (String)boxAgenter.getSelectedItem();
-            String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + id);
+            String idNr = (String)boxAgenter.getSelectedItem();
+            String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + idNr);
             txtNamn.setText(namn);
         }
-                catch(InfException e){}
+                catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Kunde inte hämta namnet för denna agent. Vänligen försök igen");
+                }
     }//GEN-LAST:event_boxAgenterActionPerformed
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+        //Uppdaterar berörd agent till administratör när användaren klickar på "godkänn"
         try {
-            String id = (String)boxAgenter.getSelectedItem();
-            idb.update("UPDATE Agent SET Administrator= 'J' WHERE Agent_ID =" + id);
+            String idNr = (String)boxAgenter.getSelectedItem();
+            idb.update("UPDATE Agent SET Administrator= 'J' WHERE Agent_ID =" + idNr);
             JOptionPane.showMessageDialog(null, "Tilldelningen av administratörsstatus lyckades!");
         } 
         catch (InfException ex) {
+                JOptionPane.showMessageDialog(null, "Hoppsan! Det gick tyvärr inte att tilldela administratörsstatus. Vänligen försök igen");
             }
     }//GEN-LAST:event_godkännKnappMouseReleased
 
@@ -146,44 +158,6 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
 
-    
-        
-        
-  
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TilldelaAdminStatus(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxAgenter;

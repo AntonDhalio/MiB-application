@@ -142,19 +142,28 @@ public class AndraLosenord extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+        //Externt metodanrop till valideringsklassen, för att validera att lösenordsfälten uppfyller kraven
         if(Validering.losenordFaltHarVarde(nuvarandeLosen) && Validering.losenordFaltHarVarde(nyttLosen) && Validering.losenordFaltHarVarde(bekraftaLosen)){
-        try{
-        
+       
+            try{
+        /* Hämtar det gamla lösenordet frånd den agent som är inloggad just nu, hämtar inmatningen av
+           det gamla lösenordet från gränssnittet där användaren ombes fylla i sitt gamla lösenord, samt
+           inmatningen i fälten där användaren ombes skriva in nytt lösenord och även bekräfta det
+        */
         String gamalLosen = "SELECT Losenord FROM Agent WHERE Agent_ID=" + id;
         String hamtaGamalLosen = idb.fetchSingle(gamalLosen);
         String inputGamalLosen = String.valueOf(nuvarandeLosen.getPassword());
         String nyttLosenord = String.valueOf(nyttLosen.getPassword());
         String bekraftaLosenord = String.valueOf(bekraftaLosen.getPassword());
         
-        
+        /* Första if-satsen kontrollerar att det gamla lösenordet matchar inmatningen av det gamla lösenordet, 
+           och att det nya lösenordet matchar bekräftelsen av lösenordet.
+        */
         if(hamtaGamalLosen.equals(inputGamalLosen) && bekraftaLosenord.equals(nyttLosenord)){
+            //Denna kod ser till att användaren måste antingen bekräfta eller avvisa ändringen av lösenord
            int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ändra lösenordet?","Varning!",JOptionPane.YES_NO_OPTION);
            
+           //Om användaren trycker på "yes" och godkänner ändringarna, ser denna kod till att uppdatera lösenordet i databasen
            if (reply == JOptionPane.YES_OPTION){
                idb.update("UPDATE agent SET Losenord='" + nyttLosenord +"' where Agent_ID=" + id);
                JOptionPane.showMessageDialog(null, "Ditt lösenord har ändrats!");
@@ -172,12 +181,17 @@ public class AndraLosenord extends javax.swing.JFrame {
     }//GEN-LAST:event_godkännKnappMouseReleased
 
     private void avbrytKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnappMouseReleased
+        //En metod för att abryta ändringarna
         bekraftaLosen.setText("");
         nuvarandeLosen.setText("");
         nyttLosen.setText("");
     }//GEN-LAST:event_avbrytKnappMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -195,42 +209,6 @@ public class AndraLosenord extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
-
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AndraLosenord(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel avbrytKnapp;

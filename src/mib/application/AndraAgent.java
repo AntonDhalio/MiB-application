@@ -28,12 +28,17 @@ public class AndraAgent extends javax.swing.JFrame {
         this.id = id;
         
         try{
+            //Kod som hämtar ut hela namn-kolumnen för områden i databasen
             omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
+            
+            //For each loop som gör att alla områdesnamn listas i en drop-down-meny
             omrade.forEach(ansvararForOmrade -> {
                     boxNyttOmrade.addItem(ansvararForOmrade);
                                                 });
-    
+            //Kod som hämtar ut hela agent-ID-kolumnen för agenter i databasen. Alla ID:n sorteras i stigande ordning
             agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+            
+            //For each loop som ser till att alla ID:n listas i en drop-down-meny
             agentID.forEach(idNr -> {
                 boxIDNummer.addItem(idNr);
                                     });          
@@ -156,24 +161,26 @@ public class AndraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxIDNummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxIDNummerActionPerformed
-        
+        // Denna kod hämtar data från databasen från det agrnt-ID man har valt
         try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
-            String id = (String)boxIDNummer.getSelectedItem();
-            String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + id);
-            String telefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID=" + id);
-            String losenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID=" + id);
-            int ansvarOmrade = Integer.parseInt(idb.fetchSingle("SELECT Omrade FROM Agent WHERE Agent_ID=" + id));
+            String idNr = (String)boxIDNummer.getSelectedItem();
+            String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + idNr);
+            String telefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID=" + idNr);
+            String losenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID=" + idNr);
+            int ansvarOmrade = Integer.parseInt(idb.fetchSingle("SELECT Omrade FROM Agent WHERE Agent_ID=" + idNr));
             String ansvararForOmrade = idb.fetchSingle("SELECT Benamning FROM Omrade WHERE Omrades_ID=" + ansvarOmrade);
             boxNyttOmrade.setSelectedItem(ansvararForOmrade);
             
-            
+            //Kod som fyller fälten i gränssnittet med den data som precis hämtats från databsen
             txtNyttNamn.setText(namn);
             txtNyttTelenr.setText(telefon);
             txtNyttLosenord.setText(losenord);
             
         }
-            catch(InfException e){}
+            catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Hoppsan! Det gick tyvärr inte att registrera den nya informationen. \n"
+                        + "Vänligen försök igen");
+            }
         
    
     }//GEN-LAST:event_boxIDNummerActionPerformed
@@ -181,11 +188,11 @@ public class AndraAgent extends javax.swing.JFrame {
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         int valdAgent = Integer.parseInt((String)boxIDNummer.getSelectedItem());
         
-        
+        //Första if-satsen består av ett externt metodanrop till valideringsklassen för att validera inmatningen för lösenord, namn och telefonnummer
         if(Validering.txtFieldBegransad6(txtNyttLosenord) && Validering.txtFieldBegransad30(txtNyttTelenr) && Validering.txtFieldBegransad20(txtNyttNamn)){
         
+            //Om valideringen går igenom så hämtas all inmatning från fälten i gränssnittet
             try{
-            idb = new InfDB("mibdb", "3306", "mibdba", "mibkey");
             String namn = txtNyttNamn.getText();
             String telefon = txtNyttTelenr.getText();
             String losenord = txtNyttLosenord.getText();
@@ -194,14 +201,17 @@ public class AndraAgent extends javax.swing.JFrame {
             String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
             int intOmradesID = Integer.parseInt(hamtaOmradesID);
             
+            //Denna kod ser till att användaren måste godkänna att ändringarna går igenom, via en pop-up-ruta
             int svara = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra dessa ändringar?", "Obs!", JOptionPane.YES_NO_OPTION);
-            
+                
+                // Vid godkännande av ändringarna uppdateras databasen med alla förändringar
                 if(svara == JOptionPane.YES_OPTION){            
                     idb.update("UPDATE Agent SET Namn='" + namn + "'WHERE Agent_ID=" + valdAgent + "");
                     idb.update("UPDATE Agent SET Telefon='" + telefon + "'WHERE Agent_ID=" + valdAgent + "");
                     idb.update("UPDATE Agent SET Losenord='" + losenord + "'WHERE Agent_ID=" + valdAgent + "");
                     idb.update("UPDATE Agent SET Omrade='" + intOmradesID + "'WHERE Agent_ID=" + valdAgent + "");
-            
+                    
+                    //Pop-up-ruta för att bekräfta att allt har gått som det ska
                     JOptionPane.showMessageDialog(null, "Ändringarna har nu genomförts");
                                                     }
             
@@ -217,41 +227,6 @@ public class AndraAgent extends javax.swing.JFrame {
         new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AndraAgent(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxIDNummer;

@@ -149,18 +149,32 @@ public class AlienBytLosen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tomFaltKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tomFaltKnappMouseReleased
+        // En metod för att tömma lösenordsfälten på tecken som skrivits in
         txtBekraftaLosen.setText("");
         txtNuvarandeLosen.setText("");
         txtNyttLosen.setText("");
     }//GEN-LAST:event_tomFaltKnappMouseReleased
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+        /**
+         * Metod för att byta lösenord för en alien.
+         * Första if-satsen är ett externt metodanrop till valideringsklassen för validering av att 
+         * lösenordsfälten inte är tomma eller överskrider maxgränsen på 6 tecken.
+         **/
         if(Validering.txtFieldBegransad6(txtNyttLosen) || Validering.txtFieldBegransad6(txtBekraftaLosen)){
+        
+            //Här hämtas all inmatning från lösenordsfälten
         try {
             String nyttLosen = txtNyttLosen.getText();
             String nuvarandeLosen = idb.fetchSingle("SELECT Losenord FROM Alien WHERE Alien_ID=" + id);
             String nuvarandeInmatning = txtNuvarandeLosen.getText();
             String bekrafta = txtBekraftaLosen.getText();
+            
+            /**
+             * If-satsen kollar om man har matat in rätt nuvarande lösenord samt att det nya lösenordet
+             * har skrivits in korrekt två gånger
+             * Lösenordet ändras om allt som är besrkivet ovan, är i sin ordning
+             */
             if (nuvarandeInmatning.equals(nuvarandeLosen) && nyttLosen.equals(bekrafta)) {
                idb.update("UPDATE Alien SET Losenord ='" + nyttLosen + "' WHERE Alien_ID=" + id);
                JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
@@ -168,12 +182,17 @@ public class AlienBytLosen extends javax.swing.JFrame {
                startSida.setVisible(true);
                dispose();
             }
+            
+            //Else if-sats som hanterar fall där nuvarande lösenordet skrivs in fel och visar ett felmeddelande
                else if (!nuvarandeInmatning.equals(nuvarandeLosen)) {
                     JOptionPane.showMessageDialog(null, "Fel lösenord! Försök igen!");
                }
+            //Else if-sats som körs om lösenordet inte matchar med fältet där lösenordet ska bekräftas. Ger felmeddelande
                else if(!nyttLosen.equals(bekrafta)){
                     JOptionPane.showMessageDialog(null, "Nytt lösenord och bekräftelse matchar inte");
-               }            
+               }  
+            
+            //Else if-sats som hanterar fall där fälten är tomma och ger ett felmeddelande
                else if (nyttLosen.equals("") || bekrafta.equals("")) {
                     JOptionPane.showMessageDialog(null, "Lösenordet får inte vara tomt!");
                }
@@ -190,35 +209,6 @@ public class AlienBytLosen extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_goBackMouseReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel goBack;
