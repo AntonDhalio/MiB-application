@@ -59,8 +59,8 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -70,8 +70,8 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
         hanteraUtrustningKnapp.setForeground(new java.awt.Color(102, 153, 255));
         hanteraUtrustningKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hanteraUtrustningKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                hanteraUtrustningKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                hanteraUtrustningKnappMouseReleased(evt);
             }
         });
         hanteraUtrustningKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -91,8 +91,8 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
         taBortUtrustningKnapp.setForeground(new java.awt.Color(102, 153, 255));
         taBortUtrustningKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         taBortUtrustningKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                taBortUtrustningKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                taBortUtrustningKnappMouseReleased(evt);
             }
         });
         taBortUtrustningKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,23 +114,23 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         menyAdmin = new HuvudmenyAdmin(idb,id);
         menyAdmin.setVisible(true);
         dispose();
-    }//GEN-LAST:event_goBackMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
-    private void hanteraUtrustningKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnappMouseClicked
+    private void hanteraUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnappMouseReleased
         regUtrustning = new RegistreraUtrustning(idb, id);
         regUtrustning.setVisible(true);
         dispose();
-    }//GEN-LAST:event_hanteraUtrustningKnappMouseClicked
+    }//GEN-LAST:event_hanteraUtrustningKnappMouseReleased
 
-    private void taBortUtrustningKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortUtrustningKnappMouseClicked
+    private void taBortUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortUtrustningKnappMouseReleased
         taBortUtrustning = new TaBortUtrustning(idb, id);
         taBortUtrustning.setVisible(true);
         dispose();
-    }//GEN-LAST:event_taBortUtrustningKnappMouseClicked
+    }//GEN-LAST:event_taBortUtrustningKnappMouseReleased
 
     /**
      * @param args the command line arguments

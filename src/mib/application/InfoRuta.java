@@ -58,8 +58,8 @@ public class InfoRuta extends javax.swing.JFrame {
         omradeschefKnapp.setForeground(new java.awt.Color(102, 153, 255));
         omradeschefKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         omradeschefKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                omradeschefKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                omradeschefKnappMouseReleased(evt);
             }
         });
         omradeschefKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,8 +79,8 @@ public class InfoRuta extends javax.swing.JFrame {
         aliensOmradeKnapp.setForeground(new java.awt.Color(102, 153, 255));
         aliensOmradeKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         aliensOmradeKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                aliensOmradeKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                aliensOmradeKnappMouseReleased(evt);
             }
         });
         aliensOmradeKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -107,8 +107,8 @@ public class InfoRuta extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -127,7 +127,7 @@ public class InfoRuta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void aliensOmradeKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aliensOmradeKnappMouseClicked
+    private void aliensOmradeKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aliensOmradeKnappMouseReleased
         txtInfo.selectAll();
         txtInfo.replaceSelection("");
         try {
@@ -148,9 +148,9 @@ public class InfoRuta extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-    }//GEN-LAST:event_aliensOmradeKnappMouseClicked
+    }//GEN-LAST:event_aliensOmradeKnappMouseReleased
 
-    private void omradeschefKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_omradeschefKnappMouseClicked
+    private void omradeschefKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_omradeschefKnappMouseReleased
         txtInfo.selectAll();
         txtInfo.replaceSelection("");
         try {
@@ -162,13 +162,13 @@ public class InfoRuta extends javax.swing.JFrame {
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-    }//GEN-LAST:event_omradeschefKnappMouseClicked
+    }//GEN-LAST:event_omradeschefKnappMouseReleased
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         AlienStartsida as = new AlienStartsida(idb, id);
         as.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_goBackMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments

@@ -78,8 +78,8 @@ public class InloggningAlien extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -107,8 +107,8 @@ public class InloggningAlien extends javax.swing.JFrame {
         loggain.setForeground(new java.awt.Color(102, 153, 255));
         loggain.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loggain.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loggainMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                loggainMouseReleased(evt);
             }
         });
         loggain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,14 +128,7 @@ public class InloggningAlien extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        valjInloggning = new ValjInloggning(idb);
-        valjInloggning.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void loggainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseClicked
-
+    private void loggainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseReleased
         //Externt metodanrop för att kolla om textfältet har ett värde
         if(Validering.txtFieldHarVarde(txtIDNummer)){
             
@@ -161,8 +154,13 @@ public class InloggningAlien extends javax.swing.JFrame {
             }
       
        }
+    }//GEN-LAST:event_loggainMouseReleased
 
-    }//GEN-LAST:event_loggainMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        valjInloggning = new ValjInloggning(idb);
+        valjInloggning.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseReleased
 
  
 

@@ -43,7 +43,7 @@ public class AlienBytLosen extends javax.swing.JFrame {
         txtNuvarandeLosen = new javax.swing.JTextField();
         txtNyttLosen = new javax.swing.JTextField();
         txtBekraftaLosen = new javax.swing.JTextField();
-        avbrytKnapp = new javax.swing.JPanel();
+        tomFaltKnapp = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         godkännKnapp = new javax.swing.JPanel();
@@ -77,35 +77,35 @@ public class AlienBytLosen extends javax.swing.JFrame {
         txtBekraftaLosen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         getContentPane().add(txtBekraftaLosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 270, 30));
 
-        avbrytKnapp.setBackground(new java.awt.Color(0, 0, 0));
-        avbrytKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        avbrytKnapp.setForeground(new java.awt.Color(102, 153, 255));
-        avbrytKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        avbrytKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                avbrytKnappMouseClicked(evt);
+        tomFaltKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        tomFaltKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        tomFaltKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        tomFaltKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tomFaltKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tomFaltKnappMouseReleased(evt);
             }
         });
-        avbrytKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        tomFaltKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/cancel.png"))); // NOI18N
-        avbrytKnapp.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+        tomFaltKnapp.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 153, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Avbryt");
-        avbrytKnapp.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
+        jLabel8.setText("Töm fält");
+        tomFaltKnapp.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
-        getContentPane().add(avbrytKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 110, 30));
+        getContentPane().add(tomFaltKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 110, 30));
 
         godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
         godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
         godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
         godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseReleased(evt);
             }
         });
         godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,8 +128,8 @@ public class AlienBytLosen extends javax.swing.JFrame {
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -148,13 +148,13 @@ public class AlienBytLosen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        AlienStartsida as = new AlienStartsida(idb, id);
-        as.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_goBackMouseClicked
+    private void tomFaltKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tomFaltKnappMouseReleased
+        txtBekraftaLosen.setText("");
+        txtNuvarandeLosen.setText("");
+        txtNyttLosen.setText("");
+    }//GEN-LAST:event_tomFaltKnappMouseReleased
 
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         if(Validering.txtFieldBegransad6(txtNyttLosen) || Validering.txtFieldBegransad6(txtBekraftaLosen)){
         try {
             String nyttLosen = txtNyttLosen.getText();
@@ -182,13 +182,13 @@ public class AlienBytLosen extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null, e);
         }
         }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+    }//GEN-LAST:event_godkännKnappMouseReleased
 
-    private void avbrytKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnappMouseClicked
-        txtBekraftaLosen.setText("");
-        txtNuvarandeLosen.setText("");
-        txtNyttLosen.setText("");
-    }//GEN-LAST:event_avbrytKnappMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        AlienStartsida as = new AlienStartsida(idb, id);
+        as.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments
@@ -221,7 +221,6 @@ public class AlienBytLosen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel avbrytKnapp;
     private javax.swing.JLabel goBack;
     private javax.swing.JPanel godkännKnapp;
     private javax.swing.JLabel jLabel1;
@@ -233,6 +232,7 @@ public class AlienBytLosen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel tomFaltKnapp;
     private javax.swing.JTextField txtBekraftaLosen;
     private javax.swing.JTextField txtNuvarandeLosen;
     private javax.swing.JTextField txtNyttLosen;
