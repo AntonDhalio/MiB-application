@@ -117,7 +117,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         lblValjOmrade.setForeground(new java.awt.Color(255, 255, 255));
-        lblValjOmrade.setText("Ansvarig för område");
+        lblValjOmrade.setText("Arbetar inom område");
         getContentPane().add(lblValjOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 120, 20));
 
         boxAnsvarigForOmrade.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +247,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         String valtKontor = (String)boxValjKontor.getSelectedItem();
         
         
-            if(Validering.txtFieldBegransad6(txtLosenord, passwordLabel.getText()) && Validering.txtFieldBegransad20(txtNamn, namnLabel.getText()) && Validering.txtFieldBegransad30(txtTelefon, telefonLabel.getText()) && Validering.ValtEttAlternativ(boxTypAvAgent)){
+            if(Validering.txtFieldBegransad20(txtNamn, namnLabel.getText()) && Validering.txtFieldBegransad30(txtTelefon, telefonLabel.getText()) && Validering.txtFieldBegransad6(txtLosenord, passwordLabel.getText()) && Validering.ValtEttAlternativ(boxTypAvAgent)){
 
         
                 try {

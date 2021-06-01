@@ -263,7 +263,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
                 idb.update("UPDATE alien SET Telefon='" + telNr + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Ansvarig_Agent='" + regAgent + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Plats='" + regOmrade + "' where Alien_ID=" + valdUtomjording);
-                if(gamalRas != null && regRas != gamalRas){
+                if(gamalRas != null && regRas != gamalRas && gamalRas != "Ras inte registrerad"){
                 idb.delete("DELETE FROM " + gamalRas + " WHERE Alien_ID=" + valdUtomjording);
                 }
                 if(regRas.equals(gamalRas)){}

@@ -208,7 +208,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
-        if(Validering.txtFieldBegransad30(telnrFalt, telefonLabel.getText()) && Validering.txtFieldBegransad6(losenordFalt, passwordLabel.getText()) && Validering.txtFieldBegransad20(namnFalt, namnLabel.getText())){
+        if(Validering.txtFieldBegransad20(namnFalt, namnLabel.getText()) && Validering.txtFieldBegransad6(losenordFalt, passwordLabel.getText()) && Validering.txtFieldBegransad30(telnrFalt, telefonLabel.getText())){
         try{
             String namn = namnFalt.getText();
             String losenord = losenordFalt.getText();
