@@ -174,7 +174,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         try {
             ArrayList<String> utrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM Utrustning WHERE Benamning LIKE '" + sokning + "'");
             for (String nuvarandeUtrustning : utrustning) {
-                System.out.println(nuvarandeUtrustning);
                 cmbUtrustning.addItem(nuvarandeUtrustning);
             }
         } catch (InfException e) {
