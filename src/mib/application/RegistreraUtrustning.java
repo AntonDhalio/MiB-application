@@ -39,9 +39,8 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         utrustningNamn = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        namnLabel = new javax.swing.JLabel();
         labelFranBox = new javax.swing.JLabel();
         utrustningDetalj = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -64,17 +63,13 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 34, -1, -1));
         getContentPane().add(utrustningNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 160, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Namnge den nya utrustningen");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 200, -1));
+        namnLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        namnLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namnLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        namnLabel.setText("Namnge den nya utrustningen");
+        getContentPane().add(namnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 200, -1));
 
         labelFranBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelFranBox.setForeground(new java.awt.Color(255, 255, 255));
@@ -259,31 +254,37 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     }//GEN-LAST:event_tomFaltKnappMouseReleased
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
-        if(Validering.txtFieldBegransad20(utrustningNamn) && Validering.txtFieldHarVarde(utrustningDetalj)){
+        if(Validering.txtFieldBegransad20(utrustningNamn, "namn")){
             try{                
                 String nextUID = idb.getAutoIncrement("utrustning", "Utrustnings_ID");
                 String namn = utrustningNamn.getText();
                 String detaljer = utrustningDetalj.getText();                
-        
-                int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);
-            
-                if(reply == JOptionPane.YES_OPTION){
-                    
-                if(arVapen.isSelected() && Validering.txtFieldBegransad10(utrustningDetalj)){
-                    idb.insert("INSERT INTO vapen VALUES(" + nextUID + ",'" + detaljer + "')");
+                            
+                if(arVapen.isSelected() && Validering.txtFieldBegransad10(utrustningDetalj, "Kaliber")){
+                    int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);           
+                    if(reply == JOptionPane.YES_OPTION){
+                        idb.insert("INSERT INTO vapen VALUES(" + nextUID + ",'" + detaljer + "')");
+                        idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
+                        JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
+                    }
                 }
-                else if(arKomm.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj)){
-                    idb.insert("INSERT INTO kommunikation VALUES(" + nextUID + ",'" + detaljer + "')");
+                else if(arKomm.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj, "Överföringsteknik")){
+                    int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);           
+                    if(reply == JOptionPane.YES_OPTION){
+                        idb.insert("INSERT INTO kommunikation VALUES(" + nextUID + ",'" + detaljer + "')");
+                        idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
+                        JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
+                    }
                 }
-                else if(arTeknik.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj)){
-                    idb.insert("INSERT INTO teknik VALUES(" + nextUID + ",'" + detaljer + "')");
-                }
-                idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
-                JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
-            }
-        
-        }
-        
+                else if(arTeknik.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj, "Kraftkälla")){
+                    int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);           
+                    if(reply == JOptionPane.YES_OPTION){
+                        idb.insert("INSERT INTO teknik VALUES(" + nextUID + ",'" + detaljer + "')");
+                        idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
+                        JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
+                    }
+                } 
+        }       
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
@@ -350,8 +351,6 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private javax.swing.JCheckBox arVapen;
     private javax.swing.JLabel goBack;
     private javax.swing.JPanel godkännKnapp;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -363,6 +362,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel labelFranBox;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JLabel namnLabel;
     private javax.swing.JPanel tomFaltKnapp;
     private javax.swing.JTextField utrustningDetalj;
     private javax.swing.JTextField utrustningNamn;

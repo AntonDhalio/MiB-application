@@ -64,9 +64,9 @@ public class AndraUtomjording extends javax.swing.JFrame {
         goBack = new javax.swing.JLabel();
         namnFalt = new javax.swing.JTextField();
         losenordFalt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        namnLabel = new javax.swing.JLabel();
+        telefonLabel = new javax.swing.JLabel();
         telnrFalt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -108,23 +108,23 @@ public class AndraUtomjording extends javax.swing.JFrame {
         getContentPane().add(namnFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 160, -1));
         getContentPane().add(losenordFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 160, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Lösenord");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 120, -1));
+        passwordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        passwordLabel.setText("Lösenord");
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 120, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Namn");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 120, 20));
+        namnLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        namnLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namnLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        namnLabel.setText("Namn");
+        getContentPane().add(namnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 120, 20));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Telefon");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
+        telefonLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        telefonLabel.setForeground(new java.awt.Color(255, 255, 255));
+        telefonLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        telefonLabel.setText("Telefon");
+        getContentPane().add(telefonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
         getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -246,7 +246,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
-        if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
+        if(Validering.txtFieldBegransad30(telnrFalt, telefonLabel.getText()) && Validering.txtFieldBegransad6(losenordFalt, passwordLabel.getText()) && Validering.txtFieldBegransad20(namnFalt, namnLabel.getText())){
         try{
             String namn = namnFalt.getText();
             String losenord = losenordFalt.getText();
@@ -346,9 +346,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
     private javax.swing.JPanel godkännKnapp;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -356,8 +353,11 @@ public class AndraUtomjording extends javax.swing.JFrame {
     private javax.swing.JLabel lblMIB;
     private javax.swing.JTextField losenordFalt;
     private javax.swing.JTextField namnFalt;
+    private javax.swing.JLabel namnLabel;
     private javax.swing.JComboBox<String> omradeBox;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> rasBox;
+    private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField telnrFalt;
     private javax.swing.JComboBox<String> utomjordingBox;
     // End of variables declaration//GEN-END:variables
