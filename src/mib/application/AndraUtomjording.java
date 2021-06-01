@@ -9,6 +9,8 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author anton
@@ -77,6 +79,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         godkännKnapp = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        txtAgentNamn = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,6 +154,11 @@ public class AndraUtomjording extends javax.swing.JFrame {
         jLabel8.setText("Ras");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 120, -1));
 
+        agentBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agentBoxActionPerformed(evt);
+            }
+        });
         getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 160, -1));
 
         getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 160, -1));
@@ -177,6 +185,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         godkännKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
         getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 110, 30));
+        getContentPane().add(txtAgentNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
@@ -191,7 +200,8 @@ public class AndraUtomjording extends javax.swing.JFrame {
         agentBox.removeAllItems();
         rasBox.removeAllItems();
         omradeBox.removeAllItems();
-        try{            
+        try{        
+            
             String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID=" + valdUtomjording);
             namnFalt.setText(namn);
             String losenord = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID=" + valdUtomjording);
@@ -201,14 +211,15 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String valtOmrade = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID=" + valdUtomjording);
             String valdAgent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID=" + valdUtomjording);
             
-            ArrayList<String> omrade = idb.fetchColumn("SELECT Omrades_ID FROM omrade ORDER BY Omrades_ID ASC");
+            ArrayList<String> omrade = idb.fetchColumn("SELECT Benamning FROM omrade ORDER BY Omrades_ID ASC");
             for(String nuvarandeOmrade: omrade){
                 omradeBox.addItem(nuvarandeOmrade);
             }
             ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent ORDER BY Agent_ID ASC");
             for(String nuvarandeAgent: agent){
-                agentBox.addItem(nuvarandeAgent);
+                agentBox.addItem(nuvarandeAgent);   
             }
+                
             ArrayList<String> ras = new ArrayList<String>();
             ras.add("Ras inte registrerad");
             ras.add("boglodite");
@@ -220,6 +231,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
             
             omradeBox.setSelectedItem(valtOmrade);
             agentBox.setSelectedItem(valdAgent);
+            
             
             ArrayList<String> boglodite = idb.fetchColumn("SELECT Alien_ID FROM boglodite");
             
@@ -281,8 +293,11 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String telNr = telnrFalt.getText();
             String regRas = (String)rasBox.getSelectedItem();
             String regAgent = (String)agentBox.getSelectedItem();
-            String regOmrade = (String)omradeBox.getSelectedItem();
+            String regOmradeBenamning = (String)omradeBox.getSelectedItem();
             
+            String regOmradeID = idb.fetchSingle("SELECT Omrades_ID FROM Omrade WHERE Benamning='" + regOmradeBenamning + "'");
+            
+
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra dessa uppgifter?", "Varning!", JOptionPane.YES_NO_OPTION);
             
             if(reply == JOptionPane.YES_OPTION){
@@ -290,7 +305,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
                 idb.update("UPDATE alien SET Losenord='" + losenord + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Telefon='" + telNr + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Ansvarig_Agent='" + regAgent + "' where Alien_ID=" + valdUtomjording);
-                idb.update("UPDATE alien SET Plats='" + regOmrade + "' where Alien_ID=" + valdUtomjording);
+                idb.update("UPDATE alien SET Plats='" + regOmradeID + "' where Alien_ID=" + valdUtomjording);
                 if(gamalRas != null && regRas != gamalRas){
                 idb.delete("DELETE FROM " + gamalRas + " WHERE Alien_ID=" + valdUtomjording);
                 }
@@ -314,6 +329,16 @@ public class AndraUtomjording extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_godkännKnappMouseClicked
+
+    private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
+        String agentID = (String)agentBox.getSelectedItem();
+            try {
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + agentID);
+            txtAgentNamn.setText(agentNamn);
+        } catch (InfException e) {
+          JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_agentBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,6 +394,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> omradeBox;
     private javax.swing.JComboBox<String> rasBox;
     private javax.swing.JTextField telnrFalt;
+    private javax.swing.JTextField txtAgentNamn;
     private javax.swing.JComboBox<String> utomjordingBox;
     // End of variables declaration//GEN-END:variables
 }
