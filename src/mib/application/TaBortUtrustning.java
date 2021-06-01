@@ -27,15 +27,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         this.idb = idb;
         this.id = id;
 
-        try {
-            ArrayList<String> utrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM Utrustning ORDER BY Utrustnings_ID ASC");
-            for (String nuvarandeUtrustning : utrustning) {
-                cmbUtrustning.addItem(nuvarandeUtrustning);
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-        }
-
     }
 
     /**
@@ -54,6 +45,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
+        txtNamn = new javax.swing.JTextField();
+        lblBenamning = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,7 +56,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ID");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 20, 20));
-
         getContentPane().add(cmbUtrustning, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 137, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
@@ -104,6 +96,19 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         lblMIB.setToolTipText("");
         getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 740, -1));
 
+        txtNamn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNamnKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 140, -1));
+
+        lblBenamning.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblBenamning.setForeground(new java.awt.Color(255, 255, 255));
+        lblBenamning.setText("Benämning");
+        getContentPane().add(lblBenamning, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 156, 70, 20));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -161,6 +166,22 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TabortKnappMouseClicked
 
+    private void txtNamnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamnKeyReleased
+        String sokning = txtNamn.getText().toString();
+        
+        cmbUtrustning.removeAllItems();
+        
+        try {
+            ArrayList<String> utrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM Utrustning WHERE Benamning LIKE '" + sokning + "'");
+            for (String nuvarandeUtrustning : utrustning) {
+                System.out.println(nuvarandeUtrustning);
+                cmbUtrustning.addItem(nuvarandeUtrustning);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_txtNamnKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -204,6 +225,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblBenamning;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JTextField txtNamn;
     // End of variables declaration//GEN-END:variables
 }

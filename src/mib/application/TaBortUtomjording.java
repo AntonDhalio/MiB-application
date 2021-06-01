@@ -28,15 +28,6 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         this.idb = idb;
         this.id = id;
 
-        try {
-            ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM alien ORDER BY Alien_ID ASC");
-            for (String nuvarandeUtomjording : utomjording) {
-                cmbID.addItem(nuvarandeUtomjording);
-            }
-        } catch (InfException e) {
-            JOptionPane.showMessageDialog(null, "Något gick fel");
-        }
-
     }
     
 
@@ -50,12 +41,14 @@ public class TaBortUtomjording extends javax.swing.JFrame {
     private void initComponents() {
 
         cmbID = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         taBortKnapp = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        txtNamn = new javax.swing.JTextField();
+        lblNamn = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,10 +57,10 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         cmbID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         getContentPane().add(cmbID, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 230, 20));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 20, -1));
+        lblID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblID.setForeground(new java.awt.Color(255, 255, 255));
+        lblID.setText("ID");
+        getContentPane().add(lblID, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 20, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setToolTipText("");
@@ -106,6 +99,17 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         taBortKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
         getContentPane().add(taBortKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 245, 110, 30));
+
+        txtNamn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNamnKeyReleased(evt);
+            }
+        });
+        getContentPane().add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 160, 230, -1));
+
+        lblNamn.setForeground(new java.awt.Color(255, 255, 255));
+        lblNamn.setText("Namn");
+        getContentPane().add(lblNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -168,6 +172,21 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_taBortKnappMouseClicked
 
+    private void txtNamnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamnKeyReleased
+        String sokning = txtNamn.getText().toString();
+        
+        cmbID.removeAllItems();
+        
+        try {
+            ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM Alien WHERE Namn LIKE '" + sokning + "'");
+            for (String nuvarandeUtomjording : utomjording) {
+                cmbID.addItem(nuvarandeUtomjording);
+            }
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_txtNamnKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -207,10 +226,12 @@ public class TaBortUtomjording extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbID;
     private javax.swing.JLabel goBack;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JLabel lblNamn;
     private javax.swing.JPanel taBortKnapp;
+    private javax.swing.JTextField txtNamn;
     // End of variables declaration//GEN-END:variables
  }
