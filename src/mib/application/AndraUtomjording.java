@@ -9,8 +9,8 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
+
 /**
  *
  * @author anton
@@ -21,6 +21,8 @@ public class AndraUtomjording extends javax.swing.JFrame {
     private static String id;
     private HanteraUtomjording hanteraUtomjording;
     private HanteraUtomjordingAdmin hanteraUtAdmin;
+    private ArrayList<HashMap<String,String>> aliens;
+    private ArrayList<HashMap<String,String>> agenterna;
     private ArrayList<String> utomjording;
     private ArrayList<String> agenter;
     private ArrayList<String> omrade;
@@ -39,14 +41,10 @@ public class AndraUtomjording extends javax.swing.JFrame {
         
         
         try{
-            //Kod som hämtar ut hela ID-kolumnen för aliens i databasen
-            ArrayList<String> utomjording = idb.fetchColumn("SELECT Alien_ID FROM alien ORDER BY Alien_ID ASC");
-            
-            //For each loop som gör att alla områdesnamn listas i en drop-down-meny
-            for(String nuvarandeUtomjording: utomjording){
-                utomjordingBox.addItem(nuvarandeUtomjording);
+            aliens = idb.fetchRows("SELECT Alien_ID, Namn FROM alien");
+            for(HashMap enAlien : aliens){
+                utomjordingBox.addItem(enAlien.get("Alien_ID").toString() + " : " + enAlien.get("Namn").toString());
             }
-            
 
         }
         
@@ -82,7 +80,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
         godkännKnapp = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        txtAgentNamn = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,11 +148,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
         jLabel8.setText("Ras");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 120, -1));
 
-        agentBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agentBoxActionPerformed(evt);
-            }
-        });
         getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 160, -1));
 
         getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 160, -1));
@@ -182,7 +174,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
         godkännKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
         getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 110, 30));
-        getContentPane().add(txtAgentNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
@@ -193,7 +184,8 @@ public class AndraUtomjording extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void utomjordingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_utomjordingBoxActionPerformed
-        String valdUtomjording = (String)utomjordingBox.getSelectedItem();
+        int index = utomjordingBox.getSelectedIndex();
+        String valdUtomjording = aliens.get(index).get("Alien_ID");
         
         agentBox.removeAllItems();
         rasBox.removeAllItems();
@@ -223,10 +215,14 @@ public class AndraUtomjording extends javax.swing.JFrame {
             Denna kod hämtar kolumnen "agent-ID" från agent-tabellen i databasen och med en for each loop
             läggs alla områdesID:n till i en drop-down-meny i stigande ordning
             */
-            ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent ORDER BY Agent_ID ASC");
-            for(String nuvarandeAgent: agent){
-                agentBox.addItem(nuvarandeAgent);   
-            }
+            agenterna = idb.fetchRows("SELECT Agent_ID, Namn FROM agent");
+            for(HashMap enAgent : agenterna){
+                agentBox.addItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());
+                String enAgentID = enAgent.get("Agent_ID").toString();
+                if(enAgentID.equals(valdAgent)){
+                    agentBox.setSelectedItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());
+                }
+            }           
             
             /* 
             Denna kod skapar en arraylist med olika raser som användaren sedan kan välja mellan.
@@ -276,7 +272,9 @@ public class AndraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_utomjordingBoxActionPerformed
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
-        String valdUtomjording = (String)utomjordingBox.getSelectedItem();
+        //String valdUtomjording = (String)utomjordingBox.getSelectedItem();
+        int index = utomjordingBox.getSelectedIndex();
+        String valdUtomjording = aliens.get(index).get("Alien_ID");
 
         //Externt metodanrop till valideringsklassen för att se till att fälten med telefonnummer, lösenord och namn korrekt ifyllda
         if(Validering.txtFieldBegransad30(telnrFalt, telefonLabel.getText()) && Validering.txtFieldBegransad6(losenordFalt, passwordLabel.getText()) && Validering.txtFieldBegransad20(namnFalt, namnLabel.getText())){
@@ -286,7 +284,9 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String losenord = losenordFalt.getText();
             String telNr = telnrFalt.getText();
             String regRas = (String)rasBox.getSelectedItem();
-            String regAgent = (String)agentBox.getSelectedItem();
+            //String regAgent = (String)agentBox.getSelectedItem();
+            int i = agentBox.getSelectedIndex();
+            String regAgent = agenterna.get(i).get("Agent_ID");
             String regOmradeBenamning = (String)omradeBox.getSelectedItem();
             
 
@@ -358,50 +358,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_goBackMouseReleased
 
 
-    private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
-        String agentID = (String)agentBox.getSelectedItem();
-            try {
-            String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + agentID);
-            txtAgentNamn.setText(agentNamn);
-        } catch (InfException e) {
-          JOptionPane.showMessageDialog(null, "Något gick fel");
-        }
-    }//GEN-LAST:event_agentBoxActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AndraUtomjording(idb,id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agentBox;
@@ -422,7 +378,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> rasBox;
     private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField telnrFalt;
-    private javax.swing.JTextField txtAgentNamn;
     private javax.swing.JComboBox<String> utomjordingBox;
     // End of variables declaration//GEN-END:variables
 }
