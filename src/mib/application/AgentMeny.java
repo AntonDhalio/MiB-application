@@ -18,7 +18,7 @@ public class AgentMeny extends javax.swing.JFrame {
     private static InfDB idb;
     private static String id;
     private AndraLosenord andraLosenord;
-    private RegistreraUtrustning regUtrustning;
+    private HanteraUtrustningAgent hanteraUtrustning;
     private HanteraUtomjording hanteraUtomJ;
     private InfoPortal infoPortal;
     /**
@@ -188,8 +188,8 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_infoPortalKnappMouseReleased
 
     private void hanteraUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnappMouseReleased
-        regUtrustning = new RegistreraUtrustning(idb, id);
-        regUtrustning.setVisible(true);
+        hanteraUtrustning = new HanteraUtrustningAgent(idb, id);
+        hanteraUtrustning.setVisible(true);
         dispose();
     }//GEN-LAST:event_hanteraUtrustningKnappMouseReleased
 

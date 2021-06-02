@@ -68,13 +68,13 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
 
         jSpinner1 = new javax.swing.JSpinner();
         jSpinner2 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
+        namnLabel = new javax.swing.JLabel();
         txtNamn = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        telefonLabel = new javax.swing.JLabel();
         txtTelefon = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtLosenord = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblValjOmrade = new javax.swing.JLabel();
         boxAnsvarigForOmrade = new javax.swing.JComboBox<>();
@@ -93,14 +93,14 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Namn");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 120, 20));
+        namnLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namnLabel.setText("Namn");
+        getContentPane().add(namnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 120, 20));
         getContentPane().add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, 171, -1));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Telefonnummer");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 120, 20));
+        telefonLabel.setForeground(new java.awt.Color(255, 255, 255));
+        telefonLabel.setText("Telefonnummer");
+        getContentPane().add(telefonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 120, 20));
         getContentPane().add(txtTelefon, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 171, -1));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,16 +108,16 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 120, 20));
         getContentPane().add(txtLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 172, -1));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Lösenord");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 120, 20));
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setText("Lösenord");
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 120, 20));
 
         jLabel7.setForeground(new java.awt.Color(153, 153, 153));
         jLabel7.setText("Lösenordet får max innehålla  6 tecken");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         lblValjOmrade.setForeground(new java.awt.Color(255, 255, 255));
-        lblValjOmrade.setText("Ansvarig för område");
+        lblValjOmrade.setText("Arbetar inom område");
         getContentPane().add(lblValjOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 120, 20));
 
         boxAnsvarigForOmrade.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +247,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         String valtKontor = (String)boxValjKontor.getSelectedItem();
         
         
-            if(Validering.txtFieldBegransad6(txtLosenord) && Validering.txtFieldBegransad20(txtNamn) && Validering.txtFieldBegransad30(txtTelefon) && Validering.ValtEttAlternativ(boxTypAvAgent)){
+            if(Validering.txtFieldBegransad20(txtNamn, namnLabel.getText()) && Validering.txtFieldBegransad30(txtTelefon, telefonLabel.getText()) && Validering.txtFieldBegransad6(txtLosenord, passwordLabel.getText()) && Validering.ValtEttAlternativ(boxTypAvAgent)){
 
         
                 try {
@@ -323,11 +323,8 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private javax.swing.JLabel goBack;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSpinner jSpinner1;
@@ -335,7 +332,10 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     private javax.swing.JLabel lblMIB;
     private javax.swing.JLabel lblValjKontor;
     private javax.swing.JLabel lblValjOmrade;
+    private javax.swing.JLabel namnLabel;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JPanel regKnapp;
+    private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField txtLosenord;
     private javax.swing.JTextField txtNamn;
     private javax.swing.JTextField txtTelefon;

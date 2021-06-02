@@ -25,9 +25,6 @@ public class InloggningAlien extends javax.swing.JFrame {
     public InloggningAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
-        
-        
- 
     }
 
     /**
@@ -130,7 +127,7 @@ public class InloggningAlien extends javax.swing.JFrame {
 
     private void loggainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseReleased
         //Externt metodanrop för att kolla om textfältet har ett värde
-        if(Validering.txtFieldHarVarde(txtIDNummer)){
+        if(Validering.txtFieldArNummer(txtIDNummer)){
             
         try {
         String idNummer = txtIDNummer.getText();
@@ -145,15 +142,15 @@ public class InloggningAlien extends javax.swing.JFrame {
             dispose();
             System.out.println("Internt meddelande: Inloggningen lyckades!");
         } else {
-            JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
+            JOptionPane.showMessageDialog(null, "Felaktigt lösenord. Vänligen försök igen");
             }
         } 
         
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Ett fel uppstod");
+        catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "Ett fel uppstod med databasen");
             }
       
-       }
+       }        
     }//GEN-LAST:event_loggainMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased

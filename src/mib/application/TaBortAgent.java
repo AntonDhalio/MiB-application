@@ -129,12 +129,12 @@ public class TaBortAgent extends javax.swing.JFrame {
 
     private void boxValjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxValjAgentActionPerformed
         try{
-        String id = (String)boxValjAgent.getSelectedItem();
-        String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
-        String namnFraga = idb.fetchSingle(hamtaNamn);
-        txtAgentNamn.setText(namnFraga);}
+            String id = (String)boxValjAgent.getSelectedItem();
+            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
+            String namnFraga = idb.fetchSingle(hamtaNamn);
+            txtAgentNamn.setText(namnFraga);}
         catch(InfException e){
-        System.out.println(e);
+            System.out.println("Problem med databasen");
         }
     }//GEN-LAST:event_boxValjAgentActionPerformed
 

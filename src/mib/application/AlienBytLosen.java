@@ -38,18 +38,18 @@ public class AlienBytLosen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtNuvarandeLosen = new javax.swing.JTextField();
-        txtNyttLosen = new javax.swing.JTextField();
-        txtBekraftaLosen = new javax.swing.JTextField();
+        nuvarandeLosenLabel = new javax.swing.JLabel();
+        nyttLosenLabel = new javax.swing.JLabel();
         tomFaltKnapp = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         godkännKnapp = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        nyttLosen = new javax.swing.JPasswordField();
+        bekraftaLosen = new javax.swing.JPasswordField();
+        nuvarandeLosen = new javax.swing.JPasswordField();
+        bekraftaLosenLabel = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -58,24 +58,15 @@ public class AlienBytLosen extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nuvarande Lösenord:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 160, -1));
+        nuvarandeLosenLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nuvarandeLosenLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nuvarandeLosenLabel.setText("Nuvarande Lösenord:");
+        getContentPane().add(nuvarandeLosenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 160, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nytt Lösenord:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
-
-        txtNuvarandeLosen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(txtNuvarandeLosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 270, 30));
-
-        txtNyttLosen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(txtNyttLosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 270, 30));
-
-        txtBekraftaLosen.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        getContentPane().add(txtBekraftaLosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 270, 30));
+        nyttLosenLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nyttLosenLabel.setForeground(new java.awt.Color(255, 255, 255));
+        nyttLosenLabel.setText("Nytt Lösenord:");
+        getContentPane().add(nyttLosenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
 
         tomFaltKnapp.setBackground(new java.awt.Color(0, 0, 0));
         tomFaltKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -119,11 +110,14 @@ public class AlienBytLosen extends javax.swing.JFrame {
         godkännKnapp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
         getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 110, 30));
+        getContentPane().add(nyttLosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 270, 30));
+        getContentPane().add(bekraftaLosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 270, 30));
+        getContentPane().add(nuvarandeLosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 270, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Bekräfta lösenord");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
+        bekraftaLosenLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bekraftaLosenLabel.setForeground(new java.awt.Color(255, 255, 255));
+        bekraftaLosenLabel.setText("Bekräfta lösenord");
+        getContentPane().add(bekraftaLosenLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -149,37 +143,42 @@ public class AlienBytLosen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tomFaltKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tomFaltKnappMouseReleased
-        txtBekraftaLosen.setText("");
-        txtNuvarandeLosen.setText("");
-        txtNyttLosen.setText("");
+        bekraftaLosen.setText("");
+        nuvarandeLosen.setText("");
+        nyttLosen.setText("");
     }//GEN-LAST:event_tomFaltKnappMouseReleased
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
-        if(Validering.txtFieldBegransad6(txtNyttLosen) || Validering.txtFieldBegransad6(txtBekraftaLosen)){
-        try {
-            String nyttLosen = txtNyttLosen.getText();
-            String nuvarandeLosen = idb.fetchSingle("SELECT Losenord FROM Alien WHERE Alien_ID=" + id);
-            String nuvarandeInmatning = txtNuvarandeLosen.getText();
-            String bekrafta = txtBekraftaLosen.getText();
-            if (nuvarandeInmatning.equals(nuvarandeLosen) && nyttLosen.equals(bekrafta)) {
-               idb.update("UPDATE Alien SET Losenord ='" + nyttLosen + "' WHERE Alien_ID=" + id);
-               JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
-               startSida = new AlienStartsida(idb, id);
-               startSida.setVisible(true);
-               dispose();
-            }
-               else if (!nuvarandeInmatning.equals(nuvarandeLosen)) {
-                    JOptionPane.showMessageDialog(null, "Fel lösenord! Försök igen!");
-               }
-               else if(!nyttLosen.equals(bekrafta)){
-                    JOptionPane.showMessageDialog(null, "Nytt lösenord och bekräftelse matchar inte");
-               }            
-               else if (nyttLosen.equals("") || bekrafta.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Lösenordet får inte vara tomt!");
-               }
-            
-        } catch (InfException e) {
-          JOptionPane.showMessageDialog(null, e);
+        if(Validering.losenordFaltHarVarde(nuvarandeLosen) && Validering.losenordFaltHarVarde(nyttLosen) && Validering.losenordFaltHarVarde(bekraftaLosen)){
+        try{
+        
+        String gamalLosen = "SELECT Losenord FROM alien WHERE Alien_ID=" + id;
+        String hamtaGamalLosen = idb.fetchSingle(gamalLosen);
+        String inputGamalLosen = String.valueOf(nuvarandeLosen.getPassword());
+        String nyttLosenord = String.valueOf(nyttLosen.getPassword());
+        String bekraftaLosenord = String.valueOf(bekraftaLosen.getPassword());
+        
+        
+        if(hamtaGamalLosen.equals(inputGamalLosen)){
+           if(bekraftaLosenord.equals(nyttLosenord)){
+                int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ändra lösenordet?","Varning!",JOptionPane.YES_NO_OPTION);
+           
+                if (reply == JOptionPane.YES_OPTION){
+                idb.update("UPDATE alien SET Losenord='" + nyttLosenord +"' where Alien_ID=" + id);
+                JOptionPane.showMessageDialog(null, "Ditt lösenord har ändrats!");
+                }
+           }
+           else{
+               JOptionPane.showMessageDialog(null, "Bekräftelsen matchar inte med det nya lösenordet.");
+           }
+        }
+        else{
+        JOptionPane.showMessageDialog(null, "Nuvarande lösenord matchar inte med ditt faktiska lösenord.");}
+        }
+        
+        catch(InfException e) {
+        
+            JOptionPane.showMessageDialog(null, "Ett fel uppstod");
         }
         }
     }//GEN-LAST:event_godkännKnappMouseReleased
@@ -221,20 +220,20 @@ public class AlienBytLosen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField bekraftaLosen;
+    private javax.swing.JLabel bekraftaLosenLabel;
     private javax.swing.JLabel goBack;
     private javax.swing.JPanel godkännKnapp;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JPasswordField nuvarandeLosen;
+    private javax.swing.JLabel nuvarandeLosenLabel;
+    private javax.swing.JPasswordField nyttLosen;
+    private javax.swing.JLabel nyttLosenLabel;
     private javax.swing.JPanel tomFaltKnapp;
-    private javax.swing.JTextField txtBekraftaLosen;
-    private javax.swing.JTextField txtNuvarandeLosen;
-    private javax.swing.JTextField txtNyttLosen;
     // End of variables declaration//GEN-END:variables
 }
