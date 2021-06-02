@@ -26,7 +26,6 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-
     }
 
     /**
@@ -120,16 +119,25 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         String valdUtrustning = cmbUtrustning.getSelectedItem().toString();
 
         try {
+            //Hämtar ut kolumnen "utrustning-ID" från alla tabeller i databasen där utrustnings-ID:t förekommer
             ArrayList<String> innehar_utrustning = idb.fetchColumn("SELECT Utrustnings_ID FROM Innehar_Utrustning");
             ArrayList<String> kommunikation = idb.fetchColumn("SELECT Utrustnings_ID FROM Kommunikation");
             ArrayList<String> teknik = idb.fetchColumn("SELECT Utrustnings_ID FROM Teknik");
             ArrayList<String> vapen = idb.fetchColumn("SELECT Utrustnings_ID FROM Vapen");
 
             
-
+            
             String utrNamn = idb.fetchSingle("SELECT Benamning FROM Utrustning WHERE Utrustnings_ID=" + valdUtrustning);
 
+            //Kod som framkallar en varningsruta när användaren försöker ta bort utrustning
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Utrustning vid namn '" + utrNamn + "'", "Varning!", JOptionPane.YES_NO_OPTION);
+            
+            /*
+            Om användaren bekräftar borttagningen, ser nedanstående kod till att den valda utrustningen 
+            försvinner i alla tabeller genom for each loopar som går igenom arraylistorna med utrustning. 
+            Med hjälp av if-satser tas utrustnigen bort från databasen om det finns ett objekt i någon av
+            listorna som matchar den utrustning användaren har matat in
+            */
             if (reply == JOptionPane.YES_OPTION) {
                 idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + valdUtrustning);
                 
@@ -165,6 +173,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         hanteraUtrustning.setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
+
 
     private void txtNamnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamnKeyReleased
         String sokning = txtNamn.getText().toString();

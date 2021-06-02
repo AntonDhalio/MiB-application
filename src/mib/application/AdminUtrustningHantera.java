@@ -158,10 +158,12 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
     }//GEN-LAST:event_laggTillUtrustningKnappMouseReleased
 
     private void taBortUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortUtrustningKnappMouseReleased
+        //Metod 
         taBortUtrustning = new TaBortUtrustning(idb, id);
         taBortUtrustning.setVisible(true);
         dispose();
     }//GEN-LAST:event_taBortUtrustningKnappMouseReleased
+
 
     private void hanteraUtrustningKnapp1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnapp1MouseReleased
         new KvitteraUtrustning(idb, id).setVisible(true);
@@ -202,6 +204,7 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bakgrund;

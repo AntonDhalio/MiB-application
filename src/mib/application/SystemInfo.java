@@ -29,6 +29,8 @@ public class SystemInfo extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
+        
+        //Interna metodanrop för att all information ska dyka upp direkt när konstruktorn anropas
         laggTillInfoIBoxOmrade();
         laggTillInfoIBoxUtrustning();
         laggTillInfoIBoxAlien();
@@ -113,10 +115,12 @@ public class SystemInfo extends javax.swing.JFrame {
 
     private void laggTillInfoIBoxAgent(){
         try{
+            
             String antalAgenter = idb.fetchSingle("SELECT COUNT(*) FROM agent");
             String antalAdmins = idb.fetchSingle("SELECT COUNT(*) FROM agent Where Administrator='J'");
             String antalFaltAgent = idb.fetchSingle("SELECT COUNT(*) FROM faltagent");
             
+            //Denna kod ser till att den data som hämtats från databasen visas i gränssnittet
             statArea.insert("\n", 0);
             statArea.insert("   Antal fältagenter: " + antalFaltAgent + "\n", 0);
             statArea.insert("   Antal administratörer: " + antalAdmins + "\n", 0);
@@ -135,6 +139,7 @@ public class SystemInfo extends javax.swing.JFrame {
             String antalSquids = idb.fetchSingle("SELECT COUNT(*) FROM squid");
             String antalWorms = idb.fetchSingle("SELECT COUNT(*) FROM worm");
             
+            //Denna kod ser till att den data som hämtats från databasen visas i gränssnittet
             statArea.insert("\n", 0);
             statArea.insert("   Antal Worms: " + antalWorms + "\n", 0);
             statArea.insert("   Antal Squids: " + antalSquids + "\n", 0);
@@ -157,6 +162,7 @@ public class SystemInfo extends javax.swing.JFrame {
             String utkvittUtr = idb.fetchSingle("SELECT COUNT(*) FROM innehar_utrustning");
             String utkvittFordon = idb.fetchSingle("SELECT COUNT(*) FROM innehar_fordon");
             
+            //Denna kod ser till att den data som hämtats från databasen visas i gränssnittet
             statArea.insert("\n", 0);
             statArea.insert("   Utkvitterade fordon: " + utkvittFordon + "\n", 0);
             statArea.insert("   Utkvitterad utrustning: " + utkvittUtr + "\n", 0);
@@ -178,6 +184,7 @@ public class SystemInfo extends javax.swing.JFrame {
             String antalOmraden = idb.fetchSingle("SELECT COUNT(*) FROM omrade");
             String antalPlatser = idb.fetchSingle("SELECT COUNT(*) FROM plats");
             
+            //Denna kod ser till att den data som hämtats från databasen visas i gränssnittet
             statArea.insert("\n", 0);
             statArea.insert("   Totalt antal platser inom alla områden: " + antalPlatser + "\n", 0);
             statArea.insert("   Totalt antal registrerade områden: " + antalOmraden + "\n", 0);
@@ -189,6 +196,8 @@ public class SystemInfo extends javax.swing.JFrame {
     }
     
     private void skrivUtMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skrivUtMouseReleased
+        //En metod för att skriva ut all information som visas i gränssnittet
+        
         try {
             statArea.print();
         } catch (PrinterException ex) {
@@ -197,6 +206,11 @@ public class SystemInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_skrivUtMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
+        
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -213,41 +227,6 @@ public class SystemInfo extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SystemInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SystemInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SystemInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SystemInfo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SystemInfo(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel goBack;

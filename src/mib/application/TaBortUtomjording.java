@@ -27,7 +27,6 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-
     }
     
 
@@ -122,13 +121,21 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         String valdUtomjording = cmbID.getSelectedItem().toString();
 
         try {
+            //Hämtar ut kolumnen "utrustning-ID" från alla tabeller i databasen där utrustnings-ID:t förekommer
             ArrayList<String> boglodite = idb.fetchColumn("SELECT Alien_ID FROM Boglodite");
             ArrayList<String> squid = idb.fetchColumn("SELECT Alien_ID FROM Squid");
             ArrayList<String> worm = idb.fetchColumn("SELECT Alien_ID FROM Worm");
 
             String namn = idb.fetchSingle("SELECT Namn FROM Alien WHERE Alien_ID=" + valdUtomjording);
-
+            
+            //Kod som framkallar en varningsruta när användaren försöker ta bort en alien
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Alien '" + namn, "Varning!", JOptionPane.YES_NO_OPTION);
+            
+             /*
+             Om användaren bekräftar borttagningen, ser nedanstående kod till att gå igenom arraylistorna genom
+            for each loopar. If-satsen talar om att borttagning av alien samt dens ras ska ske i databasen,
+            om det finns objekt objekt i listorna som matchar den alien användaren har valt
+            */
             if (reply == JOptionPane.YES_OPTION) {
                 idb.delete("DELETE FROM Alien WHERE Alien_ID =" + valdUtomjording);
            
@@ -155,6 +162,11 @@ public class TaBortUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_taBortKnappMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
+        
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -171,6 +183,7 @@ public class TaBortUtomjording extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
+
 
     private void txtNamnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamnKeyReleased
         String sokning = txtNamn.getText().toString();

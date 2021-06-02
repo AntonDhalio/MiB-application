@@ -33,12 +33,17 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         lblKontorsnamn.setVisible(false);
         
             try{
+                //Kod som hämtar ut kolumnen med agent-ID:n från databasen, och sorterar dem i stigande ordning
                 agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+                
+                //En for each loop som listar alla agent-ID:n i en drop-down-meny
                 agentID.forEach(idNr -> {
                 boxKontorsChef.addItem(idNr);
                                          });
-
+                //Kod som hämtar ut kolumnen med namn på kontoren från databasen, och sorterar dem i bokstavsordningen A-Ö
                 kontorNamn = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef ORDER BY Kontorsbeteckning ASC");
+                
+                //En for each loop som listar alla kontorsnamn i en drop-down-meny
                 kontorNamn.forEach(kontor -> {
                 boxValjKontor.addItem(kontor);
                                          }); 
@@ -162,9 +167,11 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxKontorsChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxKontorsChefActionPerformed
+        //Hämtar namn på agenten för det ID som valts i gränssnittet
+        
         try{
-            String id = (String)boxKontorsChef.getSelectedItem();
-            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
+            String idNr = (String)boxKontorsChef.getSelectedItem();
+            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
             String namnFraga = idb.fetchSingle(hamtaNamn);
             txtChefNamn.setText(namnFraga);}
         
@@ -174,6 +181,12 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     }//GEN-LAST:event_boxKontorsChefActionPerformed
 
     private void btnLaggTillKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillKontorActionPerformed
+        /** Metod för att lägga till ett nytt kontor om det man vill ha inte finns i listan
+         * Om knappen för att lägga till nytt kontor väljs, så dyker ett textfält upp där man
+         * skriver in namn på det nya kontoret
+         * Avmarkeras knappen så döljs textfältet igen
+         */
+        
         if(btnLaggTillKontor.isSelected()){
             txtNyttKontor.setVisible(true);
             lblKontorsnamn.setVisible(true);
@@ -185,19 +198,26 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLaggTillKontorActionPerformed
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
-        String id = (String)boxKontorsChef.getSelectedItem();
+        String idNr = (String)boxKontorsChef.getSelectedItem();
         String kontor = (String)boxValjKontor.getSelectedItem();
         
             try{
+                //Kod som gör att användaren måste bekräfta valet av ny kontorschef, genom en pop-up-ruta där man kan bekräfta eller avvisa
                 int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra ändringarna?", "Obs!", JOptionPane.YES_NO_OPTION);
             
+                /* Om användaren har valt att lägga i ett nytt kontor och valideringen av det textfältet går igenom,
+                * Läggs den valda agenten till som kontorschef och även namnet på det nya kontoret läggs till i databasen
+                */
                 if(svar == JOptionPane.YES_OPTION && btnLaggTillKontor.isSelected() && Validering.txtFieldBegransad25(txtNyttKontor)){
                     kontor = txtNyttKontor.getText();
-                    idb.insert("INSERT INTO Kontorschef VALUES(" + id + ", '" + kontor + "')");
+                    idb.insert("INSERT INTO Kontorschef VALUES(" + idNr + ", '" + kontor + "')");
+              
                     JOptionPane.showMessageDialog(null, "Kontorschefen för " + kontor + " har nu lagts till");
                                                    }
+                    //Om användaren har valt ett kontor från listan, uppdateras chefen för ett redan befintligt kontor                               
                     else if(svar == JOptionPane.YES_OPTION){
-                    idb.update("UPDATE Kontorschef SET Agent_ID='" + id + "'WHERE Kontorsbeteckning='" + kontor + "'");
+                    idb.update("UPDATE Kontorschef SET Agent_ID='" + idNr + "'WHERE Kontorsbeteckning='" + kontor + "'");
+           
                     JOptionPane.showMessageDialog(null, "Kontorschefen för " + kontor + " har nu ändrats");
                     }                              
                 }
@@ -211,41 +231,6 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraKontorsChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraKontorsChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraKontorsChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraKontorsChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AndraKontorsChef(idb,id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxKontorsChef;

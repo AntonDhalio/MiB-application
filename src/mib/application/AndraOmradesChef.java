@@ -31,12 +31,17 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         txtChefNamn.setEditable(false);
         
             try{
+                //Kod som hämtar ut hela ID-kolumnen för agenter från databasen och sorterar i stigande ordning
                 agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+                
+                //For each loop som gör att alla ID:n listas i en drop-down-meny
                 agentID.forEach(idNr -> {
                 boxChef.addItem(idNr);
                                         });
-
+                //Kod som hämtar ut hela kolumnen med namn från databasen och sorterar i stigande ordning
                 kontorNamn = idb.fetchColumn("SELECT Benamning FROM Omrade ORDER BY Benamning ASC");
+                
+                //For each loop som gör att alla kontorsnamn listas i en drop-down-meny
                 kontorNamn.forEach(kontor -> {
                 boxValjOmrade.addItem(kontor);
                                         }); 
@@ -138,6 +143,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChefActionPerformed
+        //Kod som hämtar och visar namnet på vald agent i gränssnittet
         try{
             String idNr = (String)boxChef.getSelectedItem();
             String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
@@ -151,15 +157,20 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     }//GEN-LAST:event_boxChefActionPerformed
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+        //Metod som hanterar vad som sker när användaren trycker på "godkänn"
+        
         String id = (String)boxChef.getSelectedItem();
         String valtOmrade = (String)boxValjOmrade.getSelectedItem();
         
         try{
+            //Nedan byts namnet på området mot dess ID-nummer
             String omradesID = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
             String hamtaOmradesID = idb.fetchSingle(omradesID);
   
+            //Kod som ser till att användaren måste bekräfta eller avvisa ändringarna
             int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill genomföra ändringarna?", "Obs!", JOptionPane.YES_NO_OPTION);
-            
+                
+                //Om användaren bekräftar ändringarna, ser denna kod till att uppdatera databasen
                 if(svar == JOptionPane.YES_OPTION){
                     idb.update("UPDATE Omradeschef SET Agent_ID='" + id + "'WHERE Omrade=" + hamtaOmradesID + "");
                     JOptionPane.showMessageDialog(null, "Områdeschefen för " + valtOmrade + " har nu ändrats");
@@ -176,41 +187,6 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraOmradesChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraOmradesChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraOmradesChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraOmradesChef.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AndraOmradesChef(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bakgrund;

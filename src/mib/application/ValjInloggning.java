@@ -124,7 +124,7 @@ public class ValjInloggning extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valjAgentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valjAgentMouseReleased
-         loggaIn = new InloggningAgentAdmin(idb);
+        loggaIn = new InloggningAgentAdmin(idb);
         loggaIn.setVisible(true);
         dispose();
     }//GEN-LAST:event_valjAgentMouseReleased

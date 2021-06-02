@@ -143,35 +143,49 @@ public class AlienBytLosen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tomFaltKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tomFaltKnappMouseReleased
+
+        // En metod för att tömma lösenordsfälten på tecken som skrivits in
         bekraftaLosen.setText("");
         nuvarandeLosen.setText("");
         nyttLosen.setText("");
     }//GEN-LAST:event_tomFaltKnappMouseReleased
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+        /**
+         * Metod för att byta lösenord för en alien.
+         * Första if-satsen är ett externt metodanrop till valideringsklassen för validering av att 
+         * lösenordsfälten inte är tomma eller överskrider maxgränsen på 6 tecken.
+         **/
         if(Validering.losenordFaltHarVarde(nuvarandeLosen) && Validering.losenordFaltHarVarde(nyttLosen) && Validering.losenordFaltHarVarde(bekraftaLosen)){
-        try{
         
-        String gamalLosen = "SELECT Losenord FROM alien WHERE Alien_ID=" + id;
-        String hamtaGamalLosen = idb.fetchSingle(gamalLosen);
-        String inputGamalLosen = String.valueOf(nuvarandeLosen.getPassword());
-        String nyttLosenord = String.valueOf(nyttLosen.getPassword());
-        String bekraftaLosenord = String.valueOf(bekraftaLosen.getPassword());
+        //Här hämtas all inmatning från lösenordsfälten
+        try{        
+            String gamalLosen = "SELECT Losenord FROM alien WHERE Alien_ID=" + id;
+            String hamtaGamalLosen = idb.fetchSingle(gamalLosen);
+            String inputGamalLosen = String.valueOf(nuvarandeLosen.getPassword());
+            String nyttLosenord = String.valueOf(nyttLosen.getPassword());
+            String bekraftaLosenord = String.valueOf(bekraftaLosen.getPassword());
         
-        
+            /**
+            * If-satsen kollar om man har matat in rätt nuvarande lösenord samt att det nya lösenordet
+            * har skrivits in korrekt två gånger
+            */
         if(hamtaGamalLosen.equals(inputGamalLosen)){
            if(bekraftaLosenord.equals(nyttLosenord)){
                 int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ändra lösenordet?","Varning!",JOptionPane.YES_NO_OPTION);
            
                 if (reply == JOptionPane.YES_OPTION){
+                //Raden nedan uppdaterar databasen med det nya lösenordet om allt är i sin ordning
                 idb.update("UPDATE alien SET Losenord='" + nyttLosenord +"' where Alien_ID=" + id);
                 JOptionPane.showMessageDialog(null, "Ditt lösenord har ändrats!");
                 }
            }
+          //Else sats som körs om lösenordet inte matchar med fältet där lösenordet ska bekräftas. Ger felmeddelande
            else{
                JOptionPane.showMessageDialog(null, "Bekräftelsen matchar inte med det nya lösenordet.");
            }
         }
+        //Else sats som hanterar fall där nuvarande lösenordet skrivs in fel och visar ett felmeddelande
         else{
         JOptionPane.showMessageDialog(null, "Nuvarande lösenord matchar inte med ditt faktiska lösenord.");}
         }
@@ -179,6 +193,7 @@ public class AlienBytLosen extends javax.swing.JFrame {
         catch(InfException e) {
         
             JOptionPane.showMessageDialog(null, "Ett fel uppstod");
+
         }
         }
     }//GEN-LAST:event_godkännKnappMouseReleased
@@ -189,35 +204,6 @@ public class AlienBytLosen extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_goBackMouseReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlienBytLosen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField bekraftaLosen;

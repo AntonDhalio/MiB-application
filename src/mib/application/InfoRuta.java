@@ -132,7 +132,11 @@ public class InfoRuta extends javax.swing.JFrame {
         txtInfo.replaceSelection("");
         try {
             String omrade = idb.fetchSingle("SELECT Plats FROM Alien WHERE Alien_ID =" + id);
+            
+            //Hämtar namn och telefonnummer till aliens som finns i ett område, från databasen
             ArrayList<HashMap<String,String>> allaAliens = idb.fetchRows("SELECT Telefon, Namn FROM Alien JOIN Plats ON Plats_ID = Plats JOIN Omrade ON Omrades_ID = Finns_I WHERE Plats_ID ='" + omrade + "'");
+            
+            //Listar alla aliens som finns i närheten, tillsammans med information om dem
             for (HashMap<String, String> list : allaAliens) {                
                 for(Map.Entry<String,String> lista : list.entrySet()){
                     String key = lista.getKey();
@@ -151,10 +155,14 @@ public class InfoRuta extends javax.swing.JFrame {
     }//GEN-LAST:event_aliensOmradeKnappMouseReleased
 
     private void omradeschefKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_omradeschefKnappMouseReleased
+        //En metod som visar vem som är områdeschef i området en alien vistas i
         txtInfo.selectAll();
         txtInfo.replaceSelection("");
         try {
+       
+            // Hämtar data från databasen för att ta fram namn och telefonnummer på den agent som är områdeschef
             HashMap<String,String> agent = idb.fetchRow("SELECT Agent.Namn, Agent.Telefon FROM Agent JOIN Omradeschef ON Omradeschef.Agent_ID = Agent.Agent_ID JOIN Alien ON Plats = Omradeschef.Omrade WHERE Alien_ID =" + id);
+
             for (Map.Entry <String, String> agentInfo  : agent.entrySet()) {
                 String key = agentInfo.getKey();
                     String value = agentInfo.getValue();
@@ -176,35 +184,6 @@ public class InfoRuta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_goBackMouseReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InfoRuta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InfoRuta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InfoRuta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InfoRuta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aliensOmradeKnapp;

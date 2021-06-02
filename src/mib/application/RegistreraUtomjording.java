@@ -34,20 +34,30 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         this.id = id;
         
         try{
+            //Hämtar kolumnen med agent-ID:n ur agent-tabellen i databasen
             ArrayList<String> agenter = idb.fetchColumn("SELECT Agent_ID FROM agent");
+            
+            //Genom en for each loop listas alla agent-ID:n i en drop-down-meny
             for(String nuvarandeAgent: agenter){
                 agentBox.addItem(nuvarandeAgent);
             }
-        
+           
+            //Hämtar kolumnen med benämning ur plats-tabellen i databasen
             ArrayList<String> plats = idb.fetchColumn("SELECT Benamning FROM plats");
+            
+            //Med en for each loop listas alla plats-ID:n i en drop-down-meny
+
             for(String nuvarandePlats: plats){
                 omradeBox.addItem(nuvarandePlats);
             }
             
+            //En arraylist som håller de olika raserna som finns
             ArrayList<String> ras = new ArrayList<String>();
             ras.add("boglodite");
             ras.add("squid");
             ras.add("worm");
+            
+            //För att lista raserna i en drop-down-meny, används en for each loop
             for(String nuvarandeRas: ras){
                rasBox.addItem(nuvarandeRas);
             }
@@ -215,6 +225,11 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+
+        /*
+        Externt metodanrop till valideringsklassen för att kontrollera att telefonnummer, lösenord och namn 
+        är korrekt ifyllda
+        */
         if(Validering.txtFieldBegransad20(namnFalt, namnLabel.getText()) && Validering.txtFieldBegransad6(losenordFalt, passwordLabel.getText()) && Validering.txtFieldBegransad30(telnrFalt, telefonLabel.getText())){
         try{
             String namn = namnFalt.getText();
@@ -223,7 +238,11 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             String regRas = (String)rasBox.getSelectedItem();
             String regAgent = (String)agentBox.getSelectedItem();
             String regOmrade = (String)omradeBox.getSelectedItem();
+            
+            //Hämtar automatiskt nästa lediga ID-nummer till den nya utomjordingen
             String nextId = idb.getAutoIncrement("alien", "Alien_ID");
+            
+            //Kod för att hämta dagens datum och göra det till en String
             LocalDate date = LocalDate.now();
             String datum = date.toString();
             
@@ -233,7 +252,8 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             if(namn.equals("") || losenord.equals("")){
                 JOptionPane.showMessageDialog(null, "Fyll i de kravsatta fälten!");
             }
-            //OBS! lägg till så att man själv får välja values på boglodite och squid!!
+            
+            // Lägger till den nya utomjordngen i databasen. De värden som läggs in varierar beroende på vald ras
             else{
                 idb.insert("INSERT INTO alien VALUES(" + nextId + ",'" + datum + "','" + losenord + "','" + namn + "','" + telNr + "'," + platsID + "," + regAgent + ")");
                 
@@ -263,6 +283,10 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_avbrytKnapp1MouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        /*
+        Kollar adminstatus för den inloggade agenten, för att veta vilken huvudmeny användaren 
+        ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
+        */
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -279,6 +303,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
+
 
     private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
         String agentID = agentBox.getSelectedItem().toString();

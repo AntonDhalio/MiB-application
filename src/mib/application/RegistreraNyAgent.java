@@ -31,9 +31,13 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         this.idb = idb;
         this.id = id;
         initComponents();
+        
+        //Här fylls drop-down-menyn för val av administratörsstatus med alternativ
         boxAdminStatus.insertItemAt("Ej administratör", 0);
         boxAdminStatus.insertItemAt("Administratör", 1);
         boxAdminStatus.setSelectedIndex(0);
+        
+        //Beroende på typ av agent och val av kontor, kan de olika fälten nedan antingen döljas eller visas i gränssnittet
         boxValjKontor.setVisible(false);
         boxAnsvarigForOmrade.setVisible(false);
         lblValjKontor.setVisible(false);
@@ -41,12 +45,17 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         
         
             try{
+                // Hämtar kolumnen för alla namn på områden i databasen
                 omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
+                
+                // En for each loop som listar alla områdesnamn i drop-down-menyn för val av område
                 omrade.forEach(benamning -> {
                     boxAnsvarigForOmrade.addItem(benamning);                    
                                             });
-                
+                // Hämtar kolumnen för alla namn på kontor i databasen
                 kontor = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef");
+                
+                // En for each loop som listar alla kontorsnamn i drop-down-menyn för val av kontor
                 kontor.forEach(kontorsNamn -> {
                     boxValjKontor.addItem(kontorsNamn);
                                               });
@@ -203,17 +212,26 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_boxAnsvarigForOmradeActionPerformed
 
     private void boxAdminStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAdminStatusActionPerformed
+        /* 
+        Switch-sats för att hantera vad som ska hända beroende om användaren
+        vill att den nya agenten ska ha adminstatus eller inte
+        */
         switch (boxAdminStatus.getSelectedIndex()) {
-            case 0:
+            case 0: // Index 0: INTE administratör
                 adminStatus = 'N';
             break;
-            case 1:
+            case 1: // Index 1: Administratör
                 adminStatus = 'J';
             break;
         }
     }//GEN-LAST:event_boxAdminStatusActionPerformed
 
     private void boxTypAvAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTypAvAgentActionPerformed
+        /* 
+        Switch-sats som hanterar hur olika fält ska döljas eller visas, beroende
+        på vad användaren gör för val i gränssnittet
+        */
+        
         switch (boxTypAvAgent.getSelectedIndex()) {
             case 0:
                 boxValjKontor.setVisible(false);
@@ -246,20 +264,33 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         String datum = dagensDatum.toString();
         String valtKontor = (String)boxValjKontor.getSelectedItem();
         
-        
+
+            /*
+            Externt metodanrop till valideringsklassen för att kontrollera att lösenord, namn, telefonnummer 
+            och typ av agent är korrekt ifyllda
+            */     
             if(Validering.txtFieldBegransad20(txtNamn, namnLabel.getText()) && Validering.txtFieldBegransad30(txtTelefon, telefonLabel.getText()) && Validering.txtFieldBegransad6(txtLosenord, passwordLabel.getText()) && Validering.ValtEttAlternativ(boxTypAvAgent)){
+
 
         
                 try {
+                    //Hämtar automatiskt ett ledigt ID-nummer åt den nya agenten
                     String nextID = idb.getAutoIncrement("Agent", "Agent_ID");
+                    
+                    //Hämtar områdes-ID för valt område för att kunna lägga in det i agent-tabellen
                     String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
                     String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
                     int intOmradesID = Integer.parseInt(hamtaOmradesID);
+                    
+                    //Lägger in alla inmatade värden i agent-tabellen i databasen
                     idb.insert("INSERT INTO Agent VALUES(" + nextID + ",'" + namn + "','" + telefon + "','" + datum + "','" + adminStatus + "','" + losenord + "'," + intOmradesID + ")");
-            
+                        
+                        //Om användaren valt att den nya agenten är fältagent, läggs hen till i den tabellen också
                         if(boxTypAvAgent.getSelectedIndex() == 1){
                             idb.insert("INSERT INTO Faltagent VALUES(" + nextID + ")");    
                                                                  }
+                        
+                            //Är hen kontorschef så uppdateras istället kontorschefen för det valda området, till den nya agenten                                     
                             else if(boxTypAvAgent.getSelectedIndex() == 2){
                                     idb.update("UPDATE Kontorschef SET Agent_ID='" + nextID + "'WHERE Kontorsbeteckning='" + valtKontor + "'");
                                                                            }
@@ -279,41 +310,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         new AdminHanteraAgent(idb, id).setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistreraNyAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistreraNyAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistreraNyAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistreraNyAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistreraNyAgent(idb, id).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxAdminStatus;

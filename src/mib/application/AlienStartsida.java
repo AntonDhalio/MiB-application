@@ -145,7 +145,10 @@ public class AlienStartsida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        //Kod för kunna logga ut, med pop-up-ruta för att bekräfta att man vill logga ut, eller stanna kvar på sidan
         int reply = JOptionPane.showConfirmDialog(null, "Du håller på att logga ut.\nÄr du säker på att du vill fortsätta?", "Logga ut?", JOptionPane.YES_NO_OPTION);
+        
+        // Kod som ser till att man loggas ut om man väljer "yes"-alternativet i pop-up-rutan
         if(reply == JOptionPane.YES_OPTION){
             new ValjInloggning(idb).setVisible(true);
             dispose();
@@ -153,53 +156,31 @@ public class AlienStartsida extends javax.swing.JFrame {
     }//GEN-LAST:event_goBackMouseReleased
 
     private void infoRutaKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoRutaKnappMouseReleased
+        // Visar inforutan vid användning av "områdesinfo"-knappen
         InfoRuta ir = new InfoRuta(idb, id);
         ir.setVisible(true);
         dispose();
     }//GEN-LAST:event_infoRutaKnappMouseReleased
 
     private void mailaOC1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mailaOC1MouseReleased
+        /** Kod som öppnar datorns mailprogram vid anvädning av knappen "maila områdeschef"
+         * Ger en pop-up-ruta där man får godkänna eller avvisa att programmet öppnas
+         */
         int bekrafta = JOptionPane.showConfirmDialog(null, "Detta kommer öppna ett annat program på din dator\när du säker på att du vill fortsätta?", "Varning", JOptionPane.YES_NO_OPTION);
+       
+        //När användaren trycker på "yes" i pop-up-rutan, öppnas mailprogrammet
         if(bekrafta == JOptionPane.YES_OPTION){
             MailaOC.mailProgram(idb, id);
         }
     }//GEN-LAST:event_mailaOC1MouseReleased
 
     private void andraLosen1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_andraLosen1MouseReleased
+       // Öppnar ett fönster för att byta lösenord för aliens vid anvädning av "ändra lösenord"-knappen
         AlienBytLosen abl = new AlienBytLosen(idb, id);
         abl.setVisible(true);
         dispose();
     }//GEN-LAST:event_andraLosen1MouseReleased
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlienStartsida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlienStartsida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlienStartsida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlienStartsida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel andraLosen1;

@@ -20,6 +20,7 @@ public class Validering {
    
     
     public static boolean txtFieldHarVarde(JTextField aktuellRuta)
+    //Kollar om ett textfält har ett värde och returnerar "true" om så är fallet
     {
          boolean resultat = true;
         
@@ -52,7 +53,7 @@ public class Validering {
     }
     
     public static boolean losenordFaltHarVarde(JPasswordField aktuelltFalt){
-      
+    //Kollar om ett lösenordsfält har värde och returnerar isåfall "true"    
        boolean resultat = true;
               
        if(aktuelltFalt.getPassword().length == 0){
@@ -66,6 +67,8 @@ public class Validering {
        return resultat;       
     }
     
+
+     //Kollar om ett textfält har värde och max 30 tecken. Returnerar "true" om så är fallet 
      public static boolean txtFieldBegransad30(JTextField aktuellRuta, String meddelande){
         boolean resultat = true;
         
@@ -80,6 +83,8 @@ public class Validering {
         return resultat;
     }
     
+
+  //Kollar om ett textfält har värde och max 20 tecken. Returnerar "true" om så är fallet
     public static boolean txtFieldBegransad20(JTextField aktuellRuta, String meddelande){
         boolean resultat = true;
         
@@ -94,6 +99,8 @@ public class Validering {
         return resultat;
     }
     
+
+   //Kollar om ett textfält har värde och max 10 tecken. Returnerar "true" om så är fallet
     public static boolean txtFieldBegransad10(JTextField aktuellRuta, String meddelande){
         boolean resultat = true;
         
@@ -107,6 +114,8 @@ public class Validering {
         }
         return resultat;
     }
+
+    //Kollar om ett textfält har värde och max 6 tecken. Returnerar "true" om så är fallet
     public static boolean txtFieldBegransad6(JTextField aktuellRuta, String meddelande){
         boolean resultat = true;
         
@@ -122,6 +131,8 @@ public class Validering {
     }
     
     public static boolean datumHarVarde(Date aktuelltDatum){
+        //Kollar om ett datum har valts. Returnerar isåfall "true"
+        
         boolean resultat = true;
         
         if(aktuelltDatum == null){
@@ -132,6 +143,8 @@ public class Validering {
     }
     
     public static boolean ValtEttAlternativ(JComboBox aktuellBox){
+        //Kollar att ett alternativ har valts. Returnerar "true" isåfall.
+        
         boolean resultat = true;
         
         if(aktuellBox.getSelectedIndex() <= 0){
@@ -143,6 +156,8 @@ public class Validering {
     }
     
     public static boolean txtFieldBegransad25(JTextField aktuellRuta){
+        //Kollar om ett textfält har värde och max 25 tecken. Returnerar "true" om så är fallet 
+        
         boolean resultat = true;
     
         if(aktuellRuta.getText().isEmpty()){

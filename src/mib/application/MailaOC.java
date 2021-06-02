@@ -31,7 +31,7 @@ public class MailaOC {
             String omradesChef = idb.fetchSingle("SELECT Agent.Namn FROM Agent JOIN Omradeschef ON Omradeschef.Agent_ID = Agent.Agent_ID JOIN Alien ON Plats = Omradeschef.Omrade WHERE Alien_ID=" + id);
             String chefEmail = omradesChef.replaceAll("\\s+", "") + "@MIBScandi.se";
                         
-            
+            //Öppnar datorns standard-mailprogram
             Desktop.getDesktop().mail(new URI("mailto:"+chefEmail));
         }
         catch(IOException e){}
