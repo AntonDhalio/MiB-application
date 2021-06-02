@@ -131,13 +131,13 @@ public class TaBortAgent extends javax.swing.JFrame {
         //Hämtar namn på agenten för det ID som valts i gränssnittet
    
         try{
-        String idNr = (String)boxValjAgent.getSelectedItem();
-        String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
-        String namnFraga = idb.fetchSingle(hamtaNamn);
-        txtAgentNamn.setText(namnFraga);}
-        
+
+            String id = (String)boxValjAgent.getSelectedItem();
+            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
+            String namnFraga = idb.fetchSingle(hamtaNamn);
+            txtAgentNamn.setText(namnFraga);}
         catch(InfException e){
-        System.out.println(e);
+            System.out.println("Problem med databasen");
         }
     }//GEN-LAST:event_boxValjAgentActionPerformed
 

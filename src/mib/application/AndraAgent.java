@@ -60,11 +60,11 @@ public class AndraAgent extends javax.swing.JFrame {
 
         boxIDNummer = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        namnLabel = new javax.swing.JLabel();
         txtNyttNamn = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        telefonLabel = new javax.swing.JLabel();
         txtNyttTelenr = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         txtNyttLosenord = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         boxNyttOmrade = new javax.swing.JComboBox<>();
@@ -90,22 +90,22 @@ public class AndraAgent extends javax.swing.JFrame {
         jLabel1.setText("Välj agent att hantera");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 120, 20));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Namn");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 120, 20));
+        namnLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namnLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        namnLabel.setText("Namn");
+        getContentPane().add(namnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 120, 20));
         getContentPane().add(txtNyttNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 171, -1));
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Telefonnummer");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 120, 20));
+        telefonLabel.setForeground(new java.awt.Color(255, 255, 255));
+        telefonLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        telefonLabel.setText("Telefonnummer");
+        getContentPane().add(telefonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 120, 20));
         getContentPane().add(txtNyttTelenr, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 171, -1));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Lösenord");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 120, 20));
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        passwordLabel.setText("Lösenord");
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 120, 20));
         getContentPane().add(txtNyttLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 171, -1));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,8 +188,10 @@ public class AndraAgent extends javax.swing.JFrame {
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         int valdAgent = Integer.parseInt((String)boxIDNummer.getSelectedItem());
         
+
         //Första if-satsen består av ett externt metodanrop till valideringsklassen för att validera inmatningen för lösenord, namn och telefonnummer
-        if(Validering.txtFieldBegransad6(txtNyttLosenord) && Validering.txtFieldBegransad30(txtNyttTelenr) && Validering.txtFieldBegransad20(txtNyttNamn)){
+        if(Validering.txtFieldBegransad6(txtNyttLosenord, passwordLabel.getText()) && Validering.txtFieldBegransad30(txtNyttTelenr, telefonLabel.getText()) && Validering.txtFieldBegransad20(txtNyttNamn, namnLabel.getText())){
+
         
             //Om valideringen går igenom så hämtas all inmatning från fälten i gränssnittet
             try{
@@ -238,12 +240,12 @@ public class AndraAgent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JLabel namnLabel;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField txtNyttLosenord;
     private javax.swing.JTextField txtNyttNamn;
     private javax.swing.JTextField txtNyttTelenr;

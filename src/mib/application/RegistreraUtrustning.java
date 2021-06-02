@@ -5,6 +5,8 @@
  */
 package mib.application;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfDB;
@@ -20,6 +22,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private static String id;
     private AgentMeny agentMeny;
     private AdminUtrustningHantera hanteraUtrustning;
+    private ArrayList<String> agentID;
     /**
      * Creates new form RegistreraUtrustning
      */
@@ -27,9 +30,19 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
+
+        agentBox.addItem("");
         
-        // Denna kod döljer ett textfält med detaljer kring utrustningen
-        utrustningDetalj.setVisible(false);
+        try{
+            agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+            for(String dettaID: agentID){
+                String agentNamn = idb.fetchSingle("SELECT Namn FROM agent WHERE Agent_ID=" + dettaID);
+                agentBox.addItem(agentNamn);
+            }
+        }
+            catch(InfException e){
+                System.out.println("Något gick fel med databasen");
+        }
     }
 
     /**
@@ -41,11 +54,9 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         utrustningNamn = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        namnLabel = new javax.swing.JLabel();
         labelFranBox = new javax.swing.JLabel();
-        utrustningDetalj = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         arKomm = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
@@ -59,6 +70,9 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         godkännKnapp = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        utrustningDetalj = new javax.swing.JTextField();
+        agentBox = new javax.swing.JComboBox<>();
+        namnLabel1 = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -66,23 +80,18 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 34, -1, -1));
         getContentPane().add(utrustningNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 220, 160, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Namnge den nya utrustningen");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 200, -1));
+        namnLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        namnLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namnLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        namnLabel.setText("Utkvittera till agent (valfritt)");
+        getContentPane().add(namnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 200, -1));
 
         labelFranBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelFranBox.setForeground(new java.awt.Color(255, 255, 255));
         labelFranBox.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         getContentPane().add(labelFranBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 170, 20));
-        getContentPane().add(utrustningDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 160, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -163,7 +172,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         jLabel8.setText("Töm fält");
         tomFaltKnapp.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
-        getContentPane().add(tomFaltKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 110, 30));
+        getContentPane().add(tomFaltKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, 110, 30));
 
         godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
         godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -184,7 +193,16 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         jLabel3.setText("Godkänn");
         godkännKnapp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
-        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 320, 110, 30));
+        getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 110, 30));
+        getContentPane().add(utrustningDetalj, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 160, -1));
+
+        getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, 160, 20));
+
+        namnLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        namnLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        namnLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        namnLabel1.setText("Namnge den nya utrustningen");
+        getContentPane().add(namnLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 200, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setToolTipText("");
@@ -214,15 +232,13 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         // Denna kod hanterar vad som ska ske om användaren matar in att hen vill registrera ett vapen
         if(arVapen.isSelected()){
             arTeknik.setEnabled(false);
-            arKomm.setEnabled(false);
-            utrustningDetalj.setVisible(true);
+            arKomm.setEnabled(false);            
             labelFranBox.setText("Ange vapnets kaliber");
         }
         else{
             // Denna kod hanterar vad som ska ske om teknik ska registreras
             arTeknik.setEnabled(true);
             arKomm.setEnabled(true);
-            utrustningDetalj.setVisible(false);
             labelFranBox.setText("");
         }
     }//GEN-LAST:event_arVapenActionPerformed
@@ -232,14 +248,12 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         if(arKomm.isSelected()){
             arTeknik.setEnabled(false);
             arVapen.setEnabled(false);
-            utrustningDetalj.setVisible(true);
             labelFranBox.setText("Ange överföringsteknik");
         }
         else{
             // Denna kod hanterar vad som ska ske om teknik ska registreras
             arTeknik.setEnabled(true);
             arVapen.setEnabled(true);
-            utrustningDetalj.setVisible(false);
             labelFranBox.setText("");
         }
     }//GEN-LAST:event_arKommActionPerformed
@@ -249,14 +263,12 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         if(arTeknik.isSelected()){
             arVapen.setEnabled(false);
             arKomm.setEnabled(false);
-            utrustningDetalj.setVisible(true);
             labelFranBox.setText("Ange teknikens kraftkälla");
         }
         else{
             // Denna kod hanterar vad som ska ske om teknik ska registreras
             arVapen.setEnabled(true);
             arKomm.setEnabled(true);
-            utrustningDetalj.setVisible(false);
             labelFranBox.setText("");
         }
     }//GEN-LAST:event_arTeknikActionPerformed
@@ -264,41 +276,60 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private void tomFaltKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tomFaltKnappMouseReleased
         // Metod för att tömma fälten på tecken
         utrustningNamn.setText("");
-        utrustningDetalj.setText("");       
+        utrustningDetalj.setText("");
+        agentBox.setSelectedIndex(0);
     }//GEN-LAST:event_tomFaltKnappMouseReleased
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
+
         // Externt metodanrop för att kontrollera att utrustningsnamn och detaljer är ifyllda korrekt
-        if(Validering.txtFieldBegransad20(utrustningNamn) && Validering.txtFieldHarVarde(utrustningDetalj)){
-            try{
-                // Denna kod ger utrustningen nästa lediga ID-nummer
+        if(Validering.txtFieldBegransad20(utrustningNamn, "namn")){
+            try{                
+                LocalDate dagensDatum = LocalDate.now();
+                String datum = dagensDatum.toString();
                 String nextUID = idb.getAutoIncrement("utrustning", "Utrustnings_ID");
                 
                 
                 String namn = utrustningNamn.getText();
-                String detaljer = utrustningDetalj.getText();                
-                
-                // Denna kod ser till att användaren måste bekräfta eller avvisa att utrustningen ska registreras
-                int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);
-            
-                // Om registreringen bekräftas läggs utrustningen till. Vad som läggs till beror på typ av utrustning
-                if(reply == JOptionPane.YES_OPTION){
-                    
-                if(arVapen.isSelected() && Validering.txtFieldBegransad10(utrustningDetalj)){
-                    idb.insert("INSERT INTO vapen VALUES(" + nextUID + ",'" + detaljer + "')");
+
+                String detaljer = utrustningDetalj.getText();
+                String agentNamn = (String)agentBox.getSelectedItem();
+                String AID = idb.fetchSingle("SELECT Agent_ID FROM agent WHERE Namn='" + agentNamn + "'");
+                            
+                if(arVapen.isSelected() && Validering.txtFieldBegransad10(utrustningDetalj, "Kaliber")){
+                    int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);           
+                    if(reply == JOptionPane.YES_OPTION){
+                        idb.insert("INSERT INTO vapen VALUES(" + nextUID + ",'" + detaljer + "')");
+                        idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
+                        if(agentNamn != ""){
+                            idb.insert("INSERT INTO innehar_utrustning VALUES(" + AID + ", " + nextUID + ", '" + datum + "')");
+                        }
+                        JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
+                    }
                 }
-                else if(arKomm.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj)){
-                    idb.insert("INSERT INTO kommunikation VALUES(" + nextUID + ",'" + detaljer + "')");
+                else if(arKomm.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj, "Överföringsteknik")){
+                    int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);           
+                    if(reply == JOptionPane.YES_OPTION){
+                        idb.insert("INSERT INTO kommunikation VALUES(" + nextUID + ",'" + detaljer + "')");
+                        idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
+                        if(agentNamn != ""){
+                            idb.insert("INSERT INTO innehar_utrustning VALUES(" + AID + ", " + nextUID + ", '" + datum + "')");
+                        }
+                        JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
+                    }
                 }
-                else if(arTeknik.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj)){
-                    idb.insert("INSERT INTO teknik VALUES(" + nextUID + ",'" + detaljer + "')");
+                else if(arTeknik.isSelected() && Validering.txtFieldBegransad20(utrustningDetalj, "Kraftkälla")){
+                    int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill registrera denna utrustning?","Varning!",JOptionPane.YES_NO_OPTION);           
+                    if(reply == JOptionPane.YES_OPTION){
+                        idb.insert("INSERT INTO teknik VALUES(" + nextUID + ",'" + detaljer + "')");
+                        idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");                       
+                        if(agentNamn != ""){
+                            idb.insert("INSERT INTO innehar_utrustning VALUES(" + AID + ", " + nextUID + ", '" + datum + "')");
+                        }
+                        JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
+                    }
                 }
-                idb.insert("INSERT INTO utrustning VALUES(" + nextUID + ",'" + namn + "')");
-                JOptionPane.showMessageDialog(null, "Utrustningen har registrerats!");
-            }
-        
-        }
-        
+        }       
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
@@ -314,8 +345,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
             if(arAdmin.equals("N")){
-                agentMeny = new AgentMeny(idb, id);
-                agentMeny.setVisible(true);
+                new HanteraUtrustningAgent(idb,id).setVisible(true);
                 dispose();
             }
             else if(arAdmin.equals("J")){
@@ -330,13 +360,12 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> agentBox;
     private javax.swing.JCheckBox arKomm;
     private javax.swing.JCheckBox arTeknik;
     private javax.swing.JCheckBox arVapen;
     private javax.swing.JLabel goBack;
     private javax.swing.JPanel godkännKnapp;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -348,6 +377,8 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel labelFranBox;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JLabel namnLabel;
+    private javax.swing.JLabel namnLabel1;
     private javax.swing.JPanel tomFaltKnapp;
     private javax.swing.JTextField utrustningDetalj;
     private javax.swing.JTextField utrustningNamn;

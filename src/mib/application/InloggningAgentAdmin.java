@@ -130,7 +130,9 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
 
 
     private void loggainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseReleased
+
         // Hämtar id-nummret på den som loggar in och tilldelar värdet till id-variabeln      
+        if(Validering.txtFieldArNummer(txtIDNummer)){        
         this.id = txtIDNummer.getText();
                
         try{
@@ -152,7 +154,6 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
                 huvudmenyAdmin = new HuvudmenyAdmin(idb, id);
                 huvudmenyAdmin.setVisible(true);
                 dispose();
-
             }
 
             else{
@@ -161,14 +162,15 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
                 dispose();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Felaktigt lösenord eller ID-nummer. Vänligen försök igen");
-            new InloggningAgentAdmin(idb).setVisible(true);
+            JOptionPane.showMessageDialog(null, "Felaktigt lösenord. Vänligen försök igen");            
             }
         
         
-        } catch(Exception e){}
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ett fel uppstod med databasen");
+        }
        
-            
+        }      
     }//GEN-LAST:event_loggainMouseReleased
 
     private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased

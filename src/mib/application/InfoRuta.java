@@ -162,11 +162,16 @@ public class InfoRuta extends javax.swing.JFrame {
        
             // Hämtar data från databasen för att ta fram namn och telefonnummer på den agent som är områdeschef
             HashMap<String,String> agent = idb.fetchRow("SELECT Agent.Namn, Agent.Telefon FROM Agent JOIN Omradeschef ON Omradeschef.Agent_ID = Agent.Agent_ID JOIN Alien ON Plats = Omradeschef.Omrade WHERE Alien_ID =" + id);
-            
-            // For each loop som ser till att all data listas i gränssnittet
-            for (String agentInfo  : agent.values()) {
-                txtInfo.insert(agentInfo + "\n", 0);
-                
+
+            for (Map.Entry <String, String> agentInfo  : agent.entrySet()) {
+                String key = agentInfo.getKey();
+                    String value = agentInfo.getValue();
+                    if(key.equals("Telefon")){
+                        txtInfo.insert("Telefon: " + value + "\n", 0);
+                    }
+                    else {
+                        txtInfo.insert("Namn: " + value + "\n\n", 0);
+                    } 
             }
         } catch (InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");

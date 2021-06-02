@@ -9,6 +9,8 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author anton
@@ -67,9 +69,9 @@ public class AndraUtomjording extends javax.swing.JFrame {
         goBack = new javax.swing.JLabel();
         namnFalt = new javax.swing.JTextField();
         losenordFalt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        namnLabel = new javax.swing.JLabel();
+        telefonLabel = new javax.swing.JLabel();
         telnrFalt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -80,6 +82,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         godkännKnapp = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        txtAgentNamn = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,23 +114,23 @@ public class AndraUtomjording extends javax.swing.JFrame {
         getContentPane().add(namnFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 160, -1));
         getContentPane().add(losenordFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 160, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Lösenord");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 120, -1));
+        passwordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        passwordLabel.setText("Lösenord");
+        getContentPane().add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 120, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Namn");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 120, 20));
+        namnLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        namnLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namnLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        namnLabel.setText("Namn");
+        getContentPane().add(namnLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 120, 20));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Telefon");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
+        telefonLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        telefonLabel.setForeground(new java.awt.Color(255, 255, 255));
+        telefonLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        telefonLabel.setText("Telefon");
+        getContentPane().add(telefonLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
         getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -148,6 +151,11 @@ public class AndraUtomjording extends javax.swing.JFrame {
         jLabel8.setText("Ras");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 120, -1));
 
+        agentBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agentBoxActionPerformed(evt);
+            }
+        });
         getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 160, -1));
 
         getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 160, -1));
@@ -174,6 +182,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         godkännKnapp.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 70, 30));
 
         getContentPane().add(godkännKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 110, 30));
+        getContentPane().add(txtAgentNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 280, 120, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
@@ -189,9 +198,11 @@ public class AndraUtomjording extends javax.swing.JFrame {
         agentBox.removeAllItems();
         rasBox.removeAllItems();
         omradeBox.removeAllItems();
+
         
         try{
             // Denna kod hämtar data från databasen från det agent-ID man har valt
+
             String namn = idb.fetchSingle("SELECT Namn FROM alien WHERE Alien_ID=" + valdUtomjording);
             namnFalt.setText(namn);
             String losenord = idb.fetchSingle("SELECT Losenord FROM alien WHERE Alien_ID=" + valdUtomjording);
@@ -201,11 +212,9 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String valtOmrade = idb.fetchSingle("SELECT Plats FROM alien WHERE Alien_ID=" + valdUtomjording);
             String valdAgent = idb.fetchSingle("SELECT Ansvarig_Agent FROM alien WHERE Alien_ID=" + valdUtomjording);
             
-            /* 
-            Denna kod hämtar kolumnen "områdes-ID" från områdestabellen i databasen och med en for each loop
-            läggs alla områdesID:n till i en drop-down-meny i stigande ordning
-            */
-            ArrayList<String> omrade = idb.fetchColumn("SELECT Omrades_ID FROM omrade ORDER BY Omrades_ID ASC");
+
+            ArrayList<String> omrade = idb.fetchColumn("SELECT Benamning FROM omrade ORDER BY Omrades_ID ASC");
+
             for(String nuvarandeOmrade: omrade){
                 omradeBox.addItem(nuvarandeOmrade);
             }
@@ -216,13 +225,14 @@ public class AndraUtomjording extends javax.swing.JFrame {
             */
             ArrayList<String> agent = idb.fetchColumn("SELECT Agent_ID FROM agent ORDER BY Agent_ID ASC");
             for(String nuvarandeAgent: agent){
-                agentBox.addItem(nuvarandeAgent);
+                agentBox.addItem(nuvarandeAgent);   
             }
             
             /* 
             Denna kod skapar en arraylist med olika raser som användaren sedan kan välja mellan.
             Genom en for each loop listas sedan alla raser i en drop-down-meny
             */
+
             ArrayList<String> ras = new ArrayList<String>();
             ras.add("Ras inte registrerad");
             ras.add("boglodite");
@@ -235,7 +245,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
             omradeBox.setSelectedItem(valtOmrade);
             agentBox.setSelectedItem(valdAgent);
             
-             
+
             ArrayList<String> boglodite = idb.fetchColumn("SELECT Alien_ID FROM boglodite");
             
             ArrayList<String> squid = idb.fetchColumn("SELECT Alien_ID FROM squid");
@@ -267,18 +277,24 @@ public class AndraUtomjording extends javax.swing.JFrame {
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
-        
+
         //Externt metodanrop till valideringsklassen för att se till att fälten med telefonnummer, lösenord och namn korrekt ifyllda
-        if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
+        if(Validering.txtFieldBegransad30(telnrFalt, telefonLabel.getText()) && Validering.txtFieldBegransad6(losenordFalt, passwordLabel.getText()) && Validering.txtFieldBegransad20(namnFalt, namnLabel.getText())){
+
         try{
             String namn = namnFalt.getText();
             String losenord = losenordFalt.getText();
             String telNr = telnrFalt.getText();
             String regRas = (String)rasBox.getSelectedItem();
             String regAgent = (String)agentBox.getSelectedItem();
-            String regOmrade = (String)omradeBox.getSelectedItem();
+            String regOmradeBenamning = (String)omradeBox.getSelectedItem();
             
+
             //Kod för att se till att användaren måste bekräfta eller avvisa ändringarna
+
+            String regOmradeID = idb.fetchSingle("SELECT Omrades_ID FROM Omrade WHERE Benamning='" + regOmradeBenamning + "'");
+            
+
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ändra dessa uppgifter?", "Varning!", JOptionPane.YES_NO_OPTION);
             
             //Kod som uppdaterar alla fält som fått ny information, om användaren bekräftar att ändringarna ska genomföras
@@ -287,10 +303,12 @@ public class AndraUtomjording extends javax.swing.JFrame {
                 idb.update("UPDATE alien SET Losenord='" + losenord + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Telefon='" + telNr + "' where Alien_ID=" + valdUtomjording);
                 idb.update("UPDATE alien SET Ansvarig_Agent='" + regAgent + "' where Alien_ID=" + valdUtomjording);
-                idb.update("UPDATE alien SET Plats='" + regOmrade + "' where Alien_ID=" + valdUtomjording);
-               
+
+
+                idb.update("UPDATE alien SET Plats='" + regOmradeID + "' where Alien_ID=" + valdUtomjording);
                 // Tar bort vald aliens ID från sin gamla ras i databasen
-                if(gamalRas != null && regRas != gamalRas){
+                if(gamalRas != null && regRas != gamalRas && gamalRas != "Ras inte registrerad"){
+
                 idb.delete("DELETE FROM " + gamalRas + " WHERE Alien_ID=" + valdUtomjording);
                 }
                 if(regRas.equals(gamalRas)){}
@@ -339,15 +357,58 @@ public class AndraUtomjording extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_goBackMouseReleased
 
+
+    private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
+        String agentID = (String)agentBox.getSelectedItem();
+            try {
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + agentID);
+            txtAgentNamn.setText(agentNamn);
+        } catch (InfException e) {
+          JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_agentBoxActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AndraUtomjording.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AndraUtomjording(idb,id).setVisible(true);
+            }
+        });
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> agentBox;
     private javax.swing.JLabel goBack;
     private javax.swing.JPanel godkännKnapp;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -355,9 +416,13 @@ public class AndraUtomjording extends javax.swing.JFrame {
     private javax.swing.JLabel lblMIB;
     private javax.swing.JTextField losenordFalt;
     private javax.swing.JTextField namnFalt;
+    private javax.swing.JLabel namnLabel;
     private javax.swing.JComboBox<String> omradeBox;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> rasBox;
+    private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField telnrFalt;
+    private javax.swing.JTextField txtAgentNamn;
     private javax.swing.JComboBox<String> utomjordingBox;
     // End of variables declaration//GEN-END:variables
 }

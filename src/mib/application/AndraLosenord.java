@@ -156,24 +156,31 @@ public class AndraLosenord extends javax.swing.JFrame {
         String nyttLosenord = String.valueOf(nyttLosen.getPassword());
         String bekraftaLosenord = String.valueOf(bekraftaLosen.getPassword());
         
-        /* Första if-satsen kontrollerar att det gamla lösenordet matchar inmatningen av det gamla lösenordet, 
+
+        /* Kontrollerar att det gamla lösenordet matchar inmatningen av det gamla lösenordet, 
            och att det nya lösenordet matchar bekräftelsen av lösenordet.
         */
-        if(hamtaGamalLosen.equals(inputGamalLosen) && bekraftaLosenord.equals(nyttLosenord)){
-            //Denna kod ser till att användaren måste antingen bekräfta eller avvisa ändringen av lösenord
-           int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ändra lösenordet?","Varning!",JOptionPane.YES_NO_OPTION);
+        if(hamtaGamalLosen.equals(inputGamalLosen)){
+           if(bekraftaLosenord.equals(nyttLosenord)){
+                //Denna kod ser till att användaren måste antingen bekräfta eller avvisa ändringen av lösenord
+                int reply = JOptionPane.showConfirmDialog(null,"Är du säker på att du vill ändra lösenordet?","Varning!",JOptionPane.YES_NO_OPTION);
            
-           //Om användaren trycker på "yes" och godkänner ändringarna, ser denna kod till att uppdatera lösenordet i databasen
-           if (reply == JOptionPane.YES_OPTION){
-               idb.update("UPDATE agent SET Losenord='" + nyttLosenord +"' where Agent_ID=" + id);
-               JOptionPane.showMessageDialog(null, "Ditt lösenord har ändrats!");
+                 //Om användaren trycker på "yes" och godkänner ändringarna, ser denna kod till att uppdatera lösenordet i databasen
+                if (reply == JOptionPane.YES_OPTION){
+                idb.update("UPDATE agent SET Losenord='" + nyttLosenord +"' where Agent_ID=" + id);
+                JOptionPane.showMessageDialog(null, "Ditt lösenord har ändrats!");
+                }
+           }
+           else{
+               JOptionPane.showMessageDialog(null, "Bekräftelsen matchar inte med det nya lösenordet.");
+
            }
         }
         else{
-        JOptionPane.showMessageDialog(null, "Lösenorden matchar inte");}
+        JOptionPane.showMessageDialog(null, "Nuvarande lösenord matchar inte med ditt faktiska lösenord.");}
         }
         
-        catch(Exception e) {
+        catch(InfException e) {
         
             JOptionPane.showMessageDialog(null, "Ett fel uppstod");
         }
