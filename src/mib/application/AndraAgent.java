@@ -6,6 +6,7 @@
 package mib.application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -17,6 +18,7 @@ public class AndraAgent extends javax.swing.JFrame {
     private static InfDB idb;
     private static String id;
     private ArrayList<String> omrade;
+    private ArrayList<HashMap<String,String>> agenterna;
     
 
     /**
@@ -28,6 +30,11 @@ public class AndraAgent extends javax.swing.JFrame {
         this.id = id;
         
         try{
+            //For each loop som ser till att alla ID:n och namn listas i en drop-down-meny
+            agenterna = idb.fetchRows("SELECT Agent_ID, Namn FROM agent");
+            for(HashMap enAgent : agenterna){
+                boxIDNummer.addItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());
+            }           
             //Kod som hämtar ut hela namn-kolumnen för områden i databasen
             omrade = idb.fetchColumn("SELECT Benamning FROM Omrade");
             
@@ -36,12 +43,7 @@ public class AndraAgent extends javax.swing.JFrame {
                     boxNyttOmrade.addItem(ansvararForOmrade);
                                                 });
             //Kod som hämtar ut hela agent-ID-kolumnen för agenter i databasen. Alla ID:n sorteras i stigande ordning
-            agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
-            
-            //For each loop som ser till att alla ID:n listas i en drop-down-meny
-            agentID.forEach(idNr -> {
-                boxIDNummer.addItem(idNr);
-                                    });          
+            agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");                 
             }
         
             catch(InfException e){
@@ -163,7 +165,8 @@ public class AndraAgent extends javax.swing.JFrame {
     private void boxIDNummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxIDNummerActionPerformed
         // Denna kod hämtar data från databasen från det agent-ID man har valt, med SQL-frågor
         try{
-            String idNr = (String)boxIDNummer.getSelectedItem();
+            int index = boxIDNummer.getSelectedIndex();
+            String idNr = agenterna.get(index).get("Agent_ID");
             String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + idNr);
             String telefon = idb.fetchSingle("SELECT Telefon FROM Agent WHERE Agent_ID=" + idNr);
             String losenord = idb.fetchSingle("SELECT Losenord FROM Agent WHERE Agent_ID=" + idNr);
@@ -186,8 +189,8 @@ public class AndraAgent extends javax.swing.JFrame {
     }//GEN-LAST:event_boxIDNummerActionPerformed
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
-        int valdAgent = Integer.parseInt((String)boxIDNummer.getSelectedItem());
-        
+        int index = boxIDNummer.getSelectedIndex();
+        int valdAgent = Integer.parseInt(agenterna.get(index).get("Agent_ID"));
 
         //Första if-satsen består av ett externt metodanrop till valideringsklassen för att validera inmatningen för lösenord, namn och telefonnummer
         if(Validering.txtFieldBegransad6(txtNyttLosenord, passwordLabel.getText()) && Validering.txtFieldBegransad30(txtNyttTelenr, telefonLabel.getText()) && Validering.txtFieldBegransad20(txtNyttNamn, namnLabel.getText())){
