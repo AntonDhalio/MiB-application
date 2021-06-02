@@ -128,13 +128,15 @@ public class InfoRuta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void aliensOmradeKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aliensOmradeKnappMouseReleased
-        //Listar alla aliens som finns i närheten, tillsammans med information om dem
-        
         txtInfo.selectAll();
         txtInfo.replaceSelection("");
         try {
             String omrade = idb.fetchSingle("SELECT Plats FROM Alien WHERE Alien_ID =" + id);
+            
+            //Hämtar namn och telefonnummer till aliens som finns i ett område, från databasen
             ArrayList<HashMap<String,String>> allaAliens = idb.fetchRows("SELECT Telefon, Namn FROM Alien JOIN Plats ON Plats_ID = Plats JOIN Omrade ON Omrades_ID = Finns_I WHERE Plats_ID ='" + omrade + "'");
+            
+            //Listar alla aliens som finns i närheten, tillsammans med information om dem
             for (HashMap<String, String> list : allaAliens) {                
                 for(Map.Entry<String,String> lista : list.entrySet()){
                     String key = lista.getKey();
@@ -157,7 +159,11 @@ public class InfoRuta extends javax.swing.JFrame {
         txtInfo.selectAll();
         txtInfo.replaceSelection("");
         try {
+       
+            // Hämtar data från databasen för att ta fram namn och telefonnummer på den agent som är områdeschef
             HashMap<String,String> agent = idb.fetchRow("SELECT Agent.Namn, Agent.Telefon FROM Agent JOIN Omradeschef ON Omradeschef.Agent_ID = Agent.Agent_ID JOIN Alien ON Plats = Omradeschef.Omrade WHERE Alien_ID =" + id);
+            
+            // For each loop som ser till att all data listas i gränssnittet
             for (String agentInfo  : agent.values()) {
                 txtInfo.insert(agentInfo + "\n", 0);
                 

@@ -131,9 +131,10 @@ public class TaBortUtomjording extends javax.swing.JFrame {
             //Kod som framkallar en varningsruta när användaren försöker ta bort en alien
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Alien '" + namn, "Varning!", JOptionPane.YES_NO_OPTION);
             
-             /*Om användaren bekräftar borttagningen, ser nedanstående kod till att vald alien 
-            försvinner ur alien tabellen och att dens ras/raser även försvinner genom for each loopar, 
-            med if-satser vars syfte är att jämföra valt alien-ID med alien-ID:n i databastabellerna. Borttagning sker vid hittad matchning 
+             /*
+             Om användaren bekräftar borttagningen, ser nedanstående kod till att gå igenom arraylistorna genom
+            for each loopar. If-satsen talar om att borttagning av alien samt dens ras ska ske i databasen,
+            om det finns objekt objekt i listorna som matchar den alien användaren har valt
             */
             if (reply == JOptionPane.YES_OPTION) {
                 idb.delete("DELETE FROM Alien WHERE Alien_ID =" + valdUtomjording);
