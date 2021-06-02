@@ -39,7 +39,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
                 agentBox.addItem(nuvarandeAgent);
             }
         
-            ArrayList<String> plats = idb.fetchColumn("SELECT Plats_ID FROM plats");
+            ArrayList<String> plats = idb.fetchColumn("SELECT Benamning FROM plats");
             for(String nuvarandePlats: plats){
                 omradeBox.addItem(nuvarandePlats);
             }
@@ -88,6 +88,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         avbrytKnapp1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        txtAgentNamn = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -152,6 +153,11 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
 
         getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 127, -1));
 
+        agentBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agentBoxActionPerformed(evt);
+            }
+        });
         getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 127, -1));
 
         getContentPane().add(omradeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 127, -1));
@@ -199,6 +205,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         avbrytKnapp1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
         getContentPane().add(avbrytKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 350, 110, 30));
+        getContentPane().add(txtAgentNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 130, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -220,13 +227,15 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             LocalDate date = LocalDate.now();
             String datum = date.toString();
             
+            String platsID = idb.fetchSingle("SELECT Plats_ID FROM Plats WHERE Benamning ='" + regOmrade + "'");
+            
             
             if(namn.equals("") || losenord.equals("")){
                 JOptionPane.showMessageDialog(null, "Fyll i de kravsatta fälten!");
             }
             //OBS! lägg till så att man själv får välja values på boglodite och squid!!
             else{
-                idb.insert("INSERT INTO alien VALUES(" + nextId + ",'" + datum + "','" + losenord + "','" + namn + "','" + telNr + "'," + regOmrade + "," + regAgent + ")");
+                idb.insert("INSERT INTO alien VALUES(" + nextId + ",'" + datum + "','" + losenord + "','" + namn + "','" + telNr + "'," + platsID + "," + regAgent + ")");
                 
                 if(regRas.equals("worm")){
                     idb.insert("INSERT INTO " + regRas + " VALUES(" + nextId + ")");
@@ -270,6 +279,16 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             System.out.println("Något gick fel");
         }
     }//GEN-LAST:event_goBackMouseReleased
+
+    private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
+        String agentID = agentBox.getSelectedItem().toString();
+            try {
+            String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + agentID);
+            txtAgentNamn.setText(agentNamn);
+        } catch (InfException e) {
+          JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+    }//GEN-LAST:event_agentBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,5 +347,6 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> omradeBox;
     private javax.swing.JComboBox<String> rasBox;
     private javax.swing.JTextField telnrFalt;
+    private javax.swing.JTextField txtAgentNamn;
     // End of variables declaration//GEN-END:variables
 }
