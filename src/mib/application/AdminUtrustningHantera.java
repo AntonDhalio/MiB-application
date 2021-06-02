@@ -38,7 +38,10 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
 
         lblMIB = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
-        hanteraUtrustningKnapp = new javax.swing.JPanel();
+        hanteraUtrustningKnapp1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        laggTillUtrustningKnapp = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         taBortUtrustningKnapp = new javax.swing.JPanel();
@@ -65,26 +68,52 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        hanteraUtrustningKnapp.setBackground(new java.awt.Color(0, 0, 0));
-        hanteraUtrustningKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        hanteraUtrustningKnapp.setForeground(new java.awt.Color(102, 153, 255));
-        hanteraUtrustningKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hanteraUtrustningKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+        hanteraUtrustningKnapp1.setBackground(new java.awt.Color(0, 0, 0));
+        hanteraUtrustningKnapp1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        hanteraUtrustningKnapp1.setForeground(new java.awt.Color(102, 153, 255));
+        hanteraUtrustningKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hanteraUtrustningKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                hanteraUtrustningKnappMouseReleased(evt);
+                hanteraUtrustningKnapp1MouseReleased(evt);
             }
         });
-        hanteraUtrustningKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        hanteraUtrustningKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/utkvittera.png"))); // NOI18N
+        hanteraUtrustningKnapp1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Utkvittera eller återlämna");
+        hanteraUtrustningKnapp1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
+
+        getContentPane().add(hanteraUtrustningKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 160, 200, 140));
+
+        laggTillUtrustningKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        laggTillUtrustningKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        laggTillUtrustningKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        laggTillUtrustningKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        laggTillUtrustningKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                laggTillUtrustningKnappMouseReleased(evt);
+            }
+        });
+        laggTillUtrustningKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Backpack.png"))); // NOI18N
-        hanteraUtrustningKnapp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+        laggTillUtrustningKnapp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel2.setText("Hantera utrustning");
-        hanteraUtrustningKnapp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Lägg utrustning");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        laggTillUtrustningKnapp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
 
-        getContentPane().add(hanteraUtrustningKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 260, 80));
+        getContentPane().add(laggTillUtrustningKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 200, 140));
 
         taBortUtrustningKnapp.setBackground(new java.awt.Color(0, 0, 0));
         taBortUtrustningKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
@@ -97,15 +126,17 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
         });
         taBortUtrustningKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/trash.png"))); // NOI18N
-        taBortUtrustningKnapp.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 17, 50, -1));
+        taBortUtrustningKnapp.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 110));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 153, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ta bort utrustning");
-        taBortUtrustningKnapp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 80));
+        taBortUtrustningKnapp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
 
-        getContentPane().add(taBortUtrustningKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 260, 80));
+        getContentPane().add(taBortUtrustningKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 160, 200, 140));
 
         bakgrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(bakgrund, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -120,17 +151,22 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_goBackMouseReleased
 
-    private void hanteraUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnappMouseReleased
+    private void laggTillUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laggTillUtrustningKnappMouseReleased
         regUtrustning = new RegistreraUtrustning(idb, id);
         regUtrustning.setVisible(true);
         dispose();
-    }//GEN-LAST:event_hanteraUtrustningKnappMouseReleased
+    }//GEN-LAST:event_laggTillUtrustningKnappMouseReleased
 
     private void taBortUtrustningKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortUtrustningKnappMouseReleased
         taBortUtrustning = new TaBortUtrustning(idb, id);
         taBortUtrustning.setVisible(true);
         dispose();
     }//GEN-LAST:event_taBortUtrustningKnappMouseReleased
+
+    private void hanteraUtrustningKnapp1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hanteraUtrustningKnapp1MouseReleased
+        new KvitteraUtrustning(idb, id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_hanteraUtrustningKnapp1MouseReleased
 
     /**
      * @param args the command line arguments
@@ -170,11 +206,14 @@ public class AdminUtrustningHantera extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bakgrund;
     private javax.swing.JLabel goBack;
-    private javax.swing.JPanel hanteraUtrustningKnapp;
+    private javax.swing.JPanel hanteraUtrustningKnapp1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel laggTillUtrustningKnapp;
     private javax.swing.JLabel lblMIB;
     private javax.swing.JPanel taBortUtrustningKnapp;
     // End of variables declaration//GEN-END:variables
