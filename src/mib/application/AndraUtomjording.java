@@ -283,8 +283,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
             String namn = namnFalt.getText();
             String losenord = losenordFalt.getText();
             String telNr = telnrFalt.getText();
-            String regRas = (String)rasBox.getSelectedItem();
-            //String regAgent = (String)agentBox.getSelectedItem();
+            String regRas = (String)rasBox.getSelectedItem();           
             int i = agentBox.getSelectedIndex();
             String regAgent = agenterna.get(i).get("Agent_ID");
             String regOmradeBenamning = (String)omradeBox.getSelectedItem();

@@ -10,6 +10,7 @@ import oru.inf.InfException;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.HashMap;
 /**
  *
  * @author anton
@@ -20,6 +21,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     private static String id;
     private HanteraUtomjording hanteraUtomjording;
     private HanteraUtomjordingAdmin hanteraUtAdmin;
+    private ArrayList<HashMap<String,String>> agenterna;
     private ArrayList<String> agenter;
     private ArrayList<String> plats;
     private ArrayList<String> ras;
@@ -35,13 +37,13 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         
         try{
             //Hämtar kolumnen med agent-ID:n ur agent-tabellen i databasen
-            ArrayList<String> agenter = idb.fetchColumn("SELECT Agent_ID FROM agent");
+            agenterna = idb.fetchRows("SELECT Agent_ID, Namn FROM agent");
             
             //Genom en for each loop listas alla agent-ID:n i en drop-down-meny
-            for(String nuvarandeAgent: agenter){
-                agentBox.addItem(nuvarandeAgent);
+            for(HashMap enAgent : agenterna){
+                agentBox.addItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());
             }
-           
+            
             //Hämtar kolumnen med benämning ur plats-tabellen i databasen
             ArrayList<String> plats = idb.fetchColumn("SELECT Benamning FROM plats");
             
@@ -98,7 +100,6 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         avbrytKnapp1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtAgentNamn = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -163,11 +164,6 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
 
         getContentPane().add(rasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 127, -1));
 
-        agentBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agentBoxActionPerformed(evt);
-            }
-        });
         getContentPane().add(agentBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 127, -1));
 
         getContentPane().add(omradeBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, 127, -1));
@@ -215,7 +211,6 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         avbrytKnapp1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
         getContentPane().add(avbrytKnapp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(258, 350, 110, 30));
-        getContentPane().add(txtAgentNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 130, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -236,7 +231,8 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             String losenord = losenordFalt.getText();
             String telNr = telnrFalt.getText();
             String regRas = (String)rasBox.getSelectedItem();
-            String regAgent = (String)agentBox.getSelectedItem();
+            int i = agentBox.getSelectedIndex();
+            String regAgent = agenterna.get(i).get("Agent_ID");
             String regOmrade = (String)omradeBox.getSelectedItem();
             
             //Hämtar automatiskt nästa lediga ID-nummer till den nya utomjordingen
@@ -305,16 +301,6 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     }//GEN-LAST:event_goBackMouseReleased
 
 
-    private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
-        String agentID = agentBox.getSelectedItem().toString();
-            try {
-            String agentNamn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + agentID);
-            txtAgentNamn.setText(agentNamn);
-        } catch (InfException e) {
-          JOptionPane.showMessageDialog(null, "Något gick fel");
-        }
-    }//GEN-LAST:event_agentBoxActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -372,6 +358,5 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> rasBox;
     private javax.swing.JLabel telefonLabel;
     private javax.swing.JTextField telnrFalt;
-    private javax.swing.JTextField txtAgentNamn;
     // End of variables declaration//GEN-END:variables
 }
