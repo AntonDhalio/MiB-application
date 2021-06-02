@@ -193,6 +193,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         ska skickas tillbaka till vid anvädning av "tillbaka"-knappen
         */
         try {
+            //Hämtar adminstatus från databasen
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
             if(arAdmin.equals("N")){

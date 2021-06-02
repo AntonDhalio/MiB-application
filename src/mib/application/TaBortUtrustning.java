@@ -132,8 +132,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
             int reply = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill ta bort Utrustning vid namn '" + utrNamn + "'", "Varning!", JOptionPane.YES_NO_OPTION);
             
             /*Om användaren bekräftar borttagningen, ser nedanstående kod till att den valda utrustningen 
-            försvinner i alla tabeller genom for each loopar, med if-satser vars syfte är att jämföra valt utrustnings-ID
-            med utrustnings-ID:n i databastabellerna. Borttagning sker vid hittad matchning 
+            försvinner i alla tabeller genom for each loopar som går igenom tabellerna. Med hjälp av if-satser tas
+            utrustnigen bort om det finns ett ID i någon av tabellerna som matchar det ID användaren har matat in
             */
             if (reply == JOptionPane.YES_OPTION) {
                 idb.delete("DELETE FROM Utrustning WHERE Utrustnings_ID =" + valdUtrustning);

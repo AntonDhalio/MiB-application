@@ -166,6 +166,8 @@ public class AlienBytLosen extends javax.swing.JFrame {
             //Här hämtas all inmatning från lösenordsfälten
         try {
             String nyttLosen = txtNyttLosen.getText();
+            
+            //Hämtar nuvarande lösenord från databsen med en SQL-fråga
             String nuvarandeLosen = idb.fetchSingle("SELECT Losenord FROM Alien WHERE Alien_ID=" + id);
             String nuvarandeInmatning = txtNuvarandeLosen.getText();
             String bekrafta = txtBekraftaLosen.getText();
@@ -173,9 +175,9 @@ public class AlienBytLosen extends javax.swing.JFrame {
             /**
              * If-satsen kollar om man har matat in rätt nuvarande lösenord samt att det nya lösenordet
              * har skrivits in korrekt två gånger
-             * Lösenordet ändras om allt som är besrkivet ovan, är i sin ordning
              */
             if (nuvarandeInmatning.equals(nuvarandeLosen) && nyttLosen.equals(bekrafta)) {
+               //Raden nedan uppdaterar databasen med det nya lösenordet om allt är i sin ordning
                idb.update("UPDATE Alien SET Losenord ='" + nyttLosen + "' WHERE Alien_ID=" + id);
                JOptionPane.showMessageDialog(null, "Lösenordet har ändrats!");
                startSida = new AlienStartsida(idb, id);

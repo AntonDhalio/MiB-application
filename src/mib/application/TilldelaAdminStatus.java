@@ -145,6 +145,7 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         //Uppdaterar berörd agent till administratör när användaren klickar på "godkänn"
         try {
             String idNr = (String)boxAgenter.getSelectedItem();
+            //Uppdaterar kolumnen för administratörsstatus med ett "J", vilket innebär att man är admin
             idb.update("UPDATE Agent SET Administrator= 'J' WHERE Agent_ID =" + idNr);
             JOptionPane.showMessageDialog(null, "Tilldelningen av administratörsstatus lyckades!");
         } 

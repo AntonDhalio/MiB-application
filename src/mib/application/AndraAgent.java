@@ -161,7 +161,7 @@ public class AndraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxIDNummerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxIDNummerActionPerformed
-        // Denna kod hämtar data från databasen från det agent-ID man har valt
+        // Denna kod hämtar data från databasen från det agent-ID man har valt, med SQL-frågor
         try{
             String idNr = (String)boxIDNummer.getSelectedItem();
             String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + idNr);
@@ -197,6 +197,8 @@ public class AndraAgent extends javax.swing.JFrame {
             String telefon = txtNyttTelenr.getText();
             String losenord = txtNyttLosenord.getText();
             String valtOmrade = (String)boxNyttOmrade.getSelectedItem();  
+            
+            //Nedanstående rad hämtar områdes-ID:t för det namn på området som valts
             String omradesIDFraga = "SELECT Omrades_ID FROM Omrade WHERE Benamning ='" + valtOmrade + "'";
             String hamtaOmradesID = idb.fetchSingle(omradesIDFraga);
             int intOmradesID = Integer.parseInt(hamtaOmradesID);

@@ -98,7 +98,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boxHanteraAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxHanteraAgenterActionPerformed
-        //Metod för att hantera vad som ska ske vid val av olika index i menyn
+        //Switch-sats för att hantera vilket fönster som ska öppnas beroende på val av index i menyn i gränssnittet
         switch(boxHanteraAgenter.getSelectedIndex()) {
             case 0: //Här på index 0 sker ingenting
                 break;
