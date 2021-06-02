@@ -107,8 +107,8 @@ public class InfoPortal extends javax.swing.JFrame {
         sokKnapp.setForeground(new java.awt.Color(102, 153, 255));
         sokKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sokKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sokKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                sokKnappMouseReleased(evt);
             }
         });
         sokKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -127,8 +127,8 @@ public class InfoPortal extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -215,26 +215,7 @@ public class InfoPortal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idRasBoxActionPerformed
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        try {
-            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
-        
-            if(arAdmin.equals("N")){
-                agentMeny = new AgentMeny(idb, id);
-                agentMeny.setVisible(true);
-                dispose();
-            }
-            else if(arAdmin.equals("J")){
-                new HuvudmenyAdmin(idb, id).setVisible(true);
-                dispose();
-            }
-        } 
-        catch (InfException ex) {
-            System.out.println("Något gick fel");
-        } 
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void sokKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sokKnappMouseClicked
+    private void sokKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sokKnappMouseReleased
         infoFalt.selectAll();
         infoFalt.replaceSelection("");
         
@@ -378,7 +359,26 @@ public class InfoPortal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Något gick fel");
             }
         }
-    }//GEN-LAST:event_sokKnappMouseClicked
+    }//GEN-LAST:event_sokKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+        
+            if(arAdmin.equals("N")){
+                agentMeny = new AgentMeny(idb, id);
+                agentMeny.setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                new HuvudmenyAdmin(idb, id).setVisible(true);
+                dispose();
+            }
+        } 
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        } 
+    }//GEN-LAST:event_goBackMouseReleased
 
     public void alienPlats(){
         ArrayList<String> omraden = new ArrayList<>();

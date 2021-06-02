@@ -85,12 +85,6 @@ public class AndraOmradesChef extends javax.swing.JFrame {
             }
         });
         getContentPane().add(boxChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 190, -1));
-
-        txtChefNamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtChefNamnActionPerformed(evt);
-            }
-        });
         getContentPane().add(txtChefNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 190, -1));
 
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
@@ -103,8 +97,8 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -114,8 +108,8 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
         godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseReleased(evt);
             }
         });
         godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -156,16 +150,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boxChefActionPerformed
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        new AdminHanteraAgent(idb, id).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void txtChefNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtChefNamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtChefNamnActionPerformed
-
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         String id = (String)boxChef.getSelectedItem();
         String valtOmrade = (String)boxValjOmrade.getSelectedItem();
         
@@ -184,7 +169,12 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Något gick fel");
                     System.out.println(e);
         }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+    }//GEN-LAST:event_godkännKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        new AdminHanteraAgent(idb, id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments

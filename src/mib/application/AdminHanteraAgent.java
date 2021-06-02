@@ -82,8 +82,8 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -124,10 +124,10 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
             
     }//GEN-LAST:event_boxHanteraAgenterActionPerformed
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         new HuvudmenyAdmin(idb, id).setVisible(true);
         dispose();
-    }//GEN-LAST:event_goBackMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     public void addItemListener(ItemListener a){}
     /**

@@ -54,8 +54,8 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -65,8 +65,8 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         justeraAlienKnapp1.setForeground(new java.awt.Color(102, 153, 255));
         justeraAlienKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         justeraAlienKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                justeraAlienKnapp1MouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                justeraAlienKnapp1MouseReleased(evt);
             }
         });
         justeraAlienKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,8 +87,8 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         registreraAlienKnapp.setForeground(new java.awt.Color(102, 153, 255));
         registreraAlienKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         registreraAlienKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                registreraAlienKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                registreraAlienKnappMouseReleased(evt);
             }
         });
         registreraAlienKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,7 +118,19 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void justeraAlienKnapp1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_justeraAlienKnapp1MouseReleased
+        andraUtomjording = new AndraUtomjording(idb, id);
+        andraUtomjording.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_justeraAlienKnapp1MouseReleased
+
+    private void registreraAlienKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registreraAlienKnappMouseReleased
+        regUtomJ = new RegistreraUtomjording(idb, id);
+        regUtomJ.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_registreraAlienKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -135,19 +147,7 @@ public class HanteraUtomjording extends javax.swing.JFrame {
         catch (InfException ex) {
             System.out.println("Något gick fel");
         }
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void registreraAlienKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registreraAlienKnappMouseClicked
-        regUtomJ = new RegistreraUtomjording(idb, id);
-        regUtomJ.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_registreraAlienKnappMouseClicked
-
-    private void justeraAlienKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_justeraAlienKnapp1MouseClicked
-        andraUtomjording = new AndraUtomjording(idb, id);
-        andraUtomjording.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_justeraAlienKnapp1MouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments

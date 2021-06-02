@@ -142,8 +142,8 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -167,8 +167,8 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
         godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseReleased(evt);
             }
         });
         godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -189,8 +189,8 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         avbrytKnapp1.setForeground(new java.awt.Color(102, 153, 255));
         avbrytKnapp1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         avbrytKnapp1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                avbrytKnapp1MouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                avbrytKnapp1MouseReleased(evt);
             }
         });
         avbrytKnapp1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -214,25 +214,7 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        try {
-            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
-
-            if(arAdmin.equals("N")){
-                new HanteraUtomjording(idb, id).setVisible(true);
-                dispose();
-            }
-            else if(arAdmin.equals("J")){
-                new HanteraUtomjordingAdmin(idb, id).setVisible(true);
-                dispose();
-            }
-        }
-        catch (InfException ex) {
-            System.out.println("Något gick fel");
-        }
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
         try{
             String namn = namnFalt.getText();
@@ -272,13 +254,31 @@ public class RegistreraUtomjording extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ett fel uppstod");
         }
         }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+    }//GEN-LAST:event_godkännKnappMouseReleased
 
-    private void avbrytKnapp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnapp1MouseClicked
+    private void avbrytKnapp1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnapp1MouseReleased
         namnFalt.setText("");
         losenordFalt.setText("");
         telnrFalt.setText("");
-    }//GEN-LAST:event_avbrytKnapp1MouseClicked
+    }//GEN-LAST:event_avbrytKnapp1MouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+
+            if(arAdmin.equals("N")){
+                new HanteraUtomjording(idb, id).setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                new HanteraUtomjordingAdmin(idb, id).setVisible(true);
+                dispose();
+            }
+        }
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }
+    }//GEN-LAST:event_goBackMouseReleased
 
     private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
         String agentID = agentBox.getSelectedItem().toString();

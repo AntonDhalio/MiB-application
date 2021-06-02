@@ -51,7 +51,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         arVapen = new javax.swing.JCheckBox();
-        avbrytKnapp = new javax.swing.JPanel();
+        tomFaltKnapp = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         godkännKnapp = new javax.swing.JPanel();
@@ -141,35 +141,35 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 100, 40));
 
-        avbrytKnapp.setBackground(new java.awt.Color(0, 0, 0));
-        avbrytKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        avbrytKnapp.setForeground(new java.awt.Color(102, 153, 255));
-        avbrytKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        avbrytKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                avbrytKnappMouseClicked(evt);
+        tomFaltKnapp.setBackground(new java.awt.Color(0, 0, 0));
+        tomFaltKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        tomFaltKnapp.setForeground(new java.awt.Color(102, 153, 255));
+        tomFaltKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tomFaltKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tomFaltKnappMouseReleased(evt);
             }
         });
-        avbrytKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        tomFaltKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/cancel.png"))); // NOI18N
-        avbrytKnapp.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
+        tomFaltKnapp.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, 20, 20));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 153, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Avbryt");
-        avbrytKnapp.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
+        jLabel8.setText("Töm fält");
+        tomFaltKnapp.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 90, 30));
 
-        getContentPane().add(avbrytKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 110, 30));
+        getContentPane().add(tomFaltKnapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 110, 30));
 
         godkännKnapp.setBackground(new java.awt.Color(0, 0, 0));
         godkännKnapp.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
         godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
         godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseReleased(evt);
             }
         });
         godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -188,8 +188,8 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -253,26 +253,12 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_arTeknikActionPerformed
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        try {
-            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+    private void tomFaltKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tomFaltKnappMouseReleased
+        utrustningNamn.setText("");
+        utrustningDetalj.setText("");       
+    }//GEN-LAST:event_tomFaltKnappMouseReleased
 
-            if(arAdmin.equals("N")){
-                agentMeny = new AgentMeny(idb, id);
-                agentMeny.setVisible(true);
-                dispose();
-            }
-            else if(arAdmin.equals("J")){
-                new AdminUtrustningHantera(idb, id).setVisible(true);
-                dispose();
-            }
-        }
-        catch (InfException ex) {
-            System.out.println("Något gick fel");
-        }
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         if(Validering.txtFieldBegransad20(utrustningNamn) && Validering.txtFieldHarVarde(utrustningDetalj)){
             try{                
                 String nextUID = idb.getAutoIncrement("utrustning", "Utrustnings_ID");
@@ -302,27 +288,26 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
         }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+    }//GEN-LAST:event_godkännKnappMouseReleased
 
-    private void avbrytKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnappMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
-        
+
             if(arAdmin.equals("N")){
                 agentMeny = new AgentMeny(idb, id);
                 agentMeny.setVisible(true);
                 dispose();
             }
             else if(arAdmin.equals("J")){
-                hanteraUtrustning = new AdminUtrustningHantera(idb,id);
-                hanteraUtrustning.setVisible(true);
+                new AdminUtrustningHantera(idb, id).setVisible(true);
                 dispose();
             }
-        } 
+        }
         catch (InfException ex) {
             System.out.println("Något gick fel");
         }
-    }//GEN-LAST:event_avbrytKnappMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments
@@ -363,7 +348,6 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private javax.swing.JCheckBox arKomm;
     private javax.swing.JCheckBox arTeknik;
     private javax.swing.JCheckBox arVapen;
-    private javax.swing.JPanel avbrytKnapp;
     private javax.swing.JLabel goBack;
     private javax.swing.JPanel godkännKnapp;
     private javax.swing.JLabel jLabel1;
@@ -379,6 +363,7 @@ public class RegistreraUtrustning extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel labelFranBox;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel tomFaltKnapp;
     private javax.swing.JTextField utrustningDetalj;
     private javax.swing.JTextField utrustningNamn;
     // End of variables declaration//GEN-END:variables

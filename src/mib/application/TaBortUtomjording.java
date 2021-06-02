@@ -66,8 +66,8 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -84,8 +84,8 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         taBortKnapp.setForeground(new java.awt.Color(102, 153, 255));
         taBortKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         taBortKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                taBortKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                taBortKnappMouseReleased(evt);
             }
         });
         taBortKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,25 +118,7 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        try {
-            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
-
-            if(arAdmin.equals("N")){
-                new HanteraUtomjording(idb, id).setVisible(true);
-                dispose();
-            }
-            else if(arAdmin.equals("J")){
-                new HanteraUtomjordingAdmin(idb, id).setVisible(true);
-                dispose();
-            }
-        }
-        catch (InfException ex) {
-            System.out.println("Något gick fel");
-        }
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void taBortKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortKnappMouseClicked
+    private void taBortKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortKnappMouseReleased
         String valdUtomjording = cmbID.getSelectedItem().toString();
 
         try {
@@ -170,7 +152,25 @@ public class TaBortUtomjording extends javax.swing.JFrame {
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-    }//GEN-LAST:event_taBortKnappMouseClicked
+    }//GEN-LAST:event_taBortKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+
+            if(arAdmin.equals("N")){
+                new HanteraUtomjording(idb, id).setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                new HanteraUtomjordingAdmin(idb, id).setVisible(true);
+                dispose();
+            }
+        }
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }
+    }//GEN-LAST:event_goBackMouseReleased
 
     private void txtNamnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamnKeyReleased
         String sokning = txtNamn.getText().toString();

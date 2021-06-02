@@ -38,17 +38,19 @@ public class ValjInloggning extends javax.swing.JFrame {
 
         lblMIB = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        valjAgent = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        valjAlien = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(748, 421));
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(748, 421));
+        setPreferredSize(new java.awt.Dimension(760, 458));
+        setSize(new java.awt.Dimension(748, 421));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblMIB.setFont(new java.awt.Font("Verdana", 1, 48)); // NOI18N
@@ -56,89 +58,82 @@ public class ValjInloggning extends javax.swing.JFrame {
         lblMIB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMIB.setText("MEN IN BLACK");
         lblMIB.setToolTipText("");
-        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 750, -1));
+        getContentPane().add(lblMIB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 740, -1));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SKANDINAVIEN");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 750, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 740, -1));
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        jPanel2.setForeground(new java.awt.Color(102, 153, 255));
-        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.setMinimumSize(new java.awt.Dimension(222, 80));
-        jPanel2.setPreferredSize(new java.awt.Dimension(222, 80));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
+        valjAgent.setBackground(new java.awt.Color(0, 0, 0));
+        valjAgent.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        valjAgent.setForeground(new java.awt.Color(102, 153, 255));
+        valjAgent.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        valjAgent.setMinimumSize(new java.awt.Dimension(222, 80));
+        valjAgent.setPreferredSize(new java.awt.Dimension(222, 80));
+        valjAgent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                valjAgentMouseReleased(evt);
             }
         });
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        valjAgent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/MiB Man.png"))); // NOI18N
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 80, 80));
+        valjAgent.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 80, 80));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 153, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Logga in som agent");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 0, 220, 80));
+        valjAgent.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 0, 220, 80));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 280, 260, 80));
+        getContentPane().add(valjAgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 280, 260, 80));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
-        jPanel1.setForeground(new java.awt.Color(102, 153, 255));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel1MouseEntered(evt);
+        valjAlien.setBackground(new java.awt.Color(0, 0, 0));
+        valjAlien.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 153, 255), 2, true));
+        valjAlien.setForeground(new java.awt.Color(102, 153, 255));
+        valjAlien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        valjAlien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                valjAlienMouseReleased(evt);
             }
         });
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        valjAlien.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/alien-logo2.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 80));
+        valjAlien.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 80));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 153, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Logga in som alien");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 0, 210, 80));
+        valjAlien.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 0, 210, 80));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 260, 80));
+        getContentPane().add(valjAlien, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 260, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/Background.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 748, 421));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+    private void valjAgentMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valjAgentMouseReleased
+         loggaIn = new InloggningAgentAdmin(idb);
+        loggaIn.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_valjAgentMouseReleased
+
+    private void valjAlienMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valjAlienMouseReleased
         loggaInAlien = new InloggningAlien(idb);
         loggaInAlien.setVisible(true);
         dispose();
-    }//GEN-LAST:event_jPanel1MouseClicked
-
-    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel1MouseEntered
-
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        loggaIn = new InloggningAgentAdmin(idb);
-        loggaIn.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jPanel2MouseClicked
+    }//GEN-LAST:event_valjAlienMouseReleased
 
 
 
@@ -149,8 +144,8 @@ public class ValjInloggning extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblMIB;
+    private javax.swing.JPanel valjAgent;
+    private javax.swing.JPanel valjAlien;
     // End of variables declaration//GEN-END:variables
 }

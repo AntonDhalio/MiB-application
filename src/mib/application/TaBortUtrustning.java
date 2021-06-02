@@ -62,8 +62,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -73,8 +73,8 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         TabortKnapp.setForeground(new java.awt.Color(102, 153, 255));
         TabortKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TabortKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TabortKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TabortKnappMouseReleased(evt);
             }
         });
         TabortKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,13 +116,7 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        hanteraUtrustning = new AdminUtrustningHantera(idb,id);
-        hanteraUtrustning.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void TabortKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabortKnappMouseClicked
+    private void TabortKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabortKnappMouseReleased
         String valdUtrustning = cmbUtrustning.getSelectedItem().toString();
 
         try {
@@ -164,7 +158,13 @@ public class TaBortUtrustning extends javax.swing.JFrame {
         } catch (InfException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-    }//GEN-LAST:event_TabortKnappMouseClicked
+    }//GEN-LAST:event_TabortKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        hanteraUtrustning = new AdminUtrustningHantera(idb,id);
+        hanteraUtrustning.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseReleased
 
     private void txtNamnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamnKeyReleased
         String sokning = txtNamn.getText().toString();

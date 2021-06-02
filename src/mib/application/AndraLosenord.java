@@ -77,8 +77,8 @@ public class AndraLosenord extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -95,8 +95,8 @@ public class AndraLosenord extends javax.swing.JFrame {
         avbrytKnapp.setForeground(new java.awt.Color(102, 153, 255));
         avbrytKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         avbrytKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                avbrytKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                avbrytKnappMouseReleased(evt);
             }
         });
         avbrytKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,8 +117,8 @@ public class AndraLosenord extends javax.swing.JFrame {
         godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
         godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseReleased(evt);
             }
         });
         godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -141,7 +141,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         if(Validering.losenordFaltHarVarde(nuvarandeLosen) && Validering.losenordFaltHarVarde(nyttLosen) && Validering.losenordFaltHarVarde(bekraftaLosen)){
         try{
         
@@ -169,15 +169,15 @@ public class AndraLosenord extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ett fel uppstod");
         }
         }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+    }//GEN-LAST:event_godkännKnappMouseReleased
 
-    private void avbrytKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnappMouseClicked
+    private void avbrytKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avbrytKnappMouseReleased
         bekraftaLosen.setText("");
         nuvarandeLosen.setText("");
         nyttLosen.setText("");
-    }//GEN-LAST:event_avbrytKnappMouseClicked
+    }//GEN-LAST:event_avbrytKnappMouseReleased
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
         try {
             String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
 
@@ -194,7 +194,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         catch (InfException ex) {
             System.out.println("Något gick fel");
         }
-    }//GEN-LAST:event_goBackMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     
     /**

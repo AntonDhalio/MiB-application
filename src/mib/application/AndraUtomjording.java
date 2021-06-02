@@ -103,8 +103,8 @@ public class AndraUtomjording extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -128,12 +128,6 @@ public class AndraUtomjording extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel5.setText("Telefon");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 120, -1));
-
-        telnrFalt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                telnrFaltActionPerformed(evt);
-            }
-        });
         getContentPane().add(telnrFalt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 160, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -170,8 +164,8 @@ public class AndraUtomjording extends javax.swing.JFrame {
         godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
         godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseReleased(evt);
             }
         });
         godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -262,29 +256,7 @@ public class AndraUtomjording extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_utomjordingBoxActionPerformed
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        try {
-            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
-
-            if(arAdmin.equals("N")){
-                new HanteraUtomjording(idb, id).setVisible(true);
-                dispose();
-            }
-            else if(arAdmin.equals("J")){
-                new HanteraUtomjordingAdmin(idb, id).setVisible(true);
-                dispose();
-            }
-        }
-        catch (InfException ex) {
-            System.out.println("Något gick fel");
-        }
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void telnrFaltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telnrFaltActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telnrFaltActionPerformed
-
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         String valdUtomjording = (String)utomjordingBox.getSelectedItem();
         if(Validering.txtFieldBegransad30(telnrFalt) && Validering.txtFieldBegransad6(losenordFalt) && Validering.txtFieldBegransad20(namnFalt)){
         try{
@@ -328,7 +300,25 @@ public class AndraUtomjording extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Något gick fel");
         }
         }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+    }//GEN-LAST:event_godkännKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        try {
+            String arAdmin = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + id);
+
+            if(arAdmin.equals("N")){
+                new HanteraUtomjording(idb, id).setVisible(true);
+                dispose();
+            }
+            else if(arAdmin.equals("J")){
+                new HanteraUtomjordingAdmin(idb, id).setVisible(true);
+                dispose();
+            }
+        }
+        catch (InfException ex) {
+            System.out.println("Något gick fel");
+        }
+    }//GEN-LAST:event_goBackMouseReleased
 
     private void agentBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agentBoxActionPerformed
         String agentID = (String)agentBox.getSelectedItem();

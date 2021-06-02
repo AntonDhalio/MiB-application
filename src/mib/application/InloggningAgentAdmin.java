@@ -44,7 +44,6 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         txtIDNummer = new javax.swing.JTextField();
         lblLosenord = new javax.swing.JLabel();
         pswrdLosenord = new javax.swing.JPasswordField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
         goBack = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -74,14 +73,13 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
 
         pswrdLosenord.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 13)); // NOI18N
         getContentPane().add(pswrdLosenord, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 202, 30));
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(743, 168, -1, -1));
 
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -109,8 +107,8 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         loggain.setForeground(new java.awt.Color(102, 153, 255));
         loggain.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loggain.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loggainMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                loggainMouseReleased(evt);
             }
         });
         loggain.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,18 +129,10 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        valjInloggning = new ValjInloggning(idb);
-        valjInloggning.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void loggainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseClicked
-        
-        
+    private void loggainMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loggainMouseReleased
+                
         this.id = txtIDNummer.getText();
-        
-        
+               
         try{
         String losenordFraga = "SELECT Losenord FROM Agent WHERE Agent_ID =" + id;
         String hamtaLosenord = idb.fetchSingle(losenordFraga);
@@ -176,9 +166,14 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
         
         } catch(Exception e){}
        
+            
+    }//GEN-LAST:event_loggainMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        valjInloggning = new ValjInloggning(idb);
+        valjInloggning.setVisible(true);
         dispose();
-        
-    }//GEN-LAST:event_loggainMouseClicked
+    }//GEN-LAST:event_goBackMouseReleased
 
     public static void main(String[] args)
     {
@@ -197,7 +192,6 @@ public class InloggningAgentAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblIDNummer;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblMIB;

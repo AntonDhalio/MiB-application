@@ -88,8 +88,8 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         goBack.setToolTipText("");
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -99,8 +99,8 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         godkännKnapp.setForeground(new java.awt.Color(102, 153, 255));
         godkännKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         godkännKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                godkännKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                godkännKnappMouseReleased(evt);
             }
         });
         godkännKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,20 +131,20 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
                 catch(InfException e){}
     }//GEN-LAST:event_boxAgenterActionPerformed
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        new AdminHanteraAgent(idb, id).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void godkännKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseClicked
+    private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         try {
             String id = (String)boxAgenter.getSelectedItem();
             idb.update("UPDATE Agent SET Administrator= 'J' WHERE Agent_ID =" + id);
             JOptionPane.showMessageDialog(null, "Tilldelningen av administratörsstatus lyckades!");
-        } catch (InfException ex) {
-            
-        }
-    }//GEN-LAST:event_godkännKnappMouseClicked
+        } 
+        catch (InfException ex) {
+            }
+    }//GEN-LAST:event_godkännKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        new AdminHanteraAgent(idb, id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseReleased
 
     
         

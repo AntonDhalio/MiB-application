@@ -147,11 +147,6 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         jLabel4.setText("Välj typ av agent:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 120, 20));
 
-        boxValjKontor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxValjKontorActionPerformed(evt);
-            }
-        });
         getContentPane().add(boxValjKontor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, 170, -1));
 
         lblValjKontor.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,8 +156,8 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         goBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/GoBack.png"))); // NOI18N
         goBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         goBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                goBackMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                goBackMouseReleased(evt);
             }
         });
         getContentPane().add(goBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -179,8 +174,8 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         regKnapp.setForeground(new java.awt.Color(102, 153, 255));
         regKnapp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         regKnapp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                regKnappMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                regKnappMouseReleased(evt);
             }
         });
         regKnapp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -243,16 +238,7 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boxTypAvAgentActionPerformed
 
-    private void goBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseClicked
-        new AdminHanteraAgent(idb, id).setVisible(true);
-        dispose();
-    }//GEN-LAST:event_goBackMouseClicked
-
-    private void boxValjKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxValjKontorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boxValjKontorActionPerformed
-
-    private void regKnappMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regKnappMouseClicked
+    private void regKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regKnappMouseReleased
         LocalDate dagensDatum = LocalDate.now();
         String namn = txtNamn.getText();
         String telefon = txtTelefon.getText();
@@ -287,7 +273,12 @@ public class RegistreraNyAgent extends javax.swing.JFrame {
         
        
       }
-    }//GEN-LAST:event_regKnappMouseClicked
+    }//GEN-LAST:event_regKnappMouseReleased
+
+    private void goBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goBackMouseReleased
+        new AdminHanteraAgent(idb, id).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackMouseReleased
 
     /**
      * @param args the command line arguments
