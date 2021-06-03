@@ -6,6 +6,7 @@
 package mib.application;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -18,6 +19,7 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
     private ArrayList<String> agentID;
     private static InfDB idb;
     private static String id;
+    private ArrayList<HashMap<String,String>> agenterna;
     
 
     /**
@@ -27,23 +29,19 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-        
-        //Gör så att textrutan inte går att redigera av användaren i gränssnittet
-        txtNamn.setEditable(false);
-       
+              
         try{ 
-            //Hämtar alla agent-ID:n för agenter som ännu inte har adminstatus
-            agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent WHERE Administrator='N'");
+            //Hämtar kolumnen med agent-ID:n ur agent-tabellen i databasen
+            agenterna = idb.fetchRows("SELECT Agent_ID, Namn FROM agent");
             
-            //En for each loop för att lista alla agent-ID:n i en drop-down-meny
-            agentID.forEach(idNr -> {
-                boxAgenter.addItem(idNr);
-                                    });       
+            //Genom en for each loop listas alla agent-ID:n i en drop-down-meny
+            for(HashMap enAgent : agenterna){
+                boxAgenter.addItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());               
             }
+        }
             catch(InfException e){
             JOptionPane.showMessageDialog(null, "Hoppsan! Det gick inte att hämta ID:n. Vänligen försök igen");
-            }
-        
+            }      
    } 
         
     
@@ -59,7 +57,6 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
 
         jProgressBar1 = new javax.swing.JProgressBar();
         boxAgenter = new javax.swing.JComboBox<>();
-        txtNamn = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblMIB = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
@@ -71,18 +68,12 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        boxAgenter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxAgenterActionPerformed(evt);
-            }
-        });
-        getContentPane().add(boxAgenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 79, -1));
-        getContentPane().add(txtNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 190, -1));
+        getContentPane().add(boxAgenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, 190, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Välj ID-nummer:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, 20));
+        jLabel1.setText("Välj agent");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, 20));
 
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,25 +120,20 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxAgenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxAgenterActionPerformed
-        //Kod som ser till att textrutan i gränssnittet fylls med den valda agentens namn, baserat på agent-ID
-        try{
-            String idNr = (String)boxAgenter.getSelectedItem();
-            String namn = idb.fetchSingle("SELECT Namn FROM Agent WHERE Agent_ID =" + idNr);
-            txtNamn.setText(namn);
-        }
-                catch(InfException e){
-                JOptionPane.showMessageDialog(null, "Kunde inte hämta namnet för denna agent. Vänligen försök igen");
-                }
-    }//GEN-LAST:event_boxAgenterActionPerformed
-
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         //Uppdaterar berörd agent till administratör när användaren klickar på "godkänn"
         try {
-            String idNr = (String)boxAgenter.getSelectedItem();
+            int i = boxAgenter.getSelectedIndex();
+            String idNr = agenterna.get(i).get("Agent_ID");
+            String adminStatus = idb.fetchSingle("SELECT Administrator FROM agent WHERE Agent_ID=" + idNr);
             //Uppdaterar kolumnen för administratörsstatus med ett "J", vilket innebär att man är admin
-            idb.update("UPDATE Agent SET Administrator= 'J' WHERE Agent_ID =" + idNr);
-            JOptionPane.showMessageDialog(null, "Tilldelningen av administratörsstatus lyckades!");
+            if(adminStatus.equals("N")){
+                idb.update("UPDATE Agent SET Administrator= 'J' WHERE Agent_ID =" + idNr);
+                JOptionPane.showMessageDialog(null, "Tilldelningen av administratörsstatus lyckades!");
+            }
+            else if(adminStatus.equals("J")){
+                JOptionPane.showMessageDialog(null, "Agenten är redan en administratör");
+            }
         } 
         catch (InfException ex) {
                 JOptionPane.showMessageDialog(null, "Hoppsan! Det gick tyvärr inte att tilldela administratörsstatus. Vänligen försök igen");
@@ -170,6 +156,5 @@ public class TilldelaAdminStatus extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel lblMIB;
-    private javax.swing.JTextField txtNamn;
     // End of variables declaration//GEN-END:variables
 }
