@@ -19,6 +19,7 @@ public class TaBortAgent extends javax.swing.JFrame {
     private static InfDB idb;
     private static String id;
     private ArrayList<String> agentID;
+    private ArrayList<HashMap<String,String>> agenterna;
 
     /**
      * Creates new form AndraKontorsChef
@@ -26,19 +27,16 @@ public class TaBortAgent extends javax.swing.JFrame {
     public TaBortAgent(InfDB idb, String id) {
         initComponents();
         this.idb = idb;
-        this.id = id;
-        
-        //Denna kod gör att textrutan inte kan redigeras av användare i gränssnittet
-        txtAgentNamn.setEditable(false);
+        this.id = id;              
         
         try{
-            //Hämtar alla agent-ID:n från databasen och sorterar i stigande ordning
-            agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+            //Hämtar kolumnen med agent-ID:n ur agent-tabellen i databasen
+            agenterna = idb.fetchRows("SELECT Agent_ID, Namn FROM agent");
             
-            //En for each loop för att lista alla idNr-nummer i en drop-down-meny
-            agentID.forEach(aid ->  {
-                boxValjAgent.addItem(aid);
-            });
+            //Genom en for each loop listas alla agent-ID:n i en drop-down-meny
+            for(HashMap enAgent : agenterna){
+                boxValjAgent.addItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());               
+            }
         
         }
         catch(InfException e){
@@ -59,7 +57,6 @@ public class TaBortAgent extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         boxValjAgent = new javax.swing.JComboBox<>();
-        txtAgentNamn = new javax.swing.JTextField();
         lblMIB = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
         taBortKnapp = new javax.swing.JPanel();
@@ -74,13 +71,7 @@ public class TaBortAgent extends javax.swing.JFrame {
         jLabel2.setText("Välj den agent du vill ta bort:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
 
-        boxValjAgent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxValjAgentActionPerformed(evt);
-            }
-        });
         getContentPane().add(boxValjAgent, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 190, -1));
-        getContentPane().add(txtAgentNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 190, -1));
 
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,29 +118,13 @@ public class TaBortAgent extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxValjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxValjAgentActionPerformed
-        //Hämtar namn på agenten för det ID som valts i gränssnittet
-   
-        try{
-
-            String id = (String)boxValjAgent.getSelectedItem();
-            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + id;
-            String namnFraga = idb.fetchSingle(hamtaNamn);
-            txtAgentNamn.setText(namnFraga);}
-        catch(InfException e){
-            System.out.println("Problem med databasen");
-        }
-    }//GEN-LAST:event_boxValjAgentActionPerformed
-
     private void taBortKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_taBortKnappMouseReleased
-        
-        
-        int valdAgent = Integer.parseInt((String)boxValjAgent.getSelectedItem());
+        int i = boxValjAgent.getSelectedIndex();
+        String valdAgent = agenterna.get(i).get("Agent_ID");       
         
         try{       
-        
-        int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill radera denna agent från systemet? \n"
-                + "Åtgärden går inte att ångra.", "Obs!", JOptionPane.YES_NO_OPTION);
+            int svar = JOptionPane.showConfirmDialog(null, "Är du säker på att du vill radera denna agent från systemet? \n"
+            + "Åtgärden går inte att ångra.", "Obs!", JOptionPane.YES_NO_OPTION);
         
         /*
         Om användaren trycker på "yes" kommer denna kod att ta bort den valda agent via agent-ID:t 
@@ -189,6 +164,5 @@ public class TaBortAgent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lblMIB;
     private javax.swing.JPanel taBortKnapp;
-    private javax.swing.JTextField txtAgentNamn;
     // End of variables declaration//GEN-END:variables
 }

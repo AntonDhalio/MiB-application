@@ -20,6 +20,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     private ArrayList<String> kontorNamn;
     private ArrayList<String> agentID;
     private static String id;
+    private ArrayList<HashMap<String,String>> agenterna;
 
     /**
      * Creates new form AndraKontorsChef
@@ -27,17 +28,16 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     public AndraOmradesChef(InfDB idb, String id) {
         initComponents();
         this.idb = idb;
-        this.id = id;
-        txtChefNamn.setEditable(false);
+        this.id = id;        
         
             try{
-                //Kod som hämtar ut hela ID-kolumnen för agenter från databasen och sorterar i stigande ordning
-                agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
-                
-                //For each loop som gör att alla ID:n listas i en drop-down-meny
-                agentID.forEach(idNr -> {
-                boxChef.addItem(idNr);
-                                        });
+                //Hämtar kolumnen med agent-ID:n ur agent-tabellen i databasen
+                agenterna = idb.fetchRows("SELECT Agent_ID, Namn FROM agent");
+            
+                //Genom en for each loop listas alla agent-ID:n i en drop-down-meny
+                for(HashMap enAgent : agenterna){
+                    boxChef.addItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());               
+            }
                 //Kod som hämtar ut hela kolumnen med namn från databasen och sorterar i stigande ordning
                 kontorNamn = idb.fetchColumn("SELECT Benamning FROM Omrade ORDER BY Benamning ASC");
                 
@@ -64,7 +64,6 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         boxValjOmrade = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         boxChef = new javax.swing.JComboBox<>();
-        txtChefNamn = new javax.swing.JTextField();
         lblMIB = new javax.swing.JLabel();
         goBack = new javax.swing.JLabel();
         godkännKnapp = new javax.swing.JPanel();
@@ -76,21 +75,15 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(boxValjOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 190, -1));
+        getContentPane().add(boxValjOmrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 190, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("Välj ett område");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 120, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 120, 20));
 
-        boxChef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxChefActionPerformed(evt);
-            }
-        });
-        getContentPane().add(boxChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 190, -1));
-        getContentPane().add(txtChefNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 190, -1));
+        getContentPane().add(boxChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 190, -1));
 
         lblMIB.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         lblMIB.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,7 +126,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel3.setText("Välj chef");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 100, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 100, 20));
 
         bakgrund.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/spaceBlue.jpg"))); // NOI18N
         getContentPane().add(bakgrund, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -142,24 +135,10 @@ public class AndraOmradesChef extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxChefActionPerformed
-        //Kod som hämtar och visar namnet på vald agent i gränssnittet
-        try{
-            String idNr = (String)boxChef.getSelectedItem();
-            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
-            String namnFraga = idb.fetchSingle(hamtaNamn);
-            txtChefNamn.setText(namnFraga);}
-        
-            catch(InfException e){
-                JOptionPane.showMessageDialog(null, "Något gick fel");
-                System.out.println(e);
-        }
-    }//GEN-LAST:event_boxChefActionPerformed
-
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
         //Metod som hanterar vad som sker när användaren trycker på "godkänn"
-        
-        String id = (String)boxChef.getSelectedItem();
+        int i = boxChef.getSelectedIndex();
+        String valdChef = agenterna.get(i).get("Agent_ID");
         String valtOmrade = (String)boxValjOmrade.getSelectedItem();
         
         try{
@@ -172,7 +151,7 @@ public class AndraOmradesChef extends javax.swing.JFrame {
                 
                 //Om användaren bekräftar ändringarna, ser denna kod till att uppdatera databasen
                 if(svar == JOptionPane.YES_OPTION){
-                    idb.update("UPDATE Omradeschef SET Agent_ID='" + id + "'WHERE Omrade=" + hamtaOmradesID + "");
+                    idb.update("UPDATE Omradeschef SET Agent_ID='" + valdChef + "'WHERE Omrade=" + hamtaOmradesID + "");
                     JOptionPane.showMessageDialog(null, "Områdeschefen för " + valtOmrade + " har nu ändrats");
             }  
         }
@@ -199,6 +178,5 @@ public class AndraOmradesChef extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblMIB;
-    private javax.swing.JTextField txtChefNamn;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,6 +19,7 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     private static InfDB idb;
     private ArrayList<String> kontorNamn;
     private ArrayList<String> agentID;
+    private ArrayList<HashMap<String,String>> agenterna;
     private static String id;
 
     /**
@@ -28,31 +29,30 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
         this.id = id;
-        txtChefNamn.setEditable(false);
         txtNyttKontor.setVisible(false);
         lblKontorsnamn.setVisible(false);
         
             try{
-                //Kod som hämtar ut kolumnen med agent-ID:n från databasen, och sorterar dem i stigande ordning
-                agentID = idb.fetchColumn("SELECT Agent_ID FROM Agent ORDER BY Agent_ID ASC");
+                //Hämtar kolumnen med agent-ID:n ur agent-tabellen i databasen
+                agenterna = idb.fetchRows("SELECT Agent_ID, Namn FROM agent");
+            
+            //Genom en for each loop listas alla agent-ID:n i en drop-down-meny
+            for(HashMap enAgent : agenterna){
+                boxKontorsChef.addItem(enAgent.get("Agent_ID").toString() + " : " + enAgent.get("Namn").toString());
+            }
+            //Kod som hämtar ut kolumnen med namn på kontoren från databasen, och sorterar dem i bokstavsordningen A-Ö
+            kontorNamn = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef ORDER BY Kontorsbeteckning ASC");
                 
-                //En for each loop som listar alla agent-ID:n i en drop-down-meny
-                agentID.forEach(idNr -> {
-                boxKontorsChef.addItem(idNr);
-                                         });
-                //Kod som hämtar ut kolumnen med namn på kontoren från databasen, och sorterar dem i bokstavsordningen A-Ö
-                kontorNamn = idb.fetchColumn("SELECT Kontorsbeteckning FROM Kontorschef ORDER BY Kontorsbeteckning ASC");
-                
-                //En for each loop som listar alla kontorsnamn i en drop-down-meny
-                kontorNamn.forEach(kontor -> {
-                boxValjKontor.addItem(kontor);
-                                         }); 
+            //En for each loop som listar alla kontorsnamn i en drop-down-meny
+            kontorNamn.forEach(kontor -> {
+            boxValjKontor.addItem(kontor);
+            }); 
         
-                }
-                catch(InfException e){
-                        JOptionPane.showMessageDialog(null, "Något gick fel");
-                        System.out.println(e);
-                                        }
+            }
+            catch(InfException e){
+                JOptionPane.showMessageDialog(null, "Något gick fel");
+                System.out.println(e);
+            }
     }
 
     /**
@@ -68,7 +68,6 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         boxKontorsChef = new javax.swing.JComboBox<>();
-        txtChefNamn = new javax.swing.JTextField();
         btnLaggTillKontor = new javax.swing.JRadioButton();
         txtNyttKontor = new javax.swing.JTextField();
         lblKontorsnamn = new javax.swing.JLabel();
@@ -96,13 +95,7 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         jLabel2.setText("Välj kontorschef");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 220, 120, 20));
 
-        boxKontorsChef.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxKontorsChefActionPerformed(evt);
-            }
-        });
         getContentPane().add(boxKontorsChef, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 190, -1));
-        getContentPane().add(txtChefNamn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 190, -1));
 
         btnLaggTillKontor.setBackground(new java.awt.Color(0, 0, 0));
         btnLaggTillKontor.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,20 +159,6 @@ public class AndraKontorsChef extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxKontorsChefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxKontorsChefActionPerformed
-        //Hämtar namn på agenten för det ID som valts i gränssnittet
-        
-        try{
-            String idNr = (String)boxKontorsChef.getSelectedItem();
-            String hamtaNamn = "SELECT Namn FROM Agent WHERE Agent_ID=" + idNr;
-            String namnFraga = idb.fetchSingle(hamtaNamn);
-            txtChefNamn.setText(namnFraga);}
-        
-            catch(InfException e){
-            System.out.println(e);
-                                 }
-    }//GEN-LAST:event_boxKontorsChefActionPerformed
-
     private void btnLaggTillKontorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillKontorActionPerformed
         /** Metod för att lägga till ett nytt kontor om det man vill ha inte finns i listan
          * Om knappen för att lägga till nytt kontor väljs, så dyker ett textfält upp där man
@@ -198,7 +177,8 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLaggTillKontorActionPerformed
 
     private void godkännKnappMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_godkännKnappMouseReleased
-        String idNr = (String)boxKontorsChef.getSelectedItem();
+        int i = boxKontorsChef.getSelectedIndex();
+        String idNr = agenterna.get(i).get("Agent_ID");
         String kontor = (String)boxValjKontor.getSelectedItem();
         
             try{
@@ -245,7 +225,6 @@ public class AndraKontorsChef extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lblKontorsnamn;
     private javax.swing.JLabel lblMIB;
-    private javax.swing.JTextField txtChefNamn;
     private javax.swing.JTextField txtNyttKontor;
     // End of variables declaration//GEN-END:variables
 }
