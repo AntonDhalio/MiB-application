@@ -34,6 +34,7 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
         boxHanteraAgenter.addItem("Ta bort agent ur systemet");
         boxHanteraAgenter.addItem("Ändra information om områdeschefer");
         boxHanteraAgenter.addItem("Ändra information om kontorschef");
+        boxHanteraAgenter.addItem("Se information om agenter");
         
     }
 
@@ -122,7 +123,10 @@ public class AdminHanteraAgent extends javax.swing.JFrame {
                     break;
             case 6: new AndraKontorsChef(idb, id).setVisible(true);
                     dispose();
-                    break;   
+                    break;
+            case 7: new InfoAgent(idb, id).setVisible(true);
+                    dispose();
+                    break;        
         }
             
     }//GEN-LAST:event_boxHanteraAgenterActionPerformed
